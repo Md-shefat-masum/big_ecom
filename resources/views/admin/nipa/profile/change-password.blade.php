@@ -21,21 +21,24 @@
                         <h6 class="mb-0 text-uppercase">New Password</h6>
                            <p>Choose a strong password and don't reuse it for other accounts.</p>
                         <hr />
-                        <form>
+                        <form method="post" action="{{route('admin_profile_update_password')}}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$data->id}}">
+                            <input type="hidden" name="role_id" value="{{$data->role_id}}">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                       
                                         <div class="col-md-8 mb-3">
                                             <label class="form-label">Current Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" name="password" class="form-control">
                                         </div>
                                         
                                         <div class="col-md-8 mb-3">
                                             <div class="row">
                                                 <div class="col-md-12 mb-3">
                                                     <label class="form-label">New Password</label>
-                                                    <input type="password" class="form-control">
+                                                    <input type="password" name="password2" class="form-control">
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label class="form-label">Confirm Password</label>
@@ -69,7 +72,9 @@
                                             
                                         </div>
                                         
-
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-light px-5">Change</button>
+                                        </div>
 
                                     </div>
                                 </div>
