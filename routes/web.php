@@ -90,6 +90,7 @@ Route::group([
     Route::get('/view', 'ProductController@view')->name('admin_product_view');
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
 
+    // test comment from shefat origin
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
     Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
 
