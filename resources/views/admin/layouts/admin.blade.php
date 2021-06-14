@@ -302,8 +302,8 @@
     <!-- Custom scripts -->
     <script src="{{ asset('contents/admin') }}/js/app-script.js"></script>
     <script>
-		new PerfectScrollbar('.email-navigation');
-		new PerfectScrollbar('.email-list');
+		// new PerfectScrollbar('.email-navigation');
+		// new PerfectScrollbar('.email-list');
 	</script>
     <script src="{{ asset('contents/admin') }}/custom.js"></script>
 

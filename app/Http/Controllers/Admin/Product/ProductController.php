@@ -238,6 +238,26 @@ class ProductController extends Controller
         return view('admin.product.categories.create',compact('categories'));
     }
 
+    public function store_category(Request $request)
+    {
+        $this->validate($request,[
+            'name' => ['required'],
+            'url' => ['required'],
+            'description' => ['required'],
+            'parent_category' => ['required'],
+            'template_layout_file' => ['required'],
+            'sort_order' => ['required'],
+            'default_product_sort' => ['required'],
+            'category_image' => ['required'],
+            'page_title' => ['required'],
+            'meta_keywords' => ['required'],
+            'meta_description' => ['required'],
+            'search_keywords' => ['required'],
+        ]);
+        return [$request->all(), $request->file('category_image')];
+        //function_body
+    }
+
     public function update(Request $request, $id)
     {
         //

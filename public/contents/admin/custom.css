@@ -663,18 +663,6 @@ input[type=text]:focus {
   position: unset;
   display: none;
 }
-
-
-.breadcrumb-title{
-  font-size: 24px;
+input.form-control[type="file"] {
+  height: 43px;
 }
-
-.breadcrumb-title-two{
-  padding: 0px 0px 20px 0px !important;
-
-}
-
-.breadcrumb-subtitle{
-padding: 0px 0px 20px 0px !important;
-}
-
