@@ -27,7 +27,8 @@ Route::group([
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
-    Route::get('/profile-edit', 'ProfileController@edit')->name('admin_profile_edit'); 
+    Route::get('/admin-profile-edit/{id}', 'ProfileController@edit')->name('admin_profile_edit'); 
+    Route::post('/admin-profile-update', 'ProfileController@update_profile')->name('admin_profile_update'); 
     Route::get('/profile-change-email', 'ProfileController@change_email')->name('admin_profile_change_email'); 
     Route::get('/profile-change-password', 'ProfileController@change_password')->name('admin_profile_change_password'); 
     Route::get('/profile-additional-authentication', 'ProfileController@additional_authentication')->name('admin_profile_additional_authentication');
@@ -45,4 +46,31 @@ Route::group([
     Route::get('/store-setup-change-password', 'StoreSetupController@change_password')->name('admin_store_setup_change_password'); 
     Route::get('/store-setup-additional-authentication', 'StoreSetupController@additional_authentication')->name('admin_store_setup_additional_authentication');
 
+});
+Route::group([
+    'prefix' => 'user-role',
+    'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
+    'namespace' => 'Nipa'
+], function () {
+    Route::get('/account-settings-invoices', 'AccountSettingsController@invoices')->name('admin_account_settings_invoices'); 
+    Route::get('/account-settings-payment-method', 'AccountSettingsController@payment_method')->name('admin_account_settings_payment_method'); 
+
+});
+Route::group([
+    'prefix' => 'user-role',
+    'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
+    'namespace' => 'Nipa'
+], function () {
+    Route::get('/admin-storefront-logo', 'StorefrontController@logo')->name('admin_storefront_logo'); 
+    Route::get('/admin-storefront-social-media', 'StorefrontController@social_media')->name('admin_storefront_social_media'); 
+    Route::get('/admin-storefront-web-pages', 'StorefrontController@web_pages')->name('admin_storefront_web_pages'); 
+    Route::get('/admin-storefront-create-web-pages', 'StorefrontController@create_web_pages')->name('admin_storefront_create_web_pages'); 
+
+});
+Route::group([
+    'prefix' => 'user-role',
+    'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
+    'namespace' => 'Nipa'
+], function () {
+    Route::get('/admin-email', 'StorefrontController@email')->name('admin_email');
 });

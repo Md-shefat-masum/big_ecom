@@ -25,7 +25,7 @@
                                 <div class="border p-4 rounded">
 
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">EStore
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Store
                                             Name</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="inputEnterYourName">

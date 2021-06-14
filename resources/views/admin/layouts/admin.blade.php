@@ -301,7 +301,10 @@
     <script src="{{ asset('contents/admin') }}/plugins/metismenu/js/metisMenu.min.js"></script>
     <!-- Custom scripts -->
     <script src="{{ asset('contents/admin') }}/js/app-script.js"></script>
-
+    <script>
+		new PerfectScrollbar('.email-navigation');
+		new PerfectScrollbar('.email-list');
+	</script>
     <script src="{{ asset('contents/admin') }}/custom.js"></script>
 
     @stack('cjs')

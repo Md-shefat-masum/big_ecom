@@ -91,8 +91,11 @@
             <div class="menu-title">My Profile</div>
         </a>
         <ul class="">
+            @php
+                $data=Auth::user()->id;
+            @endphp
             <li>
-                <a href="{{ route('admin_profile_edit') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Edit Profile</a>
+                <a href="{{ route('admin_profile_edit',$data) }}"><i class="zmdi zmdi-dot-circle-alt"></i>Edit Profile</a>
             </li>
             <li>
                 <a href="{{ route('admin_profile_change_email') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Change Email Address</a>
@@ -139,6 +142,44 @@
           
    
         </ul>
+    </li>
+    <li>
+        <a class="has-arrow" href="#">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">Account Settings</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_account_settings_invoices') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Invoices and Billing</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_account_settings_payment_method') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Payment Method</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="has-arrow" href="#">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">Storefront</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_storefront_logo') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Logo</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_storefront_social_media') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Social Media Links</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_storefront_web_pages') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Web Pages</a>
+            </li>
+          
+        </ul>
+    </li>
+    <li>
+        <a href="{{route('admin_email')}}">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">Email</div>
+        </a>
     </li>
 
 
