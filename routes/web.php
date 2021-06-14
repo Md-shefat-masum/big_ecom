@@ -58,6 +58,7 @@ Route::group([
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Admin'
 ], function () {
+
     Route::get('/index', 'UserRoleController@index')->name('admin_user_role_index');
     Route::get('/view/{id}', 'UserRoleController@view')->name('admin_user_role_view');
     Route::get('/create', 'UserRoleController@create')->name('admin_user_role_create');
@@ -65,6 +66,7 @@ Route::group([
     Route::get('/edit', 'UserRoleController@edit')->name('admin_user_role_edit');
     Route::post('/update', 'UserRoleController@update')->name('admin_user_role_update');
     Route::post('/delete', 'UserRoleController@delete')->name('admin_user_role_delete');
+
 });
 
 Route::group([
@@ -76,6 +78,7 @@ Route::group([
     Route::post('/store-file', 'FileManagerController@store_file')->name('admin_fm_store_file');
     Route::get('/get-files', 'FileManagerController@get_files')->name('admin_fm_get_files');
     Route::delete('/delete-file/{image}', 'FileManagerController@delete_file')->name('admin_fm_delete_file');
+
 });
 
 Route::group([
@@ -86,11 +89,15 @@ Route::group([
 
     Route::get('/view', 'ProductController@view')->name('admin_product_view');
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
+
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
+    Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
+
     Route::get('/search', 'ProductController@search')->name('admin_product_search');
     Route::get('/option', 'ProductController@option')->name('admin_product_option');
     Route::get('/reviews', 'ProductController@reviews')->name('admin_product_reviews');
     Route::get('/brands', 'ProductController@brands')->name('admin_product_brands');
+
 });
 
 Route::group([
@@ -134,8 +141,10 @@ Route::get('/test', function (Request $request) {
 
     // Now output the results.
     foreach ($results as $result) {
-        echo "$result<br />";
+        echo "$result<br/>";
     }
 
     dd($request->all());
 })->name('route name');
+
+include_once("nipa_web.php");

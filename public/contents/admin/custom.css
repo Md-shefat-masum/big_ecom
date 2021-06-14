@@ -260,7 +260,7 @@ ul li {
 .dragable_list #sTree2 li,
 .dragable_list #sTreePlus li,
 .dragable_list ul#s-l-base li {
-  padding-left: 50px;
+  padding-left: 30px;
   margin: 5px;
   border: 1px solid #3f3f3f;
   background-color: #3f3f3f;
@@ -663,3 +663,18 @@ input[type=text]:focus {
   position: unset;
   display: none;
 }
+
+
+.breadcrumb-title{
+  font-size: 24px;
+}
+
+.breadcrumb-title-two{
+  padding: 0px 0px 20px 0px !important;
+
+}
+
+.breadcrumb-subtitle{
+padding: 0px 0px 20px 0px !important;
+}
+

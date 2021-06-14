@@ -1,0 +1,157 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery hummingbird-treeview Demo</title>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="hummingbird-treeview.css" rel="stylesheet" type="text/css">
+<style>
+body { background-color:#fafafa;}
+.container { margin:150px auto; min-height:100vh;}
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+    //border-right:0;
+    box-shadow:0 0 0;
+    border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.h-scroll {
+    background-color: #fcfdfd;
+    height: 260px;
+    overflow-y: scroll;
+}
+</style>
+</head>
+
+<body>
+<div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="https://www.jqueryscript.net/other/Collapsible-Tree-View-Checkboxes-jQuery-hummingbird.html">Download This Plugin</a></li>
+<li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul><div id="carbon-block"></div>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+<div class="container">
+  <h2>jQuery hummingbird-treeview Demo</h2>
+<div id="treeview_container" class="hummingbird-treeview" style="height: 230px; overflow-y: scroll;">
+      <ul id="treeview" class="hummingbird-base">
+      <li data-id="0">
+    <i class="fa fa-plus"></i>
+    <label>
+        <input id="xnode-0" data-id="custom-0" type="checkbox" /> node-0
+    </label>
+    <ul>
+        <li data-id="1">
+      <i class="fa fa-plus"></i>
+      <label>
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> node-0-1
+      </label>
+      <ul>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-1-1" data-id="custom-0-1-1" type="checkbox" /> node-0-1-1
+        </label>
+          </li>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> node-0-1-2
+        </label>
+          </li>
+      </ul>
+        </li>
+        <li data-id="1">
+      <i class="fa fa-plus"></i>
+      <label>
+          <input  id="xnode-0-2" data-id="custom-0-2" type="checkbox" /> node-0-2
+      </label>
+      <ul>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-2-1" data-id="custom-0-2-1" type="checkbox" /> node-0-2-1
+        </label>
+          </li>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-2-2" data-id="custom-0-2-2" type="checkbox" /> node-0-2-2
+        </label>
+          </li>
+      </ul>
+        </li>
+    </ul>
+      </li>
+  </ul>
+    </div>
+  <button class="btn btn-primary" id="checkAll">Check All</button>
+  <button class="btn btn-primary" id="uncheckAll">Uncheck All</button>
+  <button class="btn btn-danger" id="checkNode">Check Node 0-2-2</button>
+</div>
+<script>
+try {
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CE7DC2JW&placement=wwwcssscriptcom";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+} catch (error) {
+  console.log(error);
+}
+</script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="hummingbird-treeview.js"></script>
+<script>
+$("#treeview").hummingbird();
+$( "#checkAll" ).click(function() {
+  $("#treeview").hummingbird("checkAll");
+});
+$( "#uncheckAll" ).click(function() {
+  $("#treeview").hummingbird("uncheckAll");
+});
+$( "#collapseAll" ).click(function() {
+  $("#treeview").hummingbird("collapseAll");
+});
+$( "#checkNode" ).click(function() {
+  $("#treeview").hummingbird("checkNode",{attr:"id",name: "node-0-2-2",expandParents:false});
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

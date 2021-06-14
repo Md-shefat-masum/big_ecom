@@ -64,7 +64,82 @@
             </li>
         </ul>
     </li>
-
+    
+    <li>
+        <a class="has-arrow" href="#">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">Customersss</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_customer_index') }}"><i class="zmdi zmdi-dot-circle-alt"></i>View</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_customer_create') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Add</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_customer_search') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Search</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_customer_import') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Import</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="has-arrow" href="#">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">My Profile</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_profile_edit') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Edit Profile</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_profile_change_email') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Change Email Address</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_profile_change_password') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Change Password</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_profile_additional_authentication') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Additional Authentication</a>
+            </li>
+   
+        </ul>
+    </li>
+    <li>
+        <a class="has-arrow" href="#">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">Store Setup</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_store_setup_profile') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Profile</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_store_setup_currencies') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Currencies</a>
+            </li>
+          
+            <li>
+                <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Payments</a>
+            </li>
+            <li>
+                <a href="{{route('admin_store_setup_settings')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings</a>
+            </li>
+            <li>
+                <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Shipping</a>
+            </li>
+          
+            <li>
+                <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Tax</a>
+            </li>
+            <li>
+                <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Accounting</a>
+            </li>
+          
+          
+   
+        </ul>
+    </li>
 
 
     {{--
