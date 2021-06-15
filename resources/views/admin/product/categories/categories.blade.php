@@ -30,7 +30,7 @@
                                         $id = $a->id;
                                         $category_name = $a->name;
 
-                                        echo "<li class='s-l-open' id='{$category_name}_{$id}' data-id='$id' data-name='$category_name' data-module='$module'>";
+                                        echo "<li class='s-l-open' id='{$category_name}_{$id}' data-id='$id' data-parent_id='$parent_id' data-name='$category_name' data-module='$module'>";
                                             echo "<div class='clickable'>
                                                     <div class='d-inline-flex clickable align-items-center'>
                                                         <input type='checkbox' value='$id' class='form-check-inline control_check_box clickable' data-parent='$module' />
@@ -39,7 +39,7 @@
                                                         </div>
                                                     </div>
                                                 </div>";
-                                            if (isset($a->child) && is_array($a->child)) {
+                                            if (isset($a->child) && is_array($a->child) && count($a->child)>0 ) {
                                                 // dd($a->child,is_array($a->child));
                                                 echo "<ul class=''>";
                                                     // dd($a->child);
@@ -77,18 +77,26 @@
     @push('cjs')
         {{-- <script src="{{ asset('contents/admin') }}/plugins/sortable_list/jquery-sortable-lists.min.js"></script> --}}
         <script src="{{ asset('contents/admin') }}/plugins/sortable_list/jquery-sortable-lists-mobile.min.js"></script>
-        <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
+        {{-- <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script> --}}
         <script>
             var options = {
                 placeholderCss: {'background-color': '#ff8'},
                 hintCss: {'background-color':'#bbf'},
                 onChange: function( cEl )
                 {
-                    console.log( 'onChange' );
+                    // console.log( 'onChange' );
                 },
                 complete: function( cEl )
                 {
-                    console.log( 'complete',cEl );
+                    let parent_id = $(cEl).parent('ul').parent('li').data('id');
+                    let category_id = $(cEl).data('id')
+                    // console.log( 'complete', parent_id , category_id );
+                    // let categories = $('#sTree2').sortableListsToArray();
+                    axios.post('/admin/product/rearenge-category',{parent_id: parent_id, id:category_id})
+                        .then((res)=>{
+                            // console.log(res);
+                            toaster('success','category rearenged.');
+                        })
                 },
                 isAllowed: function( cEl, hint, target )
                 {
@@ -155,7 +163,7 @@
             $('.descPicture').on( 'click', function(e) { $(this).toggleClass('descPictureClose'); } );
 
             $('.clickable').on('click', function(e)	{
-               console.log( $('#sTree2').sortableListsToArray() );
+            //    console.log( $('#sTree2').sortableListsToArray() );
             });
 
             /* Scrolling anchors */

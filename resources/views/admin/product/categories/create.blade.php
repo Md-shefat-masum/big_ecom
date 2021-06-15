@@ -44,7 +44,7 @@
                                                 <ul id="treeview" class="hummingbird-base">
                                                     <li>
                                                         <label style="background-color: white; color: black; cursor: pointer;">
-                                                        <input id="node-lg_3" name="parent_category" value="no_parent" data-id="custom-lg_3" type="checkbox">
+                                                        <input id="node-lg_3" name="parent_id" value="0" data-id="custom-lg_3" type="radio">
                                                             --No Parent Category--
                                                         </label>
                                                     </li>
@@ -57,12 +57,12 @@
                                                             echo "<li>";
 
                                                             echo "  <label>
-                                                                        <input name='parent_category' value='$id' id='node-{$category_name}_{$id}' data-id='custom-{$category_name}_{$id}' type='checkbox' />
+                                                                        <input name='parent_id' value='$id' id='node-{$category_name}_{$id}' data-id='custom-{$category_name}_{$id}' type='radio' />
                                                                         {$category_name}
                                                                     </label>
                                                                 ";
 
-                                                                if (isset($a->child) && is_array($a->child)) {
+                                                                if (isset($a->child) && is_array($a->child) && count($a->child) > 0) {
                                                                         echo "<i class='fa fa-plus-circle' title='collapse'></i>";
                                                                     }
 
@@ -184,28 +184,29 @@
 
     @push('cjs')
         <script src="{{ asset('contents/admin') }}/plugins/summernote/dist/summernote-bs4.min.js"></script>
-        <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
         <script src="{{ asset('contents/admin') }}/plugins/collapse_tree/hummingbird-treeview.min.js"></script>
 
         <script>
-            $('#mytextarea1').summernote({
-                height: 200,
-                tabsize: 2
-            });
+            $(function(){
+                $('#mytextarea1').summernote({
+                    height: 200,
+                    tabsize: 2
+                });
 
-            $("#treeview").hummingbird();
-            // Collapse all nodes on init
-            // $.fn.hummingbird.defaults.collapseAll =false;
-            $("#treeview li").off().on('click',function(){
+                $("#treeview").hummingbird();
+                // Collapse all nodes on init
+                // $.fn.hummingbird.defaults.collapseAll = true;
+                $("#treeview li").off().on('click',function(){
+                })
+                $("#treeview li input").off().on('click',function(){
+                    // console.log('clicked',$(this));
+                })
+                $("#treeview li label").off().on('click',function(){
+                })
             })
-            $("#treeview li input").off().on('click',function(){
-                console.log('clicked',$(this));
-            })
-            $("#treeview li label").off().on('click',function(){
-            })
-
-
         </script>
+
+        <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
 
         <style>
             label{

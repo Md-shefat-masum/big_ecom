@@ -94,6 +94,7 @@ Route::group([
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
     Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
     Route::post('/store-category', 'ProductController@store_category')->name('admin_product_store_category');
+    Route::post('/rearenge-category', 'ProductController@rearenge_category')->name('admin_product_rearenge_category');
 
     Route::get('/search', 'ProductController@search')->name('admin_product_search');
     Route::get('/option', 'ProductController@option')->name('admin_product_option');

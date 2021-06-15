@@ -623,23 +623,28 @@ if (document.getElementById('category_form')) {
             return {
                 category_serial: 0,
                 form_data : {
-                    'name' : null,
-                    'url' : null,
-                    'description' : null,
-                    'parent_category' : null,
-                    'template_layout_file' : null,
-                    'sort_order' : null,
-                    'default_product_sort' : null,
-                    'category_image' : null,
-                    'page_title' : null,
-                    'meta_keywords' : null,
-                    'meta_description' : null,
-                    'search_keywords' : null,
+                    name : null,
+                    url : null,
+                    description : null,
+                    parent_category : null,
+                    template_layout_file : null,
+                    sort_order : null,
+                    default_product_sort : null,
+                    category_image : null,
+                    page_title : null,
+                    meta_keywords : null,
+                    meta_description : null,
+                    search_keywords : null,
                 }
             }
         },
-        created: function(){
-            
+        watch: {
+            form_data: {
+                handler(val, oldVal){
+                    this.form_data.url = '/'+(this.form_data.name).replace(' ','-').toLowerCase();
+                },
+                deep:true,
+            }
         },
         methods: {
             store: function(){
