@@ -306,7 +306,7 @@ ul {
     #sTree2,
     #sTreePlus {
         padding: 0;
-        background-color: #151515;
+        background-color: #2b2b2b;
     }
 
     #sTree2 li,
@@ -315,7 +315,15 @@ ul {
         padding-left: 30px;
         margin: 5px;
         border: 1px solid #3f3f3f;
-        background-color: #3f3f3f;
+        // background-color: #3f3f3f;
+        padding-right: 0px;
+        margin-right: 0;
+        border-right: 0;
+        border: 0;
+
+        &:hover {
+            cursor: url('../../cursor.png'), pointer;
+        }
     }
 
     li div {
@@ -327,6 +335,18 @@ ul {
     ul,
     div {
         border-radius: 3px;
+        border-right: 0px;
+        border: 0;
+    }
+
+    li>div {
+        position: relative;
+        text-transform: capitalize;
+    }
+
+    li input[type="checkbox"]{
+        width: 21px;
+        height: 21px;
     }
 
     .c1 {
@@ -449,8 +469,66 @@ ul {
     #sTree2,
     #sTreePlus {
         margin: 10px auto;
+        padding-right: 5px;
+        padding: 5px;
     }
 }
+
+.dragable_list li div:hover{
+    .action_menu{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.action_menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 1px solid red;
+    background: gray;
+    opacity: 0;
+    visibility: hidden;
+
+    i {
+        cursor: pointer;
+        line-height: 37px;
+        margin-right: 8px;
+    }
+
+    &:hover {
+        div {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    div {
+        position: absolute;
+        width: 130px;
+        padding: 12px !important;
+        right: 0;
+        border: 1px solid rgb(139, 139, 139);
+        z-index: 99;
+        background: #252525 !important;
+        top: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: all linear .3s;
+
+        a {
+            display: block;
+            padding: 7px 2px;
+            text-transform: capitalize;
+
+            &:hover{
+                color: white;
+            }
+        }
+    }
+
+}
+
 
 
 .content-wrapper {
@@ -835,6 +913,6 @@ input[type=text]:focus {
     display: none;
 }
 
-input.form-control[type="file"]{
+input.form-control[type="file"] {
     height: 43px;
 }

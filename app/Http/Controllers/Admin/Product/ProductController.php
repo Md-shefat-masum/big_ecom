@@ -96,10 +96,8 @@ class ProductController extends Controller
 
     public function create_category()
     {
-
         $categories = $this->make_category_tree_array();
         $category_tree_view = $this->make_category_tree($categories);
-
         /*$categories = [
             [
                 'id' => 11,
@@ -119,6 +117,19 @@ class ProductController extends Controller
             ]
         ];*/
         return view('admin.product.categories.create', compact('categories', 'category_tree_view'));
+    }
+
+    public function edit_category($id,$category_name)
+    {
+        $category = Category::find($id);
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories);
+        return view('admin.product.categories.edit', compact('category','categories', 'category_tree_view'));
+    }
+
+    public function category_data($id)
+    {
+        return Category::find($id);
     }
 
     public function make_category_tree_array()
@@ -177,6 +188,47 @@ class ProductController extends Controller
         $category->creator = Auth::user()->id;
         $category->save();
         $category->slug = $category->id . rand(1111, 9999) . Str::slug($request->name);
+        $category->save();
+
+        if ($request->hasFile('category_image')) {
+            $file = $request->file('category_image');
+            $path = Storage::put('/uploads/category_image', $file);
+            $category->category_image = $path;
+            $category->save();
+        }
+
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories);
+
+        return response()->json([
+            'categories' => $categories,
+            'category_tree_view' => $category_tree_view,
+        ]);
+    }
+
+    public function update_category(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required'],
+            'url' => ['required','min:3'],
+            // 'description' => ['required'],
+            // 'parent_id' => ['required'],
+            // 'template_layout_file' => ['required'],
+            // 'sort_order' => ['required'],
+            // 'default_product_sort' => ['required'],
+            // 'category_image' => ['required'],
+            // 'page_title' => ['required'],
+            // 'meta_keywords' => ['required'],
+            // 'meta_description' => ['required'],
+            // 'search_keywords' => ['required'],
+        ],[
+            // 'url.min' => ['url is not valid'],
+        ]);
+
+        $category = Category::find($request->id);
+        $category->fill($request->except('category_image'));
+        $category->creator = Auth::user()->id;
+        $category->save();
 
         if ($request->hasFile('category_image')) {
             $file = $request->file('category_image');
@@ -196,14 +248,20 @@ class ProductController extends Controller
 
     public function rearenge_category(Request $request)
     {
+        if(!$request->parent_id){
+            $parent_id = 0;
+        }else{
+            $parent_id = $request->parent_id;
+        }
         Category::where('id', $request->id)->update([
-            'parent_id' => $request->parent_id,
+            'parent_id' => $parent_id,
         ]);
         return $request->all();
     }
 
     public function categorie_url_check(Request $request)
     {
+        return $request->all();
         return Category::where('url', $request->url)->exists();
     }
 

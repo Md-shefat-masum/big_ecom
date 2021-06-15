@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content-wrapper">
-        <div class="container-fluid" id="product_list">
+        <div class="container" id="product_list">
             @include('admin.layouts.includes.bread_cumb',['title'=>'View Categories'])
             <p>Manage categories.</p>
             <div class="row">
@@ -22,6 +22,9 @@
                             </ul>
                         </div>
                         <div class="card-body dragable_list">
+                            <ul>
+                                <li></li>
+                            </ul>
                             <ul class='sTree2 listsClass' id='sTree2'>
                             {{-- <ul class='sTree2 listsClass' id='sTreePlus'> --}}
                                 @php
@@ -31,11 +34,19 @@
                                         $category_name = $a->name;
 
                                         echo "<li class='s-l-open' id='{$category_name}_{$id}' data-id='$id' data-parent_id='$parent_id' data-name='$category_name' data-module='$module'>";
-                                            echo "<div class='clickable'>
+                                            echo "<div>
                                                     <div class='d-inline-flex clickable align-items-center'>
                                                         <input type='checkbox' value='$id' class='form-check-inline control_check_box clickable' data-parent='$module' />
                                                         <div class='clickable'>
                                                             {$category_name}
+                                                        </div>
+                                                    </div>
+                                                    <div class='clickable action_menu'>
+                                                        <i class='fa fa-align-right clickable'></i>
+                                                        <div class='clickable'>
+                                                            <a href='' class='clickable'>view</a>
+                                                            <a href='' class='clickable'>products</a>
+                                                            <a href='' class='clickable'>edit</a>
                                                         </div>
                                                     </div>
                                                 </div>";
@@ -212,7 +223,17 @@
                 padding-left: 30px;
             }
             .s-l-opener{
-                margin-left: -22px !important;
+                margin-left: -16px !important;
+                text-align: center;
+                line-height: 34px;
+                width: 33px;
+                height: 34px;
+                /* border: 1px solid; */
+                position: absolute;
+                left: -19px;
+            }
+            .s-l-opener:hover{
+                cursor: pointer;
             }
         </style>
     @endpush

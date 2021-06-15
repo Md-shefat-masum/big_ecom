@@ -93,8 +93,11 @@ Route::group([
     // test comment from shefat origin
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
     Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
+    Route::get('/edit-category/{id}/{category_name}', 'ProductController@edit_category')->name('admin_product_edit_category');
+    Route::get('/edit-data/{id}', 'ProductController@category_data')->name('admin_product_category_data');
     Route::post('/categorie-url-check', 'ProductController@categorie_url_check')->name('admin_product_categorie_url_check');
     Route::post('/store-category', 'ProductController@store_category')->name('admin_product_store_category');
+    Route::post('/update-category', 'ProductController@update_category')->name('admin_product_update_category');
     Route::post('/rearenge-category', 'ProductController@rearenge_category')->name('admin_product_rearenge_category');
 
     Route::get('/search', 'ProductController@search')->name('admin_product_search');

@@ -623,6 +623,7 @@ if (document.getElementById('category_form')) {
             return {
                 category_serial: 0,
                 form_data: {
+                    id: null,
                     name: null,
                     url: null,
                     description: null,
@@ -639,7 +640,16 @@ if (document.getElementById('category_form')) {
                 url_exists: false,
             }
         },
+        created: function(){
+            this.get_cateogry();
+        },
         methods: {
+            get_cateogry: function(){
+                axios.get('/admin/product/edit-data/'+location.pathname.split('/')[4])
+                    .then((res)=>{
+                        this.form_data = res.data;
+                    })
+            },
             store: function () {
                 let form_datas = new FormData($('#form_body')[0]);
                 form_datas.append('description', $('#mytextarea1').summernote('code'));
@@ -682,24 +692,63 @@ if (document.getElementById('category_form')) {
                 }
 
             },
+            update: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                form_datas.append('description', $('#mytextarea1').summernote('code'));
+
+                if (this.url_exists) {
+                    toaster('error', 'url already exists.');
+                    $(`input[name="url"]`).focus();
+                } else {
+                    axios.post('/admin/product/update-category', form_datas)
+                        .then((res) => {
+                            $('#treeview').html(res.data.category_tree_view);
+                            $("#treeview").off().hummingbird();
+                            $("#treeview li").off().on('click', function () {});
+                            $("#treeview li input").off().on('click', function () {});
+                            $("#treeview li label").off().on('click', function () {});
+                            toaster('success','Category Updated.');
+                        })
+                        .catch((err) => {
+                            // console.log(err.response);
+                            let errors = err.response.data.errors;
+                            for (const key in errors) {
+                                if (Object.hasOwnProperty.call(errors, key)) {
+                                    const element = errors[key];
+                                    $(`input[name="${key}"]`).addClass('border');
+                                    $(`input[name="${key}"]`).addClass('border-danger');
+                                    let span = `<span class="text-danger d-block">${element}</span>`;
+                                    $(`input[name="${key}"]`).parent('div').append(span);
+                                    $(`input[name="${key}"]`).focus();
+
+                                    if(key == 'url'){
+                                        toaster('error','url not valid');
+                                    }
+                                }
+                            }
+                        })
+                }
+
+            },
             check_url_exists: function (url) {
                 axios.post('/admin/product/categorie-url-check', {
-                        url: url
+                        url: url,
+                        id: this.form_data.id
                     })
                     .then((res) => {
-                        // console.log(res.data);
-                        this.url_exists = res.data;
-                        if (res.data) {
-                            $(`input[name="url"]`).addClass('border');
-                            $(`input[name="url"]`).addClass('border-danger');
-                            let span = `<span class="text-danger d-block">url exists , try another</span>`;
-                            $(`input[name="url"]`).parent('div').children('span').remove();
-                            $(`input[name="url"]`).parent('div').append(span);
-                        } else {
-                            $(`input[name="url"]`).removeClass('border');
-                            $(`input[name="url"]`).removeClass('border-danger');
-                            $(`input[name="url"]`).parent('div').children('span').remove();
-                        }
+                        console.log(res.data);
+                        // this.url_exists = res.data;
+                        // if (res.data) {
+                        //     $(`input[name="url"]`).addClass('border');
+                        //     $(`input[name="url"]`).addClass('border-danger');
+                        //     let span = `<span class="text-danger d-block">url exists , try another</span>`;
+                        //     $(`input[name="url"]`).parent('div').children('span').remove();
+                        //     $(`input[name="url"]`).parent('div').append(span);
+                        // } else {
+                        //     $(`input[name="url"]`).removeClass('border');
+                        //     $(`input[name="url"]`).removeClass('border-danger');
+                        //     $(`input[name="url"]`).parent('div').children('span').remove();
+                        // }
                     })
             },
             make_url: function () {
