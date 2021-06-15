@@ -13,12 +13,12 @@
                             <ul class="filter_nav d-flex flex-wrap">
                                 <li><a href="{{ route('admin_product_create_category') }}" class="custom_white_btn">Create Category</a></li>
                                 <li><a href="#" class="custom_white_btn">Delete</a></li>
-                                <li>
+                                {{-- <li>
                                     <input type="text" class="custom_input" name="" placeholder="Filter by keyword">
                                 </li>
                                 <li>
                                     <button class="custom_white_btn">Filter</button>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="card-body dragable_list">
