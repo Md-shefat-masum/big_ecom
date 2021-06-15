@@ -98,10 +98,10 @@
                 <a href="{{ route('admin_profile_edit',$data) }}"><i class="zmdi zmdi-dot-circle-alt"></i>Edit Profile</a>
             </li>
             <li>
-                <a href="{{ route('admin_profile_change_email') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Change Email Address</a>
+                <a href="{{ route('admin_profile_change_email',$data) }}"><i class="zmdi zmdi-dot-circle-alt"></i>Change Email Address</a>
             </li>
             <li>
-                <a href="{{ route('admin_profile_change_password') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Change Password</a>
+                <a href="{{ route('admin_profile_change_password',$data) }}"><i class="zmdi zmdi-dot-circle-alt"></i>Change Password</a>
             </li>
             <li>
                 <a href="{{ route('admin_profile_additional_authentication') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Additional Authentication</a>
