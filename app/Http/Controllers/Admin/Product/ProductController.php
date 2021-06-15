@@ -53,14 +53,14 @@ class ProductController extends Controller
 
         foreach ($categories as $key => $item) {
             $module = $item->name . '_' . $item->id;
-            if(Category::where('parent_id',$item->id)->where('status',1)->exists()){
-                $children = Category::where('parent_id',$item->id)->where("status",1)->get();
+            if (Category::where('parent_id', $item->id)->where('status', 1)->exists()) {
+                $children = Category::where('parent_id', $item->id)->where("status", 1)->get();
                 $temp_category = [];
                 $temp_category['id'] = $item->id;
                 $temp_category['name'] = $item->name;
                 $temp_category['child'] = $this->buildCategories($children, $item->id);
                 $all_category[] = $temp_category;
-            }else{
+            } else {
                 $temp_category['id'] = $item->id;
                 $temp_category['name'] = $item->name;
                 $temp_category['child'] = [];
@@ -76,8 +76,8 @@ class ProductController extends Controller
         $result = array();
         foreach ($children as $row) {
             if ($row->parent_id == $parent_id) {
-                if (Category::where('parent_id',$row->id)->where('status',1)->exists()) {
-                    $children = Category::where('parent_id',$row->id)->where("status",1)->get();
+                if (Category::where('parent_id', $row->id)->where('status', 1)->exists()) {
+                    $children = Category::where('parent_id', $row->id)->where("status", 1)->get();
                     $temp_category = [];
                     $temp_category['id'] = $row->id;
                     $temp_category['name'] = $row->name;
@@ -96,29 +96,9 @@ class ProductController extends Controller
 
     public function create_category()
     {
-        $categories = Category::where("status", 1)
-            ->where('parent_id', 0)
-            ->get();
 
-        $all_category = [];
-
-        foreach ($categories as $key => $item) {
-            $module = $item->name . '_' . $item->id;
-            if(Category::where('parent_id',$item->id)->where('status',1)->exists()){
-                $children = Category::where('parent_id',$item->id)->where("status",1)->get();
-                $temp_category = [];
-                $temp_category['id'] = $item->id;
-                $temp_category['name'] = $item->name;
-                $temp_category['child'] = $this->buildCategories($children, $item->id);
-                $all_category[] = $temp_category;
-            }else{
-                $temp_category['id'] = $item->id;
-                $temp_category['name'] = $item->name;
-                $temp_category['child'] = [];
-                $all_category[] = $temp_category;
-            }
-        }
-        $categories = $all_category;
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories);
 
         /*$categories = [
             [
@@ -138,24 +118,58 @@ class ProductController extends Controller
                 ],
             ]
         ];*/
-        return view('admin.product.categories.create', compact('categories'));
+        return view('admin.product.categories.create', compact('categories', 'category_tree_view'));
+    }
+
+    public function make_category_tree_array()
+    {
+        $categories = Category::where("status", 1)
+            ->where('parent_id', 0)
+            ->get();
+
+        $all_category = [];
+
+        foreach ($categories as $key => $item) {
+            $module = $item->name . '_' . $item->id;
+            if (Category::where('parent_id', $item->id)->where('status', 1)->exists()) {
+                $children = Category::where('parent_id', $item->id)->where("status", 1)->get();
+                $temp_category = [];
+                $temp_category['id'] = $item->id;
+                $temp_category['name'] = $item->name;
+                $temp_category['child'] = $this->buildCategories($children, $item->id);
+                $all_category[] = $temp_category;
+            } else {
+                $temp_category['id'] = $item->id;
+                $temp_category['name'] = $item->name;
+                $temp_category['child'] = [];
+                $all_category[] = $temp_category;
+            }
+        }
+
+        return $all_category;
+    }
+    public function make_category_tree($categories)
+    {
+        return view('admin.product.categories.category_tree_view', compact('categories'))->render();
     }
 
     public function store_category(Request $request)
     {
         $this->validate($request, [
             'name' => ['required'],
-            'url' => ['required'],
-            'description' => ['required'],
-            'parent_id' => ['required'],
-            'template_layout_file' => ['required'],
-            'sort_order' => ['required'],
-            'default_product_sort' => ['required'],
-            'category_image' => ['required'],
-            'page_title' => ['required'],
-            'meta_keywords' => ['required'],
-            'meta_description' => ['required'],
-            'search_keywords' => ['required'],
+            'url' => ['required', 'unique:categories','min:3'],
+            // 'description' => ['required'],
+            // 'parent_id' => ['required'],
+            // 'template_layout_file' => ['required'],
+            // 'sort_order' => ['required'],
+            // 'default_product_sort' => ['required'],
+            // 'category_image' => ['required'],
+            // 'page_title' => ['required'],
+            // 'meta_keywords' => ['required'],
+            // 'meta_description' => ['required'],
+            // 'search_keywords' => ['required'],
+        ],[
+            // 'url.min' => ['url is not valid'],
         ]);
 
 
@@ -171,16 +185,26 @@ class ProductController extends Controller
             $category->save();
         }
 
-        return $category;
-        //function_body
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories);
+
+        return response()->json([
+            'categories' => $categories,
+            'category_tree_view' => $category_tree_view,
+        ]);
     }
 
     public function rearenge_category(Request $request)
     {
-        Category::where('id',$request->id)->update([
+        Category::where('id', $request->id)->update([
             'parent_id' => $request->parent_id,
         ]);
         return $request->all();
+    }
+
+    public function categorie_url_check(Request $request)
+    {
+        return Category::where('url', $request->url)->exists();
     }
 
     public function update(Request $request, $id)

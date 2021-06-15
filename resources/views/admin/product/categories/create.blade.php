@@ -13,20 +13,23 @@
                         @csrf
 
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header d-inline-flex justify-content-md-between">
                                 <h4>Category Details</h4>
+                                <a href="{{ route('admin_product_categories') }}" class="btn btn-warning mt-sm-3 mt-md-0" type="button">
+                                    <i class="fa fa-angle-left"></i> Back
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div class="from-group row mb-4 justify-contents-center">
                                     <label for="name" class="col-lg-3 text-lg-right">Name : </label>
                                     <div class="col-lg-7">
-                                        <input name="name" v-model="form_data.name" type="text" class="form-control">
+                                        <input name="name" @keyup="make_url" v-model="form_data.name" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="url" class="col-lg-3 text-lg-right">URL : </label>
                                     <div class="col-lg-7">
-                                        <input name="url" v-model="form_data.url" type="text" class="form-control">
+                                        <input name="url" @keyup="change_url" v-model="form_data.url" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
@@ -42,13 +45,9 @@
                                             <div id="treeview_container" class="hummingbird-treeview well h-scroll-large">
                                                 <!-- <div id="treeview_container" class="hummingbird-treeview"> -->
                                                 <ul id="treeview" class="hummingbird-base">
-                                                    <li>
-                                                        <label style="background-color: white; color: black; cursor: pointer;">
-                                                        <input id="node-lg_3" name="parent_id" value="0" data-id="custom-lg_3" type="radio">
-                                                            --No Parent Category--
-                                                        </label>
-                                                    </li>
-                                                    @php
+
+                                                    {!! $category_tree_view !!}
+                                                    {{-- @php
                                                         function printNestedArray($a,$module,$parent_id) {
                                                             $a = (object) $a;
                                                             $id = $a->id;
@@ -86,7 +85,7 @@
                                                             $module = $category->name.'_'.$category->id;
                                                             printNestedArray($category,$module,$category->id);
                                                         }
-                                                    @endphp
+                                                    @endphp --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -160,8 +159,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button @click.prevent="store" type="button">Submit</button>
+                            <div class="card-footer d-flex justify-content-center">
+                                <a href="{{ route('admin_product_categories') }}" class="btn btn-warning mr-3" type="button">
+                                    <i class="fa fa-angle-left"></i> Back
+                                </a>
+                                <button @click.prevent="store" class="btn btn-info" type="button">
+                                    <i class="fa fa-upload"></i> Submit
+                                </button>
                             </div>
                         </div>
 
@@ -194,15 +198,9 @@
                 });
 
                 $("#treeview").hummingbird();
-                // Collapse all nodes on init
-                // $.fn.hummingbird.defaults.collapseAll = true;
-                $("#treeview li").off().on('click',function(){
-                })
-                $("#treeview li input").off().on('click',function(){
-                    // console.log('clicked',$(this));
-                })
-                $("#treeview li label").off().on('click',function(){
-                })
+                $("#treeview li").off().on('click',function(){})
+                $("#treeview li input").off().on('click',function(){})
+                $("#treeview li label").off().on('click',function(){})
             })
         </script>
 

@@ -93,6 +93,7 @@ Route::group([
     // test comment from shefat origin
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
     Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
+    Route::post('/categorie-url-check', 'ProductController@categorie_url_check')->name('admin_product_categorie_url_check');
     Route::post('/store-category', 'ProductController@store_category')->name('admin_product_store_category');
     Route::post('/rearenge-category', 'ProductController@rearenge_category')->name('admin_product_rearenge_category');
 
