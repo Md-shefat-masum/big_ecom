@@ -8,6 +8,15 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+window.store = require('./store/index');
+const { default: store } = window.store;
+
+import { mapGetters, mapActions, mapMutations } from 'vuex';
+
+window.getters = mapGetters;
+window.mutation = mapMutations;
+window.action = mapActions;
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -27,9 +36,16 @@ window.Vue = require('vue').default;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-//  if(document.getElementById('product')){
+//  if(document.getElementById('app')){
 //     const app = new Vue({
-//         el: '#product',
+//         el: '#app',
+//         store: store,
+//         methods: {
+
+//         },
+//         computed: {
+//             ...mapGetters(['get_check_auth'])
+//         }
 //     });
 // }
 

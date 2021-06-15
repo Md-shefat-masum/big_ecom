@@ -1,3 +1,7 @@
+
+
+const { default: store } = window.store;
+
 if (document.getElementById('product')) {
     const app = new Vue({
         el: '#product',
@@ -602,8 +606,6 @@ if (document.getElementById('product')) {
     });
 }
 
-
-
 if (document.getElementById('product_list')) {
     const app = new Vue({
         el: '#product_list',
@@ -619,6 +621,7 @@ if (document.getElementById('product_option')) {
 if (document.getElementById('category_form')) {
     const app = new Vue({
         el: '#category_form',
+        store: store,
         data: function () {
             return {
                 category_serial: 0,
@@ -642,8 +645,18 @@ if (document.getElementById('category_form')) {
         },
         created: function () {
             this.get_cateogry();
+            console.log(
+                        // this.$store.default.state,
+                        // this.$store.default.commit('test_mutation'),
+                        // this.$store.default.dispatch('fetch_auth_info'),
+
+                        // this.test_mutation(),
+                        // this.fetch_category_info(),
+                    );
         },
         methods: {
+            ...window.mutation(['test_mutation']),
+            ...window.action(['fetch_category_info']),
             get_cateogry: function () {
                 if (location.pathname.split('/')[4]) {
 
@@ -779,5 +792,8 @@ if (document.getElementById('category_form')) {
 
             }
         },
+        computed: {
+            ...window.getters(['get_check_auth']),
+        }
     });
 }

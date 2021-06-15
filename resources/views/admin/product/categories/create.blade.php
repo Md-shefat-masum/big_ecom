@@ -204,7 +204,7 @@
             })
         </script>
 
-        <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
+        <script type="module" src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
 
         <style>
             label{
