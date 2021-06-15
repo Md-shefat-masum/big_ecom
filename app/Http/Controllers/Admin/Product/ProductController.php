@@ -97,7 +97,7 @@ class ProductController extends Controller
     public function create_category()
     {
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories);
+        $category_tree_view = $this->make_category_tree($categories,[]);
         /*$categories = [
             [
                 'id' => 11,
@@ -123,7 +123,7 @@ class ProductController extends Controller
     {
         $category = Category::find($id);
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories);
+        $category_tree_view = $this->make_category_tree($categories,$category);
         return view('admin.product.categories.edit', compact('category','categories', 'category_tree_view'));
     }
 
@@ -159,9 +159,9 @@ class ProductController extends Controller
 
         return $all_category;
     }
-    public function make_category_tree($categories)
+    public function make_category_tree($categories,$default_category)
     {
-        return view('admin.product.categories.category_tree_view', compact('categories'))->render();
+        return view('admin.product.categories.category_tree_view', compact('categories','default_category'))->render();
     }
 
     public function store_category(Request $request)
@@ -198,7 +198,7 @@ class ProductController extends Controller
         }
 
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories);
+        $category_tree_view = $this->make_category_tree($categories,[]);
 
         return response()->json([
             'categories' => $categories,
@@ -225,6 +225,7 @@ class ProductController extends Controller
             // 'url.min' => ['url is not valid'],
         ]);
 
+        // return dd($request->all());
         $category = Category::find($request->id);
         $category->fill($request->except('category_image'));
         $category->creator = Auth::user()->id;
@@ -238,7 +239,7 @@ class ProductController extends Controller
         }
 
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories);
+        $category_tree_view = $this->make_category_tree($categories,[]);
 
         return response()->json([
             'categories' => $categories,
@@ -261,8 +262,17 @@ class ProductController extends Controller
 
     public function categorie_url_check(Request $request)
     {
-        return $request->all();
-        return Category::where('url', $request->url)->exists();
+        if(Category::where('url', $request->url)->exists()){
+            if($request->has('id') && Category::where('url', $request->url)->where('id',$request->id)->exists()){
+                return response()->json(false);
+            }
+            elseif($request->has('id') && Category::where('url', $request->url)->exists()){
+                return response()->json(true.'2nd');
+            }
+            else{
+                return response()->json(false);
+            }
+        }
     }
 
     public function update(Request $request, $id)

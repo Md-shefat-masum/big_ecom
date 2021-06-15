@@ -11,7 +11,7 @@
 
                     <form action="#" id="form_body" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" value="{{ $category->id }}" v-model="form_data.id">
+                        <input type="hidden" name="id" value="{{ $category->id }}" v-model="form_data.id">
                         <div class="card">
                             <div class="card-header d-inline-flex justify-content-md-between">
                                 <h4>Category Details</h4>
@@ -35,7 +35,7 @@
                                 <div class="from-group row mb-4">
                                     <label for="description" class="col-lg-3 text-lg-right">Description : </label>
                                     <div class="col-lg-7">
-                                        <textarea name="description" value="{{ $category->description }}" v-model="form_data.description" id="mytextarea1" class="form-control"></textarea>
+                                        <textarea name="description" id="mytextarea1" class="form-control">{!! $category->description !!}</textarea>
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">

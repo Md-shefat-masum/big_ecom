@@ -44,9 +44,9 @@
                                                     <div class='clickable action_menu'>
                                                         <i class='fa fa-align-right clickable'></i>
                                                         <div class='clickable'>
-                                                            <a href='' class='clickable'>view</a>
-                                                            <a href='' class='clickable'>products</a>
-                                                            <a href='' class='clickable'>edit</a>
+                                                            <a href='#' class='clickable'>view</a>
+                                                            <a href='#' class='clickable'>products</a>
+                                                            <a href='/admin/product/edit-category/$id/$category_name' class='clickable'>edit</a>
                                                         </div>
                                                     </div>
                                                 </div>";
