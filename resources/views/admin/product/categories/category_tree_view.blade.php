@@ -17,7 +17,7 @@
             $defatul_checked = '';
         }
 
-        if($default_category->id == $id){
+        if(isset($default_category->id) && $default_category->id == $id){
             $active_class = 'active';
         }
 

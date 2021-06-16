@@ -4,12 +4,12 @@
 
     <div class="content-wrapper">
         <div class="container-fluid" id="product_option">
-            @include('admin.layouts.includes.bread_cumb',['title'=>'Product Options'])
+            @include('admin.layouts.includes.bread_cumb',['title'=>'Create Product Options'])
 
             <div class="card">
                 <div class="card-header">
                     <ul class="filter_nav d-flex flex-wrap">
-                        <li><a href="{{ route('admin_product_create_option') }}" class="custom_white_btn">Create Option</a></li>
+                        <li><a href="{{ route('admin_product_create_category') }}" class="custom_white_btn">Create Option</a></li>
                         <li><a href="#" class="custom_white_btn">Delete</a></li>
                         {{-- <li>
                             <input type="text" class="custom_input" name="" placeholder="Filter by keyword">

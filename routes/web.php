@@ -90,7 +90,6 @@ Route::group([
     Route::get('/view', 'ProductController@view')->name('admin_product_view');
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
 
-    // test comment from shefat origin
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
     Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
     Route::get('/edit-category/{id}/{category_name}', 'ProductController@edit_category')->name('admin_product_edit_category');
@@ -100,8 +99,11 @@ Route::group([
     Route::post('/update-category', 'ProductController@update_category')->name('admin_product_update_category');
     Route::post('/rearenge-category', 'ProductController@rearenge_category')->name('admin_product_rearenge_category');
 
-    Route::get('/search', 'ProductController@search')->name('admin_product_search');
     Route::get('/option', 'ProductController@option')->name('admin_product_option');
+    Route::get('/create-option', 'ProductController@create_option')->name('admin_product_create_option');
+
+
+    Route::get('/search', 'ProductController@search')->name('admin_product_search');
     Route::get('/reviews', 'ProductController@reviews')->name('admin_product_reviews');
     Route::get('/brands', 'ProductController@brands')->name('admin_product_brands');
 
