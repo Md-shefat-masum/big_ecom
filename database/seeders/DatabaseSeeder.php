@@ -26,13 +26,20 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             UserRoleSeeder::class,
-            CountrySeeder::class,
-            CitySeeder::class,
+            StoreSettingDateSeeder::class,
+            StoreSettingDisplaySeeder::class,
+            StoreSettingMiscellaneousSeeder::class,
+            StoreSettingSearchSeeder::class,
+            StoreSettingSecuritySeeder::class,
+            StoreSettingUrlSeeder::class,
+            StoreSettingWebsiteSeeder::class,
+            // CountrySeeder::class,
+            // CitySeeder::class,
         ]);
 
         Image::truncate();
         Status::truncate();
-        Country::truncate();
+        // Country::truncate();
 
         // status
         $data = [

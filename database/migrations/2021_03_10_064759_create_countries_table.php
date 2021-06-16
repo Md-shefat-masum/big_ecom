@@ -20,6 +20,7 @@ class CreateCountriesTable extends Migration
             $table->string('lng',100)->nullable();
             $table->string('code',100)->nullable();
             $table->string('dial_code',100)->nullable();
+            $table->string('currency',100)->nullable();
             $table->string('currency_name',100)->nullable();
             $table->string('currency_symbol',100)->nullable();
             $table->string('currency_code',100)->nullable();
