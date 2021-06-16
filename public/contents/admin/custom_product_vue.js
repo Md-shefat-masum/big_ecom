@@ -2,6 +2,8 @@
 
 const { default: store } = window.store;
 
+// console.log(store);
+
 if (document.getElementById('product')) {
     const app = new Vue({
         el: '#product',
