@@ -26,6 +26,10 @@ class StoreSetupController extends Controller
     {
         return view('admin.nipa.store-setup.settings');
     }
+    public function settings_display()
+    {
+        return view('admin.nipa.store-setup.settings-display');
+    }
     public function change_password()
     {
         return view('admin.nipa.store-setup.change-password');

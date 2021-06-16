@@ -126,7 +126,10 @@
                 <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Payments</a>
             </li>
             <li>
-                <a href="{{route('admin_store_setup_settings')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings</a>
+                <a href="{{route('admin_store_setup_settings')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Website</a>
+            </li>
+            <li>
+                <a href="{{route('admin_store_setup_settings_display')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Display</a>
             </li>
             <li>
                 <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Shipping</a>
