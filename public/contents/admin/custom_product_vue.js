@@ -645,6 +645,7 @@ if (document.getElementById('category_form')) {
         },
         created: function () {
             this.get_cateogry();
+            this.init_category_tree_view();
             console.log(
                         // this.$store.default.state,
                         // this.$store.default.commit('test_mutation'),
@@ -679,10 +680,7 @@ if (document.getElementById('category_form')) {
                         .then((res) => {
                             // console.log(res.data);
                             $('#treeview').html(res.data.category_tree_view);
-                            $("#treeview").off().hummingbird();
-                            $("#treeview li").off().on('click', function () {});
-                            $("#treeview li input").off().on('click', function () {});
-                            $("#treeview li label").off().on('click', function () {});
+                            this.init_category_tree_view();
                             $('#form_body').trigger('reset')
                             $('#mytextarea1').summernote('reset');
                             $(`input[name="name"]`).focus();
@@ -719,11 +717,8 @@ if (document.getElementById('category_form')) {
                 } else {
                     axios.post('/admin/product/update-category', form_datas)
                         .then((res) => {
-                            // $('#treeview').html(res.data.category_tree_view);
-                            $("#treeview").off().hummingbird();
-                            $("#treeview li").off().on('click', function () {});
-                            $("#treeview li input").off().on('click', function () {});
-                            $("#treeview li label").off().on('click', function () {});
+                            $('#treeview').html(res.data.category_tree_view);
+                            this.init_category_tree_view();
                             toaster('success', 'Category Updated.');
                         })
                         .catch((err) => {
@@ -790,6 +785,12 @@ if (document.getElementById('category_form')) {
                 str = str.replace(/\s+/g, '-');
                 return str;
 
+            },
+            init_category_tree_view: function(){
+                $("#treeview").hummingbird();
+                $("#treeview li").off().on('click',function(){})
+                $("#treeview li input").off().on('click',function(){})
+                $("#treeview li label").off().on('click',function(){})
             }
         },
         computed: {

@@ -239,7 +239,7 @@ class ProductController extends Controller
         }
 
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories,[]);
+        $category_tree_view = $this->make_category_tree($categories,$category);
 
         return response()->json([
             'categories' => $categories,
