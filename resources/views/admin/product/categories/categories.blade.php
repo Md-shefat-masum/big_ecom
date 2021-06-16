@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content-wrapper">
-        <div class="container-fluid" id="product_list">
+        <div class="container" id="product_list">
             @include('admin.layouts.includes.bread_cumb',['title'=>'View Categories'])
             <p>Manage categories.</p>
             <div class="row">
@@ -13,15 +13,18 @@
                             <ul class="filter_nav d-flex flex-wrap">
                                 <li><a href="{{ route('admin_product_create_category') }}" class="custom_white_btn">Create Category</a></li>
                                 <li><a href="#" class="custom_white_btn">Delete</a></li>
-                                <li>
+                                {{-- <li>
                                     <input type="text" class="custom_input" name="" placeholder="Filter by keyword">
                                 </li>
                                 <li>
                                     <button class="custom_white_btn">Filter</button>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="card-body dragable_list">
+                            <ul>
+                                <li></li>
+                            </ul>
                             <ul class='sTree2 listsClass' id='sTree2'>
                             {{-- <ul class='sTree2 listsClass' id='sTreePlus'> --}}
                                 @php
@@ -30,16 +33,24 @@
                                         $id = $a->id;
                                         $category_name = $a->name;
 
-                                        echo "<li class='s-l-open' id='{$category_name}_{$id}' data-id='$id' data-name='$category_name' data-module='$module'>";
-                                            echo "<div class='clickable'>
+                                        echo "<li class='s-l-open' id='{$category_name}_{$id}' data-id='$id' data-parent_id='$parent_id' data-name='$category_name' data-module='$module'>";
+                                            echo "<div>
                                                     <div class='d-inline-flex clickable align-items-center'>
                                                         <input type='checkbox' value='$id' class='form-check-inline control_check_box clickable' data-parent='$module' />
                                                         <div class='clickable'>
                                                             {$category_name}
                                                         </div>
                                                     </div>
+                                                    <div class='clickable action_menu'>
+                                                        <i class='fa fa-align-right clickable'></i>
+                                                        <div class='clickable'>
+                                                            <a href='#' class='clickable'>view</a>
+                                                            <a href='#' class='clickable'>products</a>
+                                                            <a href='/admin/product/edit-category/$id/$category_name' class='clickable'>edit</a>
+                                                        </div>
+                                                    </div>
                                                 </div>";
-                                            if (isset($a->child) && is_array($a->child)) {
+                                            if (isset($a->child) && is_array($a->child) && count($a->child)>0 ) {
                                                 // dd($a->child,is_array($a->child));
                                                 echo "<ul class=''>";
                                                     // dd($a->child);
@@ -77,18 +88,26 @@
     @push('cjs')
         {{-- <script src="{{ asset('contents/admin') }}/plugins/sortable_list/jquery-sortable-lists.min.js"></script> --}}
         <script src="{{ asset('contents/admin') }}/plugins/sortable_list/jquery-sortable-lists-mobile.min.js"></script>
-        <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
+        {{-- <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script> --}}
         <script>
             var options = {
                 placeholderCss: {'background-color': '#ff8'},
                 hintCss: {'background-color':'#bbf'},
                 onChange: function( cEl )
                 {
-                    console.log( 'onChange' );
+                    // console.log( 'onChange' );
                 },
                 complete: function( cEl )
                 {
-                    console.log( 'complete',cEl );
+                    let parent_id = $(cEl).parent('ul').parent('li').data('id');
+                    let category_id = $(cEl).data('id')
+                    // console.log( 'complete', parent_id , category_id );
+                    // let categories = $('#sTree2').sortableListsToArray();
+                    axios.post('/admin/product/rearenge-category',{parent_id: parent_id, id:category_id})
+                        .then((res)=>{
+                            // console.log(res);
+                            toaster('success','category rearenged.');
+                        })
                 },
                 isAllowed: function( cEl, hint, target )
                 {
@@ -155,7 +174,7 @@
             $('.descPicture').on( 'click', function(e) { $(this).toggleClass('descPictureClose'); } );
 
             $('.clickable').on('click', function(e)	{
-               console.log( $('#sTree2').sortableListsToArray() );
+            //    console.log( $('#sTree2').sortableListsToArray() );
             });
 
             /* Scrolling anchors */
@@ -204,7 +223,17 @@
                 padding-left: 30px;
             }
             .s-l-opener{
-                margin-left: -22px !important;
+                margin-left: -16px !important;
+                text-align: center;
+                line-height: 34px;
+                width: 33px;
+                height: 34px;
+                /* border: 1px solid; */
+                position: absolute;
+                left: -19px;
+            }
+            .s-l-opener:hover{
+                cursor: pointer;
             }
         </style>
     @endpush

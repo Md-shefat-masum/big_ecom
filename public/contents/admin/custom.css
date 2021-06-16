@@ -255,7 +255,7 @@ ul li {
 .dragable_list #sTree2,
 .dragable_list #sTreePlus {
   padding: 0;
-  background-color: #151515;
+  background-color: #2b2b2b;
 }
 .dragable_list #sTree2 li,
 .dragable_list #sTreePlus li,
@@ -263,7 +263,15 @@ ul li {
   padding-left: 30px;
   margin: 5px;
   border: 1px solid #3f3f3f;
-  background-color: #3f3f3f;
+  padding-right: 0px;
+  margin-right: 0;
+  border-right: 0;
+  border: 0;
+}
+.dragable_list #sTree2 li:hover,
+.dragable_list #sTreePlus li:hover,
+.dragable_list ul#s-l-base li:hover {
+  cursor: url('../../cursor.png'), pointer;
 }
 .dragable_list li div {
   padding: 7px;
@@ -273,6 +281,16 @@ ul li {
 .dragable_list ul,
 .dragable_list div {
   border-radius: 3px;
+  border-right: 0px;
+  border: 0;
+}
+.dragable_list li > div {
+  position: relative;
+  text-transform: capitalize;
+}
+.dragable_list li input[type="checkbox"] {
+  width: 21px;
+  height: 21px;
 }
 .dragable_list .c1 {
   color: #b5e853;
@@ -368,6 +386,51 @@ ul li {
 .dragable_list #sTree2,
 .dragable_list #sTreePlus {
   margin: 10px auto;
+  padding-right: 5px;
+  padding: 5px;
+}
+.dragable_list li div:hover .action_menu {
+  opacity: 1;
+  visibility: visible;
+}
+.action_menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid red;
+  background: gray;
+  opacity: 0;
+  visibility: hidden;
+}
+.action_menu i {
+  cursor: pointer;
+  line-height: 37px;
+  margin-right: 8px;
+}
+.action_menu:hover div {
+  opacity: 1;
+  visibility: visible;
+}
+.action_menu div {
+  position: absolute;
+  width: 130px;
+  padding: 12px !important;
+  right: 0;
+  border: 1px solid #8b8b8b;
+  z-index: 99;
+  background: #252525 !important;
+  top: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all linear 0.3s;
+}
+.action_menu div a {
+  display: block;
+  padding: 7px 2px;
+  text-transform: capitalize;
+}
+.action_menu div a:hover {
+  color: white;
 }
 .content-wrapper {
   height: 100vh;

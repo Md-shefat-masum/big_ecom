@@ -4,14 +4,14 @@
 
     <div class="content-wrapper">
         <div class="container" >
-            @include('admin.layouts.includes.bread_cumb',['title'=>'Create a Category'])
+            @include('admin.layouts.includes.bread_cumb',['title'=>'Edit a Category'])
             <p>Products in your store are grouped by categories, which makes them easier to find. Fill out the form below to create a new category.</p>
             <div class="row">
                 <div class="col-lg-12" id="category_form" >
 
                     <form action="#" id="form_body" method="POST" enctype="multipart/form-data">
                         @csrf
-
+                        <input type="hidden" name="id" value="{{ $category->id }}" v-model="form_data.id">
                         <div class="card">
                             <div class="card-header d-inline-flex justify-content-md-between">
                                 <h4>Category Details</h4>
@@ -23,19 +23,19 @@
                                 <div class="from-group row mb-4 justify-contents-center">
                                     <label for="name" class="col-lg-3 text-lg-right">Name : </label>
                                     <div class="col-lg-7">
-                                        <input name="name" @keyup="make_url" v-model="form_data.name" type="text" class="form-control">
+                                        <input name="name" value="{{ $category->name }}" @keyup="make_url" v-model="form_data.name" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="url" class="col-lg-3 text-lg-right">URL : </label>
                                     <div class="col-lg-7">
-                                        <input name="url" @keyup="change_url" v-model="form_data.url" type="text" class="form-control">
+                                        <input name="url" value="{{ $category->url }}" @keyup="change_url" v-model="form_data.url" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="description" class="col-lg-3 text-lg-right">Description : </label>
                                     <div class="col-lg-7">
-                                        <textarea name="description" v-model="form_data.description" id="mytextarea1" class="form-control"></textarea>
+                                        <textarea name="description" id="mytextarea1" class="form-control">{!! $category->description !!}</textarea>
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
@@ -47,45 +47,7 @@
                                                 <ul id="treeview" class="hummingbird-base">
 
                                                     {!! $category_tree_view !!}
-                                                    {{-- @php
-                                                        function printNestedArray($a,$module,$parent_id) {
-                                                            $a = (object) $a;
-                                                            $id = $a->id;
-                                                            $category_name = $a->name;
 
-                                                            echo "<li>";
-
-                                                            echo "  <label>
-                                                                        <input name='parent_id' value='$id' id='node-{$category_name}_{$id}' data-id='custom-{$category_name}_{$id}' type='radio' />
-                                                                        {$category_name}
-                                                                    </label>
-                                                                ";
-
-                                                                if (isset($a->child) && is_array($a->child) && count($a->child) > 0) {
-                                                                        echo "<i class='fa fa-plus-circle' title='collapse'></i>";
-                                                                    }
-
-                                                            if (isset($a->child) && is_array($a->child)) {
-                                                                // dd($a->child,is_array($a->child));
-                                                                echo "<ul>";
-                                                                    // dd($a->child);
-                                                                    foreach ($a->child as $child) {
-                                                                        $child = (object) $child;
-                                                                        $module = $child->name.'_'.$child->id;
-                                                                        printNestedArray($child,$module,$a->id);
-                                                                    }
-                                                                echo "</ul>";
-                                                                echo "</li>";
-                                                            } else {
-                                                                // echo htmlspecialchars($value) . '<br />';
-                                                            }
-                                                        }
-                                                        foreach ($categories as $key => $category) {
-                                                            $category = (object) $category;
-                                                            $module = $category->name.'_'.$category->id;
-                                                            printNestedArray($category,$module,$category->id);
-                                                        }
-                                                    @endphp --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -95,19 +57,19 @@
                                 <div class="from-group row mb-4">
                                     <label for="template_layout_file" class="col-lg-3 text-lg-right">Template Layout File : </label>
                                     <div class="col-lg-7">
-                                        <input name="template_layout_file" v-model="form_data.template_layout_file" type="text" class="form-control">
+                                        <input name="template_layout_file" value="{{ $category->template_layout_file }}" v-model="form_data.template_layout_file" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="sort_order" class="col-lg-3 text-lg-right">Sort Order: </label>
                                     <div class="col-lg-7">
-                                        <input name="sort_order" type="text" v-model="form_data.sort_order" class="form-control">
+                                        <input name="sort_order" type="text" value="{{ $category->sort_order }}" v-model="form_data.sort_order" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="default_product_sort" class="col-lg-3 text-lg-right">Default Product Sort: </label>
                                     <div class="col-lg-7">
-                                        <select name="default_product_sort" v-model="form_data.default_product_sort" class="form-control">
+                                        <select name="default_product_sort"  value="{{ $category->default_porduct_sort }}" v-model="form_data.default_product_sort" class="form-control">
                                             <option value="0">Use Store Settings Default</option>
                                             <option value="1">Featured Items</option>
                                             <option value="2">Newest Items</option>
@@ -137,25 +99,25 @@
                                 <div class="from-group row mb-4">
                                     <label for="page_title" class="col-lg-3 text-lg-right">Page Title : (optional)</label>
                                     <div class="col-lg-7">
-                                        <input name="page_title" v-model="form_data.page_title" type="text" class="form-control">
+                                        <input name="page_title"  value="{{ $category->page_title }}" v-model="form_data.page_title" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="meta_keywords" class="col-lg-3 text-lg-right">Meta Keywords : (optional)</label>
                                     <div class="col-lg-7">
-                                        <input name="meta_keywords" v-model="form_data.meta_keywords" type="text" class="form-control">
+                                        <input name="meta_keywords" value="{{ $category->meta_keywords }}" v-model="form_data.meta_keywords" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="meta_description" class="col-lg-3 text-lg-right">Meta Description : (optional)</label>
                                     <div class="col-lg-7">
-                                        <input name="meta_description" v-model="form_data.meta_description" type="text" class="form-control">
+                                        <input name="meta_description" value="{{ $category->meta_description }}" v-model="form_data.meta_description" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="from-group row mb-4">
                                     <label for="search_keywords" class="col-lg-3 text-lg-right">Search Keywords : (optional)</label>
                                     <div class="col-lg-7">
-                                        <input name="search_keywords" v-model="form_data.search_keywords" type="text" class="form-control">
+                                        <input name="search_keywords" value="{{ $category->search_keywords }}" v-model="form_data.search_keywords" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +125,7 @@
                                 <a href="{{ route('admin_product_categories') }}" class="btn btn-warning mr-3" type="button">
                                     <i class="fa fa-angle-left"></i> Back
                                 </a>
-                                <button @click.prevent="store" class="btn btn-info" type="button">
+                                <button @click.prevent="update" class="btn btn-info" type="button">
                                     <i class="fa fa-upload"></i> Submit
                                 </button>
                             </div>
@@ -204,7 +166,7 @@
             })
         </script>
 
-        <script type="module" src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
+        <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
 
         <style>
             label{

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -40,176 +44,61 @@ class ProductController extends Controller
 
     public function categories()
     {
-        $categories = [
-            [
-                'id' => 1,
-                'name' => 'men',
-                'child' => [
-                    [
-                        'id' => 2,
-                        'name' => 't-shirt',
-                        'child' => [
-                            [
-                                'id' => 3,
-                                'name' => 'lg'
-                            ],
-                            [
-                                'id' => 4,
-                                'name' => 'md'
-                            ],
-                            [
-                                'id' => 5,
-                                'name' => 'sm'
-                            ],
-                        ]
-                    ]
-                ],
-            ],
-            [
-                'id' => 6,
-                'name' => 'women',
-                'child' => [
-                    [
-                        'id' => 7,
-                        'name' => 'women t-shirt',
-                        'child' => [
-                            [
-                                'id' => 8,
-                                'name' => 'women lg'
-                            ],
-                            [
-                                'id' => 9,
-                                'name' => 'women md'
-                            ],
-                            [
-                                'id' => 10,
-                                'name' => 'women xs'
-                            ],
-                        ]
-                    ]
-                ],
-            ],
-            [
-                'id' => 11,
-                'name' => 'child',
-                'child' => [
-                    [
-                        'id' => 12,
-                        'name' => 'child t-shirt',
-                        'child' => [
-                            [
-                                'id' => 13,
-                                'name' => 'child xxl'
-                            ],
-                            [
-                                'id' => 14,
-                                'name' => 'child xsm'
-                            ],
-                            [
-                                'id' => 15,
-                                'name' => 'child xxs'
-                            ],
-                        ]
-                    ]
-                ],
-            ]
-        ];
-        return view('admin.product.categories.categories',compact('categories'));
+
+        $categories = Category::where("status", 1)
+            ->where('parent_id', 0)
+            ->get();
+
+        $all_category = [];
+
+        foreach ($categories as $key => $item) {
+            $module = $item->name . '_' . $item->id;
+            if (Category::where('parent_id', $item->id)->where('status', 1)->exists()) {
+                $children = Category::where('parent_id', $item->id)->where("status", 1)->get();
+                $temp_category = [];
+                $temp_category['id'] = $item->id;
+                $temp_category['name'] = $item->name;
+                $temp_category['child'] = $this->buildCategories($children, $item->id);
+                $all_category[] = $temp_category;
+            } else {
+                $temp_category['id'] = $item->id;
+                $temp_category['name'] = $item->name;
+                $temp_category['child'] = [];
+                $all_category[] = $temp_category;
+            }
+        }
+        $categories = $all_category;
+        return view('admin.product.categories.categories', compact('categories'));
+    }
+
+    private function buildCategories($children, $parent_id)
+    {
+        $result = array();
+        foreach ($children as $row) {
+            if ($row->parent_id == $parent_id) {
+                if (Category::where('parent_id', $row->id)->where('status', 1)->exists()) {
+                    $children = Category::where('parent_id', $row->id)->where("status", 1)->get();
+                    $temp_category = [];
+                    $temp_category['id'] = $row->id;
+                    $temp_category['name'] = $row->name;
+                    $temp_category['child'] = $this->buildCategories($children, $row->id);
+                    $result[] = $temp_category;
+                } else {
+                    $temp_category['id'] = $row->id;
+                    $temp_category['name'] = $row->name;
+                    $temp_category['child'] = [];
+                    $result[] = $temp_category;
+                }
+            }
+        }
+        return $result;
     }
 
     public function create_category()
     {
-        $categories = [
-            [
-                'id' => 1,
-                'name' => 'men',
-                'child' => [
-                    [
-                        'id' => 2,
-                        'name' => 't-shirt',
-                        'child' => [
-                            [
-                                'id' => 3,
-                                'name' => 'lg'
-                            ],
-                            [
-                                'id' => 4,
-                                'name' => 'md'
-                            ],
-                            [
-                                'id' => 5,
-                                'name' => 'sm'
-                            ],
-                        ]
-                    ]
-                ],
-            ],
-            [
-                'id' => 6,
-                'name' => 'women',
-                'child' => [
-                    [
-                        'id' => 7,
-                        'name' => 'women t-shirt',
-                        'child' => [
-                            [
-                                'id' => 8,
-                                'name' => 'women lg',
-                                'child' => [
-                                    [
-                                        'id' => 8,
-                                        'name' => 'women lg'
-                                    ],
-                                    [
-                                        'id' => 9,
-                                        'name' => 'women md'
-                                    ],
-                                    [
-                                        'id' => 10,
-                                        'name' => 'women xs'
-                                    ],
-                                ]
-                            ],
-                            [
-                                'id' => 9,
-                                'name' => 'women md',
-                                'child' => [
-                                    [
-                                        'id' => 8,
-                                        'name' => 'women lg'
-                                    ],
-                                    [
-                                        'id' => 9,
-                                        'name' => 'women md',
-                                        'child' => [
-                                            [
-                                                'id' => 8,
-                                                'name' => 'women lg'
-                                            ],
-                                            [
-                                                'id' => 9,
-                                                'name' => 'women md'
-                                            ],
-                                            [
-                                                'id' => 10,
-                                                'name' => 'women xs'
-                                            ],
-                                        ]
-                                    ],
-                                    [
-                                        'id' => 10,
-                                        'name' => 'women xs'
-                                    ],
-                                ]
-                            ],
-                            [
-                                'id' => 10,
-                                'name' => 'women xs'
-                            ],
-                        ]
-                    ]
-                ],
-            ],
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories,[]);
+        /*$categories = [
             [
                 'id' => 11,
                 'name' => 'child',
@@ -222,40 +111,168 @@ class ProductController extends Controller
                                 'id' => 13,
                                 'name' => 'child xxl'
                             ],
-                            [
-                                'id' => 14,
-                                'name' => 'child xsm'
-                            ],
-                            [
-                                'id' => 15,
-                                'name' => 'child xxs'
-                            ],
                         ]
                     ]
                 ],
             ]
-        ];
-        return view('admin.product.categories.create',compact('categories'));
+        ];*/
+        return view('admin.product.categories.create', compact('categories', 'category_tree_view'));
+    }
+
+    public function edit_category($id,$category_name)
+    {
+        $category = Category::find($id);
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories,$category);
+        return view('admin.product.categories.edit', compact('category','categories', 'category_tree_view'));
+    }
+
+    public function category_data($id)
+    {
+        return Category::find($id);
+    }
+
+    public function make_category_tree_array()
+    {
+        $categories = Category::where("status", 1)
+            ->where('parent_id', 0)
+            ->get();
+
+        $all_category = [];
+
+        foreach ($categories as $key => $item) {
+            $module = $item->name . '_' . $item->id;
+            if (Category::where('parent_id', $item->id)->where('status', 1)->exists()) {
+                $children = Category::where('parent_id', $item->id)->where("status", 1)->get();
+                $temp_category = [];
+                $temp_category['id'] = $item->id;
+                $temp_category['name'] = $item->name;
+                $temp_category['child'] = $this->buildCategories($children, $item->id);
+                $all_category[] = $temp_category;
+            } else {
+                $temp_category['id'] = $item->id;
+                $temp_category['name'] = $item->name;
+                $temp_category['child'] = [];
+                $all_category[] = $temp_category;
+            }
+        }
+
+        return $all_category;
+    }
+    public function make_category_tree($categories,$default_category)
+    {
+        return view('admin.product.categories.category_tree_view', compact('categories','default_category'))->render();
     }
 
     public function store_category(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => ['required'],
-            'url' => ['required'],
-            'description' => ['required'],
-            'parent_category' => ['required'],
-            'template_layout_file' => ['required'],
-            'sort_order' => ['required'],
-            'default_product_sort' => ['required'],
-            'category_image' => ['required'],
-            'page_title' => ['required'],
-            'meta_keywords' => ['required'],
-            'meta_description' => ['required'],
-            'search_keywords' => ['required'],
+            'url' => ['required', 'unique:categories','min:3'],
+            // 'description' => ['required'],
+            // 'parent_id' => ['required'],
+            // 'template_layout_file' => ['required'],
+            // 'sort_order' => ['required'],
+            // 'default_product_sort' => ['required'],
+            // 'category_image' => ['required'],
+            // 'page_title' => ['required'],
+            // 'meta_keywords' => ['required'],
+            // 'meta_description' => ['required'],
+            // 'search_keywords' => ['required'],
+        ],[
+            // 'url.min' => ['url is not valid'],
         ]);
-        return [$request->all(), $request->file('category_image')];
-        //function_body
+
+
+        $category = Category::create($request->except('category_image'));
+        $category->creator = Auth::user()->id;
+        $category->save();
+        $category->slug = $category->id . rand(1111, 9999) . Str::slug($request->name);
+        $category->save();
+
+        if ($request->hasFile('category_image')) {
+            $file = $request->file('category_image');
+            $path = Storage::put('/uploads/category_image', $file);
+            $category->category_image = $path;
+            $category->save();
+        }
+
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories,[]);
+
+        return response()->json([
+            'categories' => $categories,
+            'category_tree_view' => $category_tree_view,
+        ]);
+    }
+
+    public function update_category(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required'],
+            'url' => ['required','min:3'],
+            // 'description' => ['required'],
+            // 'parent_id' => ['required'],
+            // 'template_layout_file' => ['required'],
+            // 'sort_order' => ['required'],
+            // 'default_product_sort' => ['required'],
+            // 'category_image' => ['required'],
+            // 'page_title' => ['required'],
+            // 'meta_keywords' => ['required'],
+            // 'meta_description' => ['required'],
+            // 'search_keywords' => ['required'],
+        ],[
+            // 'url.min' => ['url is not valid'],
+        ]);
+
+        // return dd($request->all());
+        $category = Category::find($request->id);
+        $category->fill($request->except('category_image'));
+        $category->creator = Auth::user()->id;
+        $category->save();
+
+        if ($request->hasFile('category_image')) {
+            $file = $request->file('category_image');
+            $path = Storage::put('/uploads/category_image', $file);
+            $category->category_image = $path;
+            $category->save();
+        }
+
+        $categories = $this->make_category_tree_array();
+        $category_tree_view = $this->make_category_tree($categories,[]);
+
+        return response()->json([
+            'categories' => $categories,
+            'category_tree_view' => $category_tree_view,
+        ]);
+    }
+
+    public function rearenge_category(Request $request)
+    {
+        if(!$request->parent_id){
+            $parent_id = 0;
+        }else{
+            $parent_id = $request->parent_id;
+        }
+        Category::where('id', $request->id)->update([
+            'parent_id' => $parent_id,
+        ]);
+        return $request->all();
+    }
+
+    public function categorie_url_check(Request $request)
+    {
+        if(Category::where('url', $request->url)->exists()){
+            if($request->has('id') && Category::where('url', $request->url)->where('id',$request->id)->exists()){
+                return response()->json(false);
+            }
+            elseif($request->has('id') && Category::where('url', $request->url)->exists()){
+                return response()->json(true.'2nd');
+            }
+            else{
+                return response()->json(false);
+            }
+        }
     }
 
     public function update(Request $request, $id)
