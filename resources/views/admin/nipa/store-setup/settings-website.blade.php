@@ -87,14 +87,14 @@
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Decimal
                                             Places</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="decimal_places" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Factoring
                                             Dimension</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control col-md-12 mb-3"
+                                            <select class="form-control col-md-12 mb-3" name="factoring_dimension"
                                                 aria-label="Default select example">
                                                 <option value="">...</option>
                                             </select>
@@ -112,28 +112,28 @@
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Home Page
                                             Title</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="home_page_title" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Meta
                                             Keywords</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="meta_keywords" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Meta
                                             Description</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="meta_description" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">WWW/No WWW
                                             Redirect</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control col-md-12 mb-3"
+                                            <select class="form-control col-md-12 mb-3" name="redirect"
                                                 aria-label="Default select example">
                                                 <option value="">...</option>
                                             </select>

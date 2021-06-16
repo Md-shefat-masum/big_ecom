@@ -29,17 +29,53 @@ class StoreSetupController extends Controller
     }
     public function create_settings_website(Request $request)
     {
-        $add = new StoreSettingWebsite;
+        // return $request->all();
+        $user_id=Auth::user()->id;
+
+        $creator = StoreSettingWebsite::where('creator', $user_id)->first();
+
+        if (isset($creator)) {
+            $add=StoreSettingWebsite::find($creator->id);
+            $add->creator = Auth::user()->id;
+            $add->slug = $request->slug;
+            $add->weight_measurement = $request->weight_measurement;
+            $add->length_measurement = $request->length_measurement;
+            $add->decimal_token = $request->decimal_token;
+            $add->thousands_token = $request->thousands_token;
+            $add->decimal_places = $request->decimal_places;
+            $add->factoring_dimension = $request->factoring_dimension;
+            $add->home_page_title = $request->home_page_title;
+            $add->meta_keywords = $request->meta_keywords;
+            $add->meta_description = $request->meta_description;
+            $add->redirect = $request->redirect;
+            $add->save();
+            return $add;
+          
+        } else {
+            $add = new StoreSettingWebsite;
 
 
-        $add->weight_measurement = $request->weight_measurement;
-        $add->length_measurement = $request->length_measurement;
-        $add->decimal_token = $request->decimal_token;
-
-        $add->save();
-
-        return back();
+            $add->creator = Auth::user()->id;
+            $add->slug = $request->slug;
+            $add->weight_measurement = $request->weight_measurement;
+            $add->length_measurement = $request->length_measurement;
+            $add->decimal_token = $request->decimal_token;
+            $add->thousands_token = $request->thousands_token;
+            $add->decimal_places = $request->decimal_places;
+            $add->factoring_dimension = $request->factoring_dimension;
+            $add->home_page_title = $request->home_page_title;
+            $add->meta_keywords = $request->meta_keywords;
+            $add->meta_description = $request->meta_description;
+            $add->redirect = $request->redirect;
+    
+            $add->save();
+    
+            return $add;
+        }
+        
+  
     }
+
     public function settings_display()
     {
         return view('admin.nipa.store-setup.settings-display');

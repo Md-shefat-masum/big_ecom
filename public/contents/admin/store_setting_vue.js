@@ -1,4 +1,6 @@
-const { default: store } = window.store;
+const {
+    default: store
+} = window.store;
 if (document.getElementById('store_setup_settings_website')) {
     // console.log('ok');
     const app = new Vue({
@@ -22,27 +24,23 @@ if (document.getElementById('store_setup_settings_website')) {
                 },
             }
         },
-   
+
         methods: {
-            ...window.mutation(['test_mutation']),
-            ...window.action(['fetch_category_info']),
             store: function () {
                 let form_datas = new FormData($('#form_body')[0]);
-                
-                    axios.post('/create-store-setup-settings-website', form_datas)
-                        .then((res) => {
-                            console.log(res.data);
-                        })
-                        .catch((err) => {
-                            console.log(err.response);
-                            let errors = err.response.data.errors;
-                        })
-               
+
+                axios.post('/admin/create-store-setup-settings-website', form_datas)
+                    .then((res) => {
+                        // console.log(res.data);
+                        toaster('success', 'new data created.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+
 
             },
         },
-        computed: {
-            ...window.getters(['get_check_auth']),
-        }
     });
 }

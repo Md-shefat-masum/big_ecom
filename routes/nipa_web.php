@@ -24,7 +24,7 @@ Route::group([
     Route::post('/customer-delete', 'CustomerController@delete')->name('admin_customer_delete');
 });
 Route::group([
-    'prefix' => 'user-role',
+    'prefix' => 'admin',
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
@@ -37,7 +37,7 @@ Route::group([
     Route::get('/profile-additional-authentication', 'ProfileController@additional_authentication')->name('admin_profile_additional_authentication');
 });
 Route::group([
-    'prefix' => 'user-role',
+    'prefix' => 'admin',
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
