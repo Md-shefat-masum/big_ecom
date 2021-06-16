@@ -158,56 +158,10 @@
                     height: 200,
                     tabsize: 2
                 });
-
-                $("#treeview").hummingbird();
-                $("#treeview li").off().on('click',function(){})
-                $("#treeview li input").off().on('click',function(){})
-                $("#treeview li label").off().on('click',function(){})
             })
         </script>
 
         <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
-
-        <style>
-            label{
-                line-height: 25px;
-            }
-            #treeview{
-                border: 1px solid white;
-                padding: 10px;
-                background: #42424273;
-                overflow: hidden;
-            }
-            #treeview li ul{
-                padding-left: 25px;
-            }
-            .hummingbird-treeview ul li div{
-                border: 1px solid white;
-            }
-            .hummingbird-treeview label{
-                background: transparent !important;
-                background: transparent;
-                color: rgba(255, 255, 255, 0.75)!important;;
-                font-size: .75rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                font-weight: 600;
-                display: inline-flex;
-                display: -ms-inline-flexbox;
-                display: -webkit-inline-flex;
-                /* width: -webkit-fill-available; */
-                padding: 5px;
-                align-items: center;
-                margin: 0;
-            }
-            .hummingbird-treeview label:hover{
-                background: #596068!important;;
-            }
-            .hummingbird-treeview label input{
-                margin-right: 8px !important;
-                display: inline-block;
-            }
-        </style>
     @endpush
 @endsection
 

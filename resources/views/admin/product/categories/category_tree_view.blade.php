@@ -9,17 +9,23 @@
         $a = (object) $a;
         $id = $a->id;
         $category_name = $a->name;
+        $active_class = '';
         if(isset( $default_category->parent_id  ) && ( $default_category->parent_id == $id )){
             $defatul_checked = 'checked';
+            $active_class = 'active';
         }else{
             $defatul_checked = '';
+        }
+
+        if(isset($default_category->id) && $default_category->id == $id){
+            $active_class = 'active';
         }
 
         // dd($defatul_checked, $default_category->id, $id, $parent_id);
 
         echo "<li>";
 
-        echo "  <label>
+        echo "  <label class='$active_class'>
                     <input name='parent_id' $defatul_checked value='$id' id='node-{$category_name}_{$id}' data-id='custom-{$category_name}_{$id}' type='radio' />
                     {$category_name}
                 </label>

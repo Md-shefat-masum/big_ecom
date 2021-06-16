@@ -32,6 +32,11 @@ class ProductController extends Controller
         return view('admin.product.option.options');
     }
 
+    public function create_option()
+    {
+        return view('admin.product.option.options_create');
+    }
+
     public function reviews()
     {
         return view('admin.product.reviews');
@@ -239,7 +244,7 @@ class ProductController extends Controller
         }
 
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories,[]);
+        $category_tree_view = $this->make_category_tree($categories,$category);
 
         return response()->json([
             'categories' => $categories,
