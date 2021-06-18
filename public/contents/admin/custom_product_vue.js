@@ -617,6 +617,18 @@ if (document.getElementById('product_list')) {
 if (document.getElementById('product_option')) {
     const app = new Vue({
         el: '#product_option',
+        store: store,
+        created: function(){
+            let that = this;
+            $(function(){
+                that.init_sortable();
+            })
+        },
+        methods: {
+            init_sortable: function(){
+                $("#sortable").sortable();
+            }
+        }
     });
 }
 
