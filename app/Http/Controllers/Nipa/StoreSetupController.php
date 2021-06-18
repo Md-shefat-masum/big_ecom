@@ -25,6 +25,7 @@ class StoreSetupController extends Controller
     }
     public function settings()
     {
+        
         return view('admin.nipa.store-setup.settings-website');
     }
     public function create_settings_website(Request $request)
@@ -74,6 +75,12 @@ class StoreSetupController extends Controller
         }
         
   
+    }
+    public function update_settings_website(Request $request,$id)
+    {
+        
+        $data=StoreSettingWebsite::get();
+        return view('admin.nipa.store-setup.settings-website',compact('data'));
     }
 
     public function settings_display()
