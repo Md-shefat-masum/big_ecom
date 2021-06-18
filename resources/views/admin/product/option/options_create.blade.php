@@ -25,69 +25,95 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Basic Information</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group"
-                                        style="display: flex;
-                                        flex-direction: column;
-                                        /* align-content: center; */
-                                        justify-content: space-between;
-                                        height: 89%;"
-                                    >
-                                        <label for="">Display Name</label>
-                                        <p>Visible to customers on storefront</p>
-                                        <input type="text" class="form-control">
+                    <form action="#" id="create_option_form" method="post">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Basic Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"
+                                            style="display: flex;
+                                                flex-direction: column;
+                                                justify-content: space-between;
+                                                height: 89%;"
+                                        >
+                                            <label for="">Display Name</label>
+                                            <p>Visible to customers on storefront</p>
+                                            <input type="text" name="display_name" v-model="display_name" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Variant Option Name</label>
-                                        <p>Unique identifier for managing options, not visible to customers</p>
-                                        <input type="text" class="form-control">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Variant Option Name</label>
+                                            <p>Unique identifier for managing options, not visible to customers</p>
+                                            <input type="text" name="variant_option_name" v-model="variant_option_name" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Type</label>
-                                        <select name="" class="form-control" id="">
-                                            <option value="">Dropdown</option>
-                                            <option value="">Radio</option>
-                                            <option value="">Swatch</option>
-                                        </select>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Type</label>
+                                            <select name="type" v-model="type" class="form-control" id="">
+                                                <option selected value="dropdown">Dropdown</option>
+                                                <option value="radio">Radio</option>
+                                                <option value="swatch">Swatch</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Product options</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">Display Label</div>
-                                <div class="col-4 text-right">Default</div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Product options</h5>
                             </div>
-                            <hr>
-                            <ul id="sortable">
-                                <li class="my-4" v-for="item in 10" :key="item">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <i class="fa fa-braille"></i>
-                                        <input type="text" class="custom_form_control" style="flex:1; margin:0px 20px;">
-                                        <input type="radio">
-                                        <i class="fa fa-trash-o btn btn-outline-danger ml-3"></i>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">Display Label</div>
+                                    <div class="col-4 text-right option_default_label">Default</div>
+                                </div>
+                                <hr>
+                                <ul id="sortable">
+                                    <li class="my-4" v-for="(item, index) in option_values" :key="index">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <i class="fa fa-braille"></i>
+                                            <div style="flex:1; margin:0px 20px;display:flex;">
+                                                <input type="text" name="options_name[]" class="custom_form_control" >
+                                                <select name="" id="">
+                                                    <option value="one_color">One Color</option>
+                                                    <option value="two_color">Two Color</option>
+                                                    <option value="three_color">Three Color</option>
+                                                </select>
+                                                <ul>
+                                                    <li>
+                                                        <input type="color">
+                                                        <input type="text">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <input type="radio">
+                                            <i @click.prevent="remove_option(index)" class="fa fa-trash-o btn btn-outline-danger ml-3"></i>
+                                        </div>
+                                        <hr>
+                                    </li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="#" @click.prevent="add_option" class="btn btn-outline-warning">
+                                            <i class="fa fa-plus"></i>
+                                            Add Value
+                                        </a>
                                     </div>
-                                    <hr>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="card-footer">
+                            <button @click.prevent="create_option" class="btn btn-secondary">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 

@@ -37,6 +37,11 @@ class ProductController extends Controller
         return view('admin.product.option.options_create');
     }
 
+    public function store_option(Request $request)
+    {
+        return $request->all();
+    }
+
     public function reviews()
     {
         return view('admin.product.reviews');

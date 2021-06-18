@@ -618,6 +618,26 @@ if (document.getElementById('product_option')) {
     const app = new Vue({
         el: '#product_option',
         store: store,
+        data: function(){
+            return {
+                display_name: '',
+                variant_option_name: '',
+                type: '',
+                option_values: [
+                    {
+                        name: '',
+                        default: false
+                    }
+                ]
+            };
+        },
+        watch: {
+            display_name: {
+                handler: function(val){
+                    this.variant_option_name = this.display_name
+                }
+            }
+        },
         created: function(){
             let that = this;
             $(function(){
@@ -626,7 +646,24 @@ if (document.getElementById('product_option')) {
         },
         methods: {
             init_sortable: function(){
-                $("#sortable").sortable();
+                $("#sortable").off().sortable();
+            },
+            add_option: function(){
+                let option_value = {
+                    name: '',
+                    default: false
+                };
+                this.option_values.push(option_value);
+            },
+            remove_option: function(index){
+                this.option_values.splice(index, 1);
+            },
+            create_option: function(){
+                $form_data = new FormData( $('#create_option_form')[0] );
+                axios.post('/admin/product/store-option')
+                    .then(res=>{
+                        console.log(res.data);
+                    })
             }
         }
     });
