@@ -52,7 +52,7 @@
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Weight
                                             Measurement</label>
                                         <div class="col-sm-9">
-                                            <select name="weight_measurement" class="form-control col-md-12 mb-3"
+                                            <select name="weight_measurement" v-model="form_data.weight_measurement" class="form-control col-md-12 mb-3"
                                                 aria-label="Default select example">
                                                 <option value="">........</option>
                                             </select>
@@ -73,7 +73,7 @@
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Decimal
                                             Token</label>
                                         <div class="col-sm-9">
-                                            <input name="decimal_token" type="text" class="form-control">
+                                            <input name="decimal_token" v-model="form_data.decimal_token" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">

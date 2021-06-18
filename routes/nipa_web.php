@@ -45,6 +45,7 @@ Route::group([
     Route::get('/store-setup-currencies', 'StoreSetupController@currencies')->name('admin_store_setup_currencies');
     Route::get('/store-setup-add-currencies', 'StoreSetupController@add_currencies')->name('admin_store_setup_add_currencies');
 
+    Route::get('/get-website-settings', 'StoreSetupController@get_website_settings')->name('admin_get_website_settings');
     Route::get('/store-setup-settings', 'StoreSetupController@settings')->name('admin_store_setup_settings');
     Route::post('/create-store-setup-settings-website', 'StoreSetupController@create_settings_website')->name('admin_store_setup_settings_create_website');
     Route::get('/update-store-setup-settings-website', 'StoreSetupController@update_settings_website')->name('admin_store_setup_settings_update_website');
