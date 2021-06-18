@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Nipa;
 
 use App\Http\Controllers\Controller;
+use App\Models\StoreSettingDisplay;
 use App\Models\StoreSettingWebsite;
 use App\Models\StoreSetup;
 use Carbon\Carbon;
@@ -81,11 +82,78 @@ class StoreSetupController extends Controller
         
   
     }
-    public function update_settings_website(Request $request,$id)
+
+    public function get_settings_display()
     {
-        return $request->all();
-        // $data=StoreSettingWebsite::get();
-        // return view('admin.nipa.store-setup.settings-website',compact('data'));
+        return StoreSettingDisplay::where('creator', Auth::user()->id)->first();
+    }
+    public function create_settings_display(Request $request)
+    {
+        // return $request->all();
+        $user_id=Auth::user()->id;
+
+        $creator = StoreSettingDisplay::where('creator', $user_id)->first();
+
+        if (isset($creator)) {
+            $add=StoreSettingDisplay::find($creator->id);
+            $add->creator = Auth::user()->id;
+            $add->slug = $request->slug;
+            $add->product_breadcrumbs = $request->product_breadcrumbs;
+            $add->show_quantity_box = $request->show_quantity_box;
+            $add->enable_search_suggest = $request->enable_search_suggest;
+            $add->auto_approve_reviews = $request->auto_approve_reviews;
+            $add->enable_wishlist = $request->enable_wishlist;
+            $add->enable_product_comparisons = $request->enable_product_comparisons;
+            $add->enable_account_creation = $request->enable_account_creation;
+            $add->editor = $request->editor;
+            $add->product_thumbnails = $request->product_thumbnails;
+            $add->category_product_list = $request->category_product_list;
+            $add->default_product_sort = $request->default_product_sort;
+            $add->menu_display_depth = $request->menu_display_depth;
+            $add->show_product_price = $request->show_product_price;
+            $add->show_product_sku = $request->show_product_sku;
+            $add->show_product_weight = $request->show_product_weight;
+            $add->show_product_brand = $request->show_product_brand;
+            $add->show_product_shipping_cost = $request->show_product_shipping_cost;
+            $add->show_product_rating = $request->show_product_rating;
+            $add->show_add_to_cart_link = $request->show_add_to_cart_link;
+            $add->default_pre_order_message = $request->default_pre_order_message;
+            $add->save();
+            return $add;
+          
+        } else {
+            $add = new StoreSettingDisplay;
+
+
+            $add->creator = Auth::user()->id;
+            $add->slug = $request->slug;
+            $add->product_breadcrumbs = $request->product_breadcrumbs;
+            $add->show_quantity_box = $request->show_quantity_box;
+            $add->enable_search_suggest = $request->enable_search_suggest;
+            $add->auto_approve_reviews = $request->auto_approve_reviews;
+            $add->enable_wishlist = $request->enable_wishlist;
+            $add->enable_product_comparisons = $request->enable_product_comparisons;
+            $add->enable_account_creation = $request->enable_account_creation;
+            $add->editor = $request->editor;
+            $add->product_thumbnails = $request->product_thumbnails;
+            $add->category_product_list = $request->category_product_list;
+            $add->default_product_sort = $request->default_product_sort;
+            $add->menu_display_depth = $request->menu_display_depth;
+            $add->show_product_price = $request->show_product_price;
+            $add->show_product_sku = $request->show_product_sku;
+            $add->show_product_weight = $request->show_product_weight;
+            $add->show_product_brand = $request->show_product_brand;
+            $add->show_product_shipping_cost = $request->show_product_shipping_cost;
+            $add->show_product_rating = $request->show_product_rating;
+            $add->show_add_to_cart_link = $request->show_add_to_cart_link;
+            $add->default_pre_order_message = $request->default_pre_order_message;
+    
+            $add->save();
+    
+            return $add;
+        }
+        
+  
     }
 
     public function settings_display()

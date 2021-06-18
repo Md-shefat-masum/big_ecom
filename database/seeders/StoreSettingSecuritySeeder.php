@@ -17,25 +17,25 @@ class StoreSettingSecuritySeeder extends Seeder
     {
         StoreSettingSecurity::truncate();
 
-        $user = new StoreSettingSecurity();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->configure_complexity = 1;
-        $user->inactive_shopper_logout = 2;
-        $user->shopper_activity = 1;
-        $user->control_panel_inactivity = "2 hours";
-        $user->enable_recaptcha_on_storefront = 1;
-        $user->recaptcha_site_key = "abcd";
-        $user->recaptcha_secret_key = "abcd";
-        $user->failed_login_lockout = 10;
-        $user->cookie_consent_tracking = 1;
-        $user->privacy_policy_url = "https://example.com/privacy-policy";
-        $user->analytics_for_my_business = 1;
-        $user->hsts_settings = 2;
-        $user->content_security_policy = 1;
-        $user->x_frame_options_header = 1;
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingSecurity();
+        $add->creator = 1;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->configure_complexity = 1;
+        $add->inactive_shopper_logout = 2;
+        $add->shopper_activity = 1;
+        $add->control_panel_inactivity = "2 hours";
+        $add->enable_recaptcha_on_storefront = 1;
+        $add->recaptcha_site_key = "abcd";
+        $add->recaptcha_secret_key = "abcd";
+        $add->failed_login_lockout = 10;
+        $add->cookie_consent_tracking = 1;
+        $add->privacy_policy_url = "https://example.com/privacy-policy";
+        $add->analytics_for_my_business = 1;
+        $add->hsts_settings = 2;
+        $add->content_security_policy = 1;
+        $add->x_frame_options_header = 1;
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
     }
 }

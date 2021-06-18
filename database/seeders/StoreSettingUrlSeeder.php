@@ -17,24 +17,24 @@ class StoreSettingUrlSeeder extends Seeder
     {
         StoreSettingUrl::truncate();
 
-        $user = new StoreSettingUrl();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->product_url_settings = 1;
-        $user->category_url_format = 2;
-        $user->web_page_url_format = 3;
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingUrl();
+        $add->creator = 1;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->product_url_settings = 1;
+        $add->category_url_format = 2;
+        $add->web_page_url_format = 3;
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
 
-        $user = new StoreSettingUrl();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->product_url_settings = 3;
-        $user->category_url_format = 1;
-        $user->web_page_url_format = 2;
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingUrl();
+        $add->creator = 1;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->product_url_settings = 3;
+        $add->category_url_format = 1;
+        $add->web_page_url_format = 2;
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
     }
 }

@@ -51,6 +51,9 @@ Route::group([
     Route::get('/update-store-setup-settings-website', 'StoreSetupController@update_settings_website')->name('admin_store_setup_settings_update_website');
 
     Route::get('/store-setup-settings-display', 'StoreSetupController@settings_display')->name('admin_store_setup_settings_display');
+    Route::get('/get-store-setup-settings-display', 'StoreSetupController@get_settings_display')->name('get_admin_store_setup_settings_display');
+    Route::post('/create-store-setup-settings-display', 'StoreSetupController@create_settings_display')->name('create_admin_store_setup_settings_display');
+
     Route::get('/store-setup-change-password', 'StoreSetupController@change_password')->name('admin_store_setup_change_password');
     Route::get('/store-setup-additional-authentication', 'StoreSetupController@additional_authentication')->name('admin_store_setup_additional_authentication');
 });
