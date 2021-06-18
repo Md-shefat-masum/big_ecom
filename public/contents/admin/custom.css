@@ -770,3 +770,13 @@ input.form-control[type="file"] {
   margin-right: 8px !important;
   display: inline-block;
 }
+.custom_form_control {
+  border: 0px solid #e5eaef;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+.option_default_label {
+  padding-right: 58px;
+}

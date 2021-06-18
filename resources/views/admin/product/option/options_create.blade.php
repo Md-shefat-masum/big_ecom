@@ -9,9 +9,14 @@
             <div class="card">
                 <div class="card-header">
                     <ul class="filter_nav d-flex flex-wrap">
-                        <li><a href="{{ route('admin_product_create_category') }}" class="custom_white_btn">Create Option</a></li>
-                        <li><a href="#" class="custom_white_btn">Delete</a></li>
-                        {{-- <li>
+                        <li>
+                            <a href="{{ route('admin_product_create_category') }}" class="custom_white_btn">
+                                <i class="fa fa-angle-left"></i>
+                                Back
+                            </a>
+                        </li>
+                        {{-- <li><a href="#" class="custom_white_btn">Delete</a></li>
+                        <li>
                             <input type="text" class="custom_input" name="" placeholder="Filter by keyword">
                         </li>
                         <li>
@@ -20,40 +25,95 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" style="padding-bottom: 212px;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Variant Option Name</th>
-                                    <th scope="col">Display Name</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Values</th>
-                                    <th scope="col">Products</th>
-                                    <th scope="col" class="text-right">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="item in 10" :key="item" v-for="item in 10" :Key="item">
-                                    <th scope="row">color</th>
-                                    <td>color</td>
-                                    <td>Dropdown</td>
-                                    <td>red, blue, yellow</td>
-                                    <td>10</td>
-                                    <td>
-                                        <ul class="d-flex justify-content-end table_actions">
-                                            <li>
-                                                <a href="#"><i class="fa fa-list-ul"></i></a>
+                    <form action="#" id="create_option_form" method="post">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Basic Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"
+                                            style="display: flex;
+                                                flex-direction: column;
+                                                justify-content: space-between;
+                                                height: 89%;"
+                                        >
+                                            <label for="">Display Name</label>
+                                            <p>Visible to customers on storefront</p>
+                                            <input type="text" name="display_name" v-model="display_name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Variant Option Name</label>
+                                            <p>Unique identifier for managing options, not visible to customers</p>
+                                            <input type="text" name="variant_option_name" v-model="variant_option_name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Type</label>
+                                            <select name="type" v-model="type" class="form-control" id="">
+                                                <option selected value="dropdown">Dropdown</option>
+                                                <option value="radio">Radio</option>
+                                                <option value="swatch">Swatch</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Product options</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">Display Label</div>
+                                    <div class="col-4 text-right option_default_label">Default</div>
+                                </div>
+                                <hr>
+                                <ul id="sortable">
+                                    <li class="my-4" v-for="(item, index) in option_values" :key="index">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <i class="fa fa-braille"></i>
+                                            <div style="flex:1; margin:0px 20px;display:flex;">
+                                                <input type="text" name="options_name[]" class="custom_form_control" >
+                                                <select name="" id="">
+                                                    <option value="one_color">One Color</option>
+                                                    <option value="two_color">Two Color</option>
+                                                    <option value="three_color">Three Color</option>
+                                                </select>
                                                 <ul>
-                                                    <li><a href="#"><i class="fa fa-pencil"></i> edit</a></li>
-                                                    <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
+                                                    <li>
+                                                        <input type="color">
+                                                        <input type="text">
+                                                    </li>
                                                 </ul>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                            </div>
+                                            <input type="radio">
+                                            <i @click.prevent="remove_option(index)" class="fa fa-trash-o btn btn-outline-danger ml-3"></i>
+                                        </div>
+                                        <hr>
+                                    </li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="#" @click.prevent="add_option" class="btn btn-outline-warning">
+                                            <i class="fa fa-plus"></i>
+                                            Add Value
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button @click.prevent="create_option" class="btn btn-secondary">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -67,6 +127,7 @@
     <!--End content-wrapper-->
 
     @push('cjs')
+        <script src="{{ asset('contents/admin') }}/plugins/sortable.js"></script>
         <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
     @endpush
 @endsection
