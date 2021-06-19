@@ -132,6 +132,15 @@
                 <a href="{{route('admin_store_setup_settings_display')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Display</a>
             </li>
             <li>
+                <a href="{{route('admin_store_setup_settings_date')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Date</a>
+            </li>
+            <li>
+                <a href="{{route('admin_store_setup_settings_url')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings URL Structure</a>
+            </li>
+            <li>
+                <a href="{{route('admin_store_setup_settings_security')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Security & Privacy</a>
+            </li>
+            <li>
                 <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Shipping</a>
             </li>
           

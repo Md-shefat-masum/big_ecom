@@ -54,6 +54,18 @@ Route::group([
     Route::get('/get-store-setup-settings-display', 'StoreSetupController@get_settings_display')->name('get_admin_store_setup_settings_display');
     Route::post('/create-store-setup-settings-display', 'StoreSetupController@create_settings_display')->name('create_admin_store_setup_settings_display');
 
+    Route::get('/store-setup-settings-date', 'StoreSetupController@store_settings_date')->name('admin_store_setup_settings_date');
+    Route::get('/get-store-setup-settings-date', 'StoreSetupController@get_store_settings_date')->name('get_admin_store_setup_settings_date');
+    Route::post('/create-store-setup-settings-date', 'StoreSetupController@create_store_settings_date')->name('create_admin_store_setup_settings_date');
+
+    Route::get('/store-setup-settings-url', 'StoreSetupController@store_settings_url')->name('admin_store_setup_settings_url');
+    Route::get('/get-store-setup-settings-url', 'StoreSetupController@get_store_settings_url')->name('get_admin_store_setup_settings_url');
+    Route::post('/create-store-setup-settings-url', 'StoreSetupController@create_store_settings_url')->name('create_admin_store_setup_settings_url');
+
+    Route::get('/store-setup-settings-security', 'StoreSetupController@store_settings_security')->name('admin_store_setup_settings_security');
+    Route::get('/get-store-setup-settings-security', 'StoreSetupController@get_store_settings_security')->name('get_admin_store_setup_settings_security');
+    Route::post('/create-store-setup-settings-security', 'StoreSetupController@create_store_settings_security')->name('create_admin_store_setup_settings_security');
+
     Route::get('/store-setup-change-password', 'StoreSetupController@change_password')->name('admin_store_setup_change_password');
     Route::get('/store-setup-additional-authentication', 'StoreSetupController@additional_authentication')->name('admin_store_setup_additional_authentication');
 });

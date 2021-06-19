@@ -18,10 +18,10 @@ class StoreSettingDateSeeder extends Seeder
         StoreSettingDate::truncate();
 
         $add = new StoreSettingDate();
-        $add->creator = 1;
+        $add->creator = 2;
         $add->slug = 'super_admin';
         $add->status = 1;
-        $add->timezone = "Alaska (GMT-9:00)";
+        $add->timezone = 1;
         $add->enable_dst_correction = 1;
         $add->display_date_format = "jS M Y";
         $add->extended_display_date_format = "jS M Y @ g:i A";
@@ -32,7 +32,7 @@ class StoreSettingDateSeeder extends Seeder
         $add->creator = 1;
         $add->slug = 'super_admin';
         $add->status = 1;
-        $add->timezone = "Beijing (GMT+8:00)";
+        $add->timezone = 2;
         $add->enable_dst_correction = 1;
         $add->display_date_format = "jS M Y";
         $add->extended_display_date_format = "jS M Y @ g:i A";

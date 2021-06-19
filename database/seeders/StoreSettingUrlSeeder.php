@@ -18,7 +18,7 @@ class StoreSettingUrlSeeder extends Seeder
         StoreSettingUrl::truncate();
 
         $add = new StoreSettingUrl();
-        $add->creator = 1;
+        $add->creator = 2;
         $add->slug = 'super_admin';
         $add->status = 1;
         $add->product_url_settings = 1;

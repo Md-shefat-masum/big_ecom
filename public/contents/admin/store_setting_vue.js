@@ -1,7 +1,5 @@
 const { default: store } = window.store;
 
-
-
 if (document.getElementById('store_setup_settings_website')) {
     // console.log('ok');
     const app = new Vue({
@@ -25,18 +23,18 @@ if (document.getElementById('store_setup_settings_website')) {
                 },
             }
         },
-        created: function(){
+        created: function () {
             this.getSetting();
         },
         methods: {
-            getSetting: function(){
+            getSetting: function () {
 
-               axios.get('/admin/get-website-settings')
-                    .then(res=>{
+                axios.get('/admin/get-website-settings')
+                    .then(res => {
                         // console.log(res.data);
                         this.form_data = res.data;
                     })
-    
+
             },
             store: function () {
                 let form_datas = new FormData($('#form_body')[0]);
@@ -59,10 +57,12 @@ if (document.getElementById('store_setup_settings_website')) {
     });
 }
 
+
+
 if (document.getElementById('store_setup_settings_display')) {
-    // console.log('ok');
+    // alert('ok');
     const app = new Vue({
-        el: '#store_setup_settings_website',
+        el: '#store_setup_settings_display',
         store: store,
         data: function () {
             return {
@@ -100,7 +100,7 @@ if (document.getElementById('store_setup_settings_display')) {
 
                axios.get('/admin/get-store-setup-settings-display')
                     .then(res=>{
-                        // console.log(res.data);
+                        console.log(res.data);
                         this.form_data = res.data;
                     })
     
@@ -109,7 +109,7 @@ if (document.getElementById('store_setup_settings_display')) {
                 let form_datas = new FormData($('#form_body')[0]);
                 axios.post('/admin/create-store-setup-settings-display', form_datas)
                     .then((res) => {
-                        // console.log(res.data);
+                        console.log(res.data);
                         // this.form_datas.clear();
                         toaster('success', 'new data created.');
                     })
@@ -119,9 +119,170 @@ if (document.getElementById('store_setup_settings_display')) {
                     })
             },
 
-            // check_decimal: function(){
-            //     console.log(this.form_data.decimal_token);
-            // },
+            check_decimal: function(){
+                console.log(this.form_data.decimal_token);
+            },
         },
     });
 }
+if (document.getElementById('store_setup_settings_date')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#store_setup_settings_date',
+        store: store,
+        data: function () {
+            return {
+                form_data: {
+                    id: null,
+                    timezone: null,
+                    enable_dst_correction: null,
+                    display_date_format: null,
+                    extended_display_date_format: null,
+                    slug: null,
+                },
+            }
+        },
+        created: function(){
+            this.getSetting();
+        },
+        methods: {
+            getSetting: function(){
+
+               axios.get('/admin/get-store-setup-settings-date')
+                    .then(res=>{
+                        console.log(res.data);
+                        this.form_data = res.data;
+                    })
+    
+            },
+            store: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/admin/create-store-setup-settings-date', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'new data created.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
+
+            check_decimal: function(){
+                console.log(this.form_data.decimal_token);
+            },
+        },
+    });
+}
+
+if (document.getElementById('store_setup_settings_url')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#store_setup_settings_url',
+        store: store,
+        data: function () {
+            return {
+                form_data: {
+                    id: null,
+                    product_url_settings: null,
+                    category_url_format: null,
+                    web_page_url_format: null,
+                    slug: null,
+                },
+            }
+        },
+        created: function(){
+            this.getSetting();
+        },
+        methods: {
+            getSetting: function(){
+
+               axios.get('/admin/get-store-setup-settings-url')
+                    .then(res=>{
+                        console.log(res.data);
+                        this.form_data = res.data;
+                    })
+    
+            },
+            store: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/admin/create-store-setup-settings-url', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'new data created.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
+
+            check_decimal: function(){
+                console.log(this.form_data.decimal_token);
+            },
+        },
+    });
+}
+if (document.getElementById('store_setup_settings_security')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#store_setup_settings_security',
+        store: store,
+        data: function () {
+            return {
+                form_data: {
+                    id: null,
+                    configure_complexity: null,
+                    inactive_shopper_logout: null,
+                    shopper_activity: null,
+                    control_panel_inactivity: null,
+                    enable_recaptcha_on_storefront: null,
+                    recaptcha_site_key: null,
+                    recaptcha_secret_key: null,
+                    failed_login_lockout: null,
+                    cookie_consent_tracking: null,
+                    privacy_policy_url: null,
+                    analytics_for_my_business: null,
+                    hsts_settings: null,
+                    content_security_policy: null,
+                    x_frame_options_header: null,
+                    slug: null,
+                },
+            }
+        },
+        created: function(){
+            this.getSetting();
+        },
+        methods: {
+            getSetting: function(){
+
+               axios.get('/admin/get-store-setup-settings-security')
+                    .then(res=>{
+                        console.log(res.data);
+                        this.form_data = res.data;
+                    })
+    
+            },
+            store: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/admin/create-store-setup-settings-security', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'new data created.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
+
+            check_decimal: function(){
+                console.log(this.form_data.decimal_token);
+            },
+        },
+    });
+}
+

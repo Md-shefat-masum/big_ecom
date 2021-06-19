@@ -24,7 +24,7 @@ class StoreSettingSecuritySeeder extends Seeder
         $add->configure_complexity = 1;
         $add->inactive_shopper_logout = 2;
         $add->shopper_activity = 1;
-        $add->control_panel_inactivity = "2 hours";
+        $add->control_panel_inactivity = 1;
         $add->enable_recaptcha_on_storefront = 1;
         $add->recaptcha_site_key = "abcd";
         $add->recaptcha_secret_key = "abcd";
