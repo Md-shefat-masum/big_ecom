@@ -36,7 +36,7 @@ if (document.getElementById('store_setup_settings_website')) {
                         console.log(res.data);
                         this.form_data = res.data;
                     })
-    
+
             },
             store: function () {
                 let form_datas = new FormData($('#form_body')[0]);

@@ -1,6 +1,6 @@
-
-
-const { default: store } = window.store;
+const {
+    default: store
+} = window.store;
 
 // console.log(store);
 
@@ -618,50 +618,62 @@ if (document.getElementById('product_option')) {
     const app = new Vue({
         el: '#product_option',
         store: store,
-        data: function(){
+        data: function () {
             return {
                 display_name: '',
                 variant_option_name: '',
-                type: '',
-                option_values: [
-                    {
-                        name: '',
-                        default: false
+                type: 'dropdown',
+                option_values: [{
+                    name: '',
+                    default: false,
+                    color_limit: 3,
+                    colors: {
+                        one_color: "#000000",
+                        two_color: "#000000",
+                        three_color: "#000000",
                     }
-                ]
+                }]
             };
         },
         watch: {
             display_name: {
-                handler: function(val){
+                handler: function (val) {
                     this.variant_option_name = this.display_name
                 }
             }
         },
-        created: function(){
+        created: function () {
             let that = this;
-            $(function(){
+            $(function () {
                 that.init_sortable();
             })
         },
         methods: {
-            init_sortable: function(){
-                $("#sortable").off().sortable();
+            init_sortable: function () {
+                if (document.getElementById('sortable')) {
+                    $("#sortable").off().sortable();
+                }
             },
-            add_option: function(){
+            add_option: function () {
                 let option_value = {
                     name: '',
-                    default: false
+                    default: false,
+                    color_limit: 3,
+                    colors: {
+                        one_color: "#000000",
+                        two_color: "#000000",
+                        three_color: "#000000",
+                    }
                 };
                 this.option_values.push(option_value);
             },
-            remove_option: function(index){
+            remove_option: function (index) {
                 this.option_values.splice(index, 1);
             },
-            create_option: function(){
-                $form_data = new FormData( $('#create_option_form')[0] );
+            create_option: function () {
+                $form_data = new FormData($('#create_option_form')[0]);
                 axios.post('/admin/product/store-option')
-                    .then(res=>{
+                    .then(res => {
                         console.log(res.data);
                     })
             }
@@ -698,13 +710,13 @@ if (document.getElementById('category_form')) {
             this.get_cateogry();
             this.init_category_tree_view();
             console.log(
-                        // this.$store.default.state,
-                        // this.$store.default.commit('test_mutation'),
-                        // this.$store.default.dispatch('fetch_auth_info'),
+                // this.$store.default.state,
+                // this.$store.default.commit('test_mutation'),
+                // this.$store.default.dispatch('fetch_auth_info'),
 
-                        // this.test_mutation(),
-                        // this.fetch_category_info(),
-                    );
+                // this.test_mutation(),
+                // this.fetch_category_info(),
+            );
         },
         methods: {
             ...window.mutation(['test_mutation']),
@@ -837,11 +849,11 @@ if (document.getElementById('category_form')) {
                 return str;
 
             },
-            init_category_tree_view: function(){
+            init_category_tree_view: function () {
                 $("#treeview").hummingbird();
-                $("#treeview li").off().on('click',function(){})
-                $("#treeview li input").off().on('click',function(){})
-                $("#treeview li label").off().on('click',function(){})
+                $("#treeview li").off().on('click', function () {})
+                $("#treeview li input").off().on('click', function () {})
+                $("#treeview li label").off().on('click', function () {})
             }
         },
         computed: {
@@ -849,7 +861,3 @@ if (document.getElementById('category_form')) {
         }
     });
 }
-
-
-
-

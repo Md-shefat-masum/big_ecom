@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content-wrapper">
-        <div class="container-fluid" id="product_option">
+        <div class="container" id="product_option">
             @include('admin.layouts.includes.bread_cumb',['title'=>'Create Product Options'])
 
             <div class="card">
@@ -78,22 +78,32 @@
                                 <ul id="sortable">
                                     <li class="my-4" v-for="(item, index) in option_values" :key="index">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <i class="fa fa-braille"></i>
-                                            <div style="flex:1; margin:0px 20px;display:flex;">
-                                                <input type="text" name="options_name[]" class="custom_form_control" >
-                                                <select name="" id="">
-                                                    <option value="one_color">One Color</option>
-                                                    <option value="two_color">Two Color</option>
-                                                    <option value="three_color">Three Color</option>
-                                                </select>
-                                                <ul>
-                                                    <li>
-                                                        <input type="color">
-                                                        <input type="text">
-                                                    </li>
-                                                </ul>
+                                            <i class="fa fa-braille align-self-start mt-2"></i>
+                                            <div class="product_option_rows">
+                                                <input type="text" name="item.name[]" v-model="item.name" class="custom_form_control option_name align-self-start" >
+                                                <div class="right_part" v-if="type=='swatch'">
+                                                    <select name="color_limit" v-model="item.color_limit" class="select_colors">
+                                                        <option value="3">One Color</option>
+                                                        <option value="2">Two Color</option>
+                                                        <option value="1">Three Color</option>
+                                                    </select>
+                                                    <ul class="color_swatch">
+                                                        <li v-if="item.color_limit <= parseInt(1)">
+                                                            <input type="color" v-model="item.colors.one_color">
+                                                            <input type="text" v-model="item.colors.one_color" disabled class="custom_form_control">
+                                                        </li>
+                                                        <li v-if="item.color_limit <= parseInt(2)">
+                                                            <input type="color" v-model="item.colors.two_color">
+                                                            <input type="text" v-model="item.colors.two_color" disabled class="custom_form_control">
+                                                        </li>
+                                                        <li v-if="item.color_limit <= parseInt(3)">
+                                                            <input type="color" v-model="item.colors.three_color">
+                                                            <input type="text" v-model="item.colors.three_color" disabled class="custom_form_control">
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <input type="radio">
+                                            <input type="radio" name="default">
                                             <i @click.prevent="remove_option(index)" class="fa fa-trash-o btn btn-outline-danger ml-3"></i>
                                         </div>
                                         <hr>

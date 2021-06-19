@@ -780,3 +780,43 @@ input.form-control[type="file"] {
 .option_default_label {
   padding-right: 58px;
 }
+.product_option_rows {
+  flex: 1;
+  margin: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.product_option_rows .option_name {
+  flex: 1;
+}
+.product_option_rows .right_part {
+  display: inline-flex;
+}
+.product_option_rows .right_part .select_colors {
+  border: 0px solid #e5eaef;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0px 10px;
+  align-self: flex-start;
+  height: 32px;
+}
+.product_option_rows .right_part .color_swatch li {
+  display: flex;
+  margin-bottom: 4px;
+}
+.product_option_rows .right_part .color_swatch li input[type="color"] {
+  border: 0;
+  padding: 0;
+  background: #4e555b;
+  height: 32px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-left: 4px;
+}
+.product_option_rows .right_part .color_swatch li input[type="text"] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 32px;
+}
