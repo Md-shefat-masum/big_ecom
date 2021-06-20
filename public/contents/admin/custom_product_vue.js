@@ -671,8 +671,9 @@ if (document.getElementById('product_option')) {
                 this.option_values.splice(index, 1);
             },
             create_option: function () {
-                $form_data = new FormData($('#create_option_form')[0]);
-                axios.post('/admin/product/store-option')
+                let form_data = new FormData($('#create_option_form')[0]);
+                form_data.append('option_values',JSON.stringify(this.option_values));
+                axios.post('/admin/product/store-option',form_data)
                     .then(res => {
                         console.log(res.data);
                     })

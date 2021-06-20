@@ -103,7 +103,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <input type="radio" name="default">
+                                            <input type="radio" :value="index" name="item.default" name="default">
                                             <i @click.prevent="remove_option(index)" class="fa fa-trash-o btn btn-outline-danger ml-3"></i>
                                         </div>
                                         <hr>

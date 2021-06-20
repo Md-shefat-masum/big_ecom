@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ProductOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -39,7 +40,17 @@ class ProductController extends Controller
 
     public function store_option(Request $request)
     {
-        return $request->all();
+        $this->validate($request,[
+            'display_name' => ['required'],
+            'unique_name' => ['required','unique:product_options'],
+        ]);
+        // $request_data = $request->all();
+        // $request_data['option_values'] = json_decode($request->option_values);
+        $option = new ProductOption();
+        $option->display_name = $request->display_name;
+        $option->unique_name = $request->variant_option_name;
+        $option->type = $request->type;
+        // return $request_data;
     }
 
     public function reviews()
