@@ -39,10 +39,27 @@ class ProductController extends Controller
         return view('admin.product.option.options_create');
     }
 
+    public function edit_option($id)
+    {
+        $option = ProductOption::find($id);
+        return view('admin.product.option.options_edit',compact('option'));
+    }
+
+    public function get_option($id)
+    {
+        return ProductOption::find($id);
+    }
+
     public function check_option_exists(Request $request)
     {
         $key = $request->unique_name;
         if(ProductOption::where('unique_name',$key)->exists()){
+            $option = ProductOption::where('unique_name',$key)->first();
+            if($request->form_type == 'edit'){
+                if($option->display_name == $request->display_name && $option->id == $request->id){
+                    return 0;
+                }
+            }
             return 1;
         }else{
             return 0;
@@ -65,6 +82,25 @@ class ProductController extends Controller
         $option->creator = Auth::user()->id;
         $option->save();
         $option->slug = $option->id.uniqid(5);
+        $option->save();
+
+        return $option;
+    }
+
+    public function update_option(Request $request)
+    {
+        $this->validate($request,[
+            'display_name' => ['required'],
+            'unique_name' => ['required'],
+        ]);
+        // $request_data = $request->all();
+        // $request_data['option_values'] = json_decode($request->option_values);
+        $option = ProductOption::find($request->id);
+        $option->display_name = $request->display_name;
+        $option->unique_name = $request->unique_name;
+        $option->type = $request->type;
+        $option->option_values = $request->option_values;
+        $option->creator = Auth::user()->id;
         $option->save();
 
         return $option;

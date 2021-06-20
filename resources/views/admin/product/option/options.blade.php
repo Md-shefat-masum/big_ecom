@@ -39,8 +39,8 @@
                                         <td>{{ $item->unique_name }}</td>
                                         <td>{{ $item->type }}</td>
                                         <td>
-                                            @foreach (json_decode($item->option_values) as $item)
-                                                {{ $item->name }},
+                                            @foreach (json_decode($item->option_values) as $value)
+                                                {{ $value->name }},
                                             @endforeach
                                         </td>
                                         <td>-</td>
@@ -49,7 +49,7 @@
                                                 <li>
                                                     <a href="#"><i class="fa fa-list-ul"></i></a>
                                                     <ul>
-                                                        <li><a href="#"><i class="fa fa-pencil"></i> edit</a></li>
+                                                        <li><a href="{{ route('admin_product_edit_option',$item->id) }}"><i class="fa fa-pencil"></i> edit</a></li>
                                                         <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
                                                     </ul>
                                                 </li>

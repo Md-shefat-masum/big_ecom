@@ -9,12 +9,11 @@ class ProductOption extends Model
 {
     use HasFactory;
     protected $appends = [
-        'date',
+        'option_values_json',
     ];
 
-    public function getDateAttribute()
+    public function getOptionValuesJsonAttribute()
     {
-        dd($this->option_values);
         return json_decode($this->option_values);
     }
 }

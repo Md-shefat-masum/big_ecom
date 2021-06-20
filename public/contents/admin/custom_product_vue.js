@@ -620,6 +620,9 @@ if (document.getElementById('product_option')) {
         store: store,
         data: function () {
             return {
+                form_type: 'create',
+                id: '',
+                change_unique_name_onece: false,
                 unique_name_check: false,
                 display_name: '',
                 variant_option_name: '',
@@ -644,8 +647,14 @@ if (document.getElementById('product_option')) {
             },
             variant_option_name: {
                 handler: function (val) {
-                    this.check_option_exists();
-
+                    if (location.pathname.split('/')[4]){
+                        if(this.change_unique_name_onece){
+                            this.check_option_exists();
+                        }
+                        this.change_unique_name_onece = true;
+                    }else{
+                        this.check_option_exists();
+                    }
                 }
             }
         },
@@ -654,12 +663,31 @@ if (document.getElementById('product_option')) {
             $(function () {
                 that.init_sortable();
             })
+            this.get_option();
         },
         methods: {
             init_sortable: function () {
                 if (document.getElementById('sortable')) {
                     $("#sortable").off().sortable();
                 }
+            },
+            get_option: function () {
+                if (location.pathname.split('/')[4]) {
+
+                    axios.get('/admin/product/get-option/' + location.pathname.split('/')[4])
+                        .then((res) => {
+                            // this.form_data = res.data;
+                            // console.log(res.data);
+                            this.form_type = 'edit';
+                            this.id = res.data.id;
+                            this.unique_name_check = false;
+                            this.display_name = res.data.display_name;
+                            this.variant_option_name = res.data.unique_name;
+                            this.type = res.data.type;
+                            this.option_values = res.data.option_values_json;
+                        })
+                }
+
             },
             add_option: function () {
                 let option_value = {
@@ -686,8 +714,24 @@ if (document.getElementById('product_option')) {
                         // return res.data;
                     })
             },
+            update_option: function () {
+                let form_data = new FormData($('#create_option_form')[0]);
+                form_data.append('option_values',JSON.stringify(this.option_values));
+                form_data.append('id',JSON.stringify(this.id));
+                axios.post('/admin/product/update-option',form_data)
+                    .then(res => {
+                        // console.log(res.data);
+                        // return res.data;
+                        toaster('success','data updated');
+                    })
+            },
             check_option_exists: function(){
-                axios.post('/admin/product/check_option_exists',{unique_name: this.variant_option_name})
+                axios.post('/admin/product/check_option_exists',{
+                        form_type:this.form_type,
+                        id:this.id,
+                        display_name:this.display_name,
+                        unique_name: this.variant_option_name
+                    })
                     .then((res)=>{
                         // console.log(res.data);
                         this.unique_name_check = res.data;
@@ -701,6 +745,13 @@ if (document.getElementById('product_option')) {
                             this.unique_name_check = 0;
                         }
                     })
+            },
+            set_default: function(index){
+                console.log(index);
+                let temp_options = [...this.option_values];
+                temp_options.map((item)=>item.default = false);
+                temp_options[index].default = true;
+                this.option_values = temp_options;
             }
         }
     });
