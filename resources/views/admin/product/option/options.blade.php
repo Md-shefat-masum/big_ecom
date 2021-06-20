@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <ul class="filter_nav d-flex flex-wrap">
                         <li><a href="{{ route('admin_product_create_option') }}" class="custom_white_btn">Create Option</a></li>
-                        <li><a href="#" class="custom_white_btn">Delete</a></li>
+                        {{-- <li><a href="#" class="custom_white_btn">Delete</a></li> --}}
                         {{-- <li>
                             <input type="text" class="custom_input" name="" placeholder="Filter by keyword">
                         </li>
@@ -33,24 +33,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in 10" :key="item" v-for="item in 10" :Key="item">
-                                    <th scope="row">color</th>
-                                    <td>color</td>
-                                    <td>Dropdown</td>
-                                    <td>red, blue, yellow</td>
-                                    <td>10</td>
-                                    <td>
-                                        <ul class="d-flex justify-content-end table_actions">
-                                            <li>
-                                                <a href="#"><i class="fa fa-list-ul"></i></a>
-                                                <ul>
-                                                    <li><a href="#"><i class="fa fa-pencil"></i> edit</a></li>
-                                                    <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
+                                @foreach ($options as $item)
+                                    <tr>
+                                        <th scope="row">{{ $item->display_name }}</th>
+                                        <td>{{ $item->unique_name }}</td>
+                                        <td>{{ $item->type }}</td>
+                                        <td>
+                                            @foreach (json_decode($item->option_values) as $item)
+                                                {{ $item->name }},
+                                            @endforeach
+                                        </td>
+                                        <td>-</td>
+                                        <td>
+                                            <ul class="d-flex justify-content-end table_actions">
+                                                <li>
+                                                    <a href="#"><i class="fa fa-list-ul"></i></a>
+                                                    <ul>
+                                                        <li><a href="#"><i class="fa fa-pencil"></i> edit</a></li>
+                                                        <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>

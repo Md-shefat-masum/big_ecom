@@ -102,6 +102,7 @@ Route::group([
     Route::get('/option', 'ProductController@option')->name('admin_product_option');
     Route::get('/create-option', 'ProductController@create_option')->name('admin_product_create_option');
     Route::post('/store-option', 'ProductController@store_option')->name('admin_product_store_option');
+    Route::post('/check_option_exists', 'ProductController@check_option_exists')->name('admin_check_option_exists');
 
 
     Route::get('/search', 'ProductController@search')->name('admin_product_search');

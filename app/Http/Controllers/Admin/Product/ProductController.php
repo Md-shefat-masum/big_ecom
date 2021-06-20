@@ -30,12 +30,23 @@ class ProductController extends Controller
 
     public function option()
     {
-        return view('admin.product.option.options');
+        $options = ProductOption::orderBy('display_name','ASC')->where('status',1)->get();
+        return view('admin.product.option.options',compact('options'));
     }
 
     public function create_option()
     {
         return view('admin.product.option.options_create');
+    }
+
+    public function check_option_exists(Request $request)
+    {
+        $key = $request->unique_name;
+        if(ProductOption::where('unique_name',$key)->exists()){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     public function store_option(Request $request)
@@ -48,9 +59,15 @@ class ProductController extends Controller
         // $request_data['option_values'] = json_decode($request->option_values);
         $option = new ProductOption();
         $option->display_name = $request->display_name;
-        $option->unique_name = $request->variant_option_name;
+        $option->unique_name = $request->unique_name;
         $option->type = $request->type;
-        // return $request_data;
+        $option->option_values = $request->option_values;
+        $option->creator = Auth::user()->id;
+        $option->save();
+        $option->slug = $option->id.uniqid(5);
+        $option->save();
+
+        return $option;
     }
 
     public function reviews()

@@ -620,6 +620,7 @@ if (document.getElementById('product_option')) {
         store: store,
         data: function () {
             return {
+                unique_name_check: false,
                 display_name: '',
                 variant_option_name: '',
                 type: 'dropdown',
@@ -638,7 +639,13 @@ if (document.getElementById('product_option')) {
         watch: {
             display_name: {
                 handler: function (val) {
-                    this.variant_option_name = this.display_name
+                    this.variant_option_name = this.display_name;
+                }
+            },
+            variant_option_name: {
+                handler: function (val) {
+                    this.check_option_exists();
+
                 }
             }
         },
@@ -676,6 +683,23 @@ if (document.getElementById('product_option')) {
                 axios.post('/admin/product/store-option',form_data)
                     .then(res => {
                         console.log(res.data);
+                        // return res.data;
+                    })
+            },
+            check_option_exists: function(){
+                axios.post('/admin/product/check_option_exists',{unique_name: this.variant_option_name})
+                    .then((res)=>{
+                        // console.log(res.data);
+                        this.unique_name_check = res.data;
+                        if(this.unique_name_check == 1){
+                            console.log(this.unique_name_check);
+                            $('.variant_option_name').addClass('border');
+                            $('.variant_option_name').addClass('border-danger');
+                        }else{
+                            $('.variant_option_name').removeClass('border');
+                            $('.variant_option_name').removeClass('border-danger');
+                            this.unique_name_check = 0;
+                        }
                     })
             }
         }

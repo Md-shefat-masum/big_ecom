@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <ul class="filter_nav d-flex flex-wrap">
                         <li>
-                            <a href="{{ route('admin_product_create_category') }}" class="custom_white_btn">
+                            <a href="{{ route('admin_product_option') }}" class="custom_white_btn">
                                 <i class="fa fa-angle-left"></i>
                                 Back
                             </a>
@@ -48,7 +48,8 @@
                                         <div class="form-group">
                                             <label for="">Variant Option Name</label>
                                             <p>Unique identifier for managing options, not visible to customers</p>
-                                            <input type="text" name="variant_option_name" v-model="variant_option_name" class="form-control">
+                                            <input type="text" name="unique_name" v-model="variant_option_name" class="form-control variant_option_name">
+                                            <span v-if="unique_name_check == 1" class="d-block variant_option_name_alert text-danger">name should be unique</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
