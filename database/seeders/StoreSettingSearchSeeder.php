@@ -17,22 +17,22 @@ class StoreSettingSearchSeeder extends Seeder
     {
         StoreSettingSearch::truncate();
 
-        $user = new StoreSettingSearch();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->default_product_sort = "Bestselling";
-        $user->default_content_sort = "Alphabetical: A to Z";
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingSearch();
+        $add->creator = 1;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->default_product_sort = "Bestselling";
+        $add->default_content_sort = "Alphabetical: A to Z";
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
 
-        $user = new StoreSettingSearch();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->default_product_sort = "Newest Items";
-        $user->default_content_sort = "Alphabetical: Z to A";
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingSearch();
+        $add->creator = 1;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->default_product_sort = "Newest Items";
+        $add->default_content_sort = "Alphabetical: Z to A";
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
     }
 }

@@ -52,9 +52,16 @@
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Weight
                                             Measurement</label>
                                         <div class="col-sm-9">
-                                            <select name="weight_measurement" v-model="form_data.weight_measurement" class="form-control col-md-12 mb-3"
-                                                aria-label="Default select example">
-                                                <option value="">........</option>
+                                            <select name="weight_measurement" v-model="form_data.weight_measurement"
+                                                class="form-control col-md-12 mb-3">
+                                                @php
+                                                $weight=DB::table('weight_measurements')->get();
+                                                @endphp
+                                                @foreach ($weight as $item)
+
+                                                <option value="{{$item->id}}">{{$item->weight_measurement_name}}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -62,9 +69,16 @@
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Length
                                             Measurement</label>
                                         <div class="col-sm-9">
-                                            <select name="length_measurement" class="form-control col-md-12 mb-3"
+                                            <select name="length_measurement" v-model="form_data.length_measurement" class="form-control col-md-12 mb-3"
                                                 aria-label="Default select example">
-                                                <option value="">........</option>
+                                                @php
+                                                $length=DB::table('length_measurements')->get();
+                                                @endphp
+                                                @foreach ($length as $item)
+
+                                                <option value="{{$item->id}}">{{$item->length_measurement_name}}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -73,30 +87,38 @@
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Decimal
                                             Token</label>
                                         <div class="col-sm-9">
-                                            <input name="decimal_token" v-model="form_data.decimal_token" type="text" class="form-control">
+                                            <input name="decimal_token" v-model="form_data.decimal_token" type="text"
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Thousands
                                             Token</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="thousands_token" class="form-control">
+                                            <input type="text" v-model="form_data.thousands_token" name="thousands_token" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Decimal
                                             Places</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="decimal_places" class="form-control">
+                                            <input type="text" v-model="form_data.decimal_places" name="decimal_places" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Factoring
                                             Dimension</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control col-md-12 mb-3" name="factoring_dimension"
+                                            <select class="form-control col-md-12 mb-3" v-model="form_data.factoring_dimension" name="factoring_dimension"
                                                 aria-label="Default select example">
-                                                <option value="">...</option>
+                                                @php
+                                                $dimen=DB::table('factoring_dimensions')->get();
+                                                @endphp
+                                                @foreach ($dimen as $item)
+
+                                                <option value="{{$item->id}}">{{$item->factoring_dimension_name}}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -112,30 +134,37 @@
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Home Page
                                             Title</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="home_page_title" class="form-control">
+                                            <input type="text" v-model="form_data.home_page_title" name="home_page_title" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Meta
                                             Keywords</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="meta_keywords" class="form-control">
+                                            <input type="text" v-model="form_data.meta_keywords" name="meta_keywords" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Meta
                                             Description</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="meta_description" class="form-control">
+                                            <input type="text" v-model="form_data.meta_description" name="meta_description" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">WWW/No WWW
+                                        <label for="inputEnterYourName"  class="col-sm-3 col-form-label">WWW/No WWW
                                             Redirect</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control col-md-12 mb-3" name="redirect"
+                                            <select class="form-control col-md-12 mb-3" v-model="form_data.redirect" name="redirect"
                                                 aria-label="Default select example">
-                                                <option value="">...</option>
+                                                @php
+                                                $www=DB::table('www_redirects')->get();
+                                                @endphp
+                                                @foreach ($www as $item)
+
+                                                <option value="{{$item->id}}">{{$item->www_redirect_name}}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -144,7 +173,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="col-12">
-                                        <button @click.prevent="store" type="button" class="btn btn-light px-5">Edit</button>
+                                        <button @click.prevent="store" type="button"
+                                            class="btn btn-light px-5">Add</button>
                                     </div>
                                 </div>
                             </div>

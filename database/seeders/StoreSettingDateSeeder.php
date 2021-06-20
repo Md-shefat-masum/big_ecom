@@ -17,26 +17,26 @@ class StoreSettingDateSeeder extends Seeder
     {
         StoreSettingDate::truncate();
 
-        $user = new StoreSettingDate();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->timezone = "Alaska (GMT-9:00)";
-        $user->enable_dst_correction = 1;
-        $user->display_date_format = "jS M Y";
-        $user->extended_display_date_format = "jS M Y @ g:i A";
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingDate();
+        $add->creator = 2;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->timezone = 1;
+        $add->enable_dst_correction = 1;
+        $add->display_date_format = "jS M Y";
+        $add->extended_display_date_format = "jS M Y @ g:i A";
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
 
-        $user = new StoreSettingDate();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->timezone = "Beijing (GMT+8:00)";
-        $user->enable_dst_correction = 1;
-        $user->display_date_format = "jS M Y";
-        $user->extended_display_date_format = "jS M Y @ g:i A";
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingDate();
+        $add->creator = 1;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->timezone = 2;
+        $add->enable_dst_correction = 1;
+        $add->display_date_format = "jS M Y";
+        $add->extended_display_date_format = "jS M Y @ g:i A";
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
     }
 }

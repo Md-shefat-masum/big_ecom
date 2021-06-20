@@ -17,22 +17,22 @@ class StoreSettingMiscellaneousSeeder extends Seeder
     {
         StoreSettingMiscellaneous::truncate();
 
-        $user = new StoreSettingMiscellaneous();
-        $user->creator = 1;
-        $user->slug = 'super_admin';
-        $user->status = 1;
-        $user->product_review_emails = 1;
-        $user->forward_order_invoices = 2;
-        $user->use_smtp_server = 1;
-        $user->administrator_email = "demo@gmail.com";
-        $user->abandoned_cart_notifications = 1;
-        $user->require_consent = 0;
-        $user->abandoned_cart_emails = 1;
-        $user->send_emails_to = "demo@gmail.com";
-        $user->allow_purchasing = 1;
-        $user->starting_order_number = "100";
-        $user->enable_throttler = 1;
-        $user->created_at = Carbon::now()->toDateTimeString();
-        $user->save();
+        $add = new StoreSettingMiscellaneous();
+        $add->creator = 1;
+        $add->slug = 'super_admin';
+        $add->status = 1;
+        $add->product_review_emails = 1;
+        $add->forward_order_invoices = 2;
+        $add->use_smtp_server = 1;
+        $add->administrator_email = "demo@gmail.com";
+        $add->abandoned_cart_notifications = 1;
+        $add->require_consent = 0;
+        $add->abandoned_cart_emails = 1;
+        $add->send_emails_to = "demo@gmail.com";
+        $add->allow_purchasing = 1;
+        $add->starting_order_number = "100";
+        $add->enable_throttler = 1;
+        $add->created_at = Carbon::now()->toDateTimeString();
+        $add->save();
     }
 }
