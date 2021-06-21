@@ -138,7 +138,6 @@
     <!--End content-wrapper-->
 
     @push('cjs')
-        <script src="{{ asset('contents/admin') }}/plugins/sortable.js"></script>
         <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
     @endpush
 @endsection

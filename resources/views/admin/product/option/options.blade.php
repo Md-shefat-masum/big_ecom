@@ -50,7 +50,7 @@
                                                     <a href="#"><i class="fa fa-list-ul"></i></a>
                                                     <ul>
                                                         <li><a href="{{ route('admin_product_edit_option',$item->id) }}"><i class="fa fa-pencil"></i> edit</a></li>
-                                                        <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
+                                                        <li><a href="{{ route('admin_delete_option',$item->id) }}" onclick="return confirm('sure want to delete')"><i class="fa fa-trash"></i> Delete</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>

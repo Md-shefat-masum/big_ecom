@@ -9,6 +9,81 @@ if (document.getElementById('product')) {
         el: '#product',
         data: function () {
             return {
+                product_name: '',
+                sku: '',
+                product_type: '',
+                default_price: '',
+                brand_id: '',
+                weight: '',
+
+                selected_categories: [],
+
+                description: '',
+                product_image: [],
+
+                product_identifier_sku: '',
+                manufacture_part_number: '',
+                product_upc: '',
+                global_trade_number: '',
+                bin_picking_number: '',
+
+                pricing_default_price: '',
+                tax_class: '',
+                tax_provider_tax_code: '',
+                cost: '',
+                msrp: '',
+                sales_price: '',
+                bulk_pricing_discount_type: '',
+                bulk_pricing_discount_options: [
+                    {
+                        min_quantity: 2,
+                        discount: 0,
+                        unit_price: 0,
+                    },
+                    {
+                        min_quantity: 4,
+                        discount: 0,
+                        unit_price: 0,
+                    },
+                ],
+
+                track_inventory: false,
+                on_the_product_level: false,
+
+                track_inventory_on_the_variant_level_stock: 0,
+                track_inventory_on_the_variant_level_low_stock: 0,
+
+                set_as_store_front: true,
+
+                search_keywords: '',
+                sort_order: '',
+                template_layout_file: '',
+                waranty_information: '',
+                availability_text: '',
+                product_condition: '',
+                conditions: [
+                    'new',
+                    'used',
+                    'refurbished',
+                ],
+                show_condition_on_storefront: false,
+
+                custom_fields: [{
+                    name: '',
+                    value: '',
+                }, ],
+
+                automatically_show_related_prodauct_on_my_store_front: true,
+                related_products: [],
+
+                weight: '',
+                width: '',
+                height: '',
+                depth: '',
+
+                fixed_shipping_price: 0,
+                free_shipping: false,
+
                 categories: [{
                         id: 1,
                         name: 'men',
@@ -85,21 +160,42 @@ if (document.getElementById('product')) {
                 category_html: '',
                 show_advance_pricing: false,
 
-                tiers: [{
-                    min_qty: 2,
-                    discount: 0.00,
-                    unit_price: 0,
-                }],
+                purchasability: 'can_be_purchased_in_online_store',
+                preorder_message: '',
+                release_date: '',
+                remove_pre_order_status_on_this_date: false,
 
+                show_call_for_pricing: true,
+                call_number: '',
+
+                minimum_purchase_quantity: '',
+                maximum_purchase_quantity: '',
+
+                gift_wrapping: false,
+
+                manage_customs_information: false,
                 countries: [
                     'afganistan',
                     'america',
                     'canada',
                     'bangladesh'
                 ],
+                courtry_of_origin: '',
+                comodity_description: '',
+                hs_codes: [{
+                    country: '',
+                    code: '',
+                }, ],
 
-                track_inventory: false,
-                on_the_product_level: false,
+                page_title : '',
+                product_url : '',
+                meta_description: '',
+
+                open_graph_sharing_object_type: '',
+                open_graph_use_product_name: false,
+                open_graph_use_product_description: false,
+                open_graph_use_thumbnail_image: true,
+                open_graph_dont_use_an_image: false,
 
                 edit_columns_lists: [{
                         id: 1,
@@ -212,26 +308,12 @@ if (document.getElementById('product')) {
                     },
                 ],
 
-                custom_fields: [{
-                    name: '',
-                    value: '',
-                }, ],
-
-                hs_codes: [{
-                    country: '',
-                    code: '',
-                }, ],
-
                 variation_permutaion: [],
-
-                purchasability: 'can_be_purchased_in_online_store'
-
             }
         },
         created: function () {
+            this.get_categories_tree_json();
             this.permutation();
-
-            this.array_depth(this.categories);
             setTimeout(() => {
                 this.add_new_form_action();
                 $('.category_card_dropdown .card-body ul li ul').css('display', 'none');
@@ -239,6 +321,16 @@ if (document.getElementById('product')) {
         },
         updated: function () {},
         methods: {
+            get_categories_tree_json: function(){
+                axios.get('/admin/product/categories_tree_json')
+                    .then((res)=>{
+                        // console.log(res.data);
+                        this.categories = res.data;
+                        setTimeout(() => {
+                            this.array_depth(this.categories);
+                        }, 200);
+                    })
+            },
             array_depth: function (arr) {
                 // console.log(arr);
                 if (arr.length > 0) {
@@ -422,44 +514,54 @@ if (document.getElementById('product')) {
                     let parent_ul_of_form = $(this).parent('div').parent('div').parent('li').parent('ul');
                     let parent_li_of_form = $(this).parent('div').parent('div').parent('li');
 
+                    // $(parent_ul_of_form).addClass('preloader');
+
                     if (name.length > 0) {
                         let new_category = {
                             id: that.getRandomInt(20, 200),
                             name: name,
+                            parent: parent_id,
                             child: [],
                         }
 
-                        // make new li
-                        let new_li = `<li>
-                                        <div class="element">
-                                            <input type="checkbox" class="form-control">
-                                            <i class="fa fa-folder"></i>
-                                            <div>${name}</div>
-                                            <div data-id="${new_category.id}" class="add_sub_category">
-                                                <a href="#">
-                                                    <i class="fa fa-plus"></i> Add sub-category
-                                                </a>
-                                            </div>
-                                            <div class="parent_element_trigger  d-none ">
-                                                <i data-action="expand" class="fa fa-plus hide_plus"></i>
-                                                <i data-action="collapse" class="fa fa-minus show_plus"></i>
-                                            </div>
-                                        </div>
-                                    </li>`;
+                        axios.post('/admin/product/store-category-from-product-create',new_category)
+                            .then((res)=>{
 
-                        // new category_append
-                        $(parent_ul_of_form).append(new_li);
+                                new_category.id = res.data.id;
 
-                        // new add form remove
-                        $(parent_li_of_form).remove();
+                                // make new li
+                                let new_li = `<li>
+                                                <div class="element">
+                                                    <input type="checkbox" class="form-control">
+                                                    <i class="fa fa-folder"></i>
+                                                    <div>${name}</div>
+                                                    <div data-id="${new_category.id}" class="add_sub_category">
+                                                        <a href="#">
+                                                            <i class="fa fa-plus"></i> Add sub-category
+                                                        </a>
+                                                    </div>
+                                                    <div class="parent_element_trigger  d-none ">
+                                                        <i data-action="expand" class="fa fa-plus hide_plus"></i>
+                                                        <i data-action="collapse" class="fa fa-minus show_plus"></i>
+                                                    </div>
+                                                </div>
+                                            </li>`;
 
-                        // d-block triggers
-                        $(root_li_triggers).removeClass('d-none');
-                        $(root_li_triggers).addClass('d-block');
+                                // new category_append
+                                $(parent_ul_of_form).append(new_li);
 
-                        // add new category in category array
-                        that.add_new_category_to_parent_category(that.categories, parent_id, new_category);
-                        that.draw_left_line();
+                                // new add form remove
+                                $(parent_li_of_form).remove();
+
+                                // d-block triggers
+                                $(root_li_triggers).removeClass('d-none');
+                                $(root_li_triggers).addClass('d-block');
+
+                                // add new category in category array
+                                that.add_new_category_to_parent_category(that.categories, parent_id, new_category);
+                                that.draw_left_line();
+                            })
+
                     } else {
                         $('#new_category_input_value').addClass('border border-danger');
                         $('#new_category_input_value').siblings('.alert_box').removeClass('d-none');
@@ -483,6 +585,7 @@ if (document.getElementById('product')) {
                         // this.category_html = '';
                         element.child.push(new_category);
 
+                        console.log(new_category);
                         // re render category html
                         // this.array_depth(this.categories);
 
@@ -710,8 +813,10 @@ if (document.getElementById('product_option')) {
                 form_data.append('option_values',JSON.stringify(this.option_values));
                 axios.post('/admin/product/store-option',form_data)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         // return res.data;
+                        toaster('success','data updated');
+                        window.location.reload();
                     })
             },
             update_option: function () {
@@ -723,6 +828,7 @@ if (document.getElementById('product_option')) {
                         // console.log(res.data);
                         // return res.data;
                         toaster('success','data updated');
+
                     })
             },
             check_option_exists: function(){

@@ -91,11 +91,13 @@ Route::group([
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
 
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
+    Route::get('/categories_tree_json', 'ProductController@categories_tree_json')->name('admin_product_categories_tree_json');
     Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
     Route::get('/edit-category/{id}/{category_name}', 'ProductController@edit_category')->name('admin_product_edit_category');
     Route::get('/edit-data/{id}', 'ProductController@category_data')->name('admin_product_category_data');
     Route::post('/categorie-url-check', 'ProductController@categorie_url_check')->name('admin_product_categorie_url_check');
     Route::post('/store-category', 'ProductController@store_category')->name('admin_product_store_category');
+    Route::post('/store-category-from-product-create', 'ProductController@store_category_from_product_create')->name('admin_product_store_category_from_product_create');
     Route::post('/update-category', 'ProductController@update_category')->name('admin_product_update_category');
     Route::post('/rearenge-category', 'ProductController@rearenge_category')->name('admin_product_rearenge_category');
 
@@ -106,11 +108,18 @@ Route::group([
     Route::post('/store-option', 'ProductController@store_option')->name('admin_product_store_option');
     Route::post('/update-option', 'ProductController@update_option')->name('admin_product_update_option');
     Route::post('/check_option_exists', 'ProductController@check_option_exists')->name('admin_check_option_exists');
+    Route::get('/delete_option/{id}', 'ProductController@delete_option')->name('admin_delete_option');
+
+    Route::get('/brands', 'ProductController@brands')->name('admin_product_brands');
+    Route::get('/create-brands', 'ProductController@create_brands')->name('admin_product_create_brands');
+    Route::get('/edit-brands/{id}', 'ProductController@edit_brands')->name('admin_product_edit_brands');
+    Route::post('/store-brands', 'ProductController@store_brands')->name('admin_product_store_brands');
+    Route::post('/update-brands', 'ProductController@update_brands')->name('admin_product_update_brands');
 
 
     Route::get('/search', 'ProductController@search')->name('admin_product_search');
     Route::get('/reviews', 'ProductController@reviews')->name('admin_product_reviews');
-    Route::get('/brands', 'ProductController@brands')->name('admin_product_brands');
+
 
 });
 
