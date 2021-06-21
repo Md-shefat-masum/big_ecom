@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <div class="card-title">Add Product</div>
                             <hr />
-                            <form class="insert_form product_insert_form row" method="POST" action="#" enctype="multipart/form-data">
+                            <form class="product_insert_form row" method="POST" action="#" enctype="multipart/form-data">
                                 @csrf
                                 <div class="preloader"></div>
                                 <div class="form-group col-md-6 col-xl-4">
@@ -58,7 +58,7 @@
                                         <div class="card-header">
                                             <label for="" class=" col-form-label">Categories</label>
                                         </div>
-                                        <div class="card-body overflow-hidden" v-html="category_html">
+                                        <div class="card-body overflow-hidden category_block" v-html="category_html">
 
                                         </div>
                                     </div>
