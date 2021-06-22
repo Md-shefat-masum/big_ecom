@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoreSettingUrlsTable extends Migration
+class CreateStoreSettingSharesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,18 @@ class CreateStoreSettingUrlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('store_setting_urls', function (Blueprint $table) {
+        Schema::create('store_setting_shares', function (Blueprint $table) {
             $table->id();
             $table->string('creator',100)->nullable();
             $table->string('slug',100)->nullable();
             $table->integer('status')->default(1);
-            $table->string('product_url_settings',200)->nullable();
-            $table->string('product_url_custom_settings',200)->nullable();
-            $table->string('category_url_format',200)->nullable();
-            $table->string('web_page_url_format',200)->nullable();
+            $table->string('facebook',200)->nullable();
+            $table->string('twitter',200)->nullable();
+            $table->string('instagram',200)->nullable();
+            $table->string('linkedin',200)->nullable();
+            $table->string('pinterest',200)->nullable();
+            $table->string('like',200)->nullable();
+            $table->string('email',200)->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +36,6 @@ class CreateStoreSettingUrlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store_setting_urls');
+        Schema::dropIfExists('store_setting_shares');
     }
 }

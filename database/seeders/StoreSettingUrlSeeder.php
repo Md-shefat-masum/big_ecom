@@ -22,6 +22,7 @@ class StoreSettingUrlSeeder extends Seeder
         $add->slug = 'super_admin';
         $add->status = 1;
         $add->product_url_settings = 1;
+        $add->product_url_custom_settings = '';
         $add->category_url_format = 2;
         $add->web_page_url_format = 3;
         $add->created_at = Carbon::now()->toDateTimeString();
@@ -32,6 +33,7 @@ class StoreSettingUrlSeeder extends Seeder
         $add->slug = 'super_admin';
         $add->status = 1;
         $add->product_url_settings = 3;
+        $add->product_url_custom_settings = '';
         $add->category_url_format = 1;
         $add->web_page_url_format = 2;
         $add->created_at = Carbon::now()->toDateTimeString();

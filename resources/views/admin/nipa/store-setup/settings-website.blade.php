@@ -88,7 +88,7 @@
                                             Token</label>
                                         <div class="col-sm-9">
                                             <input name="decimal_token" v-model="form_data.decimal_token" type="text"
-                                                class="form-control">
+                                                class="form-control" @change="onChange($event)">
                                         </div>
                                     </div>
                                     <div class="row mb-3">

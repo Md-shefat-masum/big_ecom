@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StoreSettingDate;
 use App\Models\StoreSettingDisplay;
 use App\Models\StoreSettingSecurity;
+use App\Models\StoreSettingShare;
 use App\Models\StoreSettingUrl;
 use App\Models\StoreSettingWebsite;
 use App\Models\StoreSetup;
@@ -47,7 +48,7 @@ class StoreSetupController extends Controller
         if (isset($creator)) {
             $add=StoreSettingWebsite::find($creator->id);
             $add->creator = Auth::user()->id;
-            $add->slug = $request->slug;
+            $add->slug = Auth::user()->first_name;
             $add->weight_measurement = $request->weight_measurement;
             $add->length_measurement = $request->length_measurement;
             $add->decimal_token = $request->decimal_token;
@@ -66,7 +67,7 @@ class StoreSetupController extends Controller
 
 
             $add->creator = Auth::user()->id;
-            $add->slug = $request->slug;
+            $add->slug = Auth::user()->first_name;
             $add->weight_measurement = $request->weight_measurement;
             $add->length_measurement = $request->length_measurement;
             $add->decimal_token = $request->decimal_token;
@@ -441,6 +442,7 @@ class StoreSetupController extends Controller
             $add=StoreSettingUrl::find($creator->id);
             $add->creator = Auth::user()->id;
             $add->slug = Auth::user()->first_name;
+            
             $add->product_url_settings = $request->product_url_settings;
             $add->category_url_format = $request->category_url_format;
             $add->web_page_url_format = $request->web_page_url_format;
@@ -536,17 +538,174 @@ class StoreSetupController extends Controller
 
             $add->creator = Auth::user()->id;
             $add->slug = Auth::user()->first_name;
-            $add->product_url_settings = $request->product_url_settings;
-            $add->category_url_format = $request->category_url_format;
-            $add->web_page_url_format = $request->web_page_url_format;
-           
-        
+            
+            if($request->has('configure_complexity'))
+            {
+                $add->configure_complexity = 1;
+            }else{
+                $add->configure_complexity = 0;
+            }
+            $add->inactive_shopper_logout = $request->inactive_shopper_logout;
+            $add->shopper_activity = $request->shopper_activity;
+            $add->control_panel_inactivity = $request->control_panel_inactivity;
+            
+            if($request->has('enable_recaptcha_on_storefront'))
+            {
+                $add->enable_recaptcha_on_storefront = 1;
+            }else{
+                $add->enable_recaptcha_on_storefront = 0;
+            }
+            $add->recaptcha_site_key = $request->recaptcha_site_key;
+            $add->recaptcha_secret_key = $request->recaptcha_secret_key;
+            $add->failed_login_lockout = $request->failed_login_lockout;
+            
+            if($request->has('cookie_consent_tracking'))
+            {
+                $add->cookie_consent_tracking = 1;
+            }else{
+                $add->cookie_consent_tracking = 0;
+            }
+            if($request->has('analytics_for_my_business'))
+            {
+                $add->analytics_for_my_business = 1;
+            }else{
+                $add->analytics_for_my_business = 0;
+            }
+            $add->privacy_policy_url = $request->privacy_policy_url;
+            $add->content_security_policy = $request->content_security_policy;
+            $add->x_frame_options_header = $request->x_frame_options_header;
+
             $add->save();
     
             return $add;
         }
         
   
+    }
+
+    public function store_settings_share()
+    {
+        return view('admin.nipa.store-setup.settings-share');
+    }
+
+    public function get_store_settings_share()
+    {
+        return StoreSettingShare::where('creator', Auth::user()->id)->first();
+    }
+
+    public function create_store_settings_share(Request $request)
+    {
+        // return $request->all();
+        $user_id=Auth::user()->id;
+
+        $creator = StoreSettingShare::where('creator', $user_id)->first();
+
+        if (isset($creator)) {
+            $add=StoreSettingShare::find($creator->id);
+            $add->creator = Auth::user()->id;
+            $add->slug = Auth::user()->first_name;
+
+            if($request->has('facebook'))
+            {
+                $add->facebook = 1;
+            }else{
+                $add->facebook = 0;
+            }
+            if($request->has('twitter'))
+            {
+                $add->twitter = 1;
+            }else{
+                $add->twitter = 0;
+            }
+            if($request->has('instagram'))
+            {
+                $add->instagram = 1;
+            }else{
+                $add->instagram = 0;
+            }
+            if($request->has('linkedin'))
+            {
+                $add->linkedin = 1;
+            }else{
+                $add->linkedin = 0;
+            }
+            if($request->has('pinterest'))
+            {
+                $add->pinterest = 1;
+            }else{
+                $add->pinterest = 0;
+            }
+            if($request->has('like'))
+            {
+                $add->like = 1;
+            }else{
+                $add->like = 0;
+            }
+            if($request->has('email'))
+            {
+                $add->email = 1;
+            }else{
+                $add->email = 0;
+            }
+
+            $add->save();
+            return $add;
+          
+        } else {
+
+            $add = new StoreSettingShare;
+
+            $add->creator = Auth::user()->id;
+            $add->slug = Auth::user()->first_name;
+
+            if($request->has('facebook'))
+            {
+                $add->facebook = 1;
+            }else{
+                $add->facebook = 0;
+            }
+            if($request->has('twitter'))
+            {
+                $add->twitter = 1;
+            }else{
+                $add->twitter = 0;
+            }
+            if($request->has('instagram'))
+            {
+                $add->instagram = 1;
+            }else{
+                $add->instagram = 0;
+            }
+            if($request->has('linkedin'))
+            {
+                $add->linkedin = 1;
+            }else{
+                $add->linkedin = 0;
+            }
+            if($request->has('pinterest'))
+            {
+                $add->pinterest = 1;
+            }else{
+                $add->pinterest = 0;
+            }
+            if($request->has('like'))
+            {
+                $add->like = 1;
+            }else{
+                $add->like = 0;
+            }
+            if($request->has('email'))
+            {
+                $add->email = 1;
+            }else{
+                $add->email = 0;
+            }
+        
+            $add->save();
+    
+            return $add;
+        }
+        
     }
 
   

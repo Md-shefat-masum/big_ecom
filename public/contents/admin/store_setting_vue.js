@@ -19,10 +19,16 @@ if (document.getElementById('store_setup_settings_website')) {
                     meta_keywords: null,
                     meta_description: null,
                     redirect: null,
-                    slug: null,
+                    
                 },
             }
         },
+        watch: {
+            myAlphaNumField(newVal) {
+              let re = /[^A-Z0-9]/gi;
+              this.$set(this, 'myAlphaNumField', newVal.replace(re, ''));
+            }
+          },
         created: function () {
             this.getSetting();
         },
@@ -42,7 +48,7 @@ if (document.getElementById('store_setup_settings_website')) {
                     .then((res) => {
                         // console.log(res.data);
                         // this.form_datas.clear();
-                        toaster('success', 'new data created.');
+                        toaster('success', 'Successful.');
                     })
                     .catch((err) => {
                         // console.log(err.response);
@@ -53,6 +59,11 @@ if (document.getElementById('store_setup_settings_website')) {
             // check_decimal: function(){
             //     console.log(this.form_data.decimal_token);
             // },
+
+            onChange(event) {
+                var data = event.target.value;
+                console.log(data);
+            }
         },
     });
 }
@@ -88,7 +99,7 @@ if (document.getElementById('store_setup_settings_display')) {
                     show_product_rating: null,
                     show_add_to_cart_link: null,
                     default_pre_order_message: null,
-                    slug: null,
+                    
                 },
             }
         },
@@ -111,7 +122,7 @@ if (document.getElementById('store_setup_settings_display')) {
                     .then((res) => {
                         console.log(res.data);
                         // this.form_datas.clear();
-                        toaster('success', 'new data created.');
+                        toaster('success', 'Successful.');
                     })
                     .catch((err) => {
                         // console.log(err.response);
@@ -119,9 +130,6 @@ if (document.getElementById('store_setup_settings_display')) {
                     })
             },
 
-            check_decimal: function(){
-                console.log(this.form_data.decimal_token);
-            },
         },
     });
 }
@@ -138,7 +146,7 @@ if (document.getElementById('store_setup_settings_date')) {
                     enable_dst_correction: null,
                     display_date_format: null,
                     extended_display_date_format: null,
-                    slug: null,
+                    
                 },
             }
         },
@@ -161,7 +169,7 @@ if (document.getElementById('store_setup_settings_date')) {
                     .then((res) => {
                         console.log(res.data);
                         // this.form_datas.clear();
-                        toaster('success', 'new data created.');
+                        toaster('success', 'Successful.');
                     })
                     .catch((err) => {
                         // console.log(err.response);
@@ -169,9 +177,7 @@ if (document.getElementById('store_setup_settings_date')) {
                     })
             },
 
-            check_decimal: function(){
-                console.log(this.form_data.decimal_token);
-            },
+         
         },
     });
 }
@@ -188,7 +194,7 @@ if (document.getElementById('store_setup_settings_url')) {
                     product_url_settings: null,
                     category_url_format: null,
                     web_page_url_format: null,
-                    slug: null,
+                    product_url_custom_settings: null,
                 },
             }
         },
@@ -211,7 +217,7 @@ if (document.getElementById('store_setup_settings_url')) {
                     .then((res) => {
                         console.log(res.data);
                         // this.form_datas.clear();
-                        toaster('success', 'new data created.');
+                        toaster('success', 'Successful.');
                     })
                     .catch((err) => {
                         // console.log(err.response);
@@ -219,9 +225,6 @@ if (document.getElementById('store_setup_settings_url')) {
                     })
             },
 
-            check_decimal: function(){
-                console.log(this.form_data.decimal_token);
-            },
         },
     });
 }
@@ -248,8 +251,8 @@ if (document.getElementById('store_setup_settings_security')) {
                     hsts_settings: null,
                     content_security_policy: null,
                     x_frame_options_header: null,
-                    slug: null,
                 },
+                isToggled: false,
             }
         },
         created: function(){
@@ -271,7 +274,7 @@ if (document.getElementById('store_setup_settings_security')) {
                     .then((res) => {
                         console.log(res.data);
                         // this.form_datas.clear();
-                        toaster('success', 'new data created.');
+                        toaster('success', 'Successful.');
                     })
                     .catch((err) => {
                         // console.log(err.response);
@@ -279,9 +282,58 @@ if (document.getElementById('store_setup_settings_security')) {
                     })
             },
 
-            check_decimal: function(){
-                console.log(this.form_data.decimal_token);
+    
+        },
+    });
+}
+
+if (document.getElementById('store_setup_settings_share')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#store_setup_settings_share',
+        store: store,
+        data: function () {
+            return {
+                form_data: {
+                    id: null,
+                    facebook: null,
+                    twitter: null,
+                    instagram: null,
+                    linkedin: null,
+                    pinterest: null,
+                    like: null,
+                    email: null,
+                },
+            }
+        },
+        created: function(){
+            this.getSetting();
+        },
+        methods: {
+            getSetting: function(){
+
+               axios.get('/admin/get-store-setup-settings-share')
+                    .then(res=>{
+                        console.log(res.data);
+                        this.form_data = res.data;
+                    })
+    
             },
+            store: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/admin/create-store-setup-settings-share', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'Successful.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
+
+        
         },
     });
 }
