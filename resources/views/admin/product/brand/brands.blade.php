@@ -11,14 +11,14 @@
                     <div class="card">
                         <div class="card-header">
                             <ul class="filter_nav d-flex flex-wrap">
-                                <li><a href="#" class="custom_white_btn">Add Brand</a></li>
-                                <li><a href="#" class="custom_white_btn">Delete</a></li>
+                                <li><a href="{{ route('admin_product_create_brands') }}" class="custom_white_btn">Add Brand</a></li>
+                                {{-- <li><a href="#" class="custom_white_btn">Delete</a></li>
                                 <li>
                                     <input type="text" class="custom_input" name="" placeholder="Filter by keyword">
                                 </li>
                                 <li>
                                     <button class="custom_white_btn">Filter</button>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="card-body">
@@ -26,28 +26,33 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col"><input type="checkbox"></th>
+                                            {{-- <th scope="col"><input type="checkbox"></th> --}}
                                             <th scope="col">Brand Name</th>
                                             <th scope="col">Products</th>
                                             <th scope="col" class="text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item in 10" :key="item">
-                                            <th scope="row"><input type="checkbox"></th>
-                                            <td>Common Good</td>
-                                            <td>5</td>
-                                            <td>
-                                                <ul class="d-flex justify-content-end table_actions">
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-list-ul"></i></a>
-                                                        <ul>
-                                                            <li><a href="#">Edit</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                        @foreach ($brands as $item)
+                                            <tr>
+                                                {{-- <th scope="row"><input type="checkbox"></th> --}}
+                                                <td>{{ $item->name }}</td>
+                                                <td> - </td>
+                                                <td>
+                                                    <ul class="d-flex justify-content-end table_actions">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-list-ul"></i></a>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="{{ route('admin_product_edit_brands',$item->id) }}">Edit</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

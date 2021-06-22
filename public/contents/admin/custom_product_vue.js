@@ -1,6 +1,6 @@
-
-
-const { default: store } = window.store;
+const {
+    default: store
+} = window.store;
 
 // console.log(store);
 
@@ -9,97 +9,122 @@ if (document.getElementById('product')) {
         el: '#product',
         data: function () {
             return {
-                categories: [{
-                        id: 1,
-                        name: 'men',
-                        parent: null,
-                        child: [{
-                                id: 2,
-                                name: 't-shirt',
-                                parent: 1,
-                                child: [],
-                            },
-                            {
-                                id: 3,
-                                name: 'pant',
-                                parent: 1,
-                                child: [{
-                                        id: 4,
-                                        name: 'gavatin',
-                                        parent: 2,
-                                        child: [],
-                                    },
-                                    {
-                                        id: 5,
-                                        name: 'jeans',
-                                        parent: 2,
-                                        child: [],
-                                    },
-                                    {
-                                        id: 6,
-                                        name: 'touser',
-                                        parent: 2,
-                                        child: [{
-                                                id: 7,
-                                                name: 'sm',
-                                                parent: 6,
-                                                child: [],
-                                            },
-                                            {
-                                                id: 8,
-                                                name: 'md',
-                                                parent: 6,
-                                                child: [],
-                                            },
-                                            {
-                                                id: 9,
-                                                name: 'lg',
-                                                parent: 6,
-                                                child: [],
-                                            },
-                                        ]
-                                    },
-                                ]
-                            },
-                        ]
+                product_name: '',
+                sku: '',
+                product_type: '',
+                default_price: '',
+                brand_id: '',
+                weight: '',
+
+                selected_categories: [],
+
+                description: '',
+                product_image: [],
+
+                product_identifier_sku: '',
+                manufacture_part_number: '',
+                product_upc: '',
+                global_trade_number: '',
+                bin_picking_number: '',
+
+                pricing_default_price: '',
+                tax_class: '',
+                tax_provider_tax_code: '',
+                cost: '',
+                msrp: '',
+                sales_price: '',
+                bulk_pricing_discount_type: '',
+                bulk_pricing_discount_options: [{
+                        min_quantity: 2,
+                        discount: 0,
+                        unit_price: 0,
                     },
                     {
-                        id: 10,
-                        name: 'women',
-                        parent: null,
-                        child: [{
-                            id: 11,
-                            name: 't-shirt',
-                            parent: 10,
-                            child: [],
-                        }, ]
-                    },
-                    {
-                        id: 12,
-                        name: 'child',
-                        parent: null,
-                        child: [],
+                        min_quantity: 4,
+                        discount: 0,
+                        unit_price: 0,
                     },
                 ],
+
+                track_inventory: false,
+                on_the_product_level: false,
+
+                track_inventory_on_the_variant_level_stock: 0,
+                track_inventory_on_the_variant_level_low_stock: 0,
+
+                set_as_store_front: true,
+
+                search_keywords: '',
+                sort_order: '',
+                template_layout_file: '',
+                waranty_information: '',
+                availability_text: '',
+                product_condition: '',
+                conditions: [
+                    'new',
+                    'used',
+                    'refurbished',
+                ],
+                show_condition_on_storefront: false,
+
+                custom_fields: [{
+                    name: '',
+                    value: '',
+                }, ],
+
+                automatically_show_related_prodauct_on_my_store_front: true,
+                related_products: [],
+
+                weight: '',
+                width: '',
+                height: '',
+                depth: '',
+
+                fixed_shipping_price: 0,
+                free_shipping: false,
+
+                categories: [],
+                selected_categories: [],
 
                 category_html: '',
                 show_advance_pricing: false,
 
-                tiers: [{
-                    min_qty: 2,
-                    discount: 0.00,
-                    unit_price: 0,
-                }],
+                purchasability: 'can_be_purchased_in_online_store',
+                preorder_message: '',
+                release_date: '',
+                remove_pre_order_status_on_this_date: false,
 
+                show_call_for_pricing: true,
+                call_number: '',
+
+                minimum_purchase_quantity: '',
+                maximum_purchase_quantity: '',
+
+                gift_wrapping: false,
+
+                manage_customs_information: false,
                 countries: [
                     'afganistan',
                     'america',
                     'canada',
                     'bangladesh'
                 ],
+                courtry_of_origin: '',
+                comodity_description: '',
+                hs_codes: [{
+                    country: '',
+                    code: '',
+                }, ],
 
-                track_inventory: false,
-                on_the_product_level: false,
+                page_title: '',
+                product_url: '',
+                meta_description: '',
+
+                open_graph_sharing_object_type: '',
+                open_graph_use_product_name: false,
+                open_graph_use_product_description: false,
+                open_graph_use_thumbnail_image: true,
+                open_graph_dont_use_an_image: false,
 
                 edit_columns_lists: [{
                         id: 1,
@@ -212,33 +237,29 @@ if (document.getElementById('product')) {
                     },
                 ],
 
-                custom_fields: [{
-                    name: '',
-                    value: '',
-                }, ],
-
-                hs_codes: [{
-                    country: '',
-                    code: '',
-                }, ],
-
                 variation_permutaion: [],
-
-                purchasability: 'can_be_purchased_in_online_store'
-
             }
         },
         created: function () {
+            this.get_categories_tree_json();
             this.permutation();
-
-            this.array_depth(this.categories);
-            setTimeout(() => {
-                this.add_new_form_action();
-                $('.category_card_dropdown .card-body ul li ul').css('display', 'none');
-            }, 300);
         },
         updated: function () {},
         methods: {
+            get_categories_tree_json: function () {
+                axios.get('/admin/product/categories_tree_json')
+                    .then((res) => {
+                        // console.log(res.data);
+                        this.categories = res.data;
+                        this.array_depth(this.categories);
+
+                        setTimeout(() => {
+                            this.add_new_form_action();
+                            $('.category_card_dropdown .card-body ul li ul').css('display', 'none');
+                        }, 300);
+                    })
+            },
+
             array_depth: function (arr) {
                 // console.log(arr);
                 if (arr.length > 0) {
@@ -251,7 +272,7 @@ if (document.getElementById('product')) {
                         this.category_html += '<li>';
                         this.category_html += `
                             <div class="element">
-                                <input type="checkbox" class="form-control">
+                                <input type="checkbox" value="${element.id}" class="form-control">
                                 <i class="fa fa-folder"></i>
                                 <div>${element.name}</div>
                                 <div data-id="${element.id}" class="add_sub_category">
@@ -379,6 +400,13 @@ if (document.getElementById('product')) {
                     // console.log(action);
                 });
 
+                $(".category_block input[type=checkbox]").on('change', function () {
+                    that.selected_categories = [];
+                    $(".category_block input[type=checkbox]:checked").each(function () {
+                        that.selected_categories.push(parseInt($(this).val()));
+                    });
+                })
+
                 that.draw_left_line();
             },
 
@@ -420,50 +448,68 @@ if (document.getElementById('product')) {
                     let name = $('#new_category_input_value').val();
                     let root_li_triggers = $(this).parent('div').parent('div').parent('li').parent('ul').parent('li').children('div').children('.parent_element_trigger');
                     let parent_ul_of_form = $(this).parent('div').parent('div').parent('li').parent('ul');
+                    let parent_li_of_ul = $(this).parent('div').parent('div').parent('li').parent('ul').parent('li');
                     let parent_li_of_form = $(this).parent('div').parent('div').parent('li');
+
+                    $(parent_li_of_ul).addClass('preloader_in_li');
+                    $(parent_li_of_ul).append('<span class="preloader_body"></span>');
 
                     if (name.length > 0) {
                         let new_category = {
                             id: that.getRandomInt(20, 200),
                             name: name,
+                            parent: parent_id,
                             child: [],
                         }
 
-                        // make new li
-                        let new_li = `<li>
-                                        <div class="element">
-                                            <input type="checkbox" class="form-control">
-                                            <i class="fa fa-folder"></i>
-                                            <div>${name}</div>
-                                            <div data-id="${new_category.id}" class="add_sub_category">
-                                                <a href="#">
-                                                    <i class="fa fa-plus"></i> Add sub-category
-                                                </a>
-                                            </div>
-                                            <div class="parent_element_trigger  d-none ">
-                                                <i data-action="expand" class="fa fa-plus hide_plus"></i>
-                                                <i data-action="collapse" class="fa fa-minus show_plus"></i>
-                                            </div>
-                                        </div>
-                                    </li>`;
+                        axios.post('/admin/product/store-category-from-product-create', new_category)
+                            .then((res) => {
 
-                        // new category_append
-                        $(parent_ul_of_form).append(new_li);
+                                new_category.id = res.data.id;
 
-                        // new add form remove
-                        $(parent_li_of_form).remove();
+                                // make new li
+                                let new_li = `<li>
+                                                <div class="element">
+                                                    <input type="checkbox" value="${new_category.id}" class="form-control">
+                                                    <i class="fa fa-folder"></i>
+                                                    <div>${name}</div>
+                                                    <div data-id="${new_category.id}" class="add_sub_category">
+                                                        <a href="#">
+                                                            <i class="fa fa-plus"></i> Add sub-category
+                                                        </a>
+                                                    </div>
+                                                    <div class="parent_element_trigger  d-none ">
+                                                        <i data-action="expand" class="fa fa-plus hide_plus"></i>
+                                                        <i data-action="collapse" class="fa fa-minus show_plus"></i>
+                                                    </div>
+                                                </div>
+                                            </li>`;
 
-                        // d-block triggers
-                        $(root_li_triggers).removeClass('d-none');
-                        $(root_li_triggers).addClass('d-block');
+                                // new category_append
+                                $(parent_ul_of_form).append(new_li);
 
-                        // add new category in category array
-                        that.add_new_category_to_parent_category(that.categories, parent_id, new_category);
-                        that.draw_left_line();
+                                // new add form remove
+                                $(parent_li_of_form).remove();
+
+                                // d-block triggers
+                                $(root_li_triggers).removeClass('d-none');
+                                $(root_li_triggers).addClass('d-block');
+
+                                // add new category in category array
+                                that.add_new_category_to_parent_category(that.categories, parent_id, new_category);
+                                that.draw_left_line();
+
+                                $(parent_li_of_ul).removeClass('preloader_in_li');
+                                $('.preloader_body').remove();
+                            })
+
                     } else {
                         $('#new_category_input_value').addClass('border border-danger');
                         $('#new_category_input_value').siblings('.alert_box').removeClass('d-none');
                         $('#new_category_input_value').siblings('.alert_box').addClass('d-block');
+
+                        $(parent_li_of_ul).removeClass('preloader_in_li');
+                        $('.preloader_body').remove();
                     }
 
                     // console.log(parent_id, name, new_category);
@@ -483,6 +529,7 @@ if (document.getElementById('product')) {
                         // this.category_html = '';
                         element.child.push(new_category);
 
+                        // console.log(new_category);
                         // re render category html
                         // this.array_depth(this.categories);
 
@@ -618,52 +665,143 @@ if (document.getElementById('product_option')) {
     const app = new Vue({
         el: '#product_option',
         store: store,
-        data: function(){
+        data: function () {
             return {
+                form_type: 'create',
+                id: '',
+                change_unique_name_onece: false,
+                unique_name_check: false,
                 display_name: '',
                 variant_option_name: '',
-                type: '',
-                option_values: [
-                    {
-                        name: '',
-                        default: false
+                type: 'dropdown',
+                option_values: [{
+                    name: '',
+                    default: false,
+                    color_limit: 3,
+                    colors: {
+                        one_color: "#000000",
+                        two_color: "#000000",
+                        three_color: "#000000",
                     }
-                ]
+                }]
             };
         },
         watch: {
             display_name: {
-                handler: function(val){
-                    this.variant_option_name = this.display_name
+                handler: function (val) {
+                    this.variant_option_name = this.display_name;
+                }
+            },
+            variant_option_name: {
+                handler: function (val) {
+                    if (location.pathname.split('/')[4]) {
+                        if (this.change_unique_name_onece) {
+                            this.check_option_exists();
+                        }
+                        this.change_unique_name_onece = true;
+                    } else {
+                        this.check_option_exists();
+                    }
                 }
             }
         },
-        created: function(){
+        created: function () {
             let that = this;
-            $(function(){
+            $(function () {
                 that.init_sortable();
             })
+            this.get_option();
         },
         methods: {
-            init_sortable: function(){
-                $("#sortable").off().sortable();
+            init_sortable: function () {
+                if (document.getElementById('sortable')) {
+                    $("#sortable").off().sortable();
+                }
             },
-            add_option: function(){
+            get_option: function () {
+                if (location.pathname.split('/')[4]) {
+
+                    axios.get('/admin/product/get-option/' + location.pathname.split('/')[4])
+                        .then((res) => {
+                            // this.form_data = res.data;
+                            // console.log(res.data);
+                            this.form_type = 'edit';
+                            this.id = res.data.id;
+                            this.unique_name_check = false;
+                            this.display_name = res.data.display_name;
+                            this.variant_option_name = res.data.unique_name;
+                            this.type = res.data.type;
+                            this.option_values = res.data.option_values_json;
+                        })
+                }
+
+            },
+            add_option: function () {
                 let option_value = {
                     name: '',
-                    default: false
+                    default: false,
+                    color_limit: 3,
+                    colors: {
+                        one_color: "#000000",
+                        two_color: "#000000",
+                        three_color: "#000000",
+                    }
                 };
                 this.option_values.push(option_value);
             },
-            remove_option: function(index){
+            remove_option: function (index) {
                 this.option_values.splice(index, 1);
             },
-            create_option: function(){
-                $form_data = new FormData( $('#create_option_form')[0] );
-                axios.post('/admin/product/store-option')
-                    .then(res=>{
-                        console.log(res.data);
+            create_option: function () {
+                let form_data = new FormData($('#create_option_form')[0]);
+                form_data.append('option_values', JSON.stringify(this.option_values));
+                axios.post('/admin/product/store-option', form_data)
+                    .then(res => {
+                        // console.log(res.data);
+                        // return res.data;
+                        toaster('success', 'data updated');
+                        window.location.reload();
                     })
+            },
+            update_option: function () {
+                let form_data = new FormData($('#create_option_form')[0]);
+                form_data.append('option_values', JSON.stringify(this.option_values));
+                form_data.append('id', JSON.stringify(this.id));
+                axios.post('/admin/product/update-option', form_data)
+                    .then(res => {
+                        // console.log(res.data);
+                        // return res.data;
+                        toaster('success', 'data updated');
+
+                    })
+            },
+            check_option_exists: function () {
+                axios.post('/admin/product/check_option_exists', {
+                        form_type: this.form_type,
+                        id: this.id,
+                        display_name: this.display_name,
+                        unique_name: this.variant_option_name
+                    })
+                    .then((res) => {
+                        // console.log(res.data);
+                        this.unique_name_check = res.data;
+                        if (this.unique_name_check == 1) {
+                            console.log(this.unique_name_check);
+                            $('.variant_option_name').addClass('border');
+                            $('.variant_option_name').addClass('border-danger');
+                        } else {
+                            $('.variant_option_name').removeClass('border');
+                            $('.variant_option_name').removeClass('border-danger');
+                            this.unique_name_check = 0;
+                        }
+                    })
+            },
+            set_default: function (index) {
+                console.log(index);
+                let temp_options = [...this.option_values];
+                temp_options.map((item) => item.default = false);
+                temp_options[index].default = true;
+                this.option_values = temp_options;
             }
         }
     });
@@ -698,13 +836,13 @@ if (document.getElementById('category_form')) {
             this.get_cateogry();
             this.init_category_tree_view();
             console.log(
-                        // this.$store.default.state,
-                        // this.$store.default.commit('test_mutation'),
-                        // this.$store.default.dispatch('fetch_auth_info'),
+                // this.$store.default.state,
+                // this.$store.default.commit('test_mutation'),
+                // this.$store.default.dispatch('fetch_auth_info'),
 
-                        // this.test_mutation(),
-                        // this.fetch_category_info(),
-                    );
+                // this.test_mutation(),
+                // this.fetch_category_info(),
+            );
         },
         methods: {
             ...window.mutation(['test_mutation']),
@@ -837,11 +975,11 @@ if (document.getElementById('category_form')) {
                 return str;
 
             },
-            init_category_tree_view: function(){
+            init_category_tree_view: function () {
                 $("#treeview").hummingbird();
-                $("#treeview li").off().on('click',function(){})
-                $("#treeview li input").off().on('click',function(){})
-                $("#treeview li label").off().on('click',function(){})
+                $("#treeview li").off().on('click', function () {})
+                $("#treeview li input").off().on('click', function () {})
+                $("#treeview li label").off().on('click', function () {})
             }
         },
         computed: {
@@ -849,7 +987,3 @@ if (document.getElementById('category_form')) {
         }
     });
 }
-
-
-
-

@@ -344,7 +344,7 @@ ul {
         text-transform: capitalize;
     }
 
-    li input[type="checkbox"]{
+    li input[type="checkbox"] {
         width: 21px;
         height: 21px;
     }
@@ -474,8 +474,8 @@ ul {
     }
 }
 
-.dragable_list li div:hover{
-    .action_menu{
+.dragable_list li div:hover {
+    .action_menu {
         opacity: 1;
         visibility: visible;
     }
@@ -521,15 +521,13 @@ ul {
             padding: 7px 2px;
             text-transform: capitalize;
 
-            &:hover{
+            &:hover {
                 color: white;
             }
         }
     }
 
 }
-
-
 
 .content-wrapper {
     height: 100vh;
@@ -756,7 +754,6 @@ ul {
 
                 ul {
                     margin-left: 50px;
-
                     .left_line {
                         // height: 158%;
                         // height: 77%;
@@ -768,6 +765,25 @@ ul {
             }
         }
     }
+}
+
+.preloader_in_li {
+    position: relative;
+}
+
+.preloader_body {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .6);
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    content: '';
+    background-image: url('/loader.gif');
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 999;
 }
 
 .form-control:focus {
@@ -917,25 +933,30 @@ input.form-control[type="file"] {
     height: 43px;
 }
 
-#treeview label{
+#treeview label {
     line-height: 25px;
 }
-#treeview{
+
+#treeview {
     border: 1px solid white;
     padding: 10px;
     background: #42424273;
     overflow: hidden;
 }
-#treeview li ul{
+
+#treeview li ul {
     padding-left: 25px;
 }
-.hummingbird-treeview ul li div{
+
+.hummingbird-treeview ul li div {
     border: 1px solid white;
 }
-.hummingbird-treeview label{
+
+.hummingbird-treeview label {
     background: transparent !important;
     background: transparent;
-    color: rgba(255, 255, 255, 0.75)!important;;
+    color: rgba(255, 255, 255, 0.75) !important;
+    ;
     font-size: .75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -948,25 +969,78 @@ input.form-control[type="file"] {
     align-items: center;
     margin: 0;
 }
-.hummingbird-treeview label:hover{
-    background: #596068!important;;
+
+.hummingbird-treeview label:hover {
+    background: #596068 !important;
+    ;
 }
-.hummingbird-treeview label.active{
-    color: #00fcff!important;
+
+.hummingbird-treeview label.active {
+    color: #00fcff !important;
 }
-.hummingbird-treeview label input{
+
+.hummingbird-treeview label input {
     margin-right: 8px !important;
     display: inline-block;
 }
 
-.custom_form_control{
+.custom_form_control {
     border: 0px solid #e5eaef;
     background-color: rgba(255, 255, 255, 0.2);
-    color: #fff ;
+    color: #fff;
     padding: 5px;
     border-radius: 5px;
 }
 
-.option_default_label{
+.option_default_label {
     padding-right: 58px;
+}
+
+.product_option_rows {
+    flex: 1;
+    margin: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .option_name {
+        flex: 1;
+    }
+
+    .right_part {
+        display: inline-flex;
+
+        .select_colors {
+            border: 0px solid #e5eaef;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            margin: 0px 10px;
+            align-self: flex-start;
+            height: 32px;
+        }
+
+        .color_swatch {
+            li {
+                display: flex;
+                margin-bottom: 4px;
+
+                input[type="color"] {
+                    border: 0;
+                    padding: 0;
+                    background: #4e555b;
+                    height: 32px;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    padding-left: 4px;
+                }
+
+                input[type="text"] {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    height: 32px;
+                }
+            }
+        }
+    }
 }

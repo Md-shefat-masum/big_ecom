@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             StoreSettingSecuritySeeder::class,
             StoreSettingUrlSeeder::class,
             StoreSettingWebsiteSeeder::class,
+            ProductOptionSeeder::class,
             // CountrySeeder::class,
             // CitySeeder::class,
         ]);

@@ -11,22 +11,22 @@
                         <div class="card-body">
                             <div class="card-title">Add Product</div>
                             <hr />
-                            <form class="insert_form product_insert_form row" method="POST" action="#" enctype="multipart/form-data">
+                            <form class="product_insert_form row" method="POST" action="#" enctype="multipart/form-data">
                                 @csrf
                                 <div class="preloader"></div>
                                 <div class="form-group col-md-6 col-xl-4">
                                     <label for="" class=" col-form-label">Name</label>
-                                    <input type="text" class="form-control">
+                                    <input v-model="product_name" type="text" class="form-control">
                                 </div>
 
                                 <div class="form-group col-md-6 col-xl-4">
                                     <label for="" class=" col-form-label">SKU</label>
-                                    <input type="text" class="form-control" placeholder="THX-1138">
+                                    <input type="text" v-model="sku" class="form-control" placeholder="THX-1138">
                                 </div>
 
                                 <div class="form-group col-md-6 col-xl-4">
                                     <label for="" class=" col-form-label">Product Type</label>
-                                    <select name=""  class="form-control">
+                                    <select name="" v-model="product_type" class="form-control">
                                         <option value="">Physical</option>
                                         <option value="">Digital</option>
                                     </select>
@@ -34,13 +34,13 @@
 
                                 <div class="form-group col-md-6 col-xl-4">
                                     <label for="" class=" col-form-label">Default Price * (excluding tax)</label>
-                                    <input type="text" class="form-control" placeholder="$50">
+                                    <input type="text" v-model="default_price" class="form-control" placeholder="$50">
                                     <span><i class="fa fa-angle-right"></i> More pricing</span>
                                 </div>
 
                                 <div class="form-group col-md-6 col-xl-4">
                                     <label for="" class=" col-form-label">Brand</label>
-                                    <select name=""  class="form-control">
+                                    <select name="" v-model="brand_id"  class="form-control">
                                         <option value="">Sagaform</option>
                                         <option value="">Common Good</option>
                                         <option value="">OFS</option>
@@ -49,7 +49,7 @@
 
                                 <div class="form-group col-md-6 col-xl-4">
                                     <label for="" class=" col-form-label">Weight</label>
-                                    <input type="text" class="form-control" placeholder="KGS">
+                                    <input type="text" v-model="weight" class="form-control" placeholder="KGS">
                                 </div>
 
                                 <div class="form-group col-12">
@@ -58,7 +58,7 @@
                                         <div class="card-header">
                                             <label for="" class=" col-form-label">Categories</label>
                                         </div>
-                                        <div class="card-body overflow-hidden" v-html="category_html">
+                                        <div class="card-body overflow-hidden category_block" v-html="category_html">
 
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@
                                             <label for="" class=" col-form-label">Description</label>
                                         </div>
                                         <div class="card-body">
-                                            <textarea name="" class="form-control" id="mytextarea1"></textarea>
+                                            <textarea name="" v-model="description" class="form-control" id="mytextarea1"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -100,31 +100,31 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">SKU</label>
-                                                        <input type="text" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="product_identifier_sku" class="form-control" placeholder="THX-1138">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Manufacturer Part Number (MPN)</label>
-                                                        <input type="text" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="manufacture_part_number" class="form-control" placeholder="THX-1138">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Product UPC/EAN</label>
-                                                        <input type="text" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="product_upc" class="form-control" placeholder="THX-1138">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Global Trade Number (GTN)</label>
-                                                        <input type="text" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="global_trade_number" class="form-control" placeholder="THX-1138">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Bin Picking Number (BPN)</label>
-                                                        <input type="text" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="bin_picking_number" class="form-control" placeholder="THX-1138">
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,7 +142,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Default Price * (excluding tax)</label>
-                                                        <input type="text" class="form-control" placeholder="$0">
+                                                        <input type="text" v-model="pricing_default_price" class="form-control" placeholder="$0">
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,7 +150,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Tax Class </label>
-                                                        <select name="" class="form-control" >
+                                                        <select name="" v-model="tax_class" class="form-control" >
                                                             <option value=""> Default Tax Class</option>
                                                             <option value=""> Non-Taxable Products</option>
                                                             <option value=""> Shipping</option>
@@ -161,7 +161,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Tax Provider Tax Code</label>
-                                                        <input type="text" class="form-control" placeholder="Imperial-luxury-tax-01">
+                                                        <input type="text" v-model="tax_provider_tax_code" class="form-control" placeholder="Imperial-luxury-tax-01">
                                                     </div>
                                                 </div>
                                             </div>
@@ -183,19 +183,19 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Cost</label>
-                                                        <input type="text" class="form-control" placeholder="$0">
+                                                        <input type="text" v-model="cost" class="form-control" placeholder="$0">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">MSRP</label>
-                                                        <input type="text" class="form-control" placeholder="$0">
+                                                        <input type="text" v-model="msrp" class="form-control" placeholder="$0">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Sale Price</label>
-                                                        <input type="text" class="form-control" placeholder="$0">
+                                                        <input type="text" v-model="sales_price" class="form-control" placeholder="$0">
                                                     </div>
                                                 </div>
                                             </div>
@@ -210,7 +210,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Discount Type</label>
-                                                        <select name="" class="form-control" >
+                                                        <select name="" v-model="bulk_pricing_discount_type" class="form-control" >
                                                             <option value=""> % Discount</option>
                                                             <option value=""> $ Fixed Amount</option>
                                                             <option value=""> $ Off/Unit</option>
@@ -228,9 +228,9 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr v-for="(tier,index) in tiers" :key="index">
+                                                            <tr v-for="(tier,index) in bulk_pricing_discount_options" :key="index">
                                                                 <td class="text-right">
-                                                                    <input type="text" class="text-right form-control" v-model="tier.min_qty">
+                                                                    <input type="text" class="text-right form-control" v-model="tier.min_quantity">
                                                                 </td>
                                                                 <td class="text-right">
                                                                     <input type="number" class="text-right form-control" v-model="tier.discount" style="width:95%;display:inline-block;"> %
@@ -244,7 +244,7 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <a href="#" class="btn btn-outline-secondary mt-1" @click.prevent="add_tier"><i class="fa fa-plus"></i> Add tier</a>
+                                                    <a href="#" class="btn btn-outline-secondary mt-2" @click.prevent="add_tier"><i class="fa fa-plus"></i> Add tier</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -278,11 +278,11 @@
                                             <div class="row" v-if="on_the_product_level">
                                                 <div class="form-group col-md-6">
                                                     <label for="" class=" col-form-label">Stock</label>
-                                                    <input type="text"  class="form-control" placeholder="0" value="0">
+                                                    <input type="text" v-model="track_inventory_on_the_variant_level_stock" class="form-control" placeholder="0" value="0">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="" class=" col-form-label">Low Stock</label>
-                                                    <input type="text" class="form-control" placeholder="0" value="0">
+                                                    <input type="text" v-model="track_inventory_on_the_variant_level_low_stock" class="form-control" placeholder="0" value="0">
                                                 </div>
                                             </div>
                                             <div class="row" v-else>
@@ -470,47 +470,45 @@
                                         <div class="card-header">
                                             <h5>Storefront Details</h5>
                                             <div class="form-group form-check">
-                                                <input type="checkbox" class="form-check-input">
+                                                <input type="checkbox" v-model="set_as_store_front" class="form-check-input">
                                                 <label for="" class="form-check-label"><p>Set as a Featured Product on my Storefront</p></label>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="" class="form-label">Search Keywords</label>
-                                                <input type="text" class="form-control" placeholder="e.g.wiget, affordable, portable, etc..">
+                                                <input type="text" class="form-control" v-model="search_keywords" placeholder="e.g.wiget, affordable, portable, etc..">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Sort Order</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" v-model="sort_order" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Template Layout File </label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" v-model="template_layout_file" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="">Warranty Information </label>
-                                                        <textarea type="text" class="form-control"></textarea>
+                                                        <textarea type="text" v-model="waranty_information" class="form-control"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="">Availability Text </label>
-                                                        <input type="text" class="form-control" placeholder="Usually ships in 24 hours."/>
+                                                        <input type="text" v-model="availability_text" class="form-control" placeholder="Usually ships in 24 hours."/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Condition </label>
-                                                        <select name=""  class="form-control">
-                                                            <option value="">New</option>
-                                                            <option value="">Used</option>
-                                                            <option value="">Refurbished</option>
+                                                        <select name="" v-model="product_condition" class="form-control">
+                                                            <option v-for="(conditions, index) in conditions"  :key="index" value="">@{{conditions}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -565,7 +563,7 @@
                                         <div class="card-header">
                                             <h5>Related Products</h5>
                                             <div class="form-group form-check">
-                                                <input type="checkbox" class="form-check-input">
+                                                <input type="checkbox" v-model="automatically_show_related_prodauct_on_my_store_front" class="form-check-input">
                                                 <label for="" class="form-check-label">
                                                     <p>Automatically show related products on my storefront</p>
                                                 </label>
@@ -611,25 +609,25 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Weight (KGS)*</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" v-model="weight" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Width (Centimeters) </label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" v-model="width" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Height (Centimeters) </label>
-                                                        <textarea type="text" class="form-control"></textarea>
+                                                        <textarea type="text" v-model="height" class="form-control"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Depth (Centimeters) </label>
-                                                        <input type="text" class="form-control" placeholder="Usually ships in 24 hours."/>
+                                                        <input type="text" v-model="depth" class="form-control" placeholder="Usually ships in 24 hours."/>
                                                     </div>
                                                 </div>
 
@@ -648,12 +646,12 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Fixed Shipping Price</label>
-                                                        <input type="text" class="form-control" placeholder="$0">
+                                                        <input type="text" v-model="fixed_shipping_price" class="form-control" placeholder="$0">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group from-check">
-                                                        <input type="checkbox" class="form-check-input">
+                                                        <input type="checkbox" v-model="free_shipping" class="form-check-input">
                                                         <label for="" class="form-check-label">Free Shipping</label>
                                                     </div>
                                                 </div>
@@ -686,19 +684,19 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="">Message</label>
-                                                                <input type="text" class="form-control" value="Expected release date is %%DATE%%">
+                                                                <input type="text" class="form-control" v-model="preorder_message" value="Expected release date is %%DATE%%">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="">Release Date</label>
-                                                                <input type="date"  class="form-control" placeholder="D MMM YYYY">
+                                                                <input type="date" v-model="release_date" class="form-control" placeholder="D MMM YYYY">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3" style="align-self: center;margin-top: 24px;">
                                                             <div class="d-flex align-items-center mb-3">
-                                                                <input  name="" type="checkbox" class="form-control d-inline-block mr-2" style="width: 42px;">
+                                                                <input  name="" v-model="remove_pre_order_status_on_this_date" type="checkbox" class="form-control d-inline-block mr-2" style="width: 42px;">
                                                                 <label for="" style="line-height: 16px; margin: 0px;">Remove pre-order status on this date</label>
                                                             </div>
                                                         </div>
@@ -713,7 +711,7 @@
                                                         <div class="col-12">
                                                             <div class="form-group">
                                                                 <div class="d-flex align-items-center mb-3">
-                                                                    <input  name="" type="checkbox" class="form-control d-inline-block mr-2" style="width: 26px;">
+                                                                    <input  name="" type="checkbox" v-model="show_call_for_pricing" class="form-control d-inline-block mr-2" style="width: 26px;">
                                                                     <label for="" style="line-height: 16px; margin: 0px;">Show “Call for pricing” message instead of the price</label>
                                                                 </div>
                                                             </div>
@@ -721,7 +719,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="">Call for pricing label</label>
-                                                                <input type="text" class="form-control" value="Contact us at 555-5555">
+                                                                <input type="text" class="form-control" v-model="call_number" value="Contact us at 555-5555">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -731,13 +729,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Minimum Purchase Quantity</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" v-model="minimum_purchase_quantity" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Maximum Purchase Quantity</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" v-model="maximum_purchase_quantity" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -793,60 +791,65 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <div class="col-12 d-flex align-items-center mb-3">
-                                                            <input id="custom_information" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                            <input id="custom_information" @click="manage_customs_information = !manage_customs_information" v-model="manage_customs_information" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                             <label for="custom_information" style="line-height: 30px; margin: 0px;">Manage customs information</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="">Country of origin</label>
-                                                        <p>Usually this is the country where this product was manufactured or produced.</p>
-                                                        <select name="" class="form-control" >
-                                                            <option value="" v-for="country in countries" :key="country"> @{{country}}</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="">Commodity description (optional)</label>
-                                                        <p>A succinct and precise description for border officers to identify and verify this product.</p>
-                                                        <textarea name="" class="form-control" ></textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="">HS codes</label>
-                                                        <p>Assists border officers to classify this product.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="card-body">
-                                                        <div v-for="(hs_code,index) in hs_codes" :key="hs_code.country+Math.random()"
-                                                            class="d-flex justify-content-between align-items-baseline mb-3">
-                                                            <div class="ml-3" style="width: 47%">
-                                                                <label for="">Destination Country</label>
-                                                                <select name="" class="form-control">
+                                                <div class="col-12" v-if="manage_customs_information">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="">Country of origin</label>
+                                                                <p>Usually this is the country where this product was manufactured or produced.</p>
+                                                                <select name="courtry_of_origin" v-model="courtry_of_origin" class="form-control" >
                                                                     <option value="" v-for="country in countries" :key="country"> @{{country}}</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="ml-3" style="width: 47%">
-                                                                <label for="">HS Code</label>
-                                                                <input type="text" class="form-control" v-model="hs_code.code">
-                                                            </div>
-                                                            <div style="align-self: flex-end;margin-bottom: 10px;">
-                                                                <a href="#" @click.prevent="remove_hs_code(index)"><i class="fa fa-trash-o text-danger"></i></a>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="">Commodity description (optional)</label>
+                                                                <p>A succinct and precise description for border officers to identify and verify this product.</p>
+                                                                <textarea name="" class="form-control" ></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <a href="#" @click.prevent="add_hs_code" class="text-info d-block ml-4 mt-2">
-                                                                    <i class="fa fa-plus"></i> HS Code
-                                                                </a>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="">HS codes</label>
+                                                                <p>Assists border officers to classify this product.</p>
                                                             </div>
                                                         </div>
+                                                        <div class="col-12">
+                                                            <div class="card-body">
+                                                                <div v-for="(hs_code,index) in hs_codes" :key="hs_code.country+Math.random()"
+                                                                    class="d-flex justify-content-between align-items-baseline mb-3">
+                                                                    <div class="ml-3" style="width: 47%">
+                                                                        <label for="">Destination Country</label>
+                                                                        <select name="" v-model="hs_code.country" class="form-control">
+                                                                            <option value="" v-for="country in countries" :key="country"> @{{country}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="ml-3" style="width: 47%">
+                                                                        <label for="">HS Code</label>
+                                                                        <input type="text" v-model="hs_code.code" class="form-control" v-model="hs_code.code">
+                                                                    </div>
+                                                                    <div style="align-self: flex-end;margin-bottom: 10px;">
+                                                                        <a href="#" @click.prevent="remove_hs_code(index)"><i class="fa fa-trash-o text-danger"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <a href="#" @click.prevent="add_hs_code" class="text-info d-block ml-4 mt-2">
+                                                                            <i class="fa fa-plus"></i> HS Code
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -869,20 +872,20 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Page Title</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" v-model="page_title" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Product Url *</label>
-                                                        <input type="text" class="form-control" style="width: 83%; display: inline-block;">
+                                                        <input type="text" v-model="product_url" class="form-control" style="width: 83%; display: inline-block;">
                                                         <button class="btn btn-outline-danger">Reset</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="">Meta Description</label>
-                                                        <textarea type="text" class="form-control"></textarea>
+                                                        <textarea type="text" v-model="meta_description" class="form-control"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -899,7 +902,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Object Type</label>
-                                                    <select name="" class="form-control">
+                                                    <select name="" v-model="open_graph_sharing_object_type" class="form-control">
                                                         <option value="">Album</option>
                                                         <option value="">Book</option>
                                                         <option value="">Drink</option>
@@ -917,7 +920,7 @@
                                                 <h5>Title</h5>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="use_title" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="use_title" v-model="open_graph_use_product_name" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                         <label for="use_title" style="line-height: 30px; margin: 0px;">Use product name</label>
                                                     </div>
                                                 </div>
@@ -927,7 +930,7 @@
                                                 <h5>Description</h5>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="use_description" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="use_description" v-model="open_graph_use_product_description" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                         <label for="use_description" style="line-height: 30px; margin: 0px;">Use meta description</label>
                                                     </div>
                                                 </div>
@@ -937,13 +940,13 @@
                                                 <h5>Image</h5>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="use_thumbnail_1" name="use_thumbnail_image" checked type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="use_thumbnail_1" v-model="open_graph_use_thumbnail_image" name="use_thumbnail_image" checked type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                         <label for="use_thumbnail_1" style="line-height: 30px; margin: 0px;">Use thumbnail image</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="use_thumbnail_2" name="use_thumbnail_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="use_thumbnail_2" v-model="open_graph_dont_use_an_image" name="use_thumbnail_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                         <label for="use_thumbnail_2" style="line-height: 30px; margin: 0px;">Don’t use an image</label>
                                                     </div>
                                                 </div>

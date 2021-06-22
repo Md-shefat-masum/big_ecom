@@ -104,7 +104,8 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <input type="radio" :value="index" name="item.default" name="default">
+                                            <input v-if="item.default" checked type="radio" @change="set_default(index)" :value="index" name="item.default" name="default">
+                                            <input v-else type="radio" @change="set_default(index)" :value="index" name="item.default" name="default">
                                             <i @click.prevent="remove_option(index)" class="fa fa-trash-o btn btn-outline-danger ml-3"></i>
                                         </div>
                                         <hr>
@@ -122,7 +123,7 @@
                         </div>
 
                         <div class="card-footer">
-                            <button @click.prevent="create_option" class="btn btn-secondary">Submit</button>
+                            <button @click.prevent="update_option" class="btn btn-secondary">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -138,6 +139,7 @@
     <!--End content-wrapper-->
 
     @push('cjs')
+        <script src="{{ asset('contents/admin') }}/plugins/sortable.js"></script>
         <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
     @endpush
 @endsection

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\ProductOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +31,8 @@ class ProductController extends Controller
 
     public function option()
     {
-        return view('admin.product.option.options');
+        $options = ProductOption::orderBy('display_name','ASC')->where('status',1)->get();
+        return view('admin.product.option.options',compact('options'));
     }
 
     public function create_option()
@@ -37,9 +40,78 @@ class ProductController extends Controller
         return view('admin.product.option.options_create');
     }
 
+    public function edit_option($id)
+    {
+        $option = ProductOption::find($id);
+        return view('admin.product.option.options_edit',compact('option'));
+    }
+
+    public function get_option($id)
+    {
+        return ProductOption::find($id);
+    }
+
+    public function check_option_exists(Request $request)
+    {
+        $key = $request->unique_name;
+        if(ProductOption::where('unique_name',$key)->exists()){
+            $option = ProductOption::where('unique_name',$key)->first();
+            if($request->form_type == 'edit'){
+                if($option->display_name == $request->display_name && $option->id == $request->id){
+                    return 0;
+                }
+            }
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
     public function store_option(Request $request)
     {
-        return $request->all();
+        $this->validate($request,[
+            'display_name' => ['required'],
+            'unique_name' => ['required','unique:product_options'],
+        ]);
+        // $request_data = $request->all();
+        // $request_data['option_values'] = json_decode($request->option_values);
+        $option = new ProductOption();
+        $option->display_name = $request->display_name;
+        $option->unique_name = $request->unique_name;
+        $option->type = $request->type;
+        $option->option_values = $request->option_values;
+        $option->creator = Auth::user()->id;
+        $option->save();
+        $option->slug = $option->id.uniqid(5);
+        $option->save();
+
+        return $option;
+    }
+
+    public function update_option(Request $request)
+    {
+        $this->validate($request,[
+            'display_name' => ['required'],
+            'unique_name' => ['required'],
+        ]);
+        // $request_data = $request->all();
+        // $request_data['option_values'] = json_decode($request->option_values);
+        $option = ProductOption::find($request->id);
+        $option->display_name = $request->display_name;
+        $option->unique_name = $request->unique_name;
+        $option->type = $request->type;
+        $option->option_values = $request->option_values;
+        $option->creator = Auth::user()->id;
+        $option->save();
+
+        return $option;
+    }
+
+    public function delete_option($id)
+    {
+        $option = ProductOption::find($id);
+        $option->delete();
+        return redirect()->back()->with('success','data deleted successfully.');
     }
 
     public function reviews()
@@ -49,7 +121,56 @@ class ProductController extends Controller
 
     public function brands()
     {
-        return view('admin.product.brands');
+        $brands = Brand::where('status',1)->orderBy('id','DESC')->get();
+        return view('admin.product.brand.brands',compact('brands'));
+    }
+
+    public function create_brands()
+    {
+        return view('admin.product.brand.create-brands');
+    }
+
+    public function edit_brands($id)
+    {
+        $brand = Brand::find($id);
+        return view('admin.product.brand.edit-brands',compact('brand'));
+    }
+
+    public function store_brands(Request $request)
+    {
+        $this->validate($request,[
+            'name' => ['required','unique:brands']
+        ]);
+
+        $brand = new Brand();
+        $brand->name = $request->name;
+        $brand->creator = Auth::user()->id;
+        $brand->save();
+        $brand->slug = $brand->id.uniqid(5);
+        $brand->save();
+        return redirect()->back()->with('success','new brand created');
+    }
+
+    public function update_brands(Request $request)
+    {
+        $this->validate($request,[
+            'name' => ['required']
+        ]);
+
+        $brand = Brand::find($request->id);
+
+        if($request->name != $brand->name){
+            $this->validate($request,[
+                'name' => ['unique:brands']
+            ]);
+        }
+
+        $brand->name = $request->name;
+        $brand->creator = Auth::user()->id;
+        $brand->save();
+        $brand->slug = $brand->id.uniqid(5);
+        $brand->save();
+        return redirect()->back()->with('success','brand udated.');
     }
 
     public function categories()
@@ -81,6 +202,11 @@ class ProductController extends Controller
         return view('admin.product.categories.categories', compact('categories'));
     }
 
+    public function categories_tree_json()
+    {
+        return $this->make_category_tree_array();
+    }
+
     private function buildCategories($children, $parent_id)
     {
         $result = array();
@@ -91,11 +217,13 @@ class ProductController extends Controller
                     $temp_category = [];
                     $temp_category['id'] = $row->id;
                     $temp_category['name'] = $row->name;
+                    $temp_category['parent'] = $parent_id;
                     $temp_category['child'] = $this->buildCategories($children, $row->id);
                     $result[] = $temp_category;
                 } else {
                     $temp_category['id'] = $row->id;
                     $temp_category['name'] = $row->name;
+                    $temp_category['parent'] = $parent_id;
                     $temp_category['child'] = [];
                     $result[] = $temp_category;
                 }
@@ -157,11 +285,13 @@ class ProductController extends Controller
                 $temp_category = [];
                 $temp_category['id'] = $item->id;
                 $temp_category['name'] = $item->name;
+                $temp_category['parent'] = null;
                 $temp_category['child'] = $this->buildCategories($children, $item->id);
                 $all_category[] = $temp_category;
             } else {
                 $temp_category['id'] = $item->id;
                 $temp_category['name'] = $item->name;
+                $temp_category['parent'] = null;
                 $temp_category['child'] = [];
                 $all_category[] = $temp_category;
             }
@@ -214,6 +344,23 @@ class ProductController extends Controller
             'categories' => $categories,
             'category_tree_view' => $category_tree_view,
         ]);
+    }
+
+    public function store_category_from_product_create(Request $request)
+    {
+        $this->validate($request,[
+            'name' => ['required'],
+        ]);
+        $category = new Category();
+        $category->name = $request->name;
+        $category->parent_id = $request->parent;
+        $category->creator = Auth::user()->id;
+        $category->save();
+        $category->slug = $category->id.uniqid(5);
+        $category->url = Str::slug($request->name) . $category->id . rand(1111, 9999);
+        $category->save();
+
+        return $category;
     }
 
     public function update_category(Request $request)
