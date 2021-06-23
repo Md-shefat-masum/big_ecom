@@ -35,6 +35,11 @@ class ProductController extends Controller
         return view('admin.product.option.options',compact('options'));
     }
 
+    public function option_json()
+    {
+        return ProductOption::orderBy('display_name','ASC')->where('status',1)->get();
+    }
+
     public function create_option()
     {
         return view('admin.product.option.options_create');

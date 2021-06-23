@@ -620,6 +620,39 @@ ul li {
 .preloader_in_li {
   position: relative;
 }
+.custom_scroll {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.custom_scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.custom_scroll::-webkit-scrollbar-track {
+  background: #0a5b8026;
+}
+.custom_scroll::-webkit-scrollbar-thumb {
+  background: #0a5b80;
+  border-radius: 5px;
+}
+.custom_scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.custom_modal_body {
+  height: 80vh;
+  overflow-y: scroll;
+  padding-bottom: 0;
+}
+.custom_modal_body .action_btns {
+  background: #242424;
+  padding: 20px 0px;
+}
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+}
 .preloader_body {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.6);

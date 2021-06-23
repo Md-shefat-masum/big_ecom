@@ -307,7 +307,10 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
                                                 <h6>Variant Options</h6>
-                                                <a href="#" data-toggle="modal" data-target="#varientModal" class="text-info"><i class="fa fa-gear"></i> Configure Options</a>
+                                                <a href="#" data-toggle="modal" data-target="#varientModal" class="btn btn-outline-info">
+                                                    <i class="fa fa-gear"></i>
+                                                    Add Variant Option
+                                                </a>
                                             </div>
 
                                             <div class="row my-3">
@@ -975,7 +978,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button> --}}
                                     </div>
-                                    <div class="modal-body card-body">
+                                    <div class="modal-body card-body custom_modal_body custom_scroll">
                                         <p style="width: 80%;">
                                             Use Variant Options to generate Variants, each with a unique SKU that can be used to track inventory.
                                             Assign attributes such as Image, Default Price, and Weight on the Variant level.
@@ -1017,8 +1020,23 @@
                                             <hr style="width: 100%;">
                                         </div>
 
-                                        <button class="btn btn-outline-info"><i class="fa fa-plus"></i> Add Variant Option</button>
-                                        <button class="btn btn-outline-info"><i class="fa fa-plus"></i> Add Shared Variant Option</button>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="sticky-bottom action_btns">
+                                            <button class="btn btn-outline-info">
+                                                <i class="fa fa-plus"></i>
+                                                Add Variant Option
+                                            </button>
+                                            <button class="btn btn-outline-info">
+                                                <i class="fa fa-plus"></i>
+                                                Add Shared Variant Option
+                                            </button>
+                                        </div>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -102,6 +102,7 @@ Route::group([
     Route::post('/rearenge-category', 'ProductController@rearenge_category')->name('admin_product_rearenge_category');
 
     Route::get('/option', 'ProductController@option')->name('admin_product_option');
+    Route::get('/option_json', 'ProductController@option_json')->name('admin_product_option_json');
     Route::get('/create-option', 'ProductController@create_option')->name('admin_product_create_option');
     Route::get('/edit-option/{id}', 'ProductController@edit_option')->name('admin_product_edit_option');
     Route::get('/get-option/{id}', 'ProductController@get_option')->name('admin_product_get_option');

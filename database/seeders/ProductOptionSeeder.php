@@ -16,12 +16,57 @@ class ProductOptionSeeder extends Seeder
      */
     public function run()
     {
+
+        $jayParsedAry = [
+            [
+                "name" => "red",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "blue",
+                "default" => true,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "yellow",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "greeen",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ]
+        ];
+
+
         Productoption::create([
             'id' => 1,
             'display_name' => 'color',
             'unique_name' => 'color',
             'type' => 'dropdown',
-            'option_values' => '[{\"name\":\"red\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"blue\",\"default\":true,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"yellow\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"greeen\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}}]',
+            'option_values' => json_encode($jayParsedAry),
             'creator' => '1',
             'slug' => '1560ced04a0c321',
             'status' => 1,
@@ -29,12 +74,74 @@ class ProductOptionSeeder extends Seeder
             'updated_at' => '2021-06-20 07:26:01'
         ]);
 
+        $jayParsedAry = [
+            [
+                "name" => "xs",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "sm",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "md",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "lg",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "xl",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ],
+            [
+                "name" => "xxl",
+                "default" => false,
+                "color_limit" => 3,
+                "colors" => [
+                    "one_color" => "#000000",
+                    "two_color" => "#000000",
+                    "three_color" => "#000000"
+                ]
+            ]
+        ];
         ProductOption::create([
             'id' => 2,
             'display_name' => 'Size',
             'unique_name' => 'Size',
             'type' => 'dropdown',
-            'option_values' => '[{\"name\":\"xs\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"sm\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"md\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"lg\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"xl\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}},{\"name\":\"xxl\",\"default\":false,\"color_limit\":3,\"colors\":{\"one_color\":\"#000000\",\"two_color\":\"#000000\",\"three_color\":\"#000000\"}}]',
+            'option_values' => json_encode($jayParsedAry),
             'creator' => '1',
             'slug' => '3560cf024031dbb',
             'status' => 1,
