@@ -213,6 +213,9 @@ if (document.getElementById('product')) {
                     },
                 ],
 
+                shared_variant_options: [],
+                selected_variant_options: [],
+                show_add_variant_option: true,
                 product_variants: [{
                         name: 'size',
                         type: 'Dropdown',
@@ -236,16 +239,175 @@ if (document.getElementById('product')) {
                         ],
                     },
                 ],
-
                 variation_permutaion: [],
+
+                modifier_options: [],
             }
         },
         created: function () {
             this.get_categories_tree_json();
-            this.permutation();
+            this.get_shared_variant_options();
         },
         updated: function () {},
+        watch: {
+            selected_variant_options: {
+                handler: function (val, old_val) {
+                    this.permutation();
+                },
+                deep: true,
+            },
+        },
         methods: {
+            add_new_modifier_option: function () {
+                let temp_option = {
+                    name: '',
+                    required: false,
+                    type: 'text-field',
+                    default_value: '',
+                };
+                this.modifier_options.push(temp_option);
+            },
+            remove_modifier_option: function(index){
+                this.modifier_options.splice(index,1);
+            },
+            get_shared_variant_options: function () {
+                axios.get('/admin/product/option_json')
+                    .then((res) => {
+                        this.shared_variant_options = res.data;
+                    })
+            },
+
+            add_option_to_selected_variant_options: function (option) {
+                this.selected_variant_options = this.selected_variant_options.filter((item) => item.id != option.id);
+                this.selected_variant_options.push(option);
+                // console.log(this.selected_variant_options);
+            },
+
+            reset_selected_variant_options: function () {
+                this.selected_variant_options = [];
+                $('#varientModal').modal('hide');
+            },
+
+            save_selected_variant_options: function () {
+                // this.selected_variant_options ;
+                let check_blank = true;
+                let check_duplicate = true;
+                let that = this;
+                $("#varientModal input[type=text]").each(function () {
+                    // that.selected_categories.push(parseInt($(this).val()));
+                    // console.log($(this).val());
+                    let input_element = $(this);
+                    let value = $(this).val();
+                    if (value == null || value == '' || value == undefined) {
+                        check_blank = false;
+                        $(this).addClass('border border-danger');
+                        $(this).parent('.text-input').addClass('text_danger');
+                    }
+
+                    var classList = $(this).attr('class').split(/\s+/);
+                    $.each(classList, function (index, item) {
+                        if (item === 'variant_option_name') {
+                            check_duplicate = that.check_duplicate_option($(this)[0], value);
+                            input_element.addClass('border');
+                            input_element.addClass('border-warning');
+                            // console.log(check_duplicate, input_element, item, classList);
+                        }
+                    });
+
+                });
+
+                if (check_blank == false) {
+                    toaster('error', 'fill up all required fields');
+                } else {
+
+                    if (check_duplicate) {
+                        $('#varientModal').modal('hide');
+                    }
+                }
+            },
+
+            focus_required_variation: function (event, item) {
+                this.check_duplicate_option(event.target, item);
+
+                if (item.length > 0) {
+                    $(event.target).removeClass('border');
+                    $(event.target).removeClass('border-danger');
+                    $(event.target).parent('.text-input').removeClass('text_danger');
+                }
+            },
+
+            check_duplicate_option: function (event, item) {
+                let names = [];
+                $("#varientModal input[type=text].variant_option_name").each(function () {
+                    let value = $(this).val();
+                    if (value.length > 0) {
+                        names.push(value);
+                    }
+                });
+
+                let match = 0;
+                names.map((temp_item) => {
+                    if (temp_item == item) {
+                        return match++;
+                    }
+                });
+
+                if (match > 1) {
+                    $(event).addClass('border');
+                    $(event).addClass('border-warning');
+                    toaster('warning', 'name is exists');
+                    return false;
+                }
+
+                return true;
+            },
+
+            add_new_variant_option: function () {
+                let new_option = {
+                    id: this.getRandomInt(10000, 99999),
+                    display_name: "",
+                    unique_name: "",
+                    type: "dropdown",
+                    option_values_json: [{
+                        name: '',
+                        default: false,
+                        color_limit: 3,
+                        colors: {
+                            one_color: "#000000",
+                            two_color: "#000000",
+                            three_color: "#000000",
+                        }
+                    }]
+                };
+                this.selected_variant_options.push(new_option);
+                this.show_add_variant_option = true;
+                // console.log(new_option);
+            },
+
+            add_variant_new_value: function (item) {
+                // console.log(item);
+                let new_value = {
+                    name: '',
+                    default: false,
+                    color_limit: 3,
+                    colors: {
+                        one_color: "#000000",
+                        two_color: "#000000",
+                        three_color: "#000000",
+                    }
+                };
+
+                item.option_values_json.push(new_value);
+            },
+
+            remove_selected_variant: function (index) {
+                this.selected_variant_options.splice(index, 1);
+            },
+
+            remove_selected_variant_value: function (item_index, value_index) {
+                this.selected_variant_options[item_index].option_values_json.splice(value_index, 1);
+            },
+
             get_categories_tree_json: function () {
                 axios.get('/admin/product/categories_tree_json')
                     .then((res) => {
@@ -591,14 +753,19 @@ if (document.getElementById('product')) {
             permutation: function () {
                 let temp_array = [];
                 let results = [];
-                for (let index = 0; index < this.product_variants.length; index++) {
-                    const element = this.product_variants[index];
+                this.variation_permutaion = [];
+
+                for (let index = 0; index < this.selected_variant_options.length; index++) {
+                    const element = this.selected_variant_options[index];
                     temp_array[index] = [];
-                    for (let index2 = 0; index2 < element.values.length; index2++) {
-                        const element2 = element.values[index2];
+                    for (let index2 = 0; index2 < element.option_values_json.length; index2++) {
+                        const element2 = element.option_values_json[index2].name;
                         temp_array[index].push(element2);
                     }
                 }
+
+                // console.log(temp_array);
+                // this.variation_permutaion = temp_array;
 
                 for (let index = 0; index < temp_array.length; index++) {
                     const values = temp_array[index];
@@ -619,7 +786,10 @@ if (document.getElementById('product')) {
 
                         this.variation_permutaion = results = new_results;
                     }
+                }
 
+                if (this.variation_permutaion.length == 0) {
+                    this.variation_permutaion = temp_array[0];
                 }
 
                 // for (let index = 0; index < results.length; index++) {

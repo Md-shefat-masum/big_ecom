@@ -324,20 +324,14 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>Size</td>
-                                                                <td>Dropdown</td>
-                                                                <td>Small, Medium, Large</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Color</td>
-                                                                <td>Dropdown</td>
-                                                                <td>Red, Green, Blue</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Unit</td>
-                                                                <td>Dropdown</td>
-                                                                <td>Kg, litr</td>
+                                                            <tr v-for="option in selected_variant_options" :key="option.id">
+                                                                <td>@{{ option.display_name }}</td>
+                                                                <td>@{{ option.type }}</td>
+                                                                <td>
+                                                                    <span v-for="(value,index) in option.option_values_json" :key="index">
+                                                                        @{{ value.name }} ,
+                                                                    </span>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -373,45 +367,47 @@
 
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <table class="table table-striped table-responsive">
-                                                        <thead>
-                                                            <tr>
-                                                                <th v-for="(edit_column_name,index) in edit_columns_lists" v-if="edit_column_name.checked" :key="edit_column_name+Math.random()">
-                                                                    <span>
-                                                                        @{{edit_column_name.name}}
-                                                                    </span>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr v-for="variation in this.variation_permutaion" :key="variation">
-                                                                <td
-                                                                    :style="
-                                                                        edit_column_name.name == 'purchasable' ? 'width:112px;':'' +
-                                                                        edit_column_name.name == 'Image' ? 'width:30px;':''
-                                                                    "
-                                                                    v-for="(edit_column_name,index) in edit_columns_lists"
-                                                                    v-if="edit_column_name.checked"
-                                                                    :key="edit_column_name+Math.random()">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th v-for="(edit_column_name,index) in edit_columns_lists" v-if="edit_column_name.checked" :key="edit_column_name+Math.random()">
+                                                                        <span>
+                                                                            @{{edit_column_name.name}}
+                                                                        </span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr v-for="variation in this.variation_permutaion" :key="variation">
+                                                                    <td
+                                                                        :style="
+                                                                            edit_column_name.name == 'purchasable' ? 'width:112px;':'' +
+                                                                            edit_column_name.name == 'Image' ? 'width:30px;':''
+                                                                        "
+                                                                        v-for="(edit_column_name,index) in edit_columns_lists"
+                                                                        v-if="edit_column_name.checked"
+                                                                        :key="edit_column_name+Math.random()">
 
-                                                                    <span v-if="edit_column_name.name == 'purchasable'">
-                                                                        <input type="checkbox" class="form-control" style="width: 24px; height:24px;">
-                                                                    </span>
-                                                                    <span v-else-if="edit_column_name.name == 'Variant (Read-only)'">
-                                                                        @{{variation}}
-                                                                    </span>
-                                                                    <span v-else-if="edit_column_name.name == 'Image'">
-                                                                        <label :for="variation.replaceAll(' ','_')"><i style="font-size: 24px;" class="fa fa-camera"></i></label>
-                                                                        <input style="visibility: hidden;opacity:0;width:0;" type="file" :name="variation.replaceAll(' ','_')" :id="variation.replaceAll(' ','_')">
-                                                                    </span>
-                                                                    <span v-else>
-                                                                        {{-- @{{edit_column_name.name}} --}}
-                                                                        <input type="text" style="width: 130px;" class="form-control" :placeholder="edit_column_name.name">
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                                        <span v-if="edit_column_name.name == 'purchasable'">
+                                                                            <input type="checkbox" class="form-control" style="width: 24px; height:24px;">
+                                                                        </span>
+                                                                        <span v-else-if="edit_column_name.name == 'Variant (Read-only)'">
+                                                                            @{{variation}}
+                                                                        </span>
+                                                                        <span v-else-if="edit_column_name.name == 'Image'">
+                                                                            <label :for="variation.replaceAll(' ','_')"><i style="font-size: 24px;" class="fa fa-camera"></i></label>
+                                                                            <input style="visibility: hidden;opacity:0;width:0;" type="file" :name="variation.replaceAll(' ','_')" :id="variation.replaceAll(' ','_')">
+                                                                        </span>
+                                                                        <span v-else>
+                                                                            {{-- @{{edit_column_name.name}} --}}
+                                                                            <input type="text" style="width: 130px;" class="form-control" :placeholder="edit_column_name.name">
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -970,7 +966,7 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="varientModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="varientModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" style="background: #373737">
+                            <div class="modal-dialog modal-xl" style="background: rgb(35 41 48)">
                                 <div class="modal-content card">
                                     <div class="modal-header card-header">
                                         <h5>Variant Options  (2 options , 9 variants)</h5>
@@ -984,63 +980,137 @@
                                             Assign attributes such as Image, Default Price, and Weight on the Variant level.
                                         </p>
 
-                                        <div class="row mb-3" v-for="item in 4" :key="item">
-                                            <div class="col-md-3">
-                                                <label for="">Name</label>
-                                                <input type="text" class="form-control">
-                                                <a href="#" class="text-danger">Delete Option</a>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="">Type</label>
-                                                <select name=""  class="form-control">
-                                                    <option value="">Swatch</option>
-                                                    <option value="">Radio Button</option>
-                                                    <option value="">Rectangle List</option>
-                                                    <option value="">Dropdown</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <label for="">Values</label>
-                                                <div class="row mb-2" v-for="item in 5" :key="item">
-                                                    <div class="col-7">
-                                                        <input type="text" class="form-control">
+                                        <div v-if="show_add_variant_option">
+                                            <div  class="row mb-3" v-for="(item, item_index) in selected_variant_options" :key="item.id">
+                                                <div class="col-md-3">
+                                                    <label for="">Name</label>
+                                                    <div class="text-input">
+                                                        <input type="text" @keyup="focus_required_variation($event,item.display_name)" placeholder="e.g.Color,Size,etc.." v-model="item.display_name" class="form-control border variant_option_name">
                                                     </div>
-                                                    <div class="col-4">
-                                                        <div class="d-flex">
-                                                            <input type="radio" class="form-control" name="one_default" style="width: 24px; height: 24px;">
-                                                            <label for="" class="mb-0 ml-1" style="line-height: 24px;">default</label>
+                                                    <a href="#" @click.prevent="remove_selected_variant" class="text-danger">Delete Option</a>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="">Type</label>
+                                                    <select name="" v-model="item.type" class="form-control">
+                                                        <option selected value="dropdown">Dropdown</option>
+                                                        <option value="radio">Radio</option>
+                                                        <option value="swatch">Swatch</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label for="" style="margin-left: 20px;">Values</label>
+                                                    <div class="row mb-2" v-for="(value,index) in item.option_values_json" :key="index">
+                                                        <div class="col-7">
+                                                            <div class="product_option_rows" v-bind:class="{ 'product_option_rows2' : item.type=='swatch' }">
+                                                                <div class="text-input">
+                                                                    <input type="text" @keyup="focus_required_variation($event,value.name)" placeholder="Red.." v-model="value.name" class="form-control">
+                                                                </div>
+                                                                <div class="right_part right_part2" v-if="item.type=='swatch'">
+                                                                    <select name="color_limit" v-model="value.color_limit" class="select_colors">
+                                                                        <option value="3">One Color</option>
+                                                                        <option value="2">Two Color</option>
+                                                                        <option value="1">Three Color</option>
+                                                                    </select>
+                                                                    <ul class="color_swatch">
+                                                                        <li v-if="value.color_limit <= parseInt(1)">
+                                                                            <input type="color" v-model="value.colors.one_color">
+                                                                            <input type="text" v-model="value.colors.one_color" disabled class="custom_form_control">
+                                                                        </li>
+                                                                        <li v-if="value.color_limit <= parseInt(2)">
+                                                                            <input type="color" v-model="value.colors.two_color">
+                                                                            <input type="text" v-model="value.colors.two_color" disabled class="custom_form_control">
+                                                                        </li>
+                                                                        <li v-if="value.color_limit <= parseInt(3)">
+                                                                            <input type="color" v-model="value.colors.three_color">
+                                                                            <input type="text" v-model="value.colors.three_color" disabled class="custom_form_control">
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div class="d-flex">
+                                                                <input type="radio" :value="index" v-model="value.default" class="form-control" name="default" style="width: 24px; height: 24px;">
+                                                                <label for="" class="mb-0 ml-1" style="line-height: 24px;">default</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <a href="#" v-if="item.option_values_json.length > 1" @click.prevent="remove_selected_variant_value(item_index, index)" class="text-danger"><i class="fa fa-minus-circle"></i></a>
                                                         </div>
                                                     </div>
-                                                    <div class="col-1">
-                                                        <a href="#" class="text-danger"><i class="fa fa-minus-circle"></i></a>
+                                                    <div style="padding-left: 20px;">
+                                                        <a href="#" @click.prevent="add_variant_new_value(item)" class="btn btn-sm btn-outline-info mt-2"><i class="fa fa-plus"></i> Add Another Value</a>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <hr style="width: 100%;">
+                                                <hr style="width: 100%;">
+                                            </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div v-else class="row">
                                             <div class="col-12">
-                                                
+                                                <div class="table-responsive"
+                                                    style="border: 1px solid;
+                                                        padding: 45px;
+                                                        box-sizing: border-box;
+                                                        margin-top: 40px;"
+                                                    >
+                                                    <table class="table shared_variant_option_list_all">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col"></th>
+                                                                <th scope="col">Variant Option Name</th>
+                                                                <th scope="col">Display Name</th>
+                                                                <th scope="col">Type</th>
+                                                                <th scope="col">Values</th>
+                                                                <th scope="col">Products</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="option in shared_variant_options" :key="option.id">
+                                                                <th><input @click="add_option_to_selected_variant_options(option)" type="checkbox" class="form-check"></th>
+                                                                <th scope="row">@{{ option.display_name }}</th>
+                                                                <td>@{{ option.unique_name }}</td>
+                                                                <td>@{{ option.type }}</td>
+                                                                <td>
+                                                                    <span v-for="value in JSON.parse(option.option_values)">@{{ value.name }},</span>
+                                                                </td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="6" class="text-right pt-4">
+                                                                    {{-- <button @click.prevent="show_add_variant_option=true" type="button" class="btn btn-outline-danger">
+                                                                        <i class="fa fa-plus"></i>
+                                                                        Cancel
+                                                                    </button> --}}
+                                                                    <button @click.prevent="show_add_variant_option=true" type="button" class="btn btn-outline-info">
+                                                                        <i class="fa fa-plus"></i>
+                                                                        Save
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="sticky-bottom action_btns">
-                                            <button class="btn btn-outline-info">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="w-100">
+                                            <button @click.prevent="add_new_variant_option" type="button" class="btn btn-outline-info">
                                                 <i class="fa fa-plus"></i>
                                                 Add Variant Option
                                             </button>
-                                            <button class="btn btn-outline-info">
+                                            <button @click.prevent="show_add_variant_option=false" type="button" class="btn btn-outline-info">
                                                 <i class="fa fa-plus"></i>
                                                 Add Shared Variant Option
                                             </button>
                                         </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save Variants</button>
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" @click.prevent="reset_selected_variant_options" >Reset</button>
+                                        <button type="button" class="btn btn-primary" @click.prevent="save_selected_variant_options">Save Variants</button>
                                     </div>
                                 </div>
                             </div>
@@ -1048,7 +1118,7 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="modifierOptionModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="modifierOptionModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" style="background: #373737">
+                            <div class="modal-dialog modal-xl" style="background: rgb(80 95 112)">
                                 <div class="modal-content card">
                                     <div class="modal-header card-header">
                                         <h5>Modifier Options (3 options) </h5>
@@ -1061,60 +1131,53 @@
                                             Modifier Options allow a customer to further customize a product or variant.
                                             They work well for products needing an input for custom messages, dates, checkboxes, and more.
                                         </p>
+                                        <hr>
 
-                                        <div class="row mb-3" v-for="item in 3" :key="item">
+                                        <div class="row mb-3" v-for="(option,index) in modifier_options" :key="index">
                                             <div class="col-md-3">
                                                 <label for="">Name</label>
-                                                <input type="text" class="form-control">
-                                                <a href="#" class="text-danger">Delete Option</a>
+                                                <input type="text" v-model="option.name" class="form-control">
+                                                <a href="#" @click.prevent="remove_modifier_option(index)" class="text-danger mt-2 d-block">Delete Option</a>
                                                 <br>
                                                 <div class="form-group form-check">
-                                                    <input type="checkbox" class="form-check-input">
+                                                    <input type="checkbox" v-model="option.required" class="form-check-input">
                                                     <label for="" class="form-check-label">Required</label>
                                                 </div>
 
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="">Type</label>
-                                                <select name=""  class="form-control">
-                                                    <option value="">Swatch</option>
+                                                <select name="" v-model="option.type" class="form-control">
+                                                    {{-- <option value="">Swatch</option>
                                                     <option value="">Radio Button</option>
-                                                    <option value="">Rectangle List</option>
-                                                    <option value="">Dropdown</option>
-                                                    <option value="">Pick List</option>
-                                                    <option value="">Text Field</option>
-                                                    <option value="">Numbers Only Text Field</option>
+                                                    <option value="">Dropdown</option> --}}
+                                                    <option value="multi-text-field">Multi-line Text Field</option>
+                                                    <option value="text-field">Text Field</option>
+                                                    {{-- <option value="">Numbers Only Text Field</option>
                                                     <option value="">Date Field</option>
-                                                    <option value="">Multi-line Text Field</option>
                                                     <option value="">Checkbox</option>
-                                                    <option value="">File Upload</option>
+                                                    <option value="">File Upload</option> --}}
                                                 </select>
                                             </div>
                                             <div class="col-md-5">
-                                                <label for="">Values</label>
-                                                <div class="row mb-2" v-for="item in 3" :key="item">
-                                                    <div class="col-7">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="d-flex">
-                                                            <input type="radio" class="form-control" name="one_default" style="width: 24px; height: 24px;">
-                                                            <label for="" class="mb-0 ml-1" style="line-height: 24px;">default</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-1">
-                                                        <a href="#" class="text-danger"><i class="fa fa-minus-circle"></i></a>
+                                                <label for="">Default Value</label>
+                                                <div class="row mb-2">
+                                                    <div class="col-12">
+                                                        <input type="text" v-model="option.default_value" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <hr style="width: 100%;">
+                                            <div class="col-12">
+                                                <hr>
+                                            </div>
                                         </div>
 
-                                        <button class="btn btn-outline-info"><i class="fa fa-plus"></i> Add Variant Option</button>
-                                        <button class="btn btn-outline-info"><i class="fa fa-plus"></i> Add Shared Variant Option</button>
                                     </div>
                                     <div class="modal-footer">
+                                        <div class="w-100">
+                                            <button @click.prevent="add_new_modifier_option" class="btn btn-outline-info"><i class="fa fa-plus"></i> Add Modifier Option</button>
+                                            {{-- <button class="btn btn-outline-info"><i class="fa fa-plus"></i> Add Shared Variant Option</button> --}}
+                                        </div>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary">Save Variants</button>
                                     </div>
