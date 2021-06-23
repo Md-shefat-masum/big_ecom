@@ -132,6 +132,9 @@
                 <a href="{{route('admin_store_setup_settings_display')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Display</a>
             </li>
             <li>
+                <a href="{{route('admin_store_setup_settings_share')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Share</a>
+            </li>
+            <li>
                 <a href="{{route('admin_store_setup_settings_date')}}"><i class="zmdi zmdi-dot-circle-alt"></i>Store Settings Date</a>
             </li>
             <li>

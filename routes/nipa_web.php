@@ -65,6 +65,10 @@ Route::group([
     Route::get('/store-setup-settings-security', 'StoreSetupController@store_settings_security')->name('admin_store_setup_settings_security');
     Route::get('/get-store-setup-settings-security', 'StoreSetupController@get_store_settings_security')->name('get_admin_store_setup_settings_security');
     Route::post('/create-store-setup-settings-security', 'StoreSetupController@create_store_settings_security')->name('create_admin_store_setup_settings_security');
+    
+    Route::get('/store-setup-settings-share', 'StoreSetupController@store_settings_share')->name('admin_store_setup_settings_share');
+    Route::get('/get-store-setup-settings-share', 'StoreSetupController@get_store_settings_share')->name('get_admin_store_setup_settings_share');
+    Route::post('/create-store-setup-settings-share', 'StoreSetupController@create_store_settings_share')->name('create_admin_store_setup_settings_share');
 
     Route::get('/store-setup-change-password', 'StoreSetupController@change_password')->name('admin_store_setup_change_password');
     Route::get('/store-setup-additional-authentication', 'StoreSetupController@additional_authentication')->name('admin_store_setup_additional_authentication');

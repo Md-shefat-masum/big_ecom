@@ -830,6 +830,9 @@ input.form-control[type="file"] {
 .option_default_label {
   padding-right: 58px;
 }
+<<<<<<< HEAD
+
+=======
 .product_option_rows {
   flex: 1;
   margin: 0px 20px;
@@ -870,3 +873,4 @@ input.form-control[type="file"] {
   border-bottom-left-radius: 0;
   height: 32px;
 }
+>>>>>>> 39da9af0c743a3367398d630231bf5f4d1827ec5
