@@ -13,7 +13,10 @@ if (document.getElementById('product')) {
                 sku: '',
                 product_type: '',
                 default_price: '',
+
+                brands: [],
                 brand_id: '',
+
                 weight: '',
 
                 selected_categories: [],
@@ -247,6 +250,7 @@ if (document.getElementById('product')) {
         created: function () {
             this.get_categories_tree_json();
             this.get_shared_variant_options();
+            this.get_all_brands();
         },
         updated: function () {},
         watch: {
@@ -258,6 +262,29 @@ if (document.getElementById('product')) {
             },
         },
         methods: {
+            store_product: function(){
+                let form_data = new FormData($('#product_insert_form')[0]);
+                form_data.append('description', $('#mytextarea1').summernote('code'));
+                form_data.append('selected_categories', JSON.stringify(this.selected_categories) );
+                form_data.append('bulk_pricing_discount_options', JSON.stringify(this.bulk_pricing_discount_options) );
+                form_data.append('selected_variant_options', JSON.stringify(this.selected_variant_options) );
+                form_data.append('modifier_options', JSON.stringify(this.modifier_options) );
+                form_data.append('custom_fields', JSON.stringify(this.custom_fields) );
+                form_data.append('hs_codes', JSON.stringify(this.hs_codes) );
+
+                axios.post('/admin/product/store-product',form_data)
+                    .then((res)=>{
+                        console.log(res.data);
+                    })
+            },
+
+            get_all_brands: function(){
+                axios.get('/admin/product/brands-json')
+                    .then((res)=>{
+                        this.brands = res.data;
+                    })
+            },
+
             add_new_modifier_option: function () {
                 let temp_option = {
                     name: '',
@@ -267,9 +294,41 @@ if (document.getElementById('product')) {
                 };
                 this.modifier_options.push(temp_option);
             },
+
             remove_modifier_option: function(index){
                 this.modifier_options.splice(index,1);
             },
+
+            check_duplicate_modifier_option: function () {
+                $("#modifierOptionModal input[type=text].modifier_name").each(function () {
+                    // that.selected_categories.push(parseInt($(this).val()));
+                    // console.log($(this).val());
+                    let input_element = $(this);
+                    let value = $(this).val();
+                    let check_blank = true;
+
+                    if (value == null || value == '' || value == undefined) {
+                        check_blank = false;
+                        $(this).addClass('border border-danger');
+                        $(this).parent('.text-input').addClass('text_danger');
+                        toaster('danger','fill up required area');
+                    }else{
+                        $("#modifierOptionModal").modal('hide');
+                    }
+
+                    // var classList = $(this).attr('class').split(/\s+/);
+                    // $.each(classList, function (index, item) {
+                    //     if (item === 'variant_option_name') {
+                    //         check_duplicate = that.check_duplicate_option($(this)[0], value);
+                    //         input_element.addClass('border');
+                    //         input_element.addClass('border-warning');
+                    //         // console.log(check_duplicate, input_element, item, classList);
+                    //     }
+                    // });
+
+                });
+            },
+
             get_shared_variant_options: function () {
                 axios.get('/admin/product/option_json')
                     .then((res) => {
@@ -712,11 +771,11 @@ if (document.getElementById('product')) {
                     discount: 0.00,
                     unit_price: 0,
                 };
-                this.tiers.push(tier);
+                this.bulk_pricing_discount_options.push(tier);
             },
 
             remove_tier: function (index) {
-                this.tiers.splice(index, 1);
+                this.bulk_pricing_discount_options.splice(index, 1);
             },
 
             checked_edit_column: function (column) {

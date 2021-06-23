@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             StoreSettingUrlSeeder::class,
             StoreSettingWebsiteSeeder::class,
             ProductOptionSeeder::class,
+            BrandSeeder::class,
             // CountrySeeder::class,
             // CitySeeder::class,
         ]);

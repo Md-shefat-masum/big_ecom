@@ -24,6 +24,11 @@ class ProductController extends Controller
         return view('admin.product.create');
     }
 
+    public function store_product(Request $request)
+    {
+        return [$request->all(), $request->file('upload_image')];
+    }
+
     public function search(Request $request)
     {
         return view('admin.product.search');
@@ -128,6 +133,11 @@ class ProductController extends Controller
     {
         $brands = Brand::where('status',1)->orderBy('id','DESC')->get();
         return view('admin.product.brand.brands',compact('brands'));
+    }
+
+    public function brands_json()
+    {
+        return Brand::where('status',1)->orderBy('id','DESC')->get();
     }
 
     public function create_brands()

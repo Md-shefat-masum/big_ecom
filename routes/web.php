@@ -88,7 +88,9 @@ Route::group([
 ], function () {
 
     Route::get('/view', 'ProductController@view')->name('admin_product_view');
+
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
+    Route::post('/store-product', 'ProductController@store_product')->name('admin_product_store_product');
 
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
     Route::get('/categories_tree_json', 'ProductController@categories_tree_json')->name('admin_product_categories_tree_json');
@@ -111,6 +113,7 @@ Route::group([
     Route::post('/check_option_exists', 'ProductController@check_option_exists')->name('admin_check_option_exists');
     Route::get('/delete_option/{id}', 'ProductController@delete_option')->name('admin_delete_option');
 
+    Route::get('/brands-json', 'ProductController@brands_json')->name('admin_product_brands_json');
     Route::get('/brands', 'ProductController@brands')->name('admin_product_brands');
     Route::get('/create-brands', 'ProductController@create_brands')->name('admin_product_create_brands');
     Route::get('/edit-brands/{id}', 'ProductController@edit_brands')->name('admin_product_edit_brands');
