@@ -86,6 +86,7 @@
                                                             printNestedArray($category,$module,$category->id);
                                                         }
                                                     @endphp --}}
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -189,6 +190,7 @@
     @push('cjs')
         <script src="{{ asset('contents/admin') }}/plugins/summernote/dist/summernote-bs4.min.js"></script>
         <script src="{{ asset('contents/admin') }}/plugins/collapse_tree/hummingbird-treeview.min.js"></script>
+        {{-- <script src="https://www.jqueryscript.net/demo/Collapsible-Tree-View-Checkboxes-jQuery-hummingbird/hummingbird-treeview-1.3.js"></script> --}}
 
         <script>
             $(function(){
@@ -198,6 +200,7 @@
                 });
 
             })
+            $("#treeview").hummingbird();
         </script>
 
         <script type="module" src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>

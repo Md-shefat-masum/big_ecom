@@ -1946,14 +1946,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vuex_persistedstate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-persistedstate */ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
 /* harmony import */ var _modules_auth_information__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/auth_information */ "./resources/js/store/modules/auth_information.js");
+/* harmony import */ var _modules_cart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/cart */ "./resources/js/store/modules/cart.js");
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_1__.default.use(vuex__WEBPACK_IMPORTED_MODULE_2__.default);
 
+
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__.default.Store({
   modules: {
-    auth_information: _modules_auth_information__WEBPACK_IMPORTED_MODULE_3__.default
+    auth_information: _modules_auth_information__WEBPACK_IMPORTED_MODULE_3__.default,
+    cart: _modules_cart__WEBPACK_IMPORTED_MODULE_4__.default
   },
   state: {},
   getters: {},
@@ -1998,25 +2001,100 @@ var state = {
 var getters = {
   get_check_auth: function get_check_auth(state) {
     return state.check_auth;
+  },
+  get_auth_info: function get_auth_info(state) {
+    return state.auth_info;
   }
 }; // actions
 
 var actions = {
   fetch_category_info: function fetch_category_info(state) {
-    axios.get('/admin/product/edit-data/1').then(function (res) {
+    var _this = this;
+
+    axios.get('/get-auth-info').then(function (res) {
       console.log(res.data);
+
+      _this.commit('set_auth_info', res.data);
     });
   }
 }; // mutators
 
 var mutations = {
-  set_check_auth: function set_check_auth(state, check_auth) {
-    state.check_auth = check_auth;
-    state.auth_errors = {};
-    state.default_login_form_show = true;
+  set_auth_info: function set_auth_info(state, auth_info) {
+    // state.check_auth = check_auth;
+    // state.auth_errors = {};
+    // state.default_login_form_show = true;
+    state.auth_info = auth_info;
   },
   test_mutation: function test_mutation() {
     console.log('ok');
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/cart.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/modules/cart.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ // state list
+
+var state = {
+  cart_products: [],
+  selected_cart_product: {
+    name: 'producut 1',
+    id: 55,
+    price: 300,
+    qty: 5,
+    tax: 15,
+    location: 'dhaka',
+    color: 'red',
+    discount: 2,
+    coupon_code: 'big-012443',
+    user_id: 12,
+    product_info: {
+      image: '/avatar.png',
+      sku: 'sku_123'
+    }
+  }
+}; // get state
+
+var getters = {
+  get_selected_cart_product: function get_selected_cart_product(state) {
+    return state.selected_cart_product;
+  },
+  get_selected_cart_all_product: function get_selected_cart_all_product(state) {
+    return state.cart_products;
+  }
+}; // actions
+
+var actions = {// fetch_blog_details: function(state,blog){
+  //     this.commit('set_blog_details',blog)
+  // },
+}; // mutators
+
+var mutations = {
+  // set_post_comment: function(state,comment){
+  //     state.comments.unshift(comment);
+  // },
+  add_new_product_to_cart: function add_new_product_to_cart(state, cart_body) {
+    console.log(cart_body);
+    state.cart_products.unshift(cart_body);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -50715,6 +50793,18 @@ var index = {
 /******/ 	// It's empty as some runtime module handles the default behavior
 /******/ 	__webpack_require__.x = x => {};
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports

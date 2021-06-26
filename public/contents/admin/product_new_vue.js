@@ -58,7 +58,7 @@ if (document.getElementById('product_tax_class')) {
                 // form_data.append('id', JSON.stringify(this.id));
                 axios.post('/admin/product-tax-class-update', form_datas)
                     .then((res) => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         // this.form_datas.clear();
                         toaster('success', 'Successful.');
                     })

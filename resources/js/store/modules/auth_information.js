@@ -21,14 +21,16 @@ const state = {
 // get state
 const getters = {
     get_check_auth: state => state.check_auth,
+    get_auth_info: state => state.auth_info,
 }
 
 // actions
 const actions = {
     fetch_category_info: function (state) {
-        axios.get('/admin/product/edit-data/1')
+        axios.get('/get-auth-info')
             .then((res) => {
                 console.log(res.data);
+                this.commit('set_auth_info',res.data)
             })
     },
 
@@ -36,10 +38,11 @@ const actions = {
 
 // mutators
 const mutations = {
-    set_check_auth: function (state, check_auth) {
-        state.check_auth = check_auth;
-        state.auth_errors = {};
-        state.default_login_form_show = true;
+    set_auth_info: function (state, auth_info) {
+        // state.check_auth = check_auth;
+        // state.auth_errors = {};
+        // state.default_login_form_show = true;
+        state.auth_info = auth_info;
     },
 
     test_mutation: function(){

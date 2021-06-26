@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductOption;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image as interImage;
 
 class ProductController extends Controller
 {
@@ -27,7 +30,7 @@ class ProductController extends Controller
 
     public function store_product(Request $request)
     {
-        $product = new Product();
+
         $product_info = $request->except([
             'selected_categories',
             'image',
@@ -47,8 +50,10 @@ class ProductController extends Controller
             'Stock',
             'SKU',
             'Sale_Price',
+            'upload_image',
         ]);
 
+        $product_info['bulk_pricing_discount_type'] = $request->bulk_pricing_discount_type;
         $product_info['selected_categories'] = $request->selected_categories;
         $product_info['selected_variant_options'] = $request->selected_variant_options;
         $product_info['modifier_options'] = $request->modifier_options;
@@ -56,9 +61,60 @@ class ProductController extends Controller
         $product_info['hs_codes'] = $request->hs_codes;
         $product_info['variant_values'] = json_encode($request->variant_values);
 
-        $product->create($product_info);
+        $product = Product::create($product_info);
 
-        return [$product_info, $request->all(), $request->file('upload_image')];
+        if($request->hasFile('upload_image')){
+            // dd($request->file('upload_image'));
+            foreach ($request->file('upload_image') as $key => $image) {
+                // Storage::put('uploads/product', $image);
+                $path = $this->store_product_file($image);
+                ProductImage::insert([
+                    'product_id' => $product->id,
+                    'image' => $path,
+                    'creator' => Auth::user()->id,
+                    'created_at' => Carbon::now()->toDateTimeString(),
+                ]);
+            }
+        }
+
+        return [$path,$product,$product_info, $request->all(), $request->file('upload_image')];
+    }
+
+    public function store_product_file($image)
+    {
+        // $path = Storage::put('uploads/file_manager',$request->file('fm_file'));
+        $file = $image;
+        // dd($file);
+        $extension = $file->getClientOriginalExtension();
+        $temp_name  = uniqid(10) . time();
+
+        $image = interImage::make($file);
+
+        // main image
+        // $path = 'uploads/product/product_' . $temp_name . '.' . $extension;
+        // $image->save($path);
+        // $this->image_save_to_db($path);
+
+        // rectangle
+        // $image->fit(848, 438, function ($constraint) {
+        //     $constraint->aspectRatio();
+        // });
+        // $path = 'uploads/file_manager/fm_image_848x438_' . $temp_name . '.' . $extension;
+        // $image->save($path);
+        // $this->image_save_to_db($path);
+
+        // square
+        $canvas = interImage::canvas(400, 400);
+        $image->fit(400, 400, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $canvas->insert($image);
+        $canvas->insert(interImage::make(public_path('avatar.png')), 'bottom-right');
+
+        $path = 'uploads/product/product_image_400x400_' . $temp_name . '.' . $extension;
+        $canvas->save($path);
+
+        return $path;
     }
 
     public function search(Request $request)

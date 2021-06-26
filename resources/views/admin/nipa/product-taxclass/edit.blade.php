@@ -10,15 +10,12 @@
 
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                     <div class="breadcrumb-title pe-3">Update Product Tax Class</div>
-
-
                 </div>
 
                 <div class="row">
                     <div class="col-xl-11 mx-auto" id="product_tax_class">
                         <form id="form_body" method="POST" enctype="multipart/form-data">
                             @csrf
-
                             <input type="hidden" name="id" v-model="form_data.id" value="{{$data->id}}">
                             <hr />
                             <div class="card">
@@ -30,8 +27,6 @@
                                     </a>
                                 </div>
                                 <div class="card-body">
-
-
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Tax Class
                                             Name</label>
@@ -40,9 +35,6 @@
                                                 class="form-control">
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
 
