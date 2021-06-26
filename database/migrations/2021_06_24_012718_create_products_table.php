@@ -82,9 +82,9 @@ class CreateProductsTable extends Migration
             $table->string('wrapping',100)->nullable();
 
             $table->string('custom_information',100)->nullable();
-            $table->text('courtry_of_origin')->nullable();
+            $table->text('country_of_origin')->nullable();
             $table->text('comodity_description')->nullable();
-            $table->string('hs_codes',100)->nullable();
+            $table->text('hs_codes')->nullable();
 
             $table->string('page_title',100)->nullable();
             $table->string('product_url',100)->nullable();

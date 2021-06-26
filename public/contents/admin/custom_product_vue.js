@@ -130,7 +130,7 @@ if (document.getElementById('product')) {
                     'canada',
                     'bangladesh'
                 ],
-                courtry_of_origin: '',
+                country_of_origin: '',
                 comodity_description: '',
                 hs_codes: [{
                     country: '',
@@ -1065,7 +1065,7 @@ if (document.getElementById('product_option')) {
 if (document.getElementById('category_form')) {
     const app = new Vue({
         el: '#category_form',
-        store: store,
+        // store: store,
         data: function () {
             return {
                 category_serial: 0,
@@ -1088,7 +1088,7 @@ if (document.getElementById('category_form')) {
             }
         },
         created: function () {
-            this.get_cateogry();
+            // this.get_cateogry();
             this.init_category_tree_view();
             console.log(
                 // this.$store.default.state,
@@ -1100,17 +1100,15 @@ if (document.getElementById('category_form')) {
             );
         },
         methods: {
-            ...window.mutation(['test_mutation']),
-            ...window.action(['fetch_category_info']),
+            // ...window.mutation(['test_mutation']),
+            // ...window.action(['fetch_category_info']),
             get_cateogry: function () {
                 if (location.pathname.split('/')[4]) {
-
                     axios.get('/admin/product/edit-data/' + location.pathname.split('/')[4])
                         .then((res) => {
                             this.form_data = res.data;
                         })
                 }
-
             },
             store: function () {
                 let form_datas = new FormData($('#form_body')[0]);
@@ -1231,14 +1229,16 @@ if (document.getElementById('category_form')) {
 
             },
             init_category_tree_view: function () {
-                $("#treeview").hummingbird();
-                $("#treeview li").off().on('click', function () {})
-                $("#treeview li input").off().on('click', function () {})
-                $("#treeview li label").off().on('click', function () {})
+                setTimeout(() => {
+                    $("#treeview").hummingbird();
+                    $("#treeview li").off().on('click', function () {})
+                    $("#treeview li input").off().on('click', function () {})
+                    $("#treeview li label").off().on('click', function () {})
+                }, 300);
             }
         },
-        computed: {
-            ...window.getters(['get_check_auth']),
-        }
+        // computed: {
+        //     ...window.getters(['get_check_auth']),
+        // }
     });
 }

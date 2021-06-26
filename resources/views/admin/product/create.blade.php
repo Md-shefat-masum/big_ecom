@@ -9,7 +9,6 @@
                 <div class="col-lg-12">
 
                     <div class="card" id="product">
-                       
 
                         <div class="card-body">
                             <div class="card-title">Add Product</div>
@@ -811,8 +810,8 @@
                                                             <div class="form-group">
                                                                 <label for="">Country of origin</label>
                                                                 <p>Usually this is the country where this product was manufactured or produced.</p>
-                                                                <select name="courtry_of_origin" class="form-control" >
-                                                                    <option value="" v-for="(country,index) in countries" :key="index"> @{{country}}</option>
+                                                                <select name="country_of_origin" class="form-control" >
+                                                                    <option :value="country" v-for="(country,index) in countries" :key="index"> @{{country}}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
