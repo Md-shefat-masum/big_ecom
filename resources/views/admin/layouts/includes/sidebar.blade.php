@@ -62,6 +62,18 @@
             <li>
                 <a href="{{ route('admin_product_brands') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Brands</a>
             </li>
+            <li>
+                <a href="{{ route('product_tax_class') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Product Tax Class</a>
+            </li>
+            <li>
+                <a href="{{ route('product_discount_type') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Product Discount Type</a>
+            </li>
+            <li>
+                <a href="{{ route('product_object_type') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Product Object Type</a>
+            </li>
+            <li>
+                <a href="{{ route('product_condition') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Product Condition</a>
+            </li>
         </ul>
     </li>
     
