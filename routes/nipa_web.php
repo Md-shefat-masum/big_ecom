@@ -66,7 +66,7 @@ Route::group([
     Route::get('/store-setup-settings-security', 'StoreSetupController@store_settings_security')->name('admin_store_setup_settings_security');
     Route::get('/get-store-setup-settings-security', 'StoreSetupController@get_store_settings_security')->name('get_admin_store_setup_settings_security');
     Route::post('/create-store-setup-settings-security', 'StoreSetupController@create_store_settings_security')->name('create_admin_store_setup_settings_security');
-    
+
     Route::get('/store-setup-settings-share', 'StoreSetupController@store_settings_share')->name('admin_store_setup_settings_share');
     Route::get('/get-store-setup-settings-share', 'StoreSetupController@get_store_settings_share')->name('get_admin_store_setup_settings_share');
     Route::post('/create-store-setup-settings-share', 'StoreSetupController@create_store_settings_share')->name('create_admin_store_setup_settings_share');
@@ -86,6 +86,7 @@ Route::group([
         Route::get('/product-tax-class-view/{id}', 'ProductTaxClassController@view')->name('product_tax_class_view');
         Route::get('/product-tax-class-delete/{id}', 'ProductTaxClassController@delete')->name('product_tax_class_delete');
         Route::get('/product-tax-class-edit/{id}', 'ProductTaxClassController@edit')->name('product_tax_class_edit');
+        Route::get('/product-tax-class-get/{id}', 'ProductTaxClassController@get_tax_json')->name('product_tax_class_get');
         Route::post('/product-tax-class-update', 'ProductTaxClassController@update')->name('product_tax_class_update');
 
 });

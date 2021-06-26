@@ -41,6 +41,12 @@ class ProductTaxClassController extends Controller
         $data = ProductTaxClass::find($id);
         return view('admin.nipa.product-taxclass.edit', compact('data'));
     }
+
+    public function get_tax_json(Request $request, $id)
+    {
+        // return ProductTaxClass::where('id',$id)->findOrFail($id);
+        return ProductTaxClass::find($id);
+    }
     public function update(Request $request)
     {
         $add = ProductTaxClass::find($request->id);

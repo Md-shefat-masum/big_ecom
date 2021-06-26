@@ -22,18 +22,14 @@ if (document.getElementById('product_tax_class')) {
         },
         methods: {
             edit: function () {
-    
-                // if (location.pathname.split('/')[4]) {
 
-                    axios.get(`/admin/product-tax-class-edit/${id}`)
+                if (location.pathname.split('/')[3]) {
+                    axios.get(`/admin/product-tax-class-get/${location.pathname.split('/')[3]}`)
                         .then((res) => {
-                            // console.log(res.data);
-                            // this.form_data = res.data;
-                            // this.form_type = 'edit';
                             this.form_data = res.data;
                         })
-                // }
-            
+                }
+
 
                 // axios.get(`/admin/product-tax-class-edit/${this.$route.params.id}`)
                 //     .then(res => {
@@ -66,7 +62,7 @@ if (document.getElementById('product_tax_class')) {
                         // this.form_datas.clear();
                         toaster('success', 'Successful.');
                     })
-             
+
             },
 
 

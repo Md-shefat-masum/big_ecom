@@ -3,14 +3,12 @@
 @section('content')
 
 <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container">
         <div class="page-wrapper">
             <div class="page-content">
 
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                     <div class="breadcrumb-title pe-3">All Product Tax Class</div>
-
-
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -41,7 +39,7 @@
                                                 <td>{{ $item->tax_class_name }}</td>
                                                 <td>
                                                     <div>
-                                                      
+
                                                         <a type="button" href="{{ route('product_tax_class_edit',$item->id) }}"
                                                             class="btn btn-warning waves-effect waves-light m-1">
                                                             <i class="fa fa-pencil"></i> <span>edit</span>

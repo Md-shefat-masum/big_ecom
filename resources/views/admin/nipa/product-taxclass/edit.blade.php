@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="page-wrapper">
             <div class="page-content">
@@ -19,9 +19,7 @@
                         <form id="form_body" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            {{-- <input type="hidden" name="id" value="{{$data->id}}"> --}}
-
-
+                            <input type="hidden" name="id" v-model="form_data.id" value="{{$data->id}}">
                             <hr />
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between">
@@ -51,7 +49,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="col-12">
-                                        <button @click.prevent="store" type="button"
+                                        <button @click.prevent="update" type="button"
                                             class="btn btn-light px-5">Add</button>
                                     </div>
                                 </div>
