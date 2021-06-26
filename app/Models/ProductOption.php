@@ -16,4 +16,9 @@ class ProductOption extends Model
     {
         return json_decode($this->option_values);
     }
+
+    public function function_name()
+    {
+       
+    }
 }

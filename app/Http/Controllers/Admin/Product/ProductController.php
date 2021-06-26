@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\ProductOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,38 @@ class ProductController extends Controller
 
     public function store_product(Request $request)
     {
-        return [$request->all(), $request->file('upload_image')];
+        $product = new Product();
+        $product_info = $request->except([
+            'selected_categories',
+            'image',
+            'bulk_pricing_discount_type',
+            'selected_variant_options',
+            'modifier_options',
+            'custom_fields',
+            'hs_codes',
+            'custom_field_name',
+            'custom_field_value',
+            'variant_values',
+            '_token',
+            'Variant_(Read-only)',
+            'purchasable',
+            'Default_Price',
+            'Image',
+            'Stock',
+            'SKU',
+            'Sale_Price',
+        ]);
+
+        $product_info['selected_categories'] = $request->selected_categories;
+        $product_info['selected_variant_options'] = $request->selected_variant_options;
+        $product_info['modifier_options'] = $request->modifier_options;
+        $product_info['custom_fields'] = $request->custom_fields;
+        $product_info['hs_codes'] = $request->hs_codes;
+        $product_info['variant_values'] = json_encode($request->variant_values);
+
+        $product->create($product_info);
+
+        return [$product_info, $request->all(), $request->file('upload_image')];
     }
 
     public function search(Request $request)
