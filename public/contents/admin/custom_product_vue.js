@@ -7,8 +7,26 @@ const {
 if (document.getElementById('product')) {
     const app = new Vue({
         el: '#product',
+        // store: store,
         data: function () {
             return {
+                cart_product: {
+                    name: 'producut 1',
+                    id: 55,
+                    price: 300,
+                    qty: 5,
+                    tax: 15,
+                    location: 'dhaka',
+                    color: 'red',
+                    discount: 2,
+                    coupon_code: 'big-012443',
+                    user_id: 12,
+                    product_info: {
+                        image: '/avatar.png',
+                        sku: 'sku_123',
+                    }
+                },
+
                 product_name: '',
                 sku: '',
                 product_type: '',
@@ -262,25 +280,29 @@ if (document.getElementById('product')) {
             },
         },
         methods: {
-            store_product: function(){
+            // ...window.action([
+            //     'fetch_category_info',
+            // ]),
+
+            store_product: function () {
                 let form_data = new FormData($('#product_insert_form')[0]);
                 form_data.append('description', $('#mytextarea1').summernote('code'));
-                form_data.append('selected_categories', JSON.stringify(this.selected_categories) );
-                form_data.append('bulk_pricing_discount_options', JSON.stringify(this.bulk_pricing_discount_options) );
-                form_data.append('selected_variant_options', JSON.stringify(this.selected_variant_options) );
-                form_data.append('modifier_options', JSON.stringify(this.modifier_options) );
-                form_data.append('custom_fields', JSON.stringify(this.custom_fields) );
-                form_data.append('hs_codes', JSON.stringify(this.hs_codes) );
+                form_data.append('selected_categories', JSON.stringify(this.selected_categories));
+                form_data.append('bulk_pricing_discount_options', JSON.stringify(this.bulk_pricing_discount_options));
+                form_data.append('selected_variant_options', JSON.stringify(this.selected_variant_options));
+                form_data.append('modifier_options', JSON.stringify(this.modifier_options));
+                form_data.append('custom_fields', JSON.stringify(this.custom_fields));
+                form_data.append('hs_codes', JSON.stringify(this.hs_codes));
 
-                axios.post('/admin/product/store-product',form_data)
-                    .then((res)=>{
+                axios.post('/admin/product/store-product', form_data)
+                    .then((res) => {
                         console.log(res.data);
                     })
             },
 
-            get_all_brands: function(){
+            get_all_brands: function () {
                 axios.get('/admin/product/brands-json')
-                    .then((res)=>{
+                    .then((res) => {
                         this.brands = res.data;
                     })
             },
@@ -295,8 +317,8 @@ if (document.getElementById('product')) {
                 this.modifier_options.push(temp_option);
             },
 
-            remove_modifier_option: function(index){
-                this.modifier_options.splice(index,1);
+            remove_modifier_option: function (index) {
+                this.modifier_options.splice(index, 1);
             },
 
             check_duplicate_modifier_option: function () {
@@ -311,8 +333,8 @@ if (document.getElementById('product')) {
                         check_blank = false;
                         $(this).addClass('border border-danger');
                         $(this).parent('.text-input').addClass('text_danger');
-                        toaster('danger','fill up required area');
-                    }else{
+                        toaster('danger', 'fill up required area');
+                    } else {
                         $("#modifierOptionModal").modal('hide');
                     }
 
@@ -838,7 +860,6 @@ if (document.getElementById('product')) {
 
                             for (let index3 = 0; index3 < values.length; index3++) {
                                 const value = values[index3];
-
                                 new_results.push(result + ', ' + value);
                             }
                         }
@@ -880,6 +901,11 @@ if (document.getElementById('product')) {
             remove_hs_code: function (index) {
                 this.hs_codes.splice(index, 1);
             },
+        },
+        computed: {
+            // ...window.getters([
+            //     'get_auth_info',
+            // ]),
         }
     });
 }

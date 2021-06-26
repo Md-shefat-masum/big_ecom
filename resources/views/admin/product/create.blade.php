@@ -7,7 +7,10 @@
             {{-- @include('admin.include.bread_cumb',['title'=>'Product Create']) --}}
             <div class="row">
                 <div class="col-lg-12">
+
                     <div class="card" id="product">
+                       
+
                         <div class="card-body">
                             <div class="card-title">Add Product</div>
                             <hr />

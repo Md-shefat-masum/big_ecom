@@ -25,6 +25,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', 'WebsiteController@index')->name('website_index');
 
+Route::get('/get-auth-info',function(){
+    return Auth::user();
+})->name('route name');
+
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth'],
