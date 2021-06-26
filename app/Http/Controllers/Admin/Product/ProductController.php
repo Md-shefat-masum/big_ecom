@@ -26,6 +26,7 @@ class ProductController extends Controller
 
     public function store_product(Request $request)
     {
+        
         return [$request->all(), $request->file('upload_image')];
     }
 

@@ -98,31 +98,31 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">SKU</label>
-                                                        <input type="text" name="product_identifier_sku" v-model="product_identifier_sku" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" name="product_identifier_sku" v-model="sku" class="form-control" placeholder="THX-1138">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Manufacturer Part Number (MPN)</label>
-                                                        <input type="text" v-model="manufacture_part_number" name="manufacture_part_number" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="manufacture_part_number" name="manufacture_part_number" class="form-control" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Product UPC/EAN</label>
-                                                        <input type="text" v-model="product_upc" name="product_upc" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="product_upc" name="product_upc" class="form-control" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Global Trade Number (GTN)</label>
-                                                        <input type="text" v-model="global_trade_number" name="global_trade_number" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="global_trade_number" name="global_trade_number" class="form-control" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Bin Picking Number (BPN)</label>
-                                                        <input type="text" v-model="bin_picking_number" name="bin_picking_number" class="form-control" placeholder="THX-1138">
+                                                        <input type="text" v-model="bin_picking_number" name="bin_picking_number" class="form-control" placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,7 +140,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Default Price * (excluding tax)</label>
-                                                        <input type="text" v-model="pricing_default_price" name="pricing_default_price" class="form-control" placeholder="$0">
+                                                        <input type="text" v-model="default_price" name="pricing_default_price" class="form-control" placeholder="$0">
                                                     </div>
                                                 </div>
                                             </div>
@@ -369,7 +369,7 @@
                                                         <table class="table table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <th v-for="(edit_column_name,index) in edit_columns_lists" v-if="edit_column_name.checked" :key="edit_column_name+Math.random()">
+                                                                    <th v-for="(edit_column_name,index) in edit_columns_lists" v-if="edit_column_name.checked" :key="index">
                                                                         <span>
                                                                             @{{edit_column_name.name}}
                                                                         </span>
@@ -385,21 +385,40 @@
                                                                         "
                                                                         v-for="(edit_column_name,index) in edit_columns_lists"
                                                                         v-if="edit_column_name.checked"
-                                                                        :key="edit_column_name+Math.random()">
+                                                                        :key="edit_column_name+index">
 
                                                                         <span v-if="edit_column_name.name == 'purchasable'">
-                                                                            <input type="checkbox" class="form-control" name="variant_purchasable[]" :value="'variant_'+variation.replaceAll(' ','_')" style="width: 24px; height:24px;">
+                                                                            <input type="checkbox" class="form-control"
+                                                                                :name="'variant_values['+
+                                                                                        variation.replaceAll(' ','_')+']['+
+                                                                                        edit_column_name.name.toLowerCase().replaceAll(' ','_').replaceAll('-','_')
+                                                                                        .replaceAll('(','_').replaceAll(')','_').replaceAll('/','_')+
+                                                                                        '][]'"
+                                                                                :value="'variant_'+variation.replaceAll(' ','_')"
+                                                                                style="width: 24px; height:24px;">
                                                                         </span>
                                                                         <span v-else-if="edit_column_name.name == 'Variant (Read-only)'">
                                                                             @{{variation}}
                                                                         </span>
                                                                         <span v-else-if="edit_column_name.name == 'Image'">
                                                                             <label :for="variation.replaceAll(' ','_')"><i style="font-size: 24px;" class="fa fa-camera"></i></label>
-                                                                            <input style="visibility: hidden;opacity:0;width:0;" type="file" :name="'variant_image'+variation.replaceAll(' ','_')+'[]'" :id="variation.replaceAll(' ','_')">
+                                                                            <input style="visibility: hidden;opacity:0;width:0;" type="file"
+                                                                                    :name="'variant_values['+
+                                                                                        variation.replaceAll(' ','_')+']['+
+                                                                                        edit_column_name.name.toLowerCase().replaceAll(' ','_').replaceAll('-','_')
+                                                                                        .replaceAll('(','_').replaceAll(')','_').replaceAll('/','_')+
+                                                                                        '][]'"
+                                                                                    :id="variation.replaceAll(' ','_')">
                                                                         </span>
                                                                         <span v-else>
                                                                             {{-- @{{edit_column_name.name}} --}}
-                                                                            <input type="text" style="width: 130px;" :name="'variant_'+variation.replaceAll(' ','_')+'[]'" class="form-control" :placeholder="edit_column_name.name">
+                                                                            <input type="text" style="width: 130px;"
+                                                                                    :name="'variant_values['+
+                                                                                            variation.replaceAll(' ','_')+']['+
+                                                                                            edit_column_name.name.toLowerCase().replaceAll(' ','_').replaceAll('-','_')
+                                                                                            .replaceAll('(','_').replaceAll(')','_').replaceAll('/','_')+
+                                                                                            '][]'"
+                                                                                    class="form-control" :placeholder="edit_column_name.name">
                                                                         </span>
                                                                     </td>
                                                                 </tr>
@@ -602,13 +621,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Width (Centimeters) </label>
-                                                        <input type="text" v-model="width" class="form-control">
+                                                        <input type="text" v-model="width" name="width" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Height (Centimeters) </label>
-                                                        <textarea type="text" v-model="height" name="height" class="form-control"></textarea>
+                                                        <input type="text" v-model="height" name="height" class="form-control"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -790,7 +809,7 @@
                                                                 <label for="">Country of origin</label>
                                                                 <p>Usually this is the country where this product was manufactured or produced.</p>
                                                                 <select name="courtry_of_origin" v-model="courtry_of_origin" class="form-control" >
-                                                                    <option value="" v-for="country in countries" :key="country"> @{{country}}</option>
+                                                                    <option value="" v-for="(country,index) in countries" :key="index"> @{{country}}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -816,7 +835,7 @@
                                                                     <div class="ml-3" style="width: 47%">
                                                                         <label for="">Destination Country</label>
                                                                         <select name="" v-model="hs_code.country" class="form-control">
-                                                                            <option :value="country" v-for="country in countries" :key="country"> @{{country}}</option>
+                                                                            <option :value="country" v-for="(country,index) in countries" :key="index"> @{{country}}</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="ml-3" style="width: 47%">
