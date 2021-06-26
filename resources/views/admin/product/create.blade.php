@@ -148,7 +148,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Tax Class </label>
-                                                        <select name="" v-model="tax_class" name="tax_class" class="form-control" >
+                                                        <select v-model="tax_class" name="tax_class" class="form-control" >
                                                             <option value="default_tax_class"> Default Tax Class</option>
                                                             <option value="non_taxable_products"> Non-Taxable Products</option>
                                                             <option value="shipping"> Shipping</option>
@@ -208,7 +208,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="" class=" col-form-label">Discount Type</label>
-                                                        <select name="bulk_pricing_discount_type" v-model="bulk_pricing_discount_type" class="form-control" >
+                                                        <select name="bulk_pricing_discount_type" class="form-control" >
                                                             <option value="discount"> % Discount</option>
                                                             <option value="fixed_amount"> $ Fixed Amount</option>
                                                             <option value="off_unit"> $ Off/Unit</option>
@@ -718,13 +718,13 @@
                                                             <div class="form-group">
                                                                 <div class="d-flex align-items-center mb-3">
                                                                     <input  name="show_call_for_pricing" type="checkbox" v-model="show_call_for_pricing" class="form-control d-inline-block mr-2" style="width: 26px;">
-                                                                    <label for="" style="line-height: 16px; margin: 0px;">Show “Call for pricing” message instead of the price</label>
+                                                                    <label for="show_call_for_pricing" style="line-height: 16px; margin: 0px;">Show “Call for pricing” message instead of the price</label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="">Call for pricing label</label>
+                                                                <label for="call_number">Call for pricing label</label>
                                                                 <input type="text" class="form-control" v-model="call_number" name="call_number" value="Contact us at 555-5555">
                                                             </div>
                                                         </div>
@@ -808,7 +808,7 @@
                                                             <div class="form-group">
                                                                 <label for="">Country of origin</label>
                                                                 <p>Usually this is the country where this product was manufactured or produced.</p>
-                                                                <select name="courtry_of_origin" v-model="courtry_of_origin" class="form-control" >
+                                                                <select name="courtry_of_origin" class="form-control" >
                                                                     <option value="" v-for="(country,index) in countries" :key="index"> @{{country}}</option>
                                                                 </select>
                                                             </div>

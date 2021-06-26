@@ -33,7 +33,7 @@ class CreateProductsTable extends Migration
             $table->string('bin_picking_number',100)->nullable();
 
             $table->string('pricing_default_price',100)->nullable();
-            $table->string('tex_class',100)->nullable();
+            $table->string('tax_class',100)->nullable();
             $table->string('tax_provider_tax_code',100)->nullable();
             $table->string('cost',100)->nullable();
             $table->string('msrp',100)->nullable();
@@ -94,9 +94,6 @@ class CreateProductsTable extends Migration
             $table->string('open_graph_use_product_description',100)->nullable();
             $table->string('open_graph_use_product_name',100)->nullable();
             $table->string('open_graph_use_thumbnail_image',100)->nullable();
-
-            $table->text('custom_field_name')->nullable();
-            $table->text('custom_field_value')->nullable();
 
             $table->longText('variant_values',100)->nullable();
 
