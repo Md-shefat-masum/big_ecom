@@ -41,6 +41,11 @@ class ProductDiscountTypeController extends Controller
         $data = ProductDiscountType::find($id);
         return view('admin.nipa.product-discount.edit', compact('data'));
     }
+    public function get_edit(Request $request, $id)
+    {
+
+        return ProductDiscountType::find($id);
+    }
     public function update(Request $request)
     {
         $add = ProductDiscountType::find($request->id);

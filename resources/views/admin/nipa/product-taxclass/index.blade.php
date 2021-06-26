@@ -32,15 +32,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                            $num=1;
+                                            @endphp
                                             @foreach ($data as $item)
                                             <tr>
-                                                <th scope="row">1</th>
+                                                <th scope="row">{{$num}}</th>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->tax_class_name }}</td>
                                                 <td>
                                                     <div>
 
-                                                        <a type="button" href="{{ route('product_tax_class_edit',$item->id) }}"
+                                                        <a type="button"
+                                                            href="{{ route('product_tax_class_edit',$item->id) }}"
                                                             class="btn btn-warning waves-effect waves-light m-1">
                                                             <i class="fa fa-pencil"></i> <span>edit</span>
                                                         </a>
@@ -58,6 +62,9 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            @php
+                                            $num++;
+                                            @endphp
                                             @endforeach
 
                                         </tbody>

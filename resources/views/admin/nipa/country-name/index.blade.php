@@ -39,7 +39,7 @@
                                             @foreach ($data as $item)
                                             <tr>
                                                 <th scope="row">{{$num}}</th>
-                                                <td>{{ $item->product_condition_name }}</td>
+                                                <td>{{ $item->name }}</td>
                                                 <td>
                                                     <div>
 

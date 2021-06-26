@@ -90,11 +90,12 @@ if (document.getElementById('product_discount_type')) {
         methods: {
             getSetting: function () {
 
-                axios.get('/admin/product-discount-type-edit' + id)
-                    .then(res => {
-                        console.log(res.data);
-                        this.form_data = res.data;
-                    })
+                if (location.pathname.split('/')[3]) {
+                    axios.get(`/admin/product-discount-type-get-edit/${location.pathname.split('/')[3]}`)
+                        .then((res) => {
+                            this.form_data = res.data;
+                        })
+                }
 
             },
             store: function () {
@@ -111,19 +112,19 @@ if (document.getElementById('product_discount_type')) {
                     })
             },
 
-            // update: function () {
-            //     let form_datas = new FormData($('#form_body')[0]);
-            //     axios.post('/admin/product-discount-type-update', form_datas)
-            //         .then((res) => {
-            //             console.log(res.data);
-            //             // this.form_datas.clear();
-            //             toaster('success', 'Successful.');
-            //         })
-            //         .catch((err) => {
-            //             // console.log(err.response);
-            //             let errors = err.response.data.errors;
-            //         })
-            // },
+            update: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/admin/product-discount-type-update', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'Successful.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
 
 
         },
@@ -150,11 +151,12 @@ if (document.getElementById('product_object_type')) {
         methods: {
             getSetting: function () {
 
-                axios.get('/admin/product-object-type-edit' + id)
-                    .then(res => {
-                        console.log(res.data);
-                        this.form_data = res.data;
-                    })
+                if (location.pathname.split('/')[3]) {
+                    axios.get(`/admin/product-object-type-get-edit/${location.pathname.split('/')[3]}`)
+                        .then((res) => {
+                            this.form_data = res.data;
+                        })
+                }
 
             },
             store: function () {
@@ -171,19 +173,19 @@ if (document.getElementById('product_object_type')) {
                     })
             },
 
-            // update: function () {
-            //     let form_datas = new FormData($('#form_body')[0]);
-            //     axios.post('/admin/product-object-type-update', form_datas)
-            //         .then((res) => {
-            //             console.log(res.data);
-            //             // this.form_datas.clear();
-            //             toaster('success', 'Successful.');
-            //         })
-            //         .catch((err) => {
-            //             // console.log(err.response);
-            //             let errors = err.response.data.errors;
-            //         })
-            // },
+            update: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/admin/product-object-type-update', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'Successful.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
 
 
         },
@@ -210,11 +212,12 @@ if (document.getElementById('product_condition')) {
         methods: {
             getSetting: function () {
 
-                axios.get('/admin/product-condition-edit' + id)
-                    .then(res => {
-                        console.log(res.data);
-                        this.form_data = res.data;
-                    })
+                if (location.pathname.split('/')[3]) {
+                    axios.get(`/admin/product-condition-get-edit/${location.pathname.split('/')[3]}`)
+                        .then((res) => {
+                            this.form_data = res.data;
+                        })
+                }
 
             },
             store: function () {
@@ -231,19 +234,19 @@ if (document.getElementById('product_condition')) {
                     })
             },
 
-            // update: function () {
-            //     let form_datas = new FormData($('#form_body')[0]);
-            //     axios.post('/admin/product-condition-update', form_datas)
-            //         .then((res) => {
-            //             console.log(res.data);
-            //             // this.form_datas.clear();
-            //             toaster('success', 'Successful.');
-            //         })
-            //         .catch((err) => {
-            //             // console.log(err.response);
-            //             let errors = err.response.data.errors;
-            //         })
-            // },
+            update: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/admin/product-condition-update', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'Successful.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
 
 
         },

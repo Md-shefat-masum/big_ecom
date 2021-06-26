@@ -41,6 +41,11 @@ class ProductConditionController extends Controller
         $data = ProductCondition::find($id);
         return view('admin.nipa.product-condition.edit', compact('data'));
     }
+    public function get_edit(Request $request, $id)
+    {
+    
+        return ProductCondition::find($id);
+    }
     public function update(Request $request)
     {
         $add = ProductCondition::find($request->id);

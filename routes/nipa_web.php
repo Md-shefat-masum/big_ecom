@@ -101,6 +101,7 @@ Route::group([
         Route::get('/product-discount-type-view/{id}', 'ProductDiscountTypeController@view')->name('product_discount_type_view');
         Route::get('/product-discount-type-delete/{id}', 'ProductDiscountTypeController@delete')->name('product_discount_type_delete');
         Route::get('/product-discount-type-edit/{id}', 'ProductDiscountTypeController@edit')->name('product_discount_type_edit');
+        Route::get('/product-discount-type-get-edit/{id}', 'ProductDiscountTypeController@get_edit')->name('product_discount_type_get_edit');
         Route::post('/product-discount-type-update', 'ProductDiscountTypeController@update')->name('product_discount_type_update');
 
 });
@@ -115,6 +116,7 @@ Route::group([
         Route::get('/product-object-type-view/{id}', 'ProductObjectTypeController@view')->name('product_object_type_view');
         Route::get('/product-object-type-delete/{id}', 'ProductObjectTypeController@delete')->name('product_object_type_delete');
         Route::get('/product-object-type-edit/{id}', 'ProductObjectTypeController@edit')->name('product_object_type_edit');
+        Route::get('/product-object-type-get-edit/{id}', 'ProductObjectTypeController@get_edit')->name('product_object_type_get_edit');
         Route::post('/product-object-type-update', 'ProductObjectTypeController@update')->name('product_object_type_update');
 
 });
@@ -129,7 +131,23 @@ Route::group([
         Route::get('/product-condition-view/{id}', 'ProductConditionController@view')->name('product_condition_view');
         Route::get('/product-condition-delete/{id}', 'ProductConditionController@delete')->name('product_condition_delete');
         Route::get('/product-condition-edit/{id}', 'ProductConditionController@edit')->name('product_condition_edit');
+        Route::get('/product-condition-get-edit/{id}', 'ProductConditionController@get_edit')->name('product_condition_get_edit');
         Route::post('/product-condition-update', 'ProductConditionController@update')->name('product_condition_update');
+
+});
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
+    'namespace' => 'Nipa'
+], function () {
+        Route::get('/country-name', 'CountryNameController@index')->name('country_name');
+        Route::get('/country-name/add', 'CountryNameController@add')->name('country_name_add');
+        Route::post('/country-name/submit', 'CountryNameController@insert')->name('country_name_insert');
+        Route::get('/country-name-view/{id}', 'CountryNameController@view')->name('country_name_view');
+        Route::get('/country-name-delete/{id}', 'CountryNameController@delete')->name('country_name_delete');
+        Route::get('/country-name-edit/{id}', 'CountryNameController@edit')->name('country_name_edit');
+        Route::get('/country-name-get-edit/{id}', 'CountryNameController@get_edit')->name('country_name_get_edit');
+        Route::post('/country-name-update', 'CountryNameController@update')->name('country_name_update');
 
 });
 

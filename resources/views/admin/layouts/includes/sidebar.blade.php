@@ -74,6 +74,9 @@
             <li>
                 <a href="{{ route('product_condition') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Product Condition</a>
             </li>
+            <li>
+                <a href="{{ route('country_name') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Country Name</a>
+            </li>
         </ul>
     </li>
     

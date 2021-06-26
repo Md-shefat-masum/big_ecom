@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="page-wrapper">
             <div class="page-content">
@@ -50,7 +50,7 @@
                                 <div class="card-body">
                                     <div class="col-12">
                                         <button @click.prevent="store" type="button"
-                                            class="btn btn-light px-5">Add</button>
+                                            class="btn btn-light px-5">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
         <div class="overlay"></div>
         <!--end overlay-->
     </div>
-    <!-- End container-fluid-->
+    <!-- End container-->
 </div>
 <!--End content-wrapper-->
 

@@ -50,7 +50,7 @@
                                 <div class="card-body">
                                     <div class="col-12">
                                         <button @click.prevent="update" type="button"
-                                            class="btn btn-light px-5">Add</button>
+                                            class="btn btn-light px-5">Submit</button>
                                     </div>
                                 </div>
                             </div>

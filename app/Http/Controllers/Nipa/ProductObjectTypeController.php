@@ -41,6 +41,10 @@ class ProductObjectTypeController extends Controller
         $data = ProductObjectType::find($id);
         return view('admin.nipa.product-object.edit', compact('data'));
     }
+    public function get_edit(Request $request, $id)
+    {
+        return ProductObjectType::find($id);
+    }
     public function update(Request $request)
     {
         $add = ProductObjectType::find($request->id);
