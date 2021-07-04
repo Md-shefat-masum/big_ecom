@@ -2071,7 +2071,9 @@ var state = {
       image: '/avatar.png',
       sku: 'sku_123'
     }
-  }
+  },
+  selected_product_for_quick_view: {},
+  selected_product_for_cart: {}
 }; // get state
 
 var getters = {
@@ -2080,6 +2082,12 @@ var getters = {
   },
   get_selected_cart_all_product: function get_selected_cart_all_product(state) {
     return state.cart_products;
+  },
+  get_selected_product_for_quick_view: function get_selected_product_for_quick_view(state) {
+    return state.selected_product_for_quick_view;
+  },
+  get_selected_product_for_cart: function get_selected_product_for_cart(state) {
+    return state.selected_product_for_cart;
   }
 }; // actions
 
@@ -2093,8 +2101,21 @@ var mutations = {
   //     state.comments.unshift(comment);
   // },
   add_new_product_to_cart: function add_new_product_to_cart(state, cart_body) {
-    console.log(cart_body);
+    // console.log(cart_body);
     state.cart_products.unshift(cart_body);
+    $('#cart_view_modal').modal('hide');
+  },
+  remove_product_from_cart: function remove_product_from_cart(state, index) {
+    // console.log(cart_body);
+    state.cart_products.splice(index, 1);
+  },
+  add_selected_product_for_quick_view: function add_selected_product_for_quick_view(state, selected_product) {
+    state.selected_product_for_quick_view = selected_product;
+    $('#quick_view_modal').modal('show');
+  },
+  add_selected_product_for_cart: function add_selected_product_for_cart(state, selected_product) {
+    state.selected_product_for_cart = selected_product;
+    $('#cart_view_modal').modal('show');
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

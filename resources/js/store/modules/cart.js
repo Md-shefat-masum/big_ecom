@@ -18,13 +18,17 @@ const state = {
             image: '/avatar.png',
             sku: 'sku_123',
         }
-    }
+    },
+    selected_product_for_quick_view: {},
+    selected_product_for_cart: {},
 }
 
 // get state
 const getters = {
     get_selected_cart_product: state => state.selected_cart_product,
     get_selected_cart_all_product: state => state.cart_products,
+    get_selected_product_for_quick_view: state => state.selected_product_for_quick_view,
+    get_selected_product_for_cart: state => state.selected_product_for_cart,
 }
 
 // actions
@@ -40,9 +44,23 @@ const mutations = {
     //     state.comments.unshift(comment);
     // },
 
-    add_new_product_to_cart: function(state,cart_body){
-        console.log(cart_body);
+    add_new_product_to_cart: function (state, cart_body) {
+        // console.log(cart_body);
         state.cart_products.unshift(cart_body);
+        $('#cart_view_modal').modal('hide');
+    },
+    
+    remove_product_from_cart: function (state, index) {
+        // console.log(cart_body);
+        state.cart_products.splice(index,1);
+    },
+    add_selected_product_for_quick_view: function (state, selected_product) {
+        state.selected_product_for_quick_view = selected_product;
+        $('#quick_view_modal').modal('show');
+    },
+    add_selected_product_for_cart: function (state, selected_product) {
+        state.selected_product_for_cart = selected_product;
+        $('#cart_view_modal').modal('show');
     },
 }
 

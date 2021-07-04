@@ -20,12 +20,14 @@ class FrontendController extends Controller
 
     public function frontend_product()
     {
-        $data = Product::orderBy('id', 'DESC')->get();
+        // $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);
+        $data = [];
         return view('frontend.product', compact('data'));
     }
     public function frontend_get_product()
     {
-        return Product::get();
+        $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);
+        return $data;
     }
     public function frontend_cart()
     {
@@ -66,11 +68,11 @@ class FrontendController extends Controller
         $user->creator = Auth::user()->id;
         $user->save();
 
-        $user->slug = $user->id.uniqid(10);
+        $user->slug = $user->id . uniqid(10);
         $user->save();
 
-        if($request->hasFile('image')){
-            $user->photo = Storage::put('uploads/user',$request->file('image'));
+        if ($request->hasFile('image')) {
+            $user->photo = Storage::put('uploads/user', $request->file('image'));
             $user->save();
         }
     }

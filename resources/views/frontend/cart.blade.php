@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="table_desc">
-                                <div class="cart_page table-responsive">
+                                <div class="cart_page table-responsive" id="cart_table">
                                     <table>
                                         <thead>
                                             <tr>
@@ -38,36 +38,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                            <tr v-for="(item, index) in get_selected_cart_all_product" :key="index">
+                                                <td class="product_remove"><a href="#" @click.prevent="remove_product_from_cart(index)"><i class="fa fa-trash-o"></i></a></td>
                                                 <td class="product_thumb"><a href="#"><img src="{{ asset('contents/frontend') }}/assets/img/s-product/product.jpg" alt=""></a></td>
-                                                <td class="product_name"><a href="#">Handbag fringilla</a></td>
+                                                <td class="product_name"><a href="#">@{{ item.product.product_name }}</a></td>
                                                 <td class="product-price">£65.00</td>
                                                 <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
                                                 <td class="product_total">£130.00</td>
-
-
-                                            </tr>
-
-                                            <tr>
-                                                <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                                <td class="product_thumb"><a href="#"><img src="{{ asset('contents/frontend') }}/assets/img/s-product/product2.jpg" alt=""></a></td>
-                                                <td class="product_name"><a href="#">Handbags justo</a></td>
-                                                <td class="product-price">£90.00</td>
-                                                <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                                <td class="product_total">£180.00</td>
-
-
-                                            </tr>
-                                            <tr>
-                                                <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                                <td class="product_thumb"><a href="#"><img src="{{ asset('contents/frontend') }}/assets/img/s-product/product3.jpg" alt=""></a></td>
-                                                <td class="product_name"><a href="#">Handbag elit</a></td>
-                                                <td class="product-price">£80.00</td>
-                                                <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                                <td class="product_total">£160.00</td>
-
-
                                             </tr>
 
                                         </tbody>
@@ -123,5 +100,9 @@
             </div>
         </div>
     </div>
+
+@push('js')
+<script src="{{ asset('contents/admin') }}/frontend_vue.js"></script>
+@endpush
 
 @endsection
