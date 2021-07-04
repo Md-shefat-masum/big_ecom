@@ -14,7 +14,10 @@ class CountryNameSeeder extends Seeder
      */
     public function run()
     {
-        Countryname::create( [
+
+        CountryName::truncate();
+        
+        CountryName::create( [
             'id'=>1,
             'iso'=>'AF',
             'name'=>'AFGHANISTAN',
@@ -26,7 +29,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>2,
             'iso'=>'AL',
             'name'=>'ALBANIA',
@@ -38,7 +41,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>3,
             'iso'=>'DZ',
             'name'=>'ALGERIA',
@@ -50,7 +53,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>4,
             'iso'=>'AS',
             'name'=>'AMERICAN SAMOA',
@@ -62,7 +65,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>5,
             'iso'=>'AD',
             'name'=>'ANDORRA',
@@ -74,7 +77,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>6,
             'iso'=>'AO',
             'name'=>'ANGOLA',
@@ -86,7 +89,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>7,
             'iso'=>'AI',
             'name'=>'ANGUILLA',
@@ -98,7 +101,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>8,
             'iso'=>'AQ',
             'name'=>'ANTARCTICA',
@@ -110,7 +113,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>9,
             'iso'=>'AG',
             'name'=>'ANTIGUA AND BARBUDA',
@@ -122,7 +125,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>10,
             'iso'=>'AR',
             'name'=>'ARGENTINA',
@@ -134,7 +137,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>11,
             'iso'=>'AM',
             'name'=>'ARMENIA',
@@ -146,7 +149,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>12,
             'iso'=>'AW',
             'name'=>'ARUBA',
@@ -158,7 +161,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>13,
             'iso'=>'AU',
             'name'=>'AUSTRALIA',
@@ -170,7 +173,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>14,
             'iso'=>'AT',
             'name'=>'AUSTRIA',
@@ -182,7 +185,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>15,
             'iso'=>'AZ',
             'name'=>'AZERBAIJAN',
@@ -194,7 +197,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>16,
             'iso'=>'BS',
             'name'=>'BAHAMAS',
@@ -206,7 +209,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>17,
             'iso'=>'BH',
             'name'=>'BAHRAIN',
@@ -218,7 +221,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>18,
             'iso'=>'BD',
             'name'=>'BANGLADESH',
@@ -230,7 +233,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>19,
             'iso'=>'BB',
             'name'=>'BARBADOS',
@@ -242,7 +245,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>20,
             'iso'=>'BY',
             'name'=>'BELARUS',
@@ -254,7 +257,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>21,
             'iso'=>'BE',
             'name'=>'BELGIUM',
@@ -266,7 +269,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>22,
             'iso'=>'BZ',
             'name'=>'BELIZE',
@@ -278,7 +281,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>23,
             'iso'=>'BJ',
             'name'=>'BENIN',
@@ -290,7 +293,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>24,
             'iso'=>'BM',
             'name'=>'BERMUDA',
@@ -302,7 +305,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>25,
             'iso'=>'BT',
             'name'=>'BHUTAN',
@@ -314,7 +317,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>26,
             'iso'=>'BO',
             'name'=>'BOLIVIA',
@@ -326,7 +329,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>27,
             'iso'=>'BA',
             'name'=>'BOSNIA AND HERZEGOVINA',
@@ -338,7 +341,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>28,
             'iso'=>'BW',
             'name'=>'BOTSWANA',
@@ -350,7 +353,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>29,
             'iso'=>'BV',
             'name'=>'BOUVET ISLAND',
@@ -362,7 +365,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>30,
             'iso'=>'BR',
             'name'=>'BRAZIL',
@@ -374,7 +377,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>31,
             'iso'=>'IO',
             'name'=>'BRITISH INDIAN OCEAN TERRITORY',
@@ -386,7 +389,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>32,
             'iso'=>'BN',
             'name'=>'BRUNEI DARUSSALAM',
@@ -398,7 +401,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>33,
             'iso'=>'BG',
             'name'=>'BULGARIA',
@@ -410,7 +413,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>34,
             'iso'=>'BF',
             'name'=>'BURKINA FASO',
@@ -422,7 +425,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>35,
             'iso'=>'BI',
             'name'=>'BURUNDI',
@@ -434,7 +437,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>36,
             'iso'=>'KH',
             'name'=>'CAMBODIA',
@@ -446,7 +449,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>37,
             'iso'=>'CM',
             'name'=>'CAMEROON',
@@ -458,7 +461,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>38,
             'iso'=>'CA',
             'name'=>'CANADA',
@@ -470,7 +473,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>39,
             'iso'=>'CV',
             'name'=>'CAPE VERDE',
@@ -482,7 +485,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>40,
             'iso'=>'KY',
             'name'=>'CAYMAN ISLANDS',
@@ -494,7 +497,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>41,
             'iso'=>'CF',
             'name'=>'CENTRAL AFRICAN REPUBLIC',
@@ -506,7 +509,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>42,
             'iso'=>'TD',
             'name'=>'CHAD',
@@ -518,7 +521,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>43,
             'iso'=>'CL',
             'name'=>'CHILE',
@@ -530,7 +533,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>44,
             'iso'=>'CN',
             'name'=>'CHINA',
@@ -542,7 +545,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>45,
             'iso'=>'CX',
             'name'=>'CHRISTMAS ISLAND',
@@ -554,7 +557,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>46,
             'iso'=>'CC',
             'name'=>'COCOS (KEELING) ISLANDS',
@@ -566,7 +569,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>47,
             'iso'=>'CO',
             'name'=>'COLOMBIA',
@@ -578,7 +581,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>48,
             'iso'=>'KM',
             'name'=>'COMOROS',
@@ -590,7 +593,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>49,
             'iso'=>'CG',
             'name'=>'CONGO',
@@ -602,7 +605,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>50,
             'iso'=>'CD',
             'name'=>'CONGO, THE DEMOCRATIC REPUBLIC OF THE',
@@ -614,7 +617,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>51,
             'iso'=>'CK',
             'name'=>'COOK ISLANDS',
@@ -626,7 +629,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>52,
             'iso'=>'CR',
             'name'=>'COSTA RICA',
@@ -638,7 +641,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>53,
             'iso'=>'CI',
             'name'=>'COTE D',
@@ -650,7 +653,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>54,
             'iso'=>'HR',
             'name'=>'CROATIA',
@@ -662,7 +665,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>55,
             'iso'=>'CU',
             'name'=>'CUBA',
@@ -674,7 +677,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>56,
             'iso'=>'CY',
             'name'=>'CYPRUS',
@@ -686,7 +689,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>57,
             'iso'=>'CZ',
             'name'=>'CZECH REPUBLIC',
@@ -698,7 +701,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>58,
             'iso'=>'DK',
             'name'=>'DENMARK',
@@ -710,7 +713,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>59,
             'iso'=>'DJ',
             'name'=>'DJIBOUTI',
@@ -722,7 +725,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>60,
             'iso'=>'DM',
             'name'=>'DOMINICA',
@@ -734,7 +737,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>61,
             'iso'=>'DO',
             'name'=>'DOMINICAN REPUBLIC',
@@ -746,7 +749,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>62,
             'iso'=>'EC',
             'name'=>'ECUADOR',
@@ -758,7 +761,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>63,
             'iso'=>'EG',
             'name'=>'EGYPT',
@@ -770,7 +773,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>64,
             'iso'=>'SV',
             'name'=>'EL SALVADOR',
@@ -782,7 +785,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>65,
             'iso'=>'GQ',
             'name'=>'EQUATORIAL GUINEA',
@@ -794,7 +797,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>66,
             'iso'=>'ER',
             'name'=>'ERITREA',
@@ -806,7 +809,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>67,
             'iso'=>'EE',
             'name'=>'ESTONIA',
@@ -818,7 +821,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>68,
             'iso'=>'ET',
             'name'=>'ETHIOPIA',
@@ -830,7 +833,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>69,
             'iso'=>'FK',
             'name'=>'FALKLAND ISLANDS (MALVINAS)',
@@ -842,7 +845,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>70,
             'iso'=>'FO',
             'name'=>'FAROE ISLANDS',
@@ -854,7 +857,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>71,
             'iso'=>'FJ',
             'name'=>'FIJI',
@@ -866,7 +869,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>72,
             'iso'=>'FI',
             'name'=>'FINLAND',
@@ -878,7 +881,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>73,
             'iso'=>'FR',
             'name'=>'FRANCE',
@@ -890,7 +893,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>74,
             'iso'=>'GF',
             'name'=>'FRENCH GUIANA',
@@ -902,7 +905,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>75,
             'iso'=>'PF',
             'name'=>'FRENCH POLYNESIA',
@@ -914,7 +917,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>76,
             'iso'=>'TF',
             'name'=>'FRENCH SOUTHERN TERRITORIES',
@@ -926,7 +929,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>77,
             'iso'=>'GA',
             'name'=>'GABON',
@@ -938,7 +941,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>78,
             'iso'=>'GM',
             'name'=>'GAMBIA',
@@ -950,7 +953,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>79,
             'iso'=>'GE',
             'name'=>'GEORGIA',
@@ -962,7 +965,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>80,
             'iso'=>'DE',
             'name'=>'GERMANY',
@@ -974,7 +977,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>81,
             'iso'=>'GH',
             'name'=>'GHANA',
@@ -986,7 +989,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>82,
             'iso'=>'GI',
             'name'=>'GIBRALTAR',
@@ -998,7 +1001,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>83,
             'iso'=>'GR',
             'name'=>'GREECE',
@@ -1010,7 +1013,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>84,
             'iso'=>'GL',
             'name'=>'GREENLAND',
@@ -1022,7 +1025,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>85,
             'iso'=>'GD',
             'name'=>'GRENADA',
@@ -1034,7 +1037,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>86,
             'iso'=>'GP',
             'name'=>'GUADELOUPE',
@@ -1046,7 +1049,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>87,
             'iso'=>'GU',
             'name'=>'GUAM',
@@ -1058,7 +1061,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>88,
             'iso'=>'GT',
             'name'=>'GUATEMALA',
@@ -1070,7 +1073,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>89,
             'iso'=>'GN',
             'name'=>'GUINEA',
@@ -1082,7 +1085,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>90,
             'iso'=>'GW',
             'name'=>'GUINEA-BISSAU',
@@ -1094,7 +1097,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>91,
             'iso'=>'GY',
             'name'=>'GUYANA',
@@ -1106,7 +1109,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>92,
             'iso'=>'HT',
             'name'=>'HAITI',
@@ -1118,7 +1121,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>93,
             'iso'=>'HM',
             'name'=>'HEARD ISLAND AND MCDONALD ISLANDS',
@@ -1130,7 +1133,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>94,
             'iso'=>'VA',
             'name'=>'HOLY SEE (VATICAN CITY STATE)',
@@ -1142,7 +1145,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>95,
             'iso'=>'HN',
             'name'=>'HONDURAS',
@@ -1154,7 +1157,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>96,
             'iso'=>'HK',
             'name'=>'HONG KONG',
@@ -1166,7 +1169,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>97,
             'iso'=>'HU',
             'name'=>'HUNGARY',
@@ -1178,7 +1181,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>98,
             'iso'=>'IS',
             'name'=>'ICELAND',
@@ -1190,7 +1193,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>99,
             'iso'=>'IN',
             'name'=>'INDIA',
@@ -1202,7 +1205,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>100,
             'iso'=>'ID',
             'name'=>'INDONESIA',
@@ -1214,7 +1217,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>101,
             'iso'=>'IR',
             'name'=>'IRAN, ISLAMIC REPUBLIC OF',
@@ -1226,7 +1229,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>102,
             'iso'=>'IQ',
             'name'=>'IRAQ',
@@ -1238,7 +1241,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>103,
             'iso'=>'IE',
             'name'=>'IRELAND',
@@ -1250,7 +1253,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>104,
             'iso'=>'IL',
             'name'=>'ISRAEL',
@@ -1262,7 +1265,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>105,
             'iso'=>'IT',
             'name'=>'ITALY',
@@ -1274,7 +1277,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>106,
             'iso'=>'JM',
             'name'=>'JAMAICA',
@@ -1286,7 +1289,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>107,
             'iso'=>'JP',
             'name'=>'JAPAN',
@@ -1298,7 +1301,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>108,
             'iso'=>'JO',
             'name'=>'JORDAN',
@@ -1310,7 +1313,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>109,
             'iso'=>'KZ',
             'name'=>'KAZAKHSTAN',
@@ -1322,7 +1325,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>110,
             'iso'=>'KE',
             'name'=>'KENYA',
@@ -1334,7 +1337,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>111,
             'iso'=>'KI',
             'name'=>'KIRIBATI',
@@ -1346,7 +1349,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>112,
             'iso'=>'KP',
             'name'=>'KOREA, DEMOCRATIC PEOPLE',
@@ -1358,7 +1361,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>113,
             'iso'=>'KR',
             'name'=>'KOREA, REPUBLIC OF',
@@ -1370,7 +1373,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>114,
             'iso'=>'KW',
             'name'=>'KUWAIT',
@@ -1382,7 +1385,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>115,
             'iso'=>'KG',
             'name'=>'KYRGYZSTAN',
@@ -1394,7 +1397,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>116,
             'iso'=>'LA',
             'name'=>'LAO PEOPLE',
@@ -1406,7 +1409,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>117,
             'iso'=>'LV',
             'name'=>'LATVIA',
@@ -1418,7 +1421,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>118,
             'iso'=>'LB',
             'name'=>'LEBANON',
@@ -1430,7 +1433,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>119,
             'iso'=>'LS',
             'name'=>'LESOTHO',
@@ -1442,7 +1445,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>120,
             'iso'=>'LR',
             'name'=>'LIBERIA',
@@ -1454,7 +1457,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>121,
             'iso'=>'LY',
             'name'=>'LIBYAN ARAB JAMAHIRIYA',
@@ -1466,7 +1469,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>122,
             'iso'=>'LI',
             'name'=>'LIECHTENSTEIN',
@@ -1490,7 +1493,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>124,
             'iso'=>'LU',
             'name'=>'LUXEMBOURG',
@@ -1502,7 +1505,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>125,
             'iso'=>'MO',
             'name'=>'MACAO',
@@ -1514,7 +1517,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>126,
             'iso'=>'MK',
             'name'=>'MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF',
@@ -1526,7 +1529,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>127,
             'iso'=>'MG',
             'name'=>'MADAGASCAR',
@@ -1538,7 +1541,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>128,
             'iso'=>'MW',
             'name'=>'MALAWI',
@@ -1550,7 +1553,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>129,
             'iso'=>'MY',
             'name'=>'MALAYSIA',
@@ -1562,7 +1565,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>130,
             'iso'=>'MV',
             'name'=>'MALDIVES',
@@ -1574,7 +1577,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>131,
             'iso'=>'ML',
             'name'=>'MALI',
@@ -1586,7 +1589,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>132,
             'iso'=>'MT',
             'name'=>'MALTA',
@@ -1598,7 +1601,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>133,
             'iso'=>'MH',
             'name'=>'MARSHALL ISLANDS',
@@ -1610,7 +1613,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>134,
             'iso'=>'MQ',
             'name'=>'MARTINIQUE',
@@ -1622,7 +1625,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>135,
             'iso'=>'MR',
             'name'=>'MAURITANIA',
@@ -1634,7 +1637,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>136,
             'iso'=>'MU',
             'name'=>'MAURITIUS',
@@ -1646,7 +1649,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>137,
             'iso'=>'YT',
             'name'=>'MAYOTTE',
@@ -1658,7 +1661,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>138,
             'iso'=>'MX',
             'name'=>'MEXICO',
@@ -1670,7 +1673,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>139,
             'iso'=>'FM',
             'name'=>'MICRONESIA, FEDERATED STATES OF',
@@ -1682,7 +1685,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>140,
             'iso'=>'MD',
             'name'=>'MOLDOVA, REPUBLIC OF',
@@ -1694,7 +1697,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>141,
             'iso'=>'MC',
             'name'=>'MONACO',
@@ -1706,7 +1709,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>142,
             'iso'=>'MN',
             'name'=>'MONGOLIA',
@@ -1718,7 +1721,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>143,
             'iso'=>'MS',
             'name'=>'MONTSERRAT',
@@ -1730,7 +1733,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>144,
             'iso'=>'MA',
             'name'=>'MOROCCO',
@@ -1742,7 +1745,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>145,
             'iso'=>'MZ',
             'name'=>'MOZAMBIQUE',
@@ -1754,7 +1757,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>146,
             'iso'=>'MM',
             'name'=>'MYANMAR',
@@ -1766,7 +1769,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>147,
             'iso'=>'NA',
             'name'=>'NAMIBIA',
@@ -1778,7 +1781,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>148,
             'iso'=>'NR',
             'name'=>'NAURU',
@@ -1790,7 +1793,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>149,
             'iso'=>'NP',
             'name'=>'NEPAL',
@@ -1802,7 +1805,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>150,
             'iso'=>'NL',
             'name'=>'NETHERLANDS',
@@ -1814,7 +1817,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>151,
             'iso'=>'AN',
             'name'=>'NETHERLANDS ANTILLES',
@@ -1826,7 +1829,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>152,
             'iso'=>'NC',
             'name'=>'NEW CALEDONIA',
@@ -1838,7 +1841,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>153,
             'iso'=>'NZ',
             'name'=>'NEW ZEALAND',
@@ -1850,7 +1853,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>154,
             'iso'=>'NI',
             'name'=>'NICARAGUA',
@@ -1862,7 +1865,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>155,
             'iso'=>'NE',
             'name'=>'NIGER',
@@ -1874,7 +1877,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>156,
             'iso'=>'NG',
             'name'=>'NIGERIA',
@@ -1886,7 +1889,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>157,
             'iso'=>'NU',
             'name'=>'NIUE',
@@ -1898,7 +1901,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>158,
             'iso'=>'NF',
             'name'=>'NORFOLK ISLAND',
@@ -1910,7 +1913,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>159,
             'iso'=>'MP',
             'name'=>'NORTHERN MARIANA ISLANDS',
@@ -1922,7 +1925,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>160,
             'iso'=>'NO',
             'name'=>'NORWAY',
@@ -1934,7 +1937,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>161,
             'iso'=>'OM',
             'name'=>'OMAN',
@@ -1946,7 +1949,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>162,
             'iso'=>'PK',
             'name'=>'PAKISTAN',
@@ -1958,7 +1961,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>163,
             'iso'=>'PW',
             'name'=>'PALAU',
@@ -1970,7 +1973,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>164,
             'iso'=>'PS',
             'name'=>'PALESTINIAN TERRITORY, OCCUPIED',
@@ -1982,7 +1985,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>165,
             'iso'=>'PA',
             'name'=>'PANAMA',
@@ -1994,7 +1997,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>166,
             'iso'=>'PG',
             'name'=>'PAPUA NEW GUINEA',
@@ -2006,7 +2009,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>167,
             'iso'=>'PY',
             'name'=>'PARAGUAY',
@@ -2018,7 +2021,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>168,
             'iso'=>'PE',
             'name'=>'PERU',
@@ -2030,7 +2033,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>169,
             'iso'=>'PH',
             'name'=>'PHILIPPINES',
@@ -2042,7 +2045,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>170,
             'iso'=>'PN',
             'name'=>'PITCAIRN',
@@ -2054,7 +2057,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>171,
             'iso'=>'PL',
             'name'=>'POLAND',
@@ -2066,7 +2069,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>172,
             'iso'=>'PT',
             'name'=>'PORTUGAL',
@@ -2078,7 +2081,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>173,
             'iso'=>'PR',
             'name'=>'PUERTO RICO',
@@ -2090,7 +2093,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>174,
             'iso'=>'QA',
             'name'=>'QATAR',
@@ -2102,7 +2105,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>175,
             'iso'=>'RE',
             'name'=>'REUNION',
@@ -2114,7 +2117,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>176,
             'iso'=>'RO',
             'name'=>'ROMANIA',
@@ -2126,7 +2129,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>177,
             'iso'=>'RU',
             'name'=>'RUSSIAN FEDERATION',
@@ -2138,7 +2141,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>178,
             'iso'=>'RW',
             'name'=>'RWANDA',
@@ -2150,7 +2153,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>179,
             'iso'=>'SH',
             'name'=>'SAINT HELENA',
@@ -2162,7 +2165,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>180,
             'iso'=>'KN',
             'name'=>'SAINT KITTS AND NEVIS',
@@ -2174,7 +2177,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>181,
             'iso'=>'LC',
             'name'=>'SAINT LUCIA',
@@ -2186,7 +2189,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>182,
             'iso'=>'PM',
             'name'=>'SAINT PIERRE AND MIQUELON',
@@ -2198,7 +2201,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>183,
             'iso'=>'VC',
             'name'=>'SAINT VINCENT AND THE GRENADINES',
@@ -2210,7 +2213,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>184,
             'iso'=>'WS',
             'name'=>'SAMOA',
@@ -2222,7 +2225,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>185,
             'iso'=>'SM',
             'name'=>'SAN MARINO',
@@ -2234,7 +2237,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>186,
             'iso'=>'ST',
             'name'=>'SAO TOME AND PRINCIPE',
@@ -2246,7 +2249,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>187,
             'iso'=>'SA',
             'name'=>'SAUDI ARABIA',
@@ -2258,7 +2261,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>188,
             'iso'=>'SN',
             'name'=>'SENEGAL',
@@ -2270,7 +2273,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>189,
             'iso'=>'CS',
             'name'=>'SERBIA AND MONTENEGRO',
@@ -2282,7 +2285,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>190,
             'iso'=>'SC',
             'name'=>'SEYCHELLES',
@@ -2294,7 +2297,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>191,
             'iso'=>'SL',
             'name'=>'SIERRA LEONE',
@@ -2306,7 +2309,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>192,
             'iso'=>'SG',
             'name'=>'SINGAPORE',
@@ -2318,7 +2321,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>193,
             'iso'=>'SK',
             'name'=>'SLOVAKIA',
@@ -2330,7 +2333,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>194,
             'iso'=>'SI',
             'name'=>'SLOVENIA',
@@ -2342,7 +2345,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>195,
             'iso'=>'SB',
             'name'=>'SOLOMON ISLANDS',
@@ -2354,7 +2357,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>196,
             'iso'=>'SO',
             'name'=>'SOMALIA',
@@ -2366,7 +2369,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>197,
             'iso'=>'ZA',
             'name'=>'SOUTH AFRICA',
@@ -2378,7 +2381,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>198,
             'iso'=>'GS',
             'name'=>'SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS',
@@ -2390,7 +2393,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>199,
             'iso'=>'ES',
             'name'=>'SPAIN',
@@ -2402,7 +2405,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>200,
             'iso'=>'LK',
             'name'=>'SRI LANKA',
@@ -2414,7 +2417,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>201,
             'iso'=>'SD',
             'name'=>'SUDAN',
@@ -2426,7 +2429,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>202,
             'iso'=>'SR',
             'name'=>'SURINAME',
@@ -2438,7 +2441,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>203,
             'iso'=>'SJ',
             'name'=>'SVALBARD AND JAN MAYEN',
@@ -2450,7 +2453,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>204,
             'iso'=>'SZ',
             'name'=>'SWAZILAND',
@@ -2462,7 +2465,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>205,
             'iso'=>'SE',
             'name'=>'SWEDEN',
@@ -2474,7 +2477,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>206,
             'iso'=>'CH',
             'name'=>'SWITZERLAND',
@@ -2486,7 +2489,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>207,
             'iso'=>'SY',
             'name'=>'SYRIAN ARAB REPUBLIC',
@@ -2498,7 +2501,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>208,
             'iso'=>'TW',
             'name'=>'TAIWAN, PROVINCE OF CHINA',
@@ -2510,7 +2513,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>209,
             'iso'=>'TJ',
             'name'=>'TAJIKISTAN',
@@ -2522,7 +2525,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>210,
             'iso'=>'TZ',
             'name'=>'TANZANIA, UNITED REPUBLIC OF',
@@ -2534,7 +2537,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>211,
             'iso'=>'TH',
             'name'=>'THAILAND',
@@ -2546,7 +2549,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>212,
             'iso'=>'TL',
             'name'=>'TIMOR-LESTE',
@@ -2558,7 +2561,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>213,
             'iso'=>'TG',
             'name'=>'TOGO',
@@ -2570,7 +2573,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>214,
             'iso'=>'TK',
             'name'=>'TOKELAU',
@@ -2582,7 +2585,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>215,
             'iso'=>'TO',
             'name'=>'TONGA',
@@ -2594,7 +2597,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>216,
             'iso'=>'TT',
             'name'=>'TRINIDAD AND TOBAGO',
@@ -2606,7 +2609,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>217,
             'iso'=>'TN',
             'name'=>'TUNISIA',
@@ -2618,7 +2621,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>218,
             'iso'=>'TR',
             'name'=>'TURKEY',
@@ -2630,7 +2633,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>219,
             'iso'=>'TM',
             'name'=>'TURKMENISTAN',
@@ -2642,7 +2645,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>220,
             'iso'=>'TC',
             'name'=>'TURKS AND CAICOS ISLANDS',
@@ -2654,7 +2657,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>221,
             'iso'=>'TV',
             'name'=>'TUVALU',
@@ -2666,7 +2669,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>222,
             'iso'=>'UG',
             'name'=>'UGANDA',
@@ -2678,7 +2681,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>223,
             'iso'=>'UA',
             'name'=>'UKRAINE',
@@ -2690,7 +2693,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>224,
             'iso'=>'AE',
             'name'=>'UNITED ARAB EMIRATES',
@@ -2702,7 +2705,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>225,
             'iso'=>'GB',
             'name'=>'UNITED KINGDOM',
@@ -2714,7 +2717,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>226,
             'iso'=>'US',
             'name'=>'UNITED STATES',
@@ -2726,7 +2729,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>227,
             'iso'=>'UM',
             'name'=>'UNITED STATES MINOR OUTLYING ISLANDS',
@@ -2738,7 +2741,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>228,
             'iso'=>'UY',
             'name'=>'URUGUAY',
@@ -2750,7 +2753,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>229,
             'iso'=>'UZ',
             'name'=>'UZBEKISTAN',
@@ -2762,7 +2765,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>230,
             'iso'=>'VU',
             'name'=>'VANUATU',
@@ -2774,7 +2777,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>231,
             'iso'=>'VE',
             'name'=>'VENEZUELA',
@@ -2786,7 +2789,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>232,
             'iso'=>'VN',
             'name'=>'VIET NAM',
@@ -2798,7 +2801,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>233,
             'iso'=>'VG',
             'name'=>'VIRGIN ISLANDS, BRITISH',
@@ -2810,7 +2813,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>234,
             'iso'=>'VI',
             'name'=>'VIRGIN ISLANDS, U.S.',
@@ -2822,7 +2825,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>235,
             'iso'=>'WF',
             'name'=>'WALLIS AND FUTUNA',
@@ -2834,7 +2837,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>236,
             'iso'=>'EH',
             'name'=>'WESTERN SAHARA',
@@ -2846,7 +2849,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>237,
             'iso'=>'YE',
             'name'=>'YEMEN',
@@ -2858,7 +2861,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>238,
             'iso'=>'ZM',
             'name'=>'ZAMBIA',
@@ -2870,7 +2873,7 @@ class CountryNameSeeder extends Seeder
             
             
                         
-            Countryname::create( [
+            CountryName::create( [
             'id'=>239,
             'iso'=>'ZW',
             'name'=>'ZIMBABWE',

@@ -80,75 +80,70 @@ Route::group([
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
-        Route::get('/product-tax-class', 'ProductTaxClassController@index')->name('product_tax_class');
-        Route::get('/product-tax-class/add', 'ProductTaxClassController@add')->name('product_tax_class_add');
-        Route::post('/product-tax-class/submit', 'ProductTaxClassController@insert')->name('product_tax_class_insert');
-        Route::get('/product-tax-class-view/{id}', 'ProductTaxClassController@view')->name('product_tax_class_view');
-        Route::get('/product-tax-class-delete/{id}', 'ProductTaxClassController@delete')->name('product_tax_class_delete');
-        Route::get('/product-tax-class-edit/{id}', 'ProductTaxClassController@edit')->name('product_tax_class_edit');
-        Route::get('/product-tax-class-get/{id}', 'ProductTaxClassController@get_tax_json')->name('product_tax_class_get');
-        Route::post('/product-tax-class-update', 'ProductTaxClassController@update')->name('product_tax_class_update');
-
+    Route::get('/product-tax-class', 'ProductTaxClassController@index')->name('product_tax_class');
+    Route::get('/product-tax-class/add', 'ProductTaxClassController@add')->name('product_tax_class_add');
+    Route::post('/product-tax-class/submit', 'ProductTaxClassController@insert')->name('product_tax_class_insert');
+    Route::get('/product-tax-class-view/{id}', 'ProductTaxClassController@view')->name('product_tax_class_view');
+    Route::get('/product-tax-class-delete/{id}', 'ProductTaxClassController@delete')->name('product_tax_class_delete');
+    Route::get('/product-tax-class-edit/{id}', 'ProductTaxClassController@edit')->name('product_tax_class_edit');
+    Route::get('/product-tax-class-get/{id}', 'ProductTaxClassController@get_tax_json')->name('product_tax_class_get');
+    Route::post('/product-tax-class-update', 'ProductTaxClassController@update')->name('product_tax_class_update');
 });
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
-        Route::get('/product-discount-type', 'ProductDiscountTypeController@index')->name('product_discount_type');
-        Route::get('/product-discount-type/add', 'ProductDiscountTypeController@add')->name('product_discount_type_add');
-        Route::post('/product-discount-type/submit', 'ProductDiscountTypeController@insert')->name('product_discount_type_insert');
-        Route::get('/product-discount-type-view/{id}', 'ProductDiscountTypeController@view')->name('product_discount_type_view');
-        Route::get('/product-discount-type-delete/{id}', 'ProductDiscountTypeController@delete')->name('product_discount_type_delete');
-        Route::get('/product-discount-type-edit/{id}', 'ProductDiscountTypeController@edit')->name('product_discount_type_edit');
-        Route::get('/product-discount-type-get-edit/{id}', 'ProductDiscountTypeController@get_edit')->name('product_discount_type_get_edit');
-        Route::post('/product-discount-type-update', 'ProductDiscountTypeController@update')->name('product_discount_type_update');
-
+    Route::get('/product-discount-type', 'ProductDiscountTypeController@index')->name('product_discount_type');
+    Route::get('/product-discount-type/add', 'ProductDiscountTypeController@add')->name('product_discount_type_add');
+    Route::post('/product-discount-type/submit', 'ProductDiscountTypeController@insert')->name('product_discount_type_insert');
+    Route::get('/product-discount-type-view/{id}', 'ProductDiscountTypeController@view')->name('product_discount_type_view');
+    Route::get('/product-discount-type-delete/{id}', 'ProductDiscountTypeController@delete')->name('product_discount_type_delete');
+    Route::get('/product-discount-type-edit/{id}', 'ProductDiscountTypeController@edit')->name('product_discount_type_edit');
+    Route::get('/product-discount-type-get-edit/{id}', 'ProductDiscountTypeController@get_edit')->name('product_discount_type_get_edit');
+    Route::post('/product-discount-type-update', 'ProductDiscountTypeController@update')->name('product_discount_type_update');
 });
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
-        Route::get('/product-object-type', 'ProductObjectTypeController@index')->name('product_object_type');
-        Route::get('/product-object-type/add', 'ProductObjectTypeController@add')->name('product_object_type_add');
-        Route::post('/product-object-type/submit', 'ProductObjectTypeController@insert')->name('product_object_type_insert');
-        Route::get('/product-object-type-view/{id}', 'ProductObjectTypeController@view')->name('product_object_type_view');
-        Route::get('/product-object-type-delete/{id}', 'ProductObjectTypeController@delete')->name('product_object_type_delete');
-        Route::get('/product-object-type-edit/{id}', 'ProductObjectTypeController@edit')->name('product_object_type_edit');
-        Route::get('/product-object-type-get-edit/{id}', 'ProductObjectTypeController@get_edit')->name('product_object_type_get_edit');
-        Route::post('/product-object-type-update', 'ProductObjectTypeController@update')->name('product_object_type_update');
-
+    Route::get('/product-object-type', 'ProductObjectTypeController@index')->name('product_object_type');
+    Route::get('/product-object-type/add', 'ProductObjectTypeController@add')->name('product_object_type_add');
+    Route::post('/product-object-type/submit', 'ProductObjectTypeController@insert')->name('product_object_type_insert');
+    Route::get('/product-object-type-view/{id}', 'ProductObjectTypeController@view')->name('product_object_type_view');
+    Route::get('/product-object-type-delete/{id}', 'ProductObjectTypeController@delete')->name('product_object_type_delete');
+    Route::get('/product-object-type-edit/{id}', 'ProductObjectTypeController@edit')->name('product_object_type_edit');
+    Route::get('/product-object-type-get-edit/{id}', 'ProductObjectTypeController@get_edit')->name('product_object_type_get_edit');
+    Route::post('/product-object-type-update', 'ProductObjectTypeController@update')->name('product_object_type_update');
 });
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
-        Route::get('/product-condition', 'ProductConditionController@index')->name('product_condition');
-        Route::get('/product-condition/add', 'ProductConditionController@add')->name('product_condition_add');
-        Route::post('/product-condition/submit', 'ProductConditionController@insert')->name('product_condition_insert');
-        Route::get('/product-condition-view/{id}', 'ProductConditionController@view')->name('product_condition_view');
-        Route::get('/product-condition-delete/{id}', 'ProductConditionController@delete')->name('product_condition_delete');
-        Route::get('/product-condition-edit/{id}', 'ProductConditionController@edit')->name('product_condition_edit');
-        Route::get('/product-condition-get-edit/{id}', 'ProductConditionController@get_edit')->name('product_condition_get_edit');
-        Route::post('/product-condition-update', 'ProductConditionController@update')->name('product_condition_update');
-
+    Route::get('/product-condition', 'ProductConditionController@index')->name('product_condition');
+    Route::get('/product-condition/add', 'ProductConditionController@add')->name('product_condition_add');
+    Route::post('/product-condition/submit', 'ProductConditionController@insert')->name('product_condition_insert');
+    Route::get('/product-condition-view/{id}', 'ProductConditionController@view')->name('product_condition_view');
+    Route::get('/product-condition-delete/{id}', 'ProductConditionController@delete')->name('product_condition_delete');
+    Route::get('/product-condition-edit/{id}', 'ProductConditionController@edit')->name('product_condition_edit');
+    Route::get('/product-condition-get-edit/{id}', 'ProductConditionController@get_edit')->name('product_condition_get_edit');
+    Route::post('/product-condition-update', 'ProductConditionController@update')->name('product_condition_update');
 });
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
-        Route::get('/country-name', 'CountryNameController@index')->name('country_name');
-        Route::get('/country-name/add', 'CountryNameController@add')->name('country_name_add');
-        Route::post('/country-name/submit', 'CountryNameController@insert')->name('country_name_insert');
-        Route::get('/country-name-view/{id}', 'CountryNameController@view')->name('country_name_view');
-        Route::get('/country-name-delete/{id}', 'CountryNameController@delete')->name('country_name_delete');
-        Route::get('/country-name-edit/{id}', 'CountryNameController@edit')->name('country_name_edit');
-        Route::get('/country-name-get-edit/{id}', 'CountryNameController@get_edit')->name('country_name_get_edit');
-        Route::post('/country-name-update', 'CountryNameController@update')->name('country_name_update');
-
+    Route::get('/country-name', 'CountryNameController@index')->name('country_name');
+    Route::get('/country-name/add', 'CountryNameController@add')->name('country_name_add');
+    Route::post('/country-name/submit', 'CountryNameController@insert')->name('country_name_insert');
+    Route::get('/country-name-view/{id}', 'CountryNameController@view')->name('country_name_view');
+    Route::get('/country-name-delete/{id}', 'CountryNameController@delete')->name('country_name_delete');
+    Route::get('/country-name-edit/{id}', 'CountryNameController@edit')->name('country_name_edit');
+    Route::get('/country-name-get-edit/{id}', 'CountryNameController@get_edit')->name('country_name_get_edit');
+    Route::post('/country-name-update', 'CountryNameController@update')->name('country_name_update');
 });
 
 Route::group([
@@ -175,4 +170,22 @@ Route::group([
     'namespace' => 'Nipa'
 ], function () {
     Route::get('/admin-email', 'StorefrontController@email')->name('admin_email');
+});
+
+Route::group([
+    'namespace' => 'Nipa'
+], function () {
+    Route::get('/frontend-product', 'FrontendController@frontend_product')->name('frontend_product');
+    Route::get('/frontend-get-product', 'FrontendController@frontend_get_product')->name('frontend_get_product');
+
+    Route::get('/frontend-cart', 'FrontendController@frontend_cart')->name('frontend_cart');
+    Route::post('/add-to-cart', 'FrontendController@add_to_cart')->name('add_to_cart');
+
+    Route::get('/frontend-wishlist', 'FrontendController@frontend_wishlist')->name('frontend_wishlist');
+
+    Route::get('/frontend-account', 'FrontendController@frontend_account')->name('frontend_account');
+    Route::get('/frontend-get-account', 'FrontendController@frontend_get_account')->name('frontend_get_account');
+    Route::post('/frontend-edit-account', 'FrontendController@frontend_edit_account')->name('frontend_edit_account');
+
+    Route::get('/frontend-contact', 'FrontendController@frontend_contact')->name('frontend_contact');
 });
