@@ -49,7 +49,7 @@ const mutations = {
         state.cart_products.unshift(cart_body);
         $('#cart_view_modal').modal('hide');
     },
-    
+
     remove_product_from_cart: function (state, index) {
         // console.log(cart_body);
         state.cart_products.splice(index,1);
