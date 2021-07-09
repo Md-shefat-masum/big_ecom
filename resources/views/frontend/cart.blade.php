@@ -39,21 +39,30 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(item, index) in get_selected_cart_all_product" :key="index">
-                                            <td class="product_remove"><a href="#"
-                                                    @click.prevent="remove_product_from_cart(index)"><i
-                                                        class="fa fa-trash-o"></i></a></td>
-                                            <td class="product_thumb"><a href="#"><img
-                                                        src="{{ asset('contents/frontend') }}/assets/img/s-product/product.jpg"
-                                                        alt=""></a></td>
-                                            <td class="product_name"><a href="#">@{{ item.product.product_name }}</a>
+                                            <td class="product_remove">
+                                                <a href="#" @click.prevent="remove_product_from_cart(index)">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                            <td class="product_thumb">
+                                                <a href="#">
+                                                    <img src="{{ asset('contents/frontend') }}/assets/img/s-product/product.jpg" alt="">
+                                                </a>
+                                            </td>
+                                            <td class="product_name">
+                                                <a href="#">@{{ item.product.product_name }}</a>
                                             </td>
                                             <td class="product-price">$@{{ item.product.default_price }}</td>
-                                            <td class="product_quantity"><label>Quantity</label>
-                                                <input min="1" max="100" :value="item.cart_option.qty"
-                                                    @change="change_product_qty($event,item.product.id)" type="number">
+                                            <td class="product_quantity">
+                                                <label>Quantity</label>
+                                                <input  min="1" max="100"
+                                                        :value="item.cart_option.qty"
+                                                        @change="change_product_qty($event,item.product.id)"
+                                                        type="number">
                                             </td>
                                             <td class="product_total">
-                                                $@{{ item.product.default_price *  item.cart_option.qty}}</td>
+                                                $@{{ item.product.default_price *  item.cart_option.qty}}
+                                            </td>
                                         </tr>
 
                                     </tbody>
@@ -109,7 +118,7 @@
         </div>
     </div>
 </div>
-{{-- 
+{{--
 @push('js')
 <script src="{{ asset('contents/admin') }}/frontend_vue.js"></script>
 @endpush --}}

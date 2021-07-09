@@ -412,7 +412,9 @@
                                                         cart_option,
                                                         product: get_selected_product_for_cart
                                                     }
-                                                )">add to cart</button>
+                                                )">
+                                                add to cart
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="modal_social">

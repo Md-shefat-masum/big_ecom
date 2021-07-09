@@ -71,10 +71,9 @@ const mutations = {
         let product = state.cart_products.find((item) => {
             return item.product.id === product_info.product_id;
         });
-        product.qty = product_info.qty;
-
+        product.cart_option.qty = product_info.qty;
         this.commit('calculate_cart_total');
-        console.log( product.qty);
+        // console.log( product.qty);
     },
     calculate_cart_total: function (state, total) {
         state.sub_total = state.cart_products.reduce((total, item) => total += (item.product.default_price * item.cart_option.qty), 0);
