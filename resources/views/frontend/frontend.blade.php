@@ -400,6 +400,7 @@
                                             </select>
                                         </div>
                                         <div class="modal_add_to_cart">
+                                            <form action="">
                                             <input min="1" max="100" v-model="cart_option.qty" step="1" type="number">
                                             {{-- <button type="button" @click.prevent="add_new_product_to_cart(
                                                     {
@@ -415,6 +416,7 @@
                                                 )">
                                                 add to cart
                                             </button>
+                                        </form>
                                         </div>
                                     </div>
                                     <div class="modal_social">

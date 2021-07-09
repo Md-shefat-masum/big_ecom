@@ -48,10 +48,15 @@ const mutations = {
 
     add_new_product_to_cart: function (state, cart_body) {
 
-        // console.log(state.cart_products);
-        state.cart_products.unshift(cart_body);
-        $('#cart_view_modal').modal('hide');
-        this.commit('calculate_cart_total');
+        let temp_cart = state.cart_products.filter((item)=>item.product.id != cart_body.product.id);
+            // console.log(temp_cart);
+            // console.log(state.cart_products);
+            state.cart_products = temp_cart;
+            state.cart_products.unshift(cart_body);
+            $('#cart_view_modal').modal('hide');
+            this.commit('calculate_cart_total');
+
+
     },
 
     remove_product_from_cart: function (state, index) {

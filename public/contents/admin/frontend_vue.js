@@ -155,7 +155,7 @@ if (document.getElementById('cart_view_modal')) {
 
             ]),
 
-
+      
         },
         computed: {
             ...window.getters(['get_selected_product_for_cart', 'get_sub_total']),
@@ -233,11 +233,11 @@ if (document.getElementById('cart_table')) {
                     qty: event.target.value,
                     product_id: product_id,
                 };
-
+    
                 this.change_cart_qty(product_info);
             },
         },
-
+     
         computed: {
             ...window.getters(['get_selected_cart_all_product', 'get_sub_total']),
         },
@@ -253,6 +253,6 @@ if (document.getElementById('search_product')) {
                 search_key: '',
             }
         },
-
+      
     });
 }
