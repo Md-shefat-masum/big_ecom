@@ -73,9 +73,9 @@ if (document.getElementById('product_list')) {
         },
         methods: {
             ...window.mutation([
-                    'add_selected_product_for_quick_view',
-                    'add_selected_product_for_cart'
-                ]),
+                'add_selected_product_for_quick_view',
+                'add_selected_product_for_cart'
+            ]),
 
             getProduct: function () {
 
@@ -109,7 +109,7 @@ if (document.getElementById('product_list')) {
             // }
         },
         computed: {
-            ...window.getters(['get_selected_product_for_quick_view','get_selected_product_for_cart']),
+            ...window.getters(['get_selected_product_for_quick_view', 'get_selected_product_for_cart']),
         },
     });
 }
@@ -139,8 +139,10 @@ if (document.getElementById('cart_view_modal')) {
         store: store,
         data: function () {
             return {
-                cart_option : {
+                cart_option: {
                     qty: 1,
+                    price: 0,
+                    // product_price:this.product.default_price,
                 }
             }
         },
@@ -148,15 +150,66 @@ if (document.getElementById('cart_view_modal')) {
         methods: {
             ...window.mutation([
                 'add_new_product_to_cart',
+                'change_cart_qty',
+                'calculate_cart_total',
+
             ]),
+
+      
         },
         computed: {
-            ...window.getters(['get_selected_product_for_cart']),
+            ...window.getters(['get_selected_product_for_cart', 'get_sub_total']),
         },
     });
 }
 
 
+if (document.getElementById('mini_cart')) {
+
+    const app = new Vue({
+        el: '#mini_cart',
+        store: store,
+        data: function () {
+            return {
+
+            }
+        },
+        created: function () {},
+        methods: {
+            ...window.mutation([
+                'remove_product_from_cart',
+                'change_cart_qty',
+                'calculate_cart_total',
+            ]),
+        },
+        computed: {
+            ...window.getters(['get_selected_cart_all_product', 'get_sub_total']),
+        },
+    });
+}
+if (document.getElementById('mini_cart_two')) {
+
+    const app = new Vue({
+        el: '#mini_cart_two',
+        store: store,
+        data: function () {
+            return {
+
+            }
+        },
+        created: function () {},
+        methods: {
+            ...window.mutation([
+                'remove_product_from_cart',
+                'change_cart_qty',
+                'calculate_cart_total',
+            ]),
+        },
+        computed: {
+            ...window.getters(['get_selected_cart_all_product', 'get_sub_total']),
+        },
+    });
+}
 if (document.getElementById('cart_table')) {
 
     const app = new Vue({
@@ -164,16 +217,42 @@ if (document.getElementById('cart_table')) {
         store: store,
         data: function () {
             return {
+
             }
         },
         created: function () {},
         methods: {
             ...window.mutation([
                 'remove_product_from_cart',
+                'change_cart_qty',
+                'calculate_cart_total',
             ]),
+
+            change_product_qty: function(event, product_id) {
+                let product_info = {
+                    qty: event.target.value,
+                    product_id: product_id,
+                };
+    
+                this.change_cart_qty(product_info);
+            },
         },
+     
         computed: {
-            ...window.getters(['get_selected_cart_all_product']),
+            ...window.getters(['get_selected_cart_all_product', 'get_sub_total']),
         },
+    });
+}
+if (document.getElementById('search_product')) {
+
+    const app = new Vue({
+        el: '#search_product',
+        store: store,
+        data: function () {
+            return {
+                search_key: '',
+            }
+        },
+      
     });
 }
