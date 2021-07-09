@@ -131,9 +131,9 @@
                             </div>
                         </div>
                         <div class=" col-lg-6 colm_none">
-                            <div class="search_container search_seven_c">
+                            <div class="search_container search_seven_c" id="search_product">
                                 <form action="#">
-                                    <div class="hover_category">
+                                    {{-- <div class="hover_category">
                                         <select class="select_option" name="select" id="categori2">
                                             <option selected value="1">All Categories</option>
                                             <option value="2">Accessories</option>
@@ -152,9 +152,9 @@
                                             <option value="15">Watchs</option>
                                             <option value="16">Electronic</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="search_box">
-                                        <input placeholder="Search product..." type="text">
+                                        <input type="text" v-model="search_key" style="padding-left:10px;" placeholder="Search Products…" />
                                         <button type="submit">Search</button>
                                     </div>
                                 </form>
