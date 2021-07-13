@@ -13,17 +13,26 @@
                         </li>
 
                         {{-- <li><a href="about.html">About Us</a></li> --}}
-                        <li><a class="{{request()->is('frontend-product') ? 'active' : ''}}"
+                        <li><a class="{{request()->is('product') ? 'active' : ''}}"
                                 href="{{route('frontend_product')}}">Product</a></li>
-                        <li><a class="{{request()->is('frontend-cart') ? 'active' : ''}}"
+                        <li><a class="{{request()->is('cart') ? 'active' : ''}}"
                                 href="{{route('frontend_cart')}}">Cart</a></li>
-                        <li><a class="{{request()->is('frontend-wishlist') ? 'active' : ''}}"
+                        <li><a class="{{request()->is('wishlist') ? 'active' : ''}}"
                                 href="{{route('frontend_wishlist')}}">Wishlist</a></li>
-                        <li><a class="{{request()->is('frontend-contact') ? 'active' : ''}}"
+                        <li><a class="{{request()->is('contact') ? 'active' : ''}}"
                                 href="{{route('frontend_contact')}}">Contact Us</a></li>
-                        @if(Auth::user())
-                        <li><a class="{{request()->is('frontend-account') ? 'active' : ''}}"
+                        <li><a class="{{request()->is('checkout') ? 'active' : ''}}"
+                                href="{{route('frontend_checkout')}}">Checkout</a></li>
+                        <li><a class="{{request()->is('account') ? 'active' : ''}}"
                                 href="{{route('frontend_account')}}">Account</a></li>
+                        @if(Auth::user())
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            this.closest('form').submit();" class="logout-text">logout</a>
+                            </form>
+                        </li>
                         @else
                         <li><a class="{{request()->is('login') ? 'active' : ''}}" href="{{route('login')}}">Login</a>
                         </li>
@@ -94,7 +103,7 @@
             <a href="{{route('frontend_cart')}}">View cart</a>
         </div>
         <div class="cart_button">
-            <a class="active" href="checkout.html">Checkout</a>
+            <a class="active" href="{{route('frontend_checkout')}}">Checkout</a>
         </div>
 
     </div>

@@ -175,17 +175,22 @@ Route::group([
 Route::group([
     'namespace' => 'Nipa'
 ], function () {
-    Route::get('/frontend-product', 'FrontendController@frontend_product')->name('frontend_product');
-    Route::get('/frontend-get-product', 'FrontendController@frontend_get_product')->name('frontend_get_product');
+    Route::get('/product', 'FrontendController@frontend_product')->name('frontend_product');
+    Route::get('/product-details/{id}', 'FrontendController@product_details')->name('product_details');
+    Route::get('/get-product', 'FrontendController@frontend_get_product')->name('frontend_get_product');
 
-    Route::get('/frontend-cart', 'FrontendController@frontend_cart')->name('frontend_cart');
+    Route::get('/cart', 'FrontendController@frontend_cart')->name('frontend_cart');
     Route::post('/add-to-cart', 'FrontendController@add_to_cart')->name('add_to_cart');
 
-    Route::get('/frontend-wishlist', 'FrontendController@frontend_wishlist')->name('frontend_wishlist');
+    Route::get('/wishlist', 'FrontendController@frontend_wishlist')->name('frontend_wishlist');
 
-    Route::get('/frontend-account', 'FrontendController@frontend_account')->name('frontend_account');
-    Route::get('/frontend-get-account', 'FrontendController@frontend_get_account')->name('frontend_get_account');
-    Route::post('/frontend-edit-account', 'FrontendController@frontend_edit_account')->name('frontend_edit_account');
+    Route::get('/account', 'FrontendController@frontend_account')->name('frontend_account')->middleware('auth');
+    Route::get('/get-account', 'FrontendController@frontend_get_account')->name('frontend_get_account');
+    Route::post('/edit-account', 'FrontendController@frontend_edit_account')->name('frontend_edit_account');
 
-    Route::get('/frontend-contact', 'FrontendController@frontend_contact')->name('frontend_contact');
+    Route::get('/contact', 'FrontendController@frontend_contact')->name('frontend_contact');
+    Route::get('/invoice', 'FrontendController@frontend_invoice')->name('frontend_invoice');
+    Route::get('/checkout', 'FrontendController@frontend_checkout')->name('frontend_checkout')->middleware('auth');
+    Route::post('/save-checkout', 'FrontendController@add_checkout')->name('add_checkout')->middleware('auth');
+    Route::get('/get-checkout-information', 'FrontendController@get_checkout_information')->name('get_checkout_information')->middleware('auth');
 });

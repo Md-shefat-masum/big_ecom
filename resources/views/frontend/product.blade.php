@@ -211,7 +211,8 @@
                                                 </a>
                                             </li>
                                             <li class="quick_button">
-                                                <a href="#" @click.prevent="add_selected_product_for_quick_view(item)" title="quick view">
+                                                <a href="#" @click.prevent="add_selected_product_for_quick_view(item)"
+                                                    title="quick view">
                                                     <i class="ion-ios-search-strong"></i>
                                                 </a>
                                             </li>
@@ -222,7 +223,7 @@
                                 <div class="product_content grid_content">
                                     <div class="product_content_inner">
                                         <h4 class="product_name"><a
-                                                href="product-details.html">@{{item.product_name}}</a></h4>
+                                                :href="'/product-details/'+item.id">@{{item.product_name}}</a></h4>
                                         {{-- <h4 class="product_name"><a
                                                 href="product-details.html"></a></h4> --}}
                                         <div class="product_rating">
@@ -242,10 +243,11 @@
                                     <div class="add_to_cart">
                                         {{-- <form id="form_body" method="POST" enctype="multipart/form-data">
                                             @csrf --}}
-                                            {{-- <input type="hidden" name="product_id" value="{{$item->id}}"> --}}
-                                            <button @click.prevent="add_selected_product_for_cart(item)" type="button" title="Add to cart">
-                                                Add to cart
-                                            </button>
+                                        {{-- <input type="hidden" name="product_id" value="{{$item->id}}"> --}}
+                                        <button @click.prevent="add_selected_product_for_cart(item)" type="button"
+                                            title="Add to cart">
+                                            Add to cart
+                                        </button>
                                         {{-- </form> --}}
                                     </div>
                                 </div>
@@ -272,7 +274,8 @@
                                             urna fringilla tempus.</p>
                                     </div>
                                     <div class="add_to_cart">
-                                        <a href="#" @click.prevent="add_selected_product_for_cart(item)" title="Add to cart">Add to cart</a>
+                                        <a href="#" @click.prevent="add_selected_product_for_cart(item)"
+                                            title="Add to cart">Add to cart</a>
                                     </div>
                                     <div class="action_links">
                                         <ul>
@@ -289,7 +292,8 @@
                                                 </a>
                                             </li>
                                             <li class="quick_button">
-                                                <a href="#" data-toggle="modal" data-target="#modal_box" title="quick view">
+                                                <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                    title="quick view">
                                                     <i class="ion-ios-search-strong"></i>
                                                     quick view
                                                 </a>

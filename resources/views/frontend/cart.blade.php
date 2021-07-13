@@ -43,10 +43,14 @@
                                                 <a href="#" @click.prevent="remove_product_from_cart(index)">
                                                     <i class="fa fa-trash-o"></i>
                                                 </a>
+                                                <a href="#" @click.prevent="edit_cart_product(item)">
+                                                    <i class="fa fa-pencil-square-o" title="Edit Product"></i>
+                                                </a>
                                             </td>
                                             <td class="product_thumb">
                                                 <a href="#">
-                                                    <img src="{{ asset('contents/frontend') }}/assets/img/s-product/product.jpg" alt="">
+                                                    <img src="{{ asset('contents/frontend') }}/assets/img/s-product/product.jpg"
+                                                        alt="">
                                                 </a>
                                             </td>
                                             <td class="product_name">
@@ -55,10 +59,8 @@
                                             <td class="product-price">$@{{ item.product.default_price }}</td>
                                             <td class="product_quantity">
                                                 <label>Quantity</label>
-                                                <input  min="1" max="100"
-                                                        :value="item.cart_option.qty"
-                                                        @change="change_product_qty($event,item.product.id)"
-                                                        type="number">
+                                                <input min="1" max="100" :value="item.cart_option.qty"
+                                                    @change="change_product_qty($event,item.product.id)" type="number">
                                             </td>
                                             <td class="product_total">
                                                 $@{{ item.product.default_price *  item.cart_option.qty}}
@@ -106,7 +108,7 @@
                                         <p class="cart_amount">$ @{{get_sub_total}}</p>
                                     </div>
                                     <div class="checkout_btn">
-                                        <a href="#">Proceed to Checkout</a>
+                                        <a href="{{route('frontend_checkout')}}">Proceed to Checkout</a>
                                     </div>
                                 </div>
                             </div>

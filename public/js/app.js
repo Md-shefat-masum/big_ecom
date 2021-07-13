@@ -2057,6 +2057,24 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   sub_total: 0,
   cart_products: [],
+  billing_address: {
+    first_name: '',
+    last_name: '',
+    company_name: '',
+    street_address: '',
+    city: '',
+    country: '',
+    phone: '',
+    email: '',
+    product_id: '',
+    product_qty: '',
+    product_color: '',
+    product_size: '',
+    product_price: '',
+    product_discount: '',
+    comment: '',
+    total_price: ''
+  },
   selected_cart_product: {
     name: 'producut 1',
     id: 55,
@@ -2074,7 +2092,11 @@ var state = {
     }
   },
   selected_product_for_quick_view: {},
-  selected_product_for_cart: {}
+  selected_product_for_cart: {},
+  latest_saved_cart: {},
+  invoice_date: '',
+  invoice_id: '',
+  check_success: false
 }; // get state
 
 var getters = {
@@ -2092,12 +2114,48 @@ var getters = {
   },
   get_sub_total: function get_sub_total(state) {
     return state.sub_total;
+  },
+  get_billing_address: function get_billing_address(state) {
+    return state.billing_address;
+  },
+  get_invoice_date: function get_invoice_date(state) {
+    return state.invoice_date;
+  },
+  get_invoice_id: function get_invoice_id(state) {
+    return state.invoice_id;
+  },
+  get_check_success: function get_check_success(state) {
+    return state.check_success;
+  },
+  get_latest_saved_cart: function get_latest_saved_cart(state) {
+    return state.latest_saved_cart;
   }
 }; // actions
 
-var actions = {// fetch_blog_details: function(state,blog){
-  //     this.commit('set_blog_details',blog)
-  // },
+var actions = {
+  save_checkout_information: function save_checkout_information(state, checkout_information) {
+    var _this = this;
+
+    console.log(checkout_information);
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('/save-checkout', checkout_information).then(function (res) {
+      console.log(res.data); // invoice_id : res.data.invoice_id,
+      // invoice_date : res.data.invoice_date,
+
+      _this.commit('set_invoice_id_and_date', {
+        invoice_id: res.data.invoice_id,
+        invoice_date: res.data.invoice_date
+      });
+    });
+  },
+  fetch_latest_saved_cart: function fetch_latest_saved_cart(state) {
+    var _this2 = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/get-checkout-information').then(function (res) {
+      console.log(res);
+
+      _this2.commit('save_latest_saved_cart', res.data);
+    });
+  }
 }; // mutators
 
 var mutations = {
@@ -2107,18 +2165,28 @@ var mutations = {
   add_new_product_to_cart: function add_new_product_to_cart(state, cart_body) {
     var temp_cart = state.cart_products.filter(function (item) {
       return item.product.id != cart_body.product.id;
-    }); // console.log(temp_cart);
+    }); // console.log(cart_body);
     // console.log(state.cart_products);
 
     state.cart_products = temp_cart;
     state.cart_products.unshift(cart_body);
-    $('#cart_view_modal').modal('hide');
+    $('#cart_view_modal').modal('hide'); //   console.log(cart_body);
+    // cart_body.cart_option.qty = 1;
+
     this.commit('calculate_cart_total');
   },
+  // reset_cart_qty: function (state, cart) {
+  //     cart.cart_option.qty = 1;
+  // },
   remove_product_from_cart: function remove_product_from_cart(state, index) {
     // console.log(cart_body);
     state.cart_products.splice(index, 1);
     this.commit('calculate_cart_total');
+  },
+  edit_cart_product: function edit_cart_product(state, selected_product) {
+    // console.log(state.selected_product_for_quick_view = item);
+    state.selected_product_for_cart = selected_product;
+    $('#quick_view_modal').modal('show');
   },
   add_selected_product_for_quick_view: function add_selected_product_for_quick_view(state, selected_product) {
     state.selected_product_for_quick_view = selected_product;
@@ -2139,6 +2207,47 @@ var mutations = {
     state.sub_total = state.cart_products.reduce(function (total, item) {
       return total += item.product.default_price * item.cart_option.qty;
     }, 0); // this.commit('change_cart_qty');
+  },
+  set_billing_address: function set_billing_address(state, form_data) {
+    state.billing_address = form_data;
+    console.log(form_data);
+  },
+  // save_checkout_information: function (state, checkout_information) {
+  //     console.log(checkout_information);
+  //     axios.post('/save-checkout', checkout_information).then((res) => {
+  //         console.log(res.data);
+  //         // invoice_id : res.data.invoice_id,
+  //         // invoice_date : res.data.invoice_date,
+  //         this.commit('set_invoice_id_and_date', {
+  //             invoice_id: res.data.invoice_id,
+  //             invoice_date: res.data.invoice_date,
+  //         });
+  //     });
+  // },
+  // fetch_latest_saved_cart: function (state) {
+  //     axios.get('/get_checkout_information')
+  //         .then((res) => {
+  //             this.commit('save_latest_saved_cart', res.data);
+  //         })
+  // },
+  set_invoice_id_and_date: function set_invoice_id_and_date(state, info) {
+    state.invoice_id = info.invoice_id;
+    state.invoice_date = info.invoice_date;
+    state.check_success = true;
+    this.commit('reset_cart', null, {
+      root: true
+    });
+    this.dispatch('fetch_latest_saved_cart', null, {
+      root: true
+    });
+  },
+  reset_cart: function reset_cart(state) {
+    state.sub_total = 0;
+    state.cart_products = [];
+    state.selected_cart_product = {};
+  },
+  save_latest_saved_cart: function save_latest_saved_cart(state, info) {
+    state.latest_saved_cart = info;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

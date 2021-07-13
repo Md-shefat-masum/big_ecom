@@ -90,10 +90,24 @@ if (document.getElementById('product_list')) {
 
             store: function () {
                 console.log('clicked');
-             
+                // let form_datas = new FormData($('#form_body')[0]);
+                // axios.post('/add-to-cart', form_datas)
+                //     .then((res) => {
+                //         console.log(res.data);
+                //         // this.form_datas.clear();
+                //         toaster('success', 'Successful.');
+                //     })
+                //     .catch((err) => {
+                //         // console.log(err.response);
+                //         let errors = err.response.data.errors;
+                //     })
             },
 
-           
+            // selected_product_for_modal_trigger: function(product){
+            //     console.log(product);
+            //     this.selected_product_for_modal = product;
+            //     $('#quick_view_modal').modal('show');
+            // }
         },
         computed: {
             ...window.getters(['get_selected_product_for_quick_view', 'get_selected_product_for_cart']),
@@ -212,40 +226,6 @@ if (document.getElementById('cart_table')) {
         methods: {
             ...window.mutation([
                 'remove_product_from_cart',
-                'edit_cart_product',
-                'change_cart_qty',
-                'calculate_cart_total',
-            ]),
-
-            change_product_qty: function (event, product_id) {
-                let product_info = {
-                    qty: event.target.value,
-                    product_id: product_id,
-                };
-
-                this.change_cart_qty(product_info);
-            },
-        },
-
-        computed: {
-            ...window.getters(['get_selected_cart_all_product', 'get_sub_total' ,'get_selected_product_for_quick_view','get_selected_product_for_cart']),
-        },
-    });
-}
-if (document.getElementById('edit-cart-product')) {
-
-    const app = new Vue({
-        el: '#edit-cart-product',
-        store: store,
-        data: function () {
-            return {
-
-            }
-        },
-        created: function () {},
-        methods: {
-            ...window.mutation([
-                'remove_product_from_cart',
                 'change_cart_qty',
                 'calculate_cart_total',
             ]),
@@ -279,6 +259,75 @@ if (document.getElementById('search_product')) {
     });
 }
 
+// if (document.getElementById('add-checkout')) {
+//     // alert('ok');
+//     const app = new Vue({
+//         el: '#add-checkout',
+//         // store: store,
+//         data: function () {
+//             return {
+//                 // form_data: {
+//                 //     id: null,
+//                 //     first_name: null,
+//                 //     last_name: null,
+//                 //     company_name: null,
+//                 //     street_address: null,
+//                 //     city: null,
+//                 //     country: null,
+//                 //     phone: null,
+//                 //     email: null,
+//                 //     product_id: null,
+//                 //     product_qty: null,
+//                 //     product_color: null,
+//                 //     product_size: null,
+//                 //     product_price: null,
+//                 //     product_discount: null,
+//                 //     total_price: null,
+//                 // },
+//             }
+
+//         },
+//         created: function () {},
+//         methods: {
+//             ...window.mutation([
+//                 'remove_product_from_cart',
+//                 'change_cart_qty',
+//                 'calculate_cart_total',
+//                 'set_billing_adress',
+//             ]),
+//             // store: function () {
+//             //     let form_datas = new FormData($('#form_body')[0]);
+//             //     axios.post('/add-checkout', form_datas)
+//             //         .then((res) => {
+//             //             console.log(res.data);
+//             //             // this.form_datas.clear();
+//             //             toaster('success', 'Successful.');
+//             //             this.$refs.anyName.reset();
+//             //         })
+//             //         .catch((err) => {
+//             //             // console.log(err.response);
+//             //             let errors = err.response.data.errors;
+//             //         })
+//             // },
+
+
+
+
+//             // change_product_qty: function (event, product_id) {
+//             //     let product_info = {
+//             //         qty: event.target.value,
+//             //         product_id: product_id,
+//             //     };
+
+//             //     this.change_cart_qty(product_info);
+//             // },
+//         },
+
+//         computed: {
+//             ...window.getters(['get_selected_cart_all_product', 'get_sub_total', 'get_billing_address']),
+//         },
+//     });
+// }
 
 
 if (document.getElementById('add-checkout')) {
