@@ -70,9 +70,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="cart_submit">
+                            {{-- <div class="cart_submit">
                                 <button type="submit">update cart</button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -17,6 +17,7 @@ class CreateOrderInformationTable extends Migration
             $table->id();
             $table->string('customer_id', 100)->nullable();
             $table->string('order_id', 100)->nullable();
+            $table->string('invoice_id', 100)->nullable();
             $table->string('product_id', 100)->nullable();
             $table->string('product_code', 100)->nullable();
             $table->string('product_name', 100)->nullable();

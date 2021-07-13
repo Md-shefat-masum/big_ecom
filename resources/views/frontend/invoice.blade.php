@@ -308,11 +308,11 @@
                             </div>
 
                             <hr />
-
+{{-- 
                             <div>
                                 <span class="text-secondary-d1 text-105">Thank you for your business</span>
                                 <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -39,7 +39,7 @@
                                         <label>Last Name <span>*</span></label>
                                         <input type="text" name="last_name" v-model="get_billing_address.last_name">
                                     </div>
-                                    {{-- <div class="col-12 mb-20">
+                                    <div class="col-12 mb-20">
                                         <label>Company Name</label>
                                         <input type="text">
                                     </div>
@@ -60,7 +60,8 @@
 
                                     <div class="col-12 mb-20">
                                         <label>Street address <span>*</span></label>
-                                        <input placeholder="House number and street name" type="text">
+                                        <input placeholder="House number and street name" type="text"
+                                            name="street_address" v-model="get_billing_address.street_address">
                                     </div>
                                     <div class="col-12 mb-20">
                                         <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
@@ -75,12 +76,12 @@
                                     </div>
                                     <div class="col-lg-6 mb-20">
                                         <label>Phone<span>*</span></label>
-                                        <input type="text">
+                                        <input type="text" name="phone" v-model="get_billing_address.phone">
 
                                     </div>
                                     <div class="col-lg-6 mb-20">
                                         <label> Email Address <span>*</span></label>
-                                        <input type="text">
+                                        <input type="text" name="email" v-model="get_billing_address.email">
 
                                     </div>
                                     <div class="col-12 mb-20">
@@ -168,11 +169,11 @@
                                             <textarea id="order_note"
                                                 placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="col-12">
-                                        <div class="save_button primary_btn default_button">
+                                        <div class="order_button save_button primary_btn default_button">
                                             <button @click.prevent="checout_confirm" type="button"
-                                                class="btn btn-light px-5">Checkout</button>
+                                                class="btn px-5 checkout_btn">Checkout</button>
                                         </div>
                                     </div>
                                 </div>

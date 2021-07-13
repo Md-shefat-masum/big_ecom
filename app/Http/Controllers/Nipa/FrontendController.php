@@ -173,6 +173,7 @@ class FrontendController extends Controller
             // $order_product->color = $cart->color;
             // $order_product->size = $cart->size;
             $order_product->price = $product_info->default_price;
+            $order_product->invoice_id = 10000+$order->id;
             $order_product->creator = Auth::user()->id;
             $order_product->created_at = Carbon::now()->toDateTimeString();
             $order_product->save();
