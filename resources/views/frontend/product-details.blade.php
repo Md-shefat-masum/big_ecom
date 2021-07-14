@@ -79,7 +79,7 @@
                         <div class="product_d_right">
                             <form action="#">
 
-                                <h3><a href="#"> @{{this.form_data.product_name}}</a></h3>
+                                <h3><a href="#"> @{{this.product_item.product_name}}</a></h3>
                                 <div class="product_nav">
                                     <ul>
                                         <li class="prev"><a href="product-details.html"><i
@@ -120,8 +120,14 @@
                                 </div>
                                 <div class="product_variant quantity">
                                     <label>quantity</label>
-                                    <input min="1" max="100" value="1" type="number">
-                                    <button @click.prevent="add_selected_product_for_cart(item)" type="button"
+                                    <input min="1" max="100" value="1" v-model="cart_option.qty" type="number">
+                                    <button @click.prevent="add_new_product_to_cart(
+                                                            {
+                                                                cart_option,
+                                                                product: product_item
+                                                            }
+                                                        )"
+                                    type="button"
                                         title="Add to cart">
                                         Add to cart
                                     </button>

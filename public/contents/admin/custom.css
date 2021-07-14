@@ -585,10 +585,10 @@ ul li {
 }
 .category_card_dropdown .card-body ul li .element .parent_element_trigger i {
   font-size: 10px;
-  line-height: 20px;
+  line-height: 18px;
   text-align: center;
   position: absolute;
-  left: -5px;
+  left: -4.2px;
 }
 .category_card_dropdown .card-body ul li .element .add_sub_category {
   position: absolute;

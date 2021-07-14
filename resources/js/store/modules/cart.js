@@ -98,13 +98,14 @@ const mutations = {
         // console.log(state.cart_products);
         state.cart_products = temp_cart;
         state.cart_products.unshift(cart_body);
-        $('#cart_view_modal').modal('hide');
+        $('#cart_product_modal').modal('hide');
         //   console.log(cart_body);
         // cart_body.cart_option.qty = 1;
         this.commit('calculate_cart_total');
 
 
     },
+
     // reset_cart_qty: function (state, cart) {
     //     cart.cart_option.qty = 1;
     // },
@@ -114,20 +115,26 @@ const mutations = {
         state.cart_products.splice(index, 1);
         this.commit('calculate_cart_total');
     },
+
     edit_cart_product: function (state, item) {
         // console.log(item);
-        state.selected_product_for_cart = item;
-        console.log(state.selected_product_for_cart);
+        state.selected_product_for_cart = item.product;
+        state.selected_product_for_cart.cart_option = item.cart_option;
+
+        // console.log(state.selected_product_for_cart, item);
         $('#cart_product_modal').modal('show');
     },
+
     add_selected_product_for_quick_view: function (state, selected_product) {
         state.selected_product_for_quick_view = selected_product;
         $('#quick_view_modal').modal('show');
     },
+
     add_selected_product_for_cart: function (state, selected_product) {
         state.selected_product_for_cart = selected_product;
-        $('#cart_view_modal').modal('show');
+        $('#cart_product_modal').modal('show');
     },
+
     change_cart_qty: function (state, product_info) {
         let product = state.cart_products.find((item) => {
             return item.product.id === product_info.product_id;

@@ -100,6 +100,7 @@ if (document.getElementById('product_list')) {
         },
     });
 }
+
 if (document.getElementById('product-details')) {
     // alert('ok');
     const app = new Vue({
@@ -111,19 +112,28 @@ if (document.getElementById('product-details')) {
                     id: null,
                     product_name: null,
                 },
+                cart_option: {
+                    qty: 1,
+                    price: 0,
+                    // product_price:this.product.default_price,
+                },
+                product_item: {},
             }
         },
         created: function () {
             this.getProduct();
         },
         methods: {
+            ...window.mutation([
+                'add_new_product_to_cart',
+            ]),
             getProduct: function () {
 
                 if (location.pathname.split('/')[2]) {
                     axios.get(`/json-product-details/${location.pathname.split('/')[2]}`)
                         .then((res) => {
                             console.log(res.data);
-                            this.form_data = res.data;
+                            this.product_item = res.data;
                         })
                 }
 
@@ -153,10 +163,10 @@ if (document.getElementById('quick_view_modal')) {
     });
 }
 
-if (document.getElementById('cart_view_modal')) {
+if (document.getElementById('cart_product_modal')) {
 
     const app = new Vue({
-        el: '#cart_view_modal',
+        el: '#cart_product_modal',
         store: store,
         data: function () {
             return {
@@ -167,7 +177,17 @@ if (document.getElementById('cart_view_modal')) {
                 }
             }
         },
-        created: function () {},
+        created: function () {
+            // alert('created cart');
+        },
+        updated: function(){
+            // console.log(this.get_selected_product_for_cart, 'changed');
+            if(this.get_selected_product_for_cart.cart_option){
+                this.cart_option = this.get_selected_product_for_cart.cart_option;
+            }else{
+                this.cart_option.qty = 1;
+            }
+        },
         methods: {
             ...window.mutation([
                 'add_new_product_to_cart',
@@ -209,6 +229,7 @@ if (document.getElementById('mini_cart')) {
         },
     });
 }
+
 if (document.getElementById('mini_cart_two')) {
 
     const app = new Vue({
@@ -232,6 +253,7 @@ if (document.getElementById('mini_cart_two')) {
         },
     });
 }
+
 if (document.getElementById('cart_table')) {
 
     const app = new Vue({
@@ -266,6 +288,7 @@ if (document.getElementById('cart_table')) {
         },
     });
 }
+
 if (document.getElementById('edit-cart-product')) {
 
     const app = new Vue({
@@ -299,6 +322,7 @@ if (document.getElementById('edit-cart-product')) {
         },
     });
 }
+
 if (document.getElementById('search_product')) {
 
     const app = new Vue({
@@ -312,6 +336,7 @@ if (document.getElementById('search_product')) {
 
     });
 }
+
 if (document.getElementById('add-checkout')) {
 
     const app = new Vue({
@@ -378,6 +403,7 @@ if (document.getElementById('add-checkout')) {
         },
     });
 }
+
 if (document.getElementById('get-invoice')) {
     // alert('josko');
     const app = new Vue({

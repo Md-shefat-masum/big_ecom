@@ -49,8 +49,7 @@
                                             </td>
                                             <td class="product_thumb">
                                                 <a href="#">
-                                                    <img src="{{ asset('contents/frontend') }}/assets/img/s-product/product.jpg"
-                                                        alt="">
+                                                    <img src="{{ asset('contents/frontend') }}/assets/img/s-product/product.jpg" alt="" />
                                                 </a>
                                             </td>
                                             <td class="product_name">
@@ -59,20 +58,20 @@
                                             <td class="product-price">$@{{ item.product.default_price }}</td>
                                             <td class="product_quantity">
                                                 <label>Quantity</label>
-                                                <input min="1" max="100" :value="item.cart_option.qty"
-                                                    @change="change_product_qty($event,item.product.id)" type="number">
+                                                <input min="1" max="100" :value="item.cart_option.qty" @change="change_product_qty($event,item.product.id)" type="number" />
                                             </td>
                                             <td class="product_total">
-                                                $@{{ item.product.default_price *  item.cart_option.qty}}
+                                                $@{{ item.product.default_price * item.cart_option.qty}}
                                             </td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- <div class="cart_submit">
+                            {{--
+                            <div class="cart_submit">
                                 <button type="submit">update cart</button>
-                            </div> --}}
+                            </div>
+                            --}}
                         </div>
                     </div>
                 </div>
@@ -84,7 +83,7 @@
                                 <h3>Coupon</h3>
                                 <div class="coupon_inner">
                                     <p>Enter your coupon code if you have one.</p>
-                                    <input placeholder="Coupon code" type="text">
+                                    <input placeholder="Coupon code" type="text" />
                                     <button type="submit">Apply coupon</button>
                                 </div>
                             </div>
@@ -97,7 +96,7 @@
                                         <p>Subtotal</p>
                                         <p class="cart_amount">$ @{{get_sub_total}}</p>
                                     </div>
-                                    <div class="cart_subtotal ">
+                                    <div class="cart_subtotal">
                                         <p>Shipping</p>
                                         <p class="cart_amount"><span>Flat Rate:</span> $0</p>
                                     </div>
@@ -120,6 +119,8 @@
         </div>
     </div>
 </div>
+
+
 
 {{-- @push('js')
 <script src="{{ asset('contents/admin') }}/frontend_vue.js"></script>
