@@ -120,8 +120,8 @@
         </div>
     </div>
 </div>
-{{--
-@push('js')
+
+{{-- @push('js')
 <script src="{{ asset('contents/admin') }}/frontend_vue.js"></script>
 @endpush --}}
 

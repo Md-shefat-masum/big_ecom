@@ -90,13 +90,47 @@ if (document.getElementById('product_list')) {
 
             store: function () {
                 console.log('clicked');
-             
+
             },
 
-           
+
         },
         computed: {
             ...window.getters(['get_selected_product_for_quick_view', 'get_selected_product_for_cart']),
+        },
+    });
+}
+if (document.getElementById('product-details')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#product-details',
+        store: store,
+        data: function () {
+            return {
+                form_data: {
+                    id: null,
+                    product_name: null,
+                },
+            }
+        },
+        created: function () {
+            this.getProduct();
+        },
+        methods: {
+            getProduct: function () {
+
+                if (location.pathname.split('/')[2]) {
+                    axios.get(`/json-product-details/${location.pathname.split('/')[2]}`)
+                        .then((res) => {
+                            console.log(res.data);
+                            this.form_data = res.data;
+                        })
+                }
+
+            },
+        },
+        computed: {
+            ...window.getters(['get_selected_product_for_cart', 'get_selected_product_for_quick_view']),
         },
     });
 }
@@ -228,7 +262,7 @@ if (document.getElementById('cart_table')) {
         },
 
         computed: {
-            ...window.getters(['get_selected_cart_all_product', 'get_sub_total' ,'get_selected_product_for_quick_view','get_selected_product_for_cart']),
+            ...window.getters(['get_selected_cart_all_product', 'get_sub_total', 'get_selected_product_for_quick_view', 'get_selected_product_for_cart']),
         },
     });
 }
@@ -278,9 +312,6 @@ if (document.getElementById('search_product')) {
 
     });
 }
-
-
-
 if (document.getElementById('add-checkout')) {
 
     const app = new Vue({

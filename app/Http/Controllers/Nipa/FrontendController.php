@@ -31,11 +31,19 @@ class FrontendController extends Controller
         $data = [];
         return view('frontend.product', compact('data'));
     }
-    public function product_details()
+    public function product_details(Request $request, $id)
     {
         // $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);
-
-        return view('frontend.product-details');
+        $data = Product::find($id);
+        return view('frontend.product-details', compact('data'));
+    }
+    public function json_product_details(Request $request, $id)
+    {
+        // dd($id);
+        // $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);
+        $data = Product::find($id);
+        return $data;
+        // return view('frontend.product-details', compact('data'));
     }
     public function frontend_get_product()
     {
@@ -106,9 +114,9 @@ class FrontendController extends Controller
     public function add_checkout(Request $request)
     {
         // dd($request->all());
-        if(OrderAddress::where('user_id',Auth::user()->id)->exists()){
-            $address = OrderAddress::where('user_id',Auth::user()->id)->first();
-        }else{
+        if (OrderAddress::where('user_id', Auth::user()->id)->exists()) {
+            $address = OrderAddress::where('user_id', Auth::user()->id)->first();
+        } else {
             $address = new OrderAddress();
         }
 
@@ -121,9 +129,9 @@ class FrontendController extends Controller
         $address->created_at = Carbon::now()->toDateTimeString();
         $address->save();
 
-        if(BillingAddress::where('user_id',Auth::user()->id)->exists()){
-            $billing_address = BillingAddress::where('user_id',Auth::user()->id)->first();
-        }else{
+        if (BillingAddress::where('user_id', Auth::user()->id)->exists()) {
+            $billing_address = BillingAddress::where('user_id', Auth::user()->id)->first();
+        } else {
             $billing_address = new BillingAddress();
         }
 
@@ -134,9 +142,9 @@ class FrontendController extends Controller
         $billing_address->created_at = Carbon::now()->toDateTimeString();
         $billing_address->save();
 
-        if(ShippingAddress::where('user_id',Auth::user()->id)->exists()){
-            $shipping_address = ShippingAddress::where('user_id',Auth::user()->id)->first();
-        }else{
+        if (ShippingAddress::where('user_id', Auth::user()->id)->exists()) {
+            $shipping_address = ShippingAddress::where('user_id', Auth::user()->id)->first();
+        } else {
             $shipping_address = new ShippingAddress();
         }
 
@@ -155,10 +163,10 @@ class FrontendController extends Controller
         $order->total_price = $request->total_price;
         $order->created_at = Carbon::now()->toDateTimeString();
         $order->save();
-        $order->invoice_id = 10000+$order->id;
+        $order->invoice_id = 10000 + $order->id;
         $order->save();
 
-        foreach($request->c_cart as $cart){
+        foreach ($request->c_cart as $cart) {
             // dd($request->cart);
             $cart = (object) $cart;
             $cart_info = (object) $cart->cart_option;
@@ -173,7 +181,7 @@ class FrontendController extends Controller
             // $order_product->color = $cart->color;
             // $order_product->size = $cart->size;
             $order_product->price = $product_info->default_price;
-            $order_product->invoice_id = 10000+$order->id;
+            $order_product->invoice_id = 10000 + $order->id;
             $order_product->creator = Auth::user()->id;
             $order_product->created_at = Carbon::now()->toDateTimeString();
             $order_product->save();
@@ -187,7 +195,7 @@ class FrontendController extends Controller
 
     public function get_checkout_information()
     {
-        $order = Order::where('user_id',Auth::user()->id)->orderBy('id','DESC')->with('order_information')->first();
+        $order = Order::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->with('order_information')->first();
         return $order;
     }
 }

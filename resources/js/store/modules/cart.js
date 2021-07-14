@@ -114,10 +114,11 @@ const mutations = {
         state.cart_products.splice(index, 1);
         this.commit('calculate_cart_total');
     },
-    edit_cart_product: function (state, selected_product) {
-        // console.log(state.selected_product_for_quick_view = item);
-        state.selected_product_for_cart = selected_product;
-        $('#quick_view_modal').modal('show');
+    edit_cart_product: function (state, item) {
+        // console.log(item);
+        state.selected_product_for_cart = item;
+        console.log(state.selected_product_for_cart);
+        $('#cart_product_modal').modal('show');
     },
     add_selected_product_for_quick_view: function (state, selected_product) {
         state.selected_product_for_quick_view = selected_product;

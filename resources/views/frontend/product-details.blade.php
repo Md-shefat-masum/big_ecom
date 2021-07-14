@@ -75,11 +75,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-6" id="product_list">
+                    <div class="col-lg-7 col-md-6" id="product-details">
                         <div class="product_d_right">
                             <form action="#">
 
-                                <h3><a href="#">Nonstick Dishwasher PFOA</a></h3>
+                                <h3><a href="#"> @{{this.form_data.product_name}}</a></h3>
                                 <div class="product_nav">
                                     <ul>
                                         <li class="prev"><a href="product-details.html"><i
@@ -121,7 +121,8 @@
                                 <div class="product_variant quantity">
                                     <label>quantity</label>
                                     <input min="1" max="100" value="1" type="number">
-                                    <button @click.prevent="add_selected_product_for_cart(item)" type="button" title="Add to cart">
+                                    <button @click.prevent="add_selected_product_for_cart(item)" type="button"
+                                        title="Add to cart">
                                         Add to cart
                                     </button>
 

@@ -177,6 +177,7 @@ Route::group([
 ], function () {
     Route::get('/product', 'FrontendController@frontend_product')->name('frontend_product');
     Route::get('/product-details/{id}', 'FrontendController@product_details')->name('product_details');
+    Route::get('/json-product-details/{id}', 'FrontendController@json_product_details')->name('json_product_details');
     Route::get('/get-product', 'FrontendController@frontend_get_product')->name('frontend_get_product');
 
     Route::get('/cart', 'FrontendController@frontend_cart')->name('frontend_cart');
