@@ -2479,7 +2479,7 @@ textarea:-ms-input-placeholder {
     padding: 0 20px 0 30px;
 }
 
-/* @media only screen and (min-width: 1200px) and (max-width: 1600px) {
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .categories_menu_toggle>ul>li>a {
         line-height: 41px;
     }
@@ -2497,7 +2497,7 @@ textarea:-ms-input-placeholder {
         line-height: 35px;
         padding: 0;
     }
-} */
+}
 
 .categories_menu_toggle ul li a i.fa-angle-right {
     float: right;
@@ -2507,7 +2507,7 @@ textarea:-ms-input-placeholder {
     -webkit-transition: .3s;
 }
 
-/* @media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     .categories_menu_toggle>ul>li>a i.fa-angle-right {
         display: none;
     }
@@ -2529,7 +2529,7 @@ textarea:-ms-input-placeholder {
     .categories_menu_toggle>ul>li>a:hover {
         color: #c40316;
     }
-} */
+}
 
 .categories_menu_toggle ul li:last-child a {
     border-bottom: 0;
@@ -2552,7 +2552,7 @@ textarea:-ms-input-placeholder {
 .categories_menu_toggle ul li ul.categories_mega_menu {
     position: absolute;
     left: 120%;
-    width: 100%;
+    width: 208px;
     border: 1px solid #ebebeb;
     background: #fff;
     /* padding: 25px 0px 25px 0px; */
@@ -2692,7 +2692,7 @@ textarea:-ms-input-placeholder {
 .categories_menu_toggle ul li ul li ul.categories_mega_menu_two {
     position: absolute;
     left: 120%;
-    width: 100%;
+    width: 208px;
     border: 1px solid #ebebeb;
     background: #fff;
     /* padding: 25px 20px 23px; */
@@ -2731,7 +2731,7 @@ textarea:-ms-input-placeholder {
 .categories_menu_toggle ul li ul li ul li ul.categories_mega_menu_three {
     position: absolute;
     left: 120%;
-    width: 100%;
+    width: 208px;
     border: 1px solid #ebebeb;
     background: #fff;
     /* padding: 25px 20px 23px; */
@@ -2769,7 +2769,83 @@ textarea:-ms-input-placeholder {
 .categories_menu_toggle ul li ul li ul li ul li ul.categories_mega_menu_four {
     position: absolute;
     left: 120%;
-    width: 100%;
+    width: 208px;
+    border: 1px solid #ebebeb;
+    background: #fff;
+    /* padding: 25px 20px 23px; */
+    overflow: visible;
+    top: 0;
+    -webkit-transition: .3s;
+    transition: .3s;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    /* border: 1px solid #000; */
+}
+
+
+.categories_menu_toggle ul li ul li ul li ul li ul.categories_mega_menu_four li a {
+    line-height: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0px;
+    padding: 10px 10px 10px 15px;
+}
+/* categories_mega_menu_five */
+.categories_menu_toggle ul li ul li ul li ul li ul li:hover ul.categories_mega_menu_five {
+    opacity: 1;
+    visibility: visible;
+    left: 100%;
+}
+
+.categories_menu_toggle ul li ul li ul li ul li ul.categories_mega_menu_four li a:hover {
+    color: #c40316;
+}
+
+.categories_menu_toggle ul li ul li ul li ul li ul li ul.categories_mega_menu_five {
+    position: absolute;
+    left: 120%;
+    width: 208px;
+    border: 1px solid #ebebeb;
+    background: #fff;
+    /* padding: 25px 20px 23px; */
+    overflow: visible;
+    top: 0;
+    -webkit-transition: .3s;
+    transition: .3s;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    /* border: 1px solid #000; */
+}
+
+
+.categories_menu_toggle ul li ul li ul li ul li ul li ul.categories_mega_menu_five li a {
+    line-height: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0px;
+    padding: 10px 10px 10px 15px;
+}
+/* categories_mega_menu_six*/
+.categories_menu_toggle ul li ul li ul li ul li ul li ul li:hover ul.categories_mega_menu_six {
+    opacity: 1;
+    visibility: visible;
+    left: 100%;
+}
+
+.categories_menu_toggle ul li ul li ul li ul li ul li ul.categories_mega_menu_five li a:hover {
+    color: #c40316;
+}
+
+.categories_menu_toggle ul li ul li ul li ul li ul li ul li ul.categories_mega_menu_six {
+    position: absolute;
+    left: 120%;
+    width: 208px;
     border: 1px solid #ebebeb;
     background: #fff;
     /* padding: 25px 20px 23px; */
@@ -2784,7 +2860,7 @@ textarea:-ms-input-placeholder {
 }
 
 
-.categories_menu_toggle ul li ul li ul li ul li ul.categories_mega_menu_four li a {
+.categories_menu_toggle ul li ul li ul li ul li ul li ul li ul.categories_mega_menu_six li a {
     line-height: 30px;
     font-size: 13px;
     font-weight: 500;
