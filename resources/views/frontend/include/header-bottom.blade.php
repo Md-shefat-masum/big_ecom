@@ -26,22 +26,27 @@
                                                     <ul class="categories_mega_menu_four">
                                                         <li class="menu_item_children menu_item_children_design"><a
                                                                 href="#">Sweater4 <i class="fa fa-angle-right"></i></a>
-                                                                <ul class="categories_mega_menu_five">
-                                                                    <li class="menu_item_children menu_item_children_design"><a
-                                                                            href="#">Sweater5 <i class="fa fa-angle-right"></i></a>
-                                                                            <ul class="categories_mega_menu_six">
-                                                                                <li class="menu_item_children menu_item_children_design"><a
-                                                                                        href="#">Sweater6</a></li>
-                                                                                <li class="menu_item_children menu_item_children_design"><a
-                                                                                        href="#">Sweater6</a></li>
-                        
-                                                                            </ul>
-                                                                        </li>
-                                                                    <li class="menu_item_children menu_item_children_design"><a
-                                                                            href="#">Sweater5</a></li>
-            
-                                                                </ul>
-                                                            </li>
+                                                            <ul class="categories_mega_menu_five">
+                                                                <li
+                                                                    class="menu_item_children menu_item_children_design">
+                                                                    <a href="#">Sweater5 <i
+                                                                            class="fa fa-angle-right"></i></a>
+                                                                    <ul class="categories_mega_menu_six">
+                                                                        <li
+                                                                            class="menu_item_children menu_item_children_design">
+                                                                            <a href="#">Sweater6</a></li>
+                                                                        <li
+                                                                            class="menu_item_children menu_item_children_design">
+                                                                            <a href="#">Sweater6</a></li>
+
+                                                                    </ul>
+                                                                </li>
+                                                                <li
+                                                                    class="menu_item_children menu_item_children_design">
+                                                                    <a href="#">Sweater5</a></li>
+
+                                                            </ul>
+                                                        </li>
                                                         <li class="menu_item_children menu_item_children_design"><a
                                                                 href="#">Sweater4</a></li>
 

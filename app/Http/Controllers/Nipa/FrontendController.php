@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Nipa;
 use App\Http\Controllers\Controller;
 use App\Models\BillingAddress;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Checkout;
 use App\Models\CheckoutInformation;
 use App\Models\Frontend;
@@ -39,15 +40,19 @@ class FrontendController extends Controller
     }
     public function json_product_details(Request $request, $id)
     {
-        // dd($id);
-        // $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);
+
         $data = Product::find($id);
         return $data;
-        // return view('frontend.product-details', compact('data'));
+   
     }
     public function frontend_get_product()
     {
         $data = Product::orderBy('id', 'DESC')->where('status', 1)->paginate(10);
+        return $data;
+    }
+    public function frontend_category()
+    {
+        $data = Category::get();
         return $data;
     }
     public function frontend_cart()

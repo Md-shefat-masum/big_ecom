@@ -118,10 +118,16 @@ if (document.getElementById('product-details')) {
                     // product_price:this.product.default_price,
                 },
                 product_item: {},
+                categories: [],
             }
         },
         created: function () {
             this.getProduct();
+
+            axios.get('/frontend-category')
+                .then(response => this.categories = response.data)
+                .catch(error => console.log(error));
+            console.log(this.categories);
         },
         methods: {
             ...window.mutation([
@@ -180,11 +186,11 @@ if (document.getElementById('cart_product_modal')) {
         created: function () {
             // alert('created cart');
         },
-        updated: function(){
+        updated: function () {
             // console.log(this.get_selected_product_for_cart, 'changed');
-            if(this.get_selected_product_for_cart.cart_option){
+            if (this.get_selected_product_for_cart.cart_option) {
                 this.cart_option = this.get_selected_product_for_cart.cart_option;
-            }else{
+            } else {
                 this.cart_option.qty = 1;
             }
         },

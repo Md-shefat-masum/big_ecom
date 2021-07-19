@@ -194,4 +194,6 @@ Route::group([
     Route::get('/checkout', 'FrontendController@frontend_checkout')->name('frontend_checkout')->middleware('auth');
     Route::post('/save-checkout', 'FrontendController@add_checkout')->name('add_checkout')->middleware('auth');
     Route::get('/get-checkout-information', 'FrontendController@get_checkout_information')->name('get_checkout_information')->middleware('auth');
+
+    Route::get('/frontend-category', 'FrontendController@frontend_category')->name('frontend_category');
 });

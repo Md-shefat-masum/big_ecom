@@ -2870,7 +2870,7 @@ textarea:-ms-input-placeholder {
     padding: 10px 10px 10px 15px;
 }
 
-/* @media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     .categories_menu_toggle>ul>li ul.categories_mega_menu>li.menu_item_children>a {
         text-transform: capitalize;
         font-weight: 400;
@@ -2956,7 +2956,7 @@ textarea:-ms-input-placeholder {
         display: none;
         padding: 1px 0 9px 30px;
     }
-} */
+}
 
 .categorie_sub_menu li a {
     color: #222222;

@@ -10,6 +10,8 @@ class Product extends Model
     use HasFactory;
     protected $guarded = [];
     protected $appends = [
+            'hs_codes_json',
+            'modifier_options_json',
             'category_json',
             'selected_variant_option_json',
             'bulk_pricing_discount_options_json',
@@ -17,6 +19,15 @@ class Product extends Model
             'variant_values_json',
     ];
 
+ 
+    public function getHsCodesJsonAttribute()
+    {
+        return json_decode($this->hs_codes);
+    }
+    public function getModifierOptionsJsonAttribute()
+    {
+        return json_decode($this->modifier_options);
+    }
     public function getVariantValuesJsonAttribute()
     {
         return json_decode($this->variant_values);
