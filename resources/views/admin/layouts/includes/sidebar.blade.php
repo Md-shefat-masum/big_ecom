@@ -173,6 +173,33 @@
    
         </ul>
     </li>
+    {{-- <li>
+        <a class="has-arrow" href="{{ route('admin_account_settings_invoices') }}">
+            <div class="menu-title">Order Information</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_account_settings_invoices') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Invoices and Billing</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_account_settings_payment_method') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Payment Method</a>
+            </li>
+        </ul>
+    </li> --}}
+    <li>
+        <a class="has-arrow" href="#">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">Order Information</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_orders') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Orders</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_orders_information') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Order Information</a>
+            </li>
+        </ul>
+    </li>
     <li>
         <a class="has-arrow" href="#">
             <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>

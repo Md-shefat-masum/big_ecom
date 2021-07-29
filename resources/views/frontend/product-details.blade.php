@@ -134,316 +134,423 @@
                                         <li><a href="#" title="Add to wishlist">+ Compare</a></li>
                                     </ul>
                                 </div>
-                                <div class="product_meta">
-                                    <span>Product SKU: <a href="#">@{{this.product_item.sku}}</a></span> <br />
-                                    <span>Product Type: <a href="#">@{{this.product_item.product_type}}</a></span>
-                                    <br />
 
-                                    <span>
-                                        Category: <div v-for="pcatname in this.product_item.category_json">
-                                            <div href="#" v-for="category in categories">
-                                                <a v-if="category.id == pcatname">@{{category.name}}</a>
+
+
+                            </form>
+                            <div class="priduct_social">
+                                <ul>
+                                    <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i>
+                                            Like</a></li>
+                                    <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i>
+                                            tweet</a></li>
+                                    <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i>
+                                            save</a></li>
+                                    <li><a class="google-plus" href="#" title="google +"><i
+                                                class="fa fa-google-plus"></i>
+                                            share</a></li>
+                                    <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i>
+                                            linked</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--product details end-->
+
+            <!--product info start-->
+            <div class="product_d_info" id="product-details-two">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product_d_inner">
+                            <div class="product_info_button">
+                                <ul class="nav" role="tablist">
+                                    {{-- <li>
+                                        <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info"
+                                            aria-selected="false">Product Description</a>
+                                    </li> --}}
+                                    <li>
+                                        <a class="active" data-toggle="tab" href="#sheet" role="tab"
+                                            aria-controls="sheet" aria-selected="false">Product Specification</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#Pricing" role="tab" aria-controls="Pricing"
+                                            aria-selected="false">Product Pricing</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#ProductOptions" role="tab"
+                                            aria-controls="ProductOptions" aria-selected="false">Product Options</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                {{-- <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                    <div class="product_info_content">
+                                        <p>@{{this.product_item.description}}</p>
+                            </div>
+                        </div> --}}
+                        <div class="tab-pane fade show active" id="sheet" role="tabpanel">
+                            <div class="product_d_table">
+                                <form action="#">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="first_child">Product SKU</td>
+                                                <td>@{{this.product_item.sku}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Product Type</td>
+                                                <td>@{{this.product_item.product_type}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Brand</td>
+                                                <td>
+                                                    @{{this.product_item.brand_id}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Weight</td>
+                                                <td>
+                                                    @{{this.product_item.weight}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Category</td>
+                                                <td>
+                                                    <div v-for="pcatname in this.product_item.category_json">
+                                                        <div href="#" v-for="category in categories">
+                                                            <a v-if="category.id == pcatname">@{{category.name}}</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <div class="text-center"
+                                    style="padding: 20px 0px 15px 0px; color: #c40316; text-transform: uppercase;">
+                                    <h4 style="font-size: 18px;">Inventory</h4>
+                                </div>
+                                <form action="#">
+                                    <div class="form-group col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Inventory</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12 d-flex align-items-center mb-3">
+                                                        <input @change="track_inventory = !track_inventory"
+                                                            name="track_inventory" id="track_inventory"
+                                                            class="form-control d-inline-block mr-2" style="width: 30px"
+                                                            type="checkbox">
+                                                        <label for="track_inventory"
+                                                            style="line-height: 30px;margin: 0;">Track
+                                                            Inventory</label>
+                                                    </div>
+                                                    <div class="col-12" v-if="track_inventory">
+                                                        <ul class="pl-5">
+                                                            <li class="d-flex align-items-center mb-2">
+                                                                <input
+                                                                    @change="on_the_product_level = !on_the_product_level"
+                                                                    type="radio" name="on_the_product_level"
+                                                                    class="form-control mr-2" style="width: 30px">
+                                                                <label style="line-height: 30px;margin: 0;" for=""> On
+                                                                    the product level</label>
+                                                            </li>
+                                                            <li class="d-flex align-items-center mb-2">
+                                                                <input
+                                                                    @change="on_the_product_level = !on_the_product_level"
+                                                                    type="radio" name="on_the_product_level"
+                                                                    class="form-control mr-2" style="width: 30px">
+                                                                <label style="line-height: 30px;margin: 0;" for=""> On
+                                                                    the variant level</label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="row" v-if="on_the_product_level">
+
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="first_child">Stock</td>
+                                                                <td>@{{this.product_item.track_inventory_on_the_variant_level_stock}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="first_child">Low Stock</td>
+                                                                <td>@{{this.product_item.track_inventory_on_the_variant_level_low_stock}}
+                                                                </td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="row" v-else>
+                                                    <div class="col-12">
+                                                        <span>Add variant options to create variants and manage
+                                                            inventory</span>
+                                                        <a href="#" class="text-info"
+                                                            style="text-decoration: none;">below</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </span>
+                                    </div>
 
-                                    <span>Brand: <a href="#">@{{this.product_item.brand_id}}</a></span> <br />
-                                    <span>Weight: <a href="#">@{{this.product_item.weight}}</a></span> <br />
-                                    <span>Description: <a href="#">@{{this.product_item.description}}</a></span> <br />
-                                    {{-- <span>product_identifier_sku: <a
-                                            href="#">@{{this.product_item.product_identifier_sku}}</a></span> <br />
-                                    <span>manufacture_part_number: <a
-                                            href="#">@{{this.product_item.manufacture_part_number}}</a></span> <br />
-                                    <span>product_upc: <a href="#">@{{this.product_item.product_upc}}</a></span> <br />
-                                    <span>global_trade_number: <a
-                                            href="#">@{{this.product_item.global_trade_number}}</a></span> <br />
-                                    <span>bin_picking_number: <a
-                                            href="#">@{{this.product_item.bin_picking_number}}</a></span> <br />
-                                    <span>pricing_default_price: <a
-                                            href="#">@{{this.product_item.pricing_default_price}}</a></span> <br />
-                                    <span>tax_class: <a href="#">@{{this.product_item.tax_class}}</a></span> <br />
-                                    <span>tax_provider_tax_code: <a
-                                            href="#">@{{this.product_item.tax_provider_tax_code}}</a></span> <br />
-                                    <span>cost: <a href="#">@{{this.product_item.cost}}</a></span> <br />
-                                    <span>msrp: <a href="#">@{{this.product_item.msrp}}</a></span> <br />
-                                    <span>sales_price: <a href="#">@{{this.product_item.sales_price}}</a></span> <br />
-                                    <span>bulk_pricing_discount_options:
-                                        <div
-                                            v-for="bulk_pricing in this.product_item.bulk_pricing_discount_options_json">
-                                            {{-- <a href="#">Minimum Quantity: @{{bulk_pricing.min_quantity}} || Discount: @{{bulk_pricing.discount}}% ||
-                                                Unit Price:  @{{bulk_pricing.unit_price}} <br> </a> --}}
-                                            <a href="#">Minimum Quantity: @{{bulk_pricing.min_quantity}} || Discount: @{{bulk_pricing.discount}}% ||
-                                                Unit Price:  @{{bulk_pricing.unit_price}} ||  Total Price:  @{{(bulk_pricing.unit_price)-((bulk_pricing.unit_price)*((bulk_pricing.discount)/(100)))}} <br> </a>
-                                        </div>
-                                    </span>
-                                    <br />
-                                    <span>bulk_pricing_discount_type: <a
-                                            href="#">@{{this.product_item.bulk_pricing_discount_type}}</a></span> <br />
-                                    <span>track_inventory: <a href="#">@{{this.product_item.track_inventory}}</a></span>
-                                    <br />
-                                    <span>on_the_product_level: <a
-                                            href="#">@{{this.product_item.on_the_product_level}}</a></span> <br />
-                                    <span>track_inventory_on_the_variant_level_stock: <a
-                                            href="#">@{{this.product_item.track_inventory_on_the_variant_level_stock}}</a></span>
-                                    <br />
-                                    <span>track_inventory_on_the_variant_level_low_stock: <a
-                                            href="#">@{{this.product_item.track_inventory_on_the_variant_level_low_stock}}</a></span>
-                                    <br />
-                                    <span>selected_variant_options: <a
-                                            href="#">@{{this.product_item.selected_variant_option_json}}</a></span>
-                                    <br />
-
-                                    <span>modifier_options: <a
-                                            href="#">@{{this.product_item.modifier_options_json}}</a></span> <br />
-                                    <span>set_as_store_front: <a
-                                            href="#">@{{this.product_item.set_as_store_front}}</a></span> <br />
-                                    <span>search_keywords: <a href="#">@{{this.product_item.search_keywords}}</a></span>
-                                    <br />
-                                    <span>sort_order: <a href="#">@{{this.product_item.sort_order}}</a></span> <br />
-                                    <span>template_layout_file: <a
-                                            href="#">@{{this.product_item.template_layout_file}}</a></span> <br />
-                                    <span>waranty_information: <a
-                                            href="#">@{{this.product_item.waranty_information}}</a></span> <br />
-                                    <span>availability_text: <a
-                                            href="#">@{{this.product_item.availability_text}}</a></span> <br />
-                                    <span>product_condition: <a
-                                            href="#">@{{this.product_item.product_condition}}</a></span> <br />
-                                    <span>show_condition_on_storefront: <a
-                                            href="#">@{{this.product_item.show_condition_on_storefront}}</a></span>
-                                    <br />
-                                    <span>custom_fields:
-                                        <div href="#" v-for="customfild in this.product_item.custom_fields_json">
-                                            <a href="">@{{customfild.name}} || @{{customfild.value}} <br></a>
-                                        </div>
-                                    </span>
-                                    <br />
-                                    <span>automatically_show_related_prodauct_on_my_store_front: <a
-                                            href="#">@{{this.product_item.automatically_show_related_prodauct_on_my_store_front}}</a></span>
-                                    <br />
-                                    <span>width: <a href="#">@{{this.product_item.width}}</a></span> <br />
-                                    <span>height: <a href="#">@{{this.product_item.height}}</a></span> <br />
-                                    <span>depth: <a href="#">@{{this.product_item.depth}}</a></span> <br />
-                                    <span>fixed_shipping_price: <a
-                                            href="#">@{{this.product_item.fixed_shipping_price}}</a></span> <br />
-                                    <span>free_shipping: <a href="#">@{{this.product_item.free_shipping}}</a></span>
-                                    <br />
-                                    <span>purchasability: <a href="#">@{{this.product_item.purchasability}}</a></span>
-                                    <br />
-                                    <span>preorder_message: <a
-                                            href="#">@{{this.product_item.preorder_message}}</a></span> <br />
-                                    <span>release_date: <a href="#">@{{this.product_item.release_date}}</a></span>
-                                    <br />
-                                    <span>remove_pre_order_status_on_this_date: <a
-                                            href="#">@{{this.product_item.remove_pre_order_status_on_this_date}}</a></span>
-                                    <br />
-                                    <span>show_call_for_pricing: <a
-                                            href="#">@{{this.product_item.show_call_for_pricing}}</a></span> <br />
-                                    <span>call_number: <a href="#">@{{this.product_item.call_number}}</a></span> <br />
-                                    <span>minimum_purchase_quantity: <a
-                                            href="#">@{{this.product_item.minimum_purchase_quantity}}</a></span> <br />
-                                    <span>maximum_purchase_quantity: <a
-                                            href="#">@{{this.product_item.maximum_purchase_quantity}}</a></span> <br />
-                                    <span>wrapping: <a href="#">@{{this.product_item.wrapping}}</a></span> <br />
-                                    <span>custom_information: <a
-                                            href="#">@{{this.product_item.custom_information}}</a></span> <br />
-                                    <span>country_of_origin: <a
-                                            href="#">@{{this.product_item.country_of_origin}}</a></span> <br />
-                                    <span>comodity_description: <a
-                                            href="#">@{{this.product_item.comodity_description}}</a></span> <br />
-                                    <span>hs_codes:
-                                        <div v-for="hscode in this.product_item.hs_codes_json">
-
-                                            <a href="#">Country: @{{hscode.country}} || Code: @{{hscode.code}} <br></a>
-                                        </div>
-                                        <div href="#" v-for="customfild in this.product_item.custom_fields_json">
-                                            <a href="">@{{customfild.name}} || @{{customfild.value}} <br></a>
+                                </form>
+                                <div class="text-center"
+                                    style="padding: 20px 0px 15px 0px; color: #c40316; text-transform: uppercase;">
+                                    <h4 style="font-size: 18px;">Product Description</h4>
                                 </div>
-                                </span>
-                                <br />
-                                <span>page_title: <a href="#">@{{this.product_item.page_title}}</a></span> <br />
-                                <span>product_url: <a href="#">@{{this.product_item.product_url}}</a></span> <br />
-                                <span>meta_description: <a href="#">@{{this.product_item.meta_description}}</a></span>
-                                <br />
-                                <span>open_graph_sharing_object_type: <a
-                                        href="#">@{{this.product_item.open_graph_sharing_object_type}}</a></span>
-                                <br />
-                                <span>open_graph_use_product_description: <a
-                                        href="#">@{{this.product_item.open_graph_use_product_description}}</a></span>
-                                <br />
-                                <span>open_graph_use_product_name: <a
-                                        href="#">@{{this.product_item.open_graph_use_product_name}}</a></span>
-                                <br />
-                                <span>variant_values: <a href="#">@{{this.product_item.variant_values_json}}</a></span>
-                                <br /> --}}
+                            </div>
+                            <div class="product_info_content">
+                                <p>@{{this.product_item.description}}</p>
+                            </div>
                         </div>
+                        <div class="tab-pane fade" id="Pricing" role="tabpanel">
+                            <div class="product_d_table">
+                                {{-- <div class="text-center" style="padding: 10px 0px 0px 0px;">
+                                            <h4>Bulk Pricing</h4>
+                                        </div> --}}
+                                <form action="#">
+                                    <table>
+                                        <tbody>
+
+                                            <tr>
+                                                <td class="first_child">DEFAULT PRICE * (EXCLUDING TAX)</td>
+                                                <td>
+                                                    @{{this.product_item.pricing_default_price}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">TAX CLASS</td>
+                                                <td>
+                                                    <select name="tax_class" class="form-control">
+                                                        <option value="default_tax_class"> Default Tax Class
+                                                        </option>
+                                                        <option value="non_taxable_products"> Non-Taxable
+                                                            Products</option>
+                                                        <option value="shipping"> Shipping</option>
+                                                        <option value="gift_wrapping"> Gift Wrapping</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">COST</td>
+                                                <td>
+                                                    @{{this.product_item.cost}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">MSRP</td>
+                                                <td>
+                                                    @{{this.product_item.msrp}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">SALE PRICE</td>
+                                                <td>
+                                                    @{{this.product_item.sales_price}}
+                                                </td>
+                                            </tr>
 
 
-                        </form>
-                        <div class="priduct_social">
-                            <ul>
-                                <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i>
-                                        Like</a></li>
-                                <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i>
-                                        tweet</a></li>
-                                <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i>
-                                        save</a></li>
-                                <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i>
-                                        share</a></li>
-                                <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i>
-                                        linked</a></li>
-                            </ul>
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <div class="text-center"
+                                    style="padding: 20px 0px 15px 0px; color: #c40316; text-transform: uppercase;">
+                                    <h4 style="font-size: 18px;">Bulk Pricing</h4>
+                                </div>
+                                <form action="#"
+                                    v-for="bulk_pricing in this.product_item.bulk_pricing_discount_options_json">
+                                    <table>
+                                        <tbody>
+
+                                            <tr>
+                                                <td class="first_child">DISCOUNT TYPE</td>
+                                                <td>
+                                                    <select name="bulk_pricing_discount_type" class="form-control">
+                                                        <option value="discount"> % Discount</option>
+                                                        <option value="fixed_amount"> $ Fixed Amount</option>
+                                                        <option value="off_unit"> $ Off/Unit</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="first_child">MIN QUANTITY</td>
+                                                <td>
+                                                    @{{bulk_pricing.min_quantity}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">DISCOUNT</td>
+                                                <td>
+                                                    @{{bulk_pricing.discount}}%
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">UNIT PRICE</td>
+                                                <td>
+                                                    @{{bulk_pricing.unit_price}}
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+
                         </div>
+                        <div class="tab-pane fade" id="ProductOptions" role="tabpanel">
+                            <div class="product_d_table">
+                                <div class="text-center"
+                                    style="padding: 20px 0px 15px 0px; color: #c40316; text-transform: uppercase;">
+                                    <h4 style="font-size: 18px;">Fulfillment</h4>
+                                </div>
+
+                                <form action="#">
+                                    <table>
+                                        <tbody>
+
+                                            <tr>
+                                                <td class="first_child">Width</td>
+                                                <td>
+                                                    @{{this.product_item.width}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Height</td>
+                                                <td>
+                                                    @{{this.product_item.height}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Depth</td>
+                                                <td>
+                                                    @{{this.product_item.depth}}
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <div class="text-center"
+                                    style="padding: 20px 0px 15px 0px; color: #c40316; text-transform: uppercase;">
+                                    <h4 style="font-size: 18px;">Purchasability</h4>
+                                </div>
+                                <form action="#">
+                                    <table>
+                                        <tbody>
+
+                                            <tr>
+                                                <td class="first_child">MINIMUM PURCHASE QUANTITY</td>
+                                                <td>
+                                                    @{{this.product_item.minimum_purchase_quantity}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">
+                                                    MAXIMUM PURCHASE QUANTITY</td>
+                                                <td>
+                                                    @{{this.product_item.maximum_purchase_quantity}}
+                                                </td>
+                                            </tr>
+                                            {{-- <tr>
+                                                <td class="first_child">
+                                                    Wrapping</td>
+                                                <td>
+                                                    @{{this.product_item.wrapping}}
+                                                </td>
+                                            </tr> --}}
+                                         
+
+                                        </tbody>
+                                    </table>
+                                    {{-- <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div class="col-12 d-flex align-items-center mb-3">
+                                                        <input id="purchasability" @change="purchasability='can_be_purchased_in_online_store'" name="purchasability" checked type="radio" class="form-control d-inline-block mr-2" style="width: 30px;">
+                                                        <label for="purchasability" style="line-height: 30px; margin: 0px;">This product can be purchased in my online store</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 d-flex align-items-center mb-3">
+                                                        <input id="purchasability2" @change="purchasability='comming_soon'" name="purchasability" type="radio" class="form-control d-inline-block mr-2" style="width: 30px;">
+                                                        <label for="purchasability2" style="line-height: 30px; margin: 0px;">This product is coming soon but I want to take pre-orders</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row pl-5 mb-5" v-if="purchasability == 'comming_soon'">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="">Message</label>
+                                                            <input type="text" class="form-control" v-model="preorder_message" name="preorder_message" value="Expected release date is %%DATE%%">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="">Release Date</label>
+                                                            <input type="date" v-model="release_date" name="release_date" class="form-control" placeholder="D MMM YYYY">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3" style="align-self: center;margin-top: 24px;">
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <input  name="remove_pre_order_status_on_this_date" v-model="remove_pre_order_status_on_this_date" type="checkbox" class="form-control d-inline-block mr-2" style="width: 42px;">
+                                                            <label for="remove_pre_order_status_on_this_date" style="line-height: 16px; margin: 0px;">Remove pre-order status on this date</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 d-flex align-items-center mb-3">
+                                                        <input id="purchasability3" @change="purchasability='can_not_be_purchased_in_online_store'" name="purchasability" type="radio" class="form-control d-inline-block mr-2" style="width: 30px;">
+                                                        <label for="purchasability3" style="line-height: 30px; margin: 0px;">This product cannot be purchased in my online store</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row pl-5 mb-5" v-if="purchasability == 'can_not_be_purchased_in_online_store'">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <input  name="show_call_for_pricing" type="checkbox" v-model="show_call_for_pricing" class="form-control d-inline-block mr-2" style="width: 26px;">
+                                                                <label for="show_call_for_pricing" style="line-height: 16px; margin: 0px;">Show “Call for pricing” message instead of the price</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="call_number">Call for pricing label</label>
+                                                            <input type="text" class="form-control" v-model="call_number" name="call_number" value="Contact us at 555-5555">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  
+                                    </div> --}}
+                                </form>
+                            </div>
+
+                        </div>
+
 
                     </div>
                 </div>
             </div>
         </div>
-        <!--product details end-->
-
-        <!--product info start-->
-        <div class="product_d_info">
-            <div class="row">
-                <div class="col-12">
-                    <div class="product_d_inner">
-                        <div class="product_info_button">
-                            <ul class="nav" role="tablist">
-                                <li>
-                                    <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info"
-                                        aria-selected="false">Description</a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
-                                        aria-selected="false">Specification</a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                        aria-selected="false">Reviews (1)</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="info" role="tabpanel">
-                                <div class="product_info_content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue
-                                        nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi
-                                        ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate
-                                        adipiscing cursus eu, suscipit id nulla.</p>
-                                    <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem,
-                                        quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies
-                                        massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero
-                                        hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus
-                                        nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus,
-                                        consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in
-                                        imperdiet ligula euismod eget.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="sheet" role="tabpanel">
-                                <div class="product_d_table">
-                                    <form action="#">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="first_child">Compositions</td>
-                                                    <td>Polyester</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first_child">Styles</td>
-                                                    <td>Girly</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first_child">Properties</td>
-                                                    <td>Short Dress</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
-                                <div class="product_info_content">
-                                    <p>Fashion has been creating well-designed collections since 2010. The brand
-                                        offers feminine designs delivering stylish separates and statement dresses
-                                        which have since evolved into a full ready-to-wear collection in which every
-                                        item is a vital part of a woman's wardrobe. The result? Cool, easy, chic
-                                        looks with youthful elegance and unmistakable signature style. All the
-                                        beautiful pieces are made in Italy and manufactured with the greatest
-                                        attention. Now Fashion extends to a range of accessories including shoes,
-                                        hats, belts and more!</p>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="reviews" role="tabpanel">
-                                <div class="reviews_wrapper">
-                                    <h2>1 review for Donec eu furniture</h2>
-                                    <div class="reviews_comment_box">
-                                        <div class="comment_thmb">
-                                            <img src="{{ asset('contents/frontend') }}/assets/img/blog/comment2.jpg"
-                                                alt="">
-                                        </div>
-                                        <div class="comment_text">
-                                            <div class="reviews_meta">
-                                                <div class="product_rating">
-                                                    <ul>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                        </li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                        </li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                        </li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                        </li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <p><strong>admin </strong>- September 12, 2018</p>
-                                                <span>roadthemes</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="comment_title">
-                                        <h2>Add a review </h2>
-                                        <p>Your email address will not be published. Required fields are marked </p>
-                                    </div>
-                                    <div class="product_rating mb-10">
-                                        <h3>Your rating</h3>
-                                        <ul>
-                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product_review_form">
-                                        <form action="#">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label for="review_comment">Your review </label>
-                                                    <textarea name="comment" id="review_comment"></textarea>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="author">Name</label>
-                                                    <input id="author" type="text">
-
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="email">Email </label>
-                                                    <input id="email" type="text">
-                                                </div>
-                                            </div>
-                                            <button type="submit">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--product info end-->
     </div>
+    <!--product info end-->
+</div>
 
 
 </div>

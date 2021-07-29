@@ -393,10 +393,12 @@
                                                 <option value="1">pink</option>
                                                 <option value="1">orange</option>
                                             </select>
+                                            {{-- <input min="1" max="100" value="1" type="number"> --}}
                                         </div>
                                         <div class="modal_add_to_cart">
                                             <form action="">
-                                                <input min="1" max="100" v-model="cart_option.qty" step="1" type="number" />
+                                                {{-- <input min="1" max="100" v-model="cart_option.qty" step="1" type="number" /> --}}
+                                                <input min="1" max="100" step="1" value="1" v-model="cart_option.qty" type="number">
                                                 {{--
                                                 <button
                                                     type="button"

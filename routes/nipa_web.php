@@ -151,6 +151,8 @@ Route::group([
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
+    Route::get('/orders', 'AccountSettingsController@admin_orders')->name('admin_orders');
+    Route::get('/admin-orders-information', 'AccountSettingsController@admin_orders_information')->name('admin_orders_information');
     Route::get('/account-settings-invoices', 'AccountSettingsController@invoices')->name('admin_account_settings_invoices');
     Route::get('/account-settings-payment-method', 'AccountSettingsController@payment_method')->name('admin_account_settings_payment_method');
 });

@@ -19,11 +19,7 @@
 
     <div class="contact_page_bg">
         <!--contact map start-->
-        <div class="contact_map">
-            <div class="map-area">
-                <div id="googleMap"></div>
-            </div>
-        </div>
+  
         <!--contact map end-->
         <div class="container">
             <!--contact area start-->
@@ -70,6 +66,11 @@
             </div>
             <!--contact area end-->
         </div>
+        {{-- <div class="contact_map">
+            <div class="map-area">
+                <div id="googleMap"></div>
+            </div>
+        </div> --}}
     </div>
 
 @endsection

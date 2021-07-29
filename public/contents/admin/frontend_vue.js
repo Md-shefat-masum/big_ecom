@@ -150,6 +150,61 @@ if (document.getElementById('product-details')) {
         },
     });
 }
+if (document.getElementById('product-details-two')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#product-details-two',
+        store: store,
+        data: function () {
+            return {
+                form_data: {
+                    id: null,
+                    product_name: null,
+                },
+                cart_option: {
+                    qty: 1,
+                    price: 0,
+                    // product_price:this.product.default_price,
+                },
+                product_item: {},
+                categories: [],
+                track_inventory: false,
+                on_the_product_level: false,
+
+                track_inventory_on_the_variant_level_stock: 0,
+                track_inventory_on_the_variant_level_low_stock: 0,
+                purchasability: 'can_be_purchased_in_online_store',
+            }
+        },
+        created: function () {
+            this.getProduct();
+
+            axios.get('/frontend-category')
+                .then(response => this.categories = response.data)
+                .catch(error => console.log(error));
+            console.log(this.categories);
+        },
+        methods: {
+            ...window.mutation([
+                'add_new_product_to_cart',
+            ]),
+            getProduct: function () {
+
+                if (location.pathname.split('/')[2]) {
+                    axios.get(`/json-product-details/${location.pathname.split('/')[2]}`)
+                        .then((res) => {
+                            console.log(res.data);
+                            this.product_item = res.data;
+                        })
+                }
+
+            },
+        },
+        computed: {
+            ...window.getters(['get_selected_product_for_cart', 'get_selected_product_for_quick_view']),
+        },
+    });
+}
 
 if (document.getElementById('quick_view_modal')) {
 
@@ -191,7 +246,7 @@ if (document.getElementById('cart_product_modal')) {
             if (this.get_selected_product_for_cart.cart_option) {
                 this.cart_option = this.get_selected_product_for_cart.cart_option;
             } else {
-                this.cart_option.qty = 1;
+                this.cart_option.qty =  1;
             }
         },
         methods: {
