@@ -198,4 +198,8 @@ Route::group([
     Route::get('/get-checkout-information', 'FrontendController@get_checkout_information')->name('get_checkout_information')->middleware('auth');
 
     Route::get('/frontend-category', 'FrontendController@frontend_category')->name('frontend_category');
+    
+    Route::get('/home-all-product', 'FrontendController@home_all_product')->name('home_all_product');
+
+    Route::get('/json-home-category-product', 'FrontendController@json_home_category_product')->name('json_home_category_product');
 });

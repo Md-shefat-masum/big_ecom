@@ -211,8 +211,8 @@
         </div>
     </header>
     <!--header area end-->
-    @yield('content')
 
+  
     <div class="modal fade" v-if="Object.keys(get_selected_product_for_quick_view).length > 0" id="quick_view_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -455,11 +455,11 @@
         </div>
     </div>
 
-
+    {{-- @include('frontend.include.banner') --}}
 
     <!--home section bg area start-->
-    <div class="home_section_bg">
-        <!--product area start-->
+    {{-- <div class="home_section_bg"> --}}
+        @yield('content')
     </div>
     <!--home section bg area end-->
 

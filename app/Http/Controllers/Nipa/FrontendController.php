@@ -19,18 +19,48 @@ use App\Models\UserRole;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class FrontendController extends Controller
 {
-
+    
+    public function home_all_product()
+    {
+        // $category=Category::orderBy('id','DESC')->paginate(8);
+        // return view('frontend.index',['category' => $category]);
+   
+    }
+    public function json_home_category_product()
+    {
+        $data = Product::orderBy('id','DESC')->paginate(8);
+        return $data;
+    }
+    // public function frontend_category()
+    // {
+    //     $paidFeesIds = Product::select('selected_categories')->get()->toArray();;
+    //     $v=json_decode($paidFeesIds);
+    //     $data = DB::table('categories')->where('id',24)->first();;
+    //     return $data;
+    //     dd( $paidFeesIds[0]);
+    // }
+    public function frontend_category()
+    {
+        $data = Category::orderBy('id','DESC')->get();
+        return $data;
+    }
     public function frontend_product()
     {
         // $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);
         $data = [];
         return view('frontend.product', compact('data'));
+    }
+    public function frontend_get_product()
+    {
+        $data = Product::orderBy('id', 'DESC')->where('status', 1)->paginate(10);
+        return $data;
     }
     public function product_details(Request $request, $id)
     {
@@ -43,18 +73,9 @@ class FrontendController extends Controller
 
         $data = Product::find($id);
         return $data;
-   
     }
-    public function frontend_get_product()
-    {
-        $data = Product::orderBy('id', 'DESC')->where('status', 1)->paginate(10);
-        return $data;
-    }
-    public function frontend_category()
-    {
-        $data = Category::get();
-        return $data;
-    }
+ 
+  
     public function frontend_cart()
     {
         return view('frontend.cart');

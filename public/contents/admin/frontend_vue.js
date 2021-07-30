@@ -101,6 +101,48 @@ if (document.getElementById('product_list')) {
     });
 }
 
+if (document.getElementById('home-product-category')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#home-product-category',
+        store: store,
+        data: function () {
+            return {
+              
+                home_category: {},
+                home_category_product: {},
+            }
+        },
+        created: function () {
+            this.getHomeCat();
+            this.getCatroduct();
+        },
+        methods: {
+            getHomeCat: function () {
+
+                axios.get('/frontend-category')
+                .then(res => {
+                    // console.log(res.data);
+                    this.home_category = res.data;
+                })
+
+            },
+            getCatroduct: function (page=1) {
+
+                axios.get('/json-home-category-product?page='+page)
+                .then(res => {
+                    // console.log(res.data);
+                    this.home_category_product = res.data;
+                })
+
+            },
+           
+        },
+        computed: {
+            // ...window.getters(['get_selected_product_for_cart', 'get_selected_product_for_quick_view']),
+        },
+    });
+}
 if (document.getElementById('product-details')) {
     // alert('ok');
     const app = new Vue({
@@ -246,7 +288,7 @@ if (document.getElementById('cart_product_modal')) {
             if (this.get_selected_product_for_cart.cart_option) {
                 this.cart_option = this.get_selected_product_for_cart.cart_option;
             } else {
-                this.cart_option.qty =  1;
+                this.cart_option.qty = 1;
             }
         },
         methods: {

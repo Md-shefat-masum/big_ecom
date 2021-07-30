@@ -4615,6 +4615,7 @@ textarea:-ms-input-placeholder {
     border-top: 1px solid #ebebeb;
     border-bottom: 1px solid #ebebeb;
     border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
 }
 
 .single_product:hover {
@@ -5497,7 +5498,7 @@ textarea:-ms-input-placeholder {
 
 .category_menu {
     background: #ffffff;
-    height: 92%;
+    height: 100%;
     position: relative;
 }
 
@@ -5521,7 +5522,7 @@ textarea:-ms-input-placeholder {
 }
 
 .category_menu_content {
-    padding: 30px 20px 100px 20px;
+    padding: 30px 20px 0px 20px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -12441,3 +12442,29 @@ textarea:-ms-input-placeholder {
     position: relative;
     color: #222222;
 }
+
+.no-js .owl-carousel, .owl-carousel.owl-loaded {
+    display: block;
+}
+
+.home_section_design{
+    margin: 55px 0px !important;
+}
+/* .page-link{
+    position: absolute;
+    top: 30%;
+    transform: translatey(-50%);
+    font-size: 24px;
+    border: 1px solid #ebebeb;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    right: 18px;
+    color: #ffffff;
+    background: #c40316;
+    border-color: #c40316;
+} */

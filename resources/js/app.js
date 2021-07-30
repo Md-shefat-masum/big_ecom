@@ -10,7 +10,7 @@ window.Vue = require('vue').default;
 
 window.store = require('./store/index');
 const { default: store } = window.store;
-
+Vue.component('pagination', require('laravel-vue-pagination'));
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 window.getters = mapGetters;

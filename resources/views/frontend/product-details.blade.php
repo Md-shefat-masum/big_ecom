@@ -470,9 +470,9 @@
                                                     Wrapping</td>
                                                 <td>
                                                     @{{this.product_item.wrapping}}
-                                                </td>
+                                            </td>
                                             </tr> --}}
-                                         
+
 
                                         </tbody>
                                     </table>

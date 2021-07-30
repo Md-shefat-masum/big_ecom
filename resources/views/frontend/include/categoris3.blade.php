@@ -14,34 +14,26 @@
                                     <h2>@{{category.name}}</h2>
 
                                 </div>
-                                <pagination :data="home_category_product" :limit="-1"
-                                    @pagination-change-page="getCatroduct">
+               
                                     <div class="product_tab_btn">
                                         <ul class="nav">
 
-                                        
-
-
                                             <li>
-                                                <span slot="prev-nav">
-                                                {{-- <span slot="prev-nav">&lt; Previous
-                                                <span slot="next-nav">Next &gt;</span> --}}
-                                                <a style="">
+                                                <a>
                                                     <i class="ion-ios-arrow-back left-icon"></i>
                                                 </a>
-                                            </span>
                                             </li>
                                             <li>
-                                                <span slot="next-nav">
                                                 <a>
                                                     <i class="ion-ios-arrow-forward right-icon"></i>
                                                 </a>
-                                            </span>
                                             </li>
+
+
 
                                         </ul>
                                     </div>
-                                </pagination>
+                       
                             </div>
                         </div>
                     </div>
@@ -108,10 +100,10 @@
                                         <div class="product_content">
                                             <div class="product_content_inner">
                                                 <h4 class="product_name"><a
-                                                        href="product-details.html">@{{front_category.product_name}} </a></h4>
+                                                        href="product-details.html">@{{front_category.name}} </a></h4>
                                                 <div class="price_box">
                                                     <span class="old_price">$65.00</span>
-                                                    <span class="current_price">$@{{front_category.default_price}}</span>
+                                                    <span class="current_price">$60.00</span>
                                                 </div>
                                             </div>
                                             <div class="add_to_cart">
