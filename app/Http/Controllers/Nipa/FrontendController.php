@@ -51,6 +51,11 @@ class FrontendController extends Controller
         $data = Category::orderBy('id','DESC')->get();
         return $data;
     }
+    public function menu_category()
+    {
+        $data = Category::orderBy('id','ASC')->get();
+        return $data;
+    }
     public function frontend_product()
     {
         // $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);
@@ -59,7 +64,7 @@ class FrontendController extends Controller
     }
     public function frontend_get_product()
     {
-        $data = Product::orderBy('id', 'DESC')->where('status', 1)->paginate(10);
+        $data = Product::orderBy('id', 'DESC')->where('status', 1)->paginate(16);
         return $data;
     }
     public function product_details(Request $request, $id)
@@ -223,5 +228,24 @@ class FrontendController extends Controller
     {
         $order = Order::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->with('order_information')->first();
         return $order;
+    }
+
+    public function get_product_filter(Request $request)
+    {
+        // $max_price = Product::orderBy('default_price', 'DESC')->first();
+        // $min_price = Product::orderBy('default_price', 'ASC')->first();
+        $min=$request->min;
+        $max=$request->max;
+        $data = Product::orderBy('id', 'DESC')->whereBetween('default_price', [$min, $max])->paginate(16);
+        return $data;
+    }
+    public function json_min_max_price()
+    {
+        $max_price = Product::orderBy('default_price', 'DESC')->first();
+        $min_price = Product::orderBy('default_price', 'ASC')->first();
+        return response()->json([
+            'max_price' => $max_price->default_price,
+            'min_price' => $min_price->default_price,
+        ]);
     }
 }

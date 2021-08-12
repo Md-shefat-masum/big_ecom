@@ -182,6 +182,7 @@ Route::group([
     Route::get('/json-product-details/{id}', 'FrontendController@json_product_details')->name('json_product_details');
     Route::get('/get-product', 'FrontendController@frontend_get_product')->name('frontend_get_product');
 
+
     Route::get('/cart', 'FrontendController@frontend_cart')->name('frontend_cart');
     Route::post('/add-to-cart', 'FrontendController@add_to_cart')->name('add_to_cart');
 
@@ -198,8 +199,14 @@ Route::group([
     Route::get('/get-checkout-information', 'FrontendController@get_checkout_information')->name('get_checkout_information')->middleware('auth');
 
     Route::get('/frontend-category', 'FrontendController@frontend_category')->name('frontend_category');
+    Route::get('/menu-category', 'FrontendController@menu_category')->name('menu_category');
     
     Route::get('/home-all-product', 'FrontendController@home_all_product')->name('home_all_product');
 
     Route::get('/json-home-category-product', 'FrontendController@json_home_category_product')->name('json_home_category_product');
+
+    Route::get('/get-product-filter', 'FrontendController@get_product_filter')->name('get_product_filter');
+    // Route::get('/get-product-max-price', 'FrontendController@get_product_max_price')->name('get_product_max_price');
+    // Route::get('/get-product-min-price', 'FrontendController@get_product_min_price')->name('get_product_max_price');
+    Route::get('/json-min-max-price', 'FrontendController@json_min_max_price')->name('json_min_max_price');
 });

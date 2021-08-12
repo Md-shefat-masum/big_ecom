@@ -28,11 +28,11 @@
                                 <div class="card-body">
 
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Your Timezone</label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Your
+                                            Timezone</label>
                                         <div class="col-sm-9">
                                             <select class="form-control col-md-12 mb-3" name="timezone"
-                                                v-model="form_data.timezone"
-                                                aria-label="Default select example">
+                                                v-model="form_data.timezone" aria-label="Default select example">
                                                 @php
                                                 $store=DB::table('store_your_timezones')->get();
                                                 @endphp
@@ -45,24 +45,29 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Enable DST Correction?</label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Enable DST
+                                            Correction?</label>
                                         <div class="col-sm-9">
                                             <div class="form-check form-switch"
                                                 v-if="form_data.enable_dst_correction == 1">
                                                 <input class="form-check-input" name="enable_dst_correction"
                                                     v-model="form_data.enable_dst_correction" type="checkbox">
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">Yes, enable daylight savings time correction</label>
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Yes, enable
+                                                    daylight savings time correction</label>
                                             </div>
                                             <div class="form-check form-switch"
                                                 v-if="form_data.enable_dst_correction == 0">
-                                                <input class="form-check-input" name="enable_dst_correction" type="checkbox">
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">Yes, enable daylight savings time correction</label>
+                                                <input class="form-check-input" name="enable_dst_correction"
+                                                    type="checkbox">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Yes, enable
+                                                    daylight savings time correction</label>
                                             </div>
                                         </div>
                                     </div>
-                                 
+
                                     <div class="row mb-3">
-                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Display Date Format</label>
+                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Display Date
+                                            Format</label>
                                         <div class="col-sm-9">
 
                                             <input type="text" name="display_date_format"
@@ -70,7 +75,8 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Extended Display Date Format</label>
+                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Extended Display
+                                            Date Format</label>
                                         <div class="col-sm-9">
 
                                             <input type="text" name="extended_display_date_format"
@@ -81,7 +87,7 @@
 
                                 </div>
                             </div>
-                           
+
                             <div class="card">
                                 <div class="card-body">
                                     <div class="col-12">

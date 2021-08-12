@@ -64,12 +64,19 @@ if (document.getElementById('product_list')) {
                     id: null,
                     product_id: null,
                 },
+                price_range: '',
                 product_list: {},
+                limit: 9
                 // selected_product_for_modal : null,
             }
         },
         created: function () {
             this.getProduct();
+            this.init_jquery();
+            this.filter_products();
+            this.getProductFilter();
+            this.getHomeCat();
+            this.getCatroduct();
         },
         methods: {
             ...window.mutation([
@@ -77,6 +84,22 @@ if (document.getElementById('product_list')) {
                 'add_selected_product_for_cart',
 
             ]),
+            getHomeCat: function () {
+
+                axios.get('/menu-category')
+                    .then(res => {
+                        // console.log(res.data);
+                        this.home_category = res.data;
+                    })
+
+            },
+            getCatLimit: function () {
+                if(this.limit==9){
+                    this.limit=100;
+                }else{
+                    this.limit=9;
+                }
+            },
 
             getProduct: function () {
 
@@ -86,6 +109,60 @@ if (document.getElementById('product_list')) {
                         this.product_list = res.data;
                     })
 
+            },
+            init_jquery: function () {
+                let min_price = 0;
+                let max_price = 0;
+                $.get('/json-min-max-price', function (res) {
+                    // console.log(res.data);
+                    min_price = parseInt(res.min_price);
+                    max_price = parseInt(res.max_price);
+
+                    $("#slider-range").slider({
+                        range: true,
+                        min: min_price,
+                        max: max_price,
+                        values: [min_price, max_price],
+                        slide: function (event, ui) {
+                            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                        }
+                    });
+                    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+                        " - $" + $("#slider-range").slider("values", 1));
+                    // let range = $('#amount').val();
+                    // axios.get('/json-min-max-price?range='+range)
+                    //     .then((res)=>{
+                    //         console.log(res.data);
+                    //     })
+
+                });
+
+
+            },
+            getProductFilter: function () {
+
+                axios.get('/json-min-max-price')
+                    .then(res => {
+                        // console.log(res.data);
+                        this.price_range = res.data;
+                    })
+
+            },
+            filter_products: function () {
+                // console.log(this.price_range, $('#amount').val());
+                let range = $('#amount').val();
+                let range_s = range.replace(/\$/g, '');
+                // let range_ss= range_s.replace('-','');
+                // range_ss.split(" ");
+                let min = parseInt(range_s.split("-")['0']);
+                let max = parseInt(range_s.split("-")['1']);
+                // console.log(range_s);
+                // console.log(max);
+                axios.get('/get-product-filter?min=' + min + '&max=' + max)
+                    .then((res) => {
+                        console.log(res.data);
+                        this.product_list = res.data;
+                    })
             },
 
             store: function () {
@@ -108,7 +185,7 @@ if (document.getElementById('home-product-category')) {
         store: store,
         data: function () {
             return {
-              
+
                 home_category: {},
                 home_category_product: {},
             }
@@ -121,22 +198,63 @@ if (document.getElementById('home-product-category')) {
             getHomeCat: function () {
 
                 axios.get('/frontend-category')
-                .then(res => {
-                    // console.log(res.data);
-                    this.home_category = res.data;
-                })
+                    .then(res => {
+                        // console.log(res.data);
+                        this.home_category = res.data;
+                    })
 
             },
-            getCatroduct: function (page=1) {
+            getCatroduct: function (page = 1) {
 
-                axios.get('/json-home-category-product?page='+page)
-                .then(res => {
-                    // console.log(res.data);
-                    this.home_category_product = res.data;
-                })
+                axios.get('/json-home-category-product?page=' + page)
+                    .then(res => {
+                        // console.log(res.data);
+                        this.home_category_product = res.data;
+                    })
 
             },
-           
+
+        },
+        computed: {
+            // ...window.getters(['get_selected_product_for_cart', 'get_selected_product_for_quick_view']),
+        },
+    });
+}
+if (document.getElementById('home-product-category-top')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#home-product-category-top',
+        store: store,
+        data: function () {
+            return {
+
+                home_category: {},
+                home_category_product: {},
+                limit: 9
+            }
+        },
+        created: function () {
+            this.getHomeCat();
+        },
+        methods: {
+            getHomeCat: function () {
+
+                axios.get('/menu-category')
+                    .then(res => {
+                        // console.log(res.data);
+                        this.home_category = res.data;
+                    })
+
+            },
+            getCatLimit: function () {
+                if(this.limit==9){
+                    this.limit=100;
+                }else{
+                    this.limit=9;
+                }
+            },
+       
+
         },
         computed: {
             // ...window.getters(['get_selected_product_for_cart', 'get_selected_product_for_quick_view']),
@@ -513,7 +631,9 @@ if (document.getElementById('get-invoice')) {
         el: '#get-invoice',
         store: store,
         data: function () {
-            return {}
+            return {
+                price_range: '',
+            }
         },
         created: function () {
             if (this.get_selected_cart_all_product.length > 0) {
@@ -555,5 +675,89 @@ if (document.getElementById('get-invoice')) {
                 'get_latest_saved_cart',
             ]),
         },
+    });
+}
+if (document.getElementById('product-price')) {
+    // alert('josko');
+    const app = new Vue({
+        el: '#product-price',
+        store: store,
+        data: function () {
+            return {
+                price_range: '',
+            }
+        },
+        created: function () {
+            this.init_jquery();
+            this.filter_products();
+            this.getProductFilter();
+        },
+        methods: {
+
+
+            ...window.mutation([
+                'add_selected_product_for_quick_view',
+                'add_selected_product_for_cart',
+
+            ]),
+
+            // init_jquery: function () {
+            //     let min_price = 0;
+            //     let max_price = 0;
+            //     $.get('/json-min-max-price', function (res) {
+            //         // console.log(res.data);
+            //         min_price=parseInt(res.min_price);
+            //         max_price=parseInt(res.max_price);
+
+            //         $("#slider-range").slider({
+            //             range: true,
+            //             min: min_price,
+            //             max: max_price,
+            //             values: [min_price, max_price],
+            //             slide: function (event, ui) {
+            //                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            //             }
+            //         });
+            //         $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            //             " - $" + $("#slider-range").slider("values", 1));
+            //         // let range = $('#amount').val();
+            //         // axios.get('/json-min-max-price?range='+range)
+            //         //     .then((res)=>{
+            //         //         console.log(res.data);
+            //         //     })
+
+            //     });
+
+
+            // },
+            // getProductFilter: function () {
+
+            //     axios.get('/json-min-max-price')
+            //         .then(res => {
+            //             // console.log(res.data);
+            //             this.price_range = res.data;
+            //         })
+
+            // },
+            // filter_products: function(){
+            //     // console.log(this.price_range, $('#amount').val());
+            //     let range = $('#amount').val();
+            //     let range_s= range.replace(/\$/g,'');
+            //     // let range_ss= range_s.replace('-','');
+            //     // range_ss.split(" ");
+            //     let min= parseInt(range_s.split("-")['0']);
+            //     let max= parseInt(range_s.split("-")['1']);
+            //     // console.log(range_s);
+            //     // console.log(max);
+            //     axios.get('/get-product-filter?min='+min+'&max='+max)
+            //         .then((res)=>{
+            //             console.log(res.data);
+            //             this.product_list = res.data;
+            //         })
+            // },
+
+
+        },
+
     });
 }

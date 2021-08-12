@@ -62,7 +62,7 @@ if (document.getElementById('store_setup_settings_website')) {
 
             onChange(event) {
                 var data = event.target.value;
-                console.log(data);
+                // console.log(data);
             }
         },
     });

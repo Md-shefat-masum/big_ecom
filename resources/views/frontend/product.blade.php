@@ -17,7 +17,7 @@
 <!--breadcrumbs area end-->
 
 <!--shop  area start-->
-<div class="shop_area shop_reverse">
+<div class="shop_area shop_reverse" id="product_list">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-12">
@@ -26,28 +26,56 @@
                     <div class="widget_list widget_categories">
                         <h3>Product categories</h3>
                         <ul>
-                            <li><a href="#">Cameras & Camcoders</a></li>
-                            <li class="widget_sub_categories"><a href="javascript:void(0)">Computer & Networking</a>
-                                <ul class="widget_dropdown_categories">
-                                    <li><a href="#">Computer</a></li>
-                                    <li><a href="#">Networking</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Games & Consoles</a></li>
-                            <li><a href="#">Headphone & Speaker</a></li>
-                            <li><a href="#">Movies & Video Games</a></li>
-                            <li><a href="#">Smartphone</a> </li>
-                            <li><a href="#">Uncategorized</a></li>
+                            <li  v-for="category in home_category" :key="category.id"  v-if="category.id <= limit"><a>@{{category.name}}</a></li>
+                   
+                            <li v-if="limit <= 9"><a @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li>
+                            <li v-if="limit >= 10"><a @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> Less Categories</a></li>
                         </ul>
+                        
                     </div>
                     <div class="widget_list widget_filter">
                         <h3>Filter by price</h3>
+
+                        {{-- <div class="filter-by-price-area mtb-30 bg-fff box-shadow">
+                            <div class="product-title home2-bg-1 text-uppercase home2-product-title">
+                                <i class="fa fa-bookmark icon bg-4"></i>
+                                <h3>Filter by price</h3>
+                            </div>
+                            <div class="filter-by-price p-20-15">
+                                <p style="position: unset;">price: <input type="text" v-model="price_range" id="amount" /></p>
+                                <div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                    <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0.4%; width: 99.6%;"></div>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0.4%;"></span>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span>
+                                </div>
+                                <div class="filter">
+                                    <button type="button" @click.prevent="filter_products">filter</button>
+                                </div>
+                            </div>
+                        </div> --}}
                         <form action="#">
                             <div id="slider-range"></div>
-                            <button type="submit">Filter</button>
+                            <button type="button" @click.prevent="filter_products">Filter</button>
+                            <label>Price</label>
                             <input type="text" name="text" id="amount" />
 
                         </form>
+                        {{-- <form action="#">
+
+                            <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                <div class="ui-slider-range ui-widget-header ui-corner-all"
+                                    style="left: 0%; width: 100%;">
+                                </div>
+                                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                    style="left: 0%;"></span><span
+                                    class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                    style="left: 100%;"></span>
+                            </div>
+                            <button type="submit">Filter</button>
+                            <label>Price</label>
+                            <input type="text" name="text" id="amount">
+
+                        </form> --}}
                     </div>
                     <div class="widget_list">
                         <h3>Compare Products</h3>
@@ -183,7 +211,7 @@
                 <!--shop toolbar end-->
 
                 <!--shop wrapper start-->
-                <div class="row no-gutters shop_wrapper" id="product_list">
+                <div class="row no-gutters shop_wrapper">
 
                     <div class="col-lg-3 col-md-4 col-12 " v-for="item in product_list.data" :key="item.id">
                         <article class="single_product">

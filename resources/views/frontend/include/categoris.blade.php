@@ -17,7 +17,7 @@
                                 <pagination :data="home_category_product" :limit="-1"
                                     @pagination-change-page="getCatroduct">
                                     <div class="product_tab_btn">
-                                        <ul class="nav">
+                                        <ul class="nav" v-if="category.id == home_category_product.data.id">
 
                                         
 
@@ -53,14 +53,14 @@
                         <div class="category_menu">
                             <div class="category_menu_content">
                                 <ul>
-                                    <li><a href="shop.html">Computer & Networking</a></li>
-                                    <li><a href="shop.html">Computer</a></li>
-                                    <li><a href="shop.html">Networking</a></li>
-                                    <li><a href="shop.html">Fashion & Clothing</a></li>
-                                    <li><a href="shop.html">Games & Consoles</a></li>
-                                    <li><a href="shop.html">Headphone & Speaker</a></li>
-                                    <li><a href="shop.html">Mobile & Tablets</a></li>
-                                    <li><a href="shop.html">Television & Audio</a></li>
+                                    <li><a href="#">Computer & Networking</a></li>
+                                    <li><a href="#">Computer</a></li>
+                                    <li><a href="#">Networking</a></li>
+                                    <li><a href="#">Fashion & Clothing</a></li>
+                                    <li><a href="#">Games & Consoles</a></li>
+                                    <li><a href="#">Headphone & Speaker</a></li>
+                                    <li><a href="#">Mobile & Tablets</a></li>
+                                    <li><a href="#">Television & Audio</a></li>
                                 </ul>
                             </div>
                             <div class="category_menu_img">

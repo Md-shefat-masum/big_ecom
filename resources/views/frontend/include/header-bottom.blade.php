@@ -5,19 +5,19 @@
                 <div class="categories_title">
                     <h2 class="categori_toggle">ALL CATEGORIES</h2>
                 </div>
-                <div class="categories_menu_toggle" style="display: {{ request()->is('/') ? 'block' : 'none' }};">
+                <div class="categories_menu_toggle" style="display: {{ request()->is('/') ? 'block' : 'none' }};"  id="home-product-category-top">
                     <ul>
-                        <li class="menu_item_children">
-                            <a href="#">Brake Parts
+   
+                        <li class="menu_item_children" v-for="(category , index) in home_category" :key="category.id"  v-if="category.id <= limit">
+                            <a href="#">@{{category.name}}
                                 <i class="fa fa-angle-right"></i>
                             </a>
                             <ul class="categories_mega_menu">
-                                <li class="menu_item_children menu_item_children_design">
+                                <li class="menu_item_children menu_item_children_design" v-for="subcategory in home_category" :key="subcategory.id" v-if="subcategory.id == category.parent_id">
                                     <a href="#">Dresses1
                                         <i class="fa fa-angle-right"></i>
                                     </a>
-                                    <ul class="categories_mega_menu_two">
-                                        {{-- <li class="menu_item_children menu_item_children_design"><a href="#">Sweater1</a></li> --}}
+                                    {{-- <ul class="categories_mega_menu_two">
                                         <li class="menu_item_children menu_item_children_design"><a href="#">Sweater2 <i
                                                     class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu_three">
@@ -58,9 +58,9 @@
                                             </ul>
                                         </li>
 
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="menu_item_children">
+                                {{-- <li class="menu_item_children">
                                     <a href="#">Dresses2
                                         <i class="fa fa-angle-right"></i>
                                     </a>
@@ -79,175 +79,15 @@
                                                 href="#">Sweater2</a></li>
 
                                     </ul>
-                                </li>
+                                </li> --}}
 
                             </ul>
+
                         </li>
-                        <li class="menu_item_children">
-                            <a href="#">Brake Parts 2
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                            <ul class="categories_mega_menu">
-                                <li class="menu_item_children menu_item_children_design">
-                                    <a href="#">Dresses1
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="categories_mega_menu_two">
-                                        {{-- <li class="menu_item_children menu_item_children_design"><a href="#">Sweater1</a></li> --}}
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater1 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1 <i class="fa fa-angle-right"></i></a>
-                                                    <ul class="categories_mega_menu_four">
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater1</a></li>
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater1</a></li>
-
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li class="menu_item_children">
-                                    <a href="#">Dresses2
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="categories_mega_menu_two">
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater2 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <li class="menu_item_children menu_item_children_design"><a
-                                                href="#">Sweater2</a></li>
-
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="menu_item_children">
-                            <a href="#">Brake Parts 3
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                            <ul class="categories_mega_menu">
-                                <li class="menu_item_children menu_item_children_design">
-                                    <a href="#">Dresses1
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="categories_mega_menu_two">
-                                        {{-- <li class="menu_item_children menu_item_children_design"><a href="#">Sweater1</a></li> --}}
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater1 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1 <i class="fa fa-angle-right"></i></a>
-                                                    <ul class="categories_mega_menu_four">
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater1</a></li>
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater1</a></li>
-
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li class="menu_item_children">
-                                    <a href="#">Dresses2
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="categories_mega_menu_two">
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater2 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <li class="menu_item_children menu_item_children_design"><a
-                                                href="#">Sweater2</a></li>
-
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="menu_item_children">
-                            <a href="#">Brake Parts 4
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                            <ul class="categories_mega_menu">
-                                <li class="menu_item_children menu_item_children_design">
-                                    <a href="#">Dresses1
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="categories_mega_menu_two">
-                                        {{-- <li class="menu_item_children menu_item_children_design"><a href="#">Sweater1</a></li> --}}
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater1 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1 <i class="fa fa-angle-right"></i></a>
-                                                    <ul class="categories_mega_menu_four">
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater1</a></li>
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater1</a></li>
-
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li class="menu_item_children">
-                                    <a href="#">Dresses2
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="categories_mega_menu_two">
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater2 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <li class="menu_item_children menu_item_children_design"><a
-                                                href="#">Sweater2</a></li>
-
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </li>
+                   
+                        <li v-if="limit <= 9"><a href="#" @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li>
+                        <li v-if="limit >= 10"><a href="#" @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> Less Categories</a></li>
+                   
 
                     </ul>
                 </div>
