@@ -145,6 +145,19 @@ class FrontendController extends Controller
     public function add_checkout(Request $request)
     {
         // dd($request->all());
+       
+
+        $order = new Order();
+        $order->user_id = Auth::user()->id;
+        $order->invoice_date = Carbon::now()->toDateTimeString();
+        // $order->total_discount = ;
+        $order->sub_total = $request->sub_total;
+        $order->total_price = $request->sub_total;
+        $order->created_at = Carbon::now()->toDateTimeString();
+        $order->save();
+        $order->invoice_id = 10000 + $order->id;
+        $order->save();
+
         if (OrderAddress::where('user_id', Auth::user()->id)->exists()) {
             $address = OrderAddress::where('user_id', Auth::user()->id)->first();
         } else {
@@ -156,7 +169,12 @@ class FrontendController extends Controller
         $address->street_address = $req_billing_address->street_address;
         $address->city = $req_billing_address->city;
         $address->phone = $req_billing_address->phone;
+        $address->email = $req_billing_address->email;
+        $address->country = $req_billing_address->country;
+        $address->company_name = $req_billing_address->company_name;
+        $address->zip_code = $req_billing_address->zip_code;
         $address->comment = $request->comment;
+        $address->invoice_id = 10000 + $order->id;
         $address->created_at = Carbon::now()->toDateTimeString();
         $address->save();
 
@@ -170,6 +188,11 @@ class FrontendController extends Controller
         $billing_address->street_address = $req_billing_address->street_address;
         $billing_address->city = $req_billing_address->city;
         $billing_address->phone = $req_billing_address->phone;
+        $billing_address->email = $req_billing_address->email;
+        $billing_address->country = $req_billing_address->country;
+        $billing_address->company_name = $req_billing_address->company_name;
+        $billing_address->zip_code = $req_billing_address->zip_code;
+        $billing_address->invoice_id = 10000 + $order->id;
         $billing_address->created_at = Carbon::now()->toDateTimeString();
         $billing_address->save();
 
@@ -183,19 +206,13 @@ class FrontendController extends Controller
         $shipping_address->street_address = $req_billing_address->street_address;
         $shipping_address->city = $req_billing_address->city;
         $shipping_address->phone = $req_billing_address->phone;
+        $shipping_address->email = $req_billing_address->email;
+        $billing_address->country = $req_billing_address->country;
+        $billing_address->company_name = $req_billing_address->company_name;
+        $billing_address->zip_code = $req_billing_address->zip_code;
+        $shipping_address->invoice_id = 10000 + $order->id;
         $shipping_address->created_at = Carbon::now()->toDateTimeString();
         $shipping_address->save();
-
-        $order = new Order();
-        $order->user_id = Auth::user()->id;
-        $order->invoice_date = Carbon::now()->toDateTimeString();
-        // $order->total_discount = ;
-        $order->sub_total = $request->sub_total;
-        $order->total_price = $request->total_price;
-        $order->created_at = Carbon::now()->toDateTimeString();
-        $order->save();
-        $order->invoice_id = 10000 + $order->id;
-        $order->save();
 
         foreach ($request->c_cart as $cart) {
             // dd($request->cart);

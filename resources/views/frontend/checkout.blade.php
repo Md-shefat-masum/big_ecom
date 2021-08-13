@@ -41,11 +41,13 @@
                                     </div>
                                     <div class="col-12 mb-20">
                                         <label>Company Name</label>
-                                        <input type="text">
+                                        <input type="text" v-model="get_billing_address.company_name"
+                                            name="company_name">
                                     </div>
                                     <div class="col-12 mb-20">
                                         <label for="country">country <span>*</span></label>
-                                        <select class="niceselect_option" name="cuntry" id="country">
+                                        <select class="niceselect_option" name="cuntry" id="country"
+                                            v-model="get_billing_address.country">
                                             <option value="2">bangladesh</option>
                                             <option value="3">Algeria</option>
                                             <option value="4">Afghanistan</option>
@@ -68,11 +70,11 @@
                                     </div>
                                     <div class="col-12 mb-20">
                                         <label>Town / City <span>*</span></label>
-                                        <input type="text">
+                                        <input type="text" v-model="get_billing_address.city" name="city">
                                     </div>
                                     <div class="col-12 mb-20">
-                                        <label>State / County <span>*</span></label>
-                                        <input type="text">
+                                        <label>Zip Code <span>*</span></label>
+                                        <input type="text" v-model="get_billing_address.zip_code" name="zip_code">
                                     </div>
                                     <div class="col-lg-6 mb-20">
                                         <label>Phone<span>*</span></label>
@@ -84,7 +86,7 @@
                                         <input type="text" name="email" v-model="get_billing_address.email">
 
                                     </div>
-                                    <div class="col-12 mb-20">
+                                    {{-- <div class="col-12 mb-20">
                                         <input id="account" type="checkbox" data-target="createp_account" />
                                         <label for="account" data-toggle="collapse" data-target="#collapseOne"
                                             aria-controls="collapseOne">Create an account?</label>
@@ -106,21 +108,21 @@
                                             <div class="row">
                                                 <div class="col-lg-6 mb-20">
                                                     <label>First Name <span>*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" v-model="get_billing_address.street_address">
                                                 </div>
                                                 <div class="col-lg-6 mb-20">
                                                     <label>Last Name <span>*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" v-model="get_billing_address.street_address">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <label>Company Name</label>
-                                                    <input type="text">
+                                                    <input type="text" v-model="get_billing_address.street_address">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <div class="select_form_select">
                                                         <label for="countru_name">country <span>*</span></label>
                                                         <select class="niceselect_option" name="cuntry"
-                                                            id="countru_name">
+                                                            id="countru_name" v-model="get_billing_address.street_address">
                                                             <option value="2">bangladesh</option>
                                                             <option value="3">Algeria</option>
                                                             <option value="4">Afghanistan</option>
@@ -136,38 +138,39 @@
 
                                                 <div class="col-12 mb-20">
                                                     <label>Street address <span>*</span></label>
-                                                    <input placeholder="House number and street name" type="text">
+                                                    <input placeholder="House number and street name" type="text" v-model="get_billing_address.street_address">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <input placeholder="Apartment, suite, unit etc. (optional)"
-                                                        type="text">
+                                                        type="text" v-model="get_billing_address.street_address">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <label>Town / City <span>*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" v-model="get_billing_address.street_address">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <label>State / County <span>*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" v-model="get_billing_address.street_address">
                                                 </div>
                                                 <div class="col-lg-6 mb-20">
                                                     <label>Phone<span>*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" v-model="get_billing_address.street_address">
 
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label> Email Address <span>*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" v-model="get_billing_address.street_address">
 
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-12">
                                         <div class="order-notes">
                                             <label for="order_note">Order Notes</label>
                                             <textarea id="order_note"
-                                                placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                placeholder="Notes about your order, e.g. special notes for delivery."
+                                                v-model="get_billing_address.comment" name="comment"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">

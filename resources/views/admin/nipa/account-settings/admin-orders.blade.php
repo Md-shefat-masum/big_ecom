@@ -27,7 +27,8 @@
                                         <thead>
                                             <tr>
                                                 {{-- <th scope="col"><input type="checkbox"></th> --}}
-                                                <th scope="col">User Id</th>
+                                                <th scope="col">Order Id</th>
+                                                <th scope="col">Customer Id</th>
                                                 <th scope="col">Sub Total</th>
                                                 <th scope="col">Invoice Id</th>
                                                 {{-- <th scope="col" class="text-right">Action</th> --}}
@@ -37,6 +38,7 @@
                                             @foreach ($data as $item)
                                             <tr>
                                                 {{-- <th scope="row"><input type="checkbox"></th> --}}
+                                                <td>{{ $item->id }}</td>
                                                 <td>{{ $item->user_id }}</td>
                                                 <td>{{ $item->sub_total }}</td>
                                                 <td>{{ $item->invoice_id }}</td>

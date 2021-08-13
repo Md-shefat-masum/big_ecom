@@ -193,6 +193,9 @@
         </a>
         <ul class="">
             <li>
+                <a href="{{ route('invoice_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Invoice List</a>
+            </li>
+            <li>
                 <a href="{{ route('admin_orders') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Orders</a>
             </li>
             <li>

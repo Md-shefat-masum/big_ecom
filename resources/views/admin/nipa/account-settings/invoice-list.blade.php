@@ -26,35 +26,29 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                {{-- <th scope="col"><input type="checkbox"></th> --}}
-                                                <th scope="col">Customer Id</th>
-                                                <th scope="col">Order id </th>
-                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Order Id</th>
                                                 <th scope="col">Invoice Id</th>
-                                                <th scope="col">Product id </th>
-                                                <th scope="col">Product code</th>
-                                                <th scope="col">Product Qty</th>
-                                                <th scope="col">Product Color</th>
-                                                <th scope="col">Product Size</th>
-                                                <th scope="col">Product Price</th>
-                                                {{-- <th scope="col" class="text-right">Action</th> --}}
+                                                <th scope="col">View Invoice</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($data as $item)
+                                            @php
+                                                
+                                                $inv=DB::table('order_addresses')->where('invoice_id',$item->invoice_id)->first();
+                                            @endphp
                                             <tr>
-                                                {{-- <th scope="row"><input type="checkbox"></th> --}}
-                                                <td>{{ $item->customer_id }}</td>
-                                                <td>{{ $item->order_id }}</td>
-                                                <td>{{ $item->product_name}}</td>
+                                                <td>{{ $item->id }}</td>
                                                 <td>{{ $item->invoice_id }}</td>
-                                                <td>{{ $item->product_id }}</td>
-                                                <td>{{ $item->product_code }}</td>
-                                                <td>{{ $item->qty}}</td>
-                                                <td>{{ $item->color}}</td>
-                                                <td>{{ $item->size}}</td>
-                                                <td>{{ $item->price}}</td>
-                                              
+                                                <td>
+                                                    <div>
+
+                                                        <a type="button" href="{{ route('invoice_view',$item->id) }}"
+                                                            class="btn btn-warning waves-effect waves-light m-1"><span>View</span>
+                                                        </a>
+
+                                                    </div>
+                                                </td>
                                             </tr>
                                             @endforeach
 

@@ -17,7 +17,7 @@
                                 <pagination :data="home_category_product" :limit="-1"
                                     @pagination-change-page="getCatroduct">
                                     <div class="product_tab_btn">
-                                        <ul class="nav" v-if="category.id == home_category_product.data.id">
+                                        <ul class="nav" v-if="home_category">
 
                                         
 
