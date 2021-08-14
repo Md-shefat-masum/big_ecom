@@ -66,17 +66,20 @@ if (document.getElementById('product_list')) {
                 },
                 price_range: '',
                 product_list: {},
-                limit: 9
+                image_list: {},
+                limit: 9,
+                home_category: {},
                 // selected_product_for_modal : null,
             }
         },
         created: function () {
             this.getProduct();
+            // this.getProductImage();
             this.init_jquery();
             this.filter_products();
             this.getProductFilter();
             this.getHomeCat();
-            this.getCatroduct();
+            // this.getCatroduct();
         },
         methods: {
             ...window.mutation([
@@ -110,6 +113,15 @@ if (document.getElementById('product_list')) {
                     })
 
             },
+            // getProductImage: function () {
+
+            //     axios.get('/get-product-image')
+            //         .then(res => {
+            //             console.log(res.data);
+            //             this.image_list = res.data;
+            //         })
+
+            // },
             init_jquery: function () {
                 let min_price = 0;
                 let max_price = 0;

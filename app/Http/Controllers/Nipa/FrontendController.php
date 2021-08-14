@@ -13,6 +13,7 @@ use App\Models\Order;
 use App\Models\OrderAddress;
 use App\Models\OrderInformation;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ShippingAddress;
 use App\Models\User;
 use App\Models\UserRole;
@@ -64,9 +65,14 @@ class FrontendController extends Controller
     }
     public function frontend_get_product()
     {
-        $data = Product::orderBy('id', 'DESC')->where('status', 1)->paginate(16);
+        $data = Product::orderBy('id', 'DESC')->with('related_image')->where('status', 1)->paginate(16);
         return $data;
     }
+    // public function get_product_image()
+    // {
+    //     $image = ProductImage::paginate(10);
+    //     return $image;
+    // }
     public function product_details(Request $request, $id)
     {
         // $data = Product::orderBy('id', 'DESC')->where('status',1)->paginate(10);

@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('user_id',100)->nullable();
+            $table->string('order_status',200)->default('pending');
             $table->string('total_price',100)->nullable();
             $table->string('sub_total',100)->nullable();
             $table->string('invoice_id',100)->nullable();

@@ -34,17 +34,42 @@
                                         <tbody>
                                             @foreach ($data as $item)
                                             @php
-                                                
-                                                $inv=DB::table('order_addresses')->where('invoice_id',$item->invoice_id)->first();
+
+                                            $inv=DB::table('order_addresses')->where('invoice_id',$item->invoice_id)->first();
                                             @endphp
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->invoice_id }}</td>
                                                 <td>
                                                     <div>
+                                                        @if ($item->order_status == "pending")
+                                                        <a type="button" href=""
+                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Pending</span>
+                                                        </a>
+                                                        @endif
+                                                        @if ($item->order_status == "accept")
+                                                        <a type="button" href=""
+                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Accept</span>
+                                                        </a>
+                                                        @endif
+                                                        @if ($item->order_status == "process")
+                                                        <a type="button" href=""
+                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Process</span>
+                                                        </a>
+                                                        @endif
+                                                        @if ($item->order_status == "complete")
+                                                        <a type="button" href=""
+                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Complete</span>
+                                                        </a>
+                                                        @endif
+
+
 
                                                         <a type="button" href="{{ route('invoice_view',$item->id) }}"
                                                             class="btn btn-warning waves-effect waves-light m-1"><span>View</span>
+                                                        </a>
+                                                        <a type="button" href="{{route('order_status_edit',$item->id)}}"
+                                                            class="btn btn-success waves-effect waves-light m-1"><i class="fa fa-pencil"></i><span>Edit Status</span>
                                                         </a>
 
                                                     </div>

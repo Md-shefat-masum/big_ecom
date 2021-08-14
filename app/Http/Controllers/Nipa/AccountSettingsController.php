@@ -20,6 +20,11 @@ class AccountSettingsController extends Controller
     {
         return view('admin.nipa.account-settings.payment-method');
     }
+    public function order_status_edit(Request $request)
+    {
+        $data=Order::findOrfail($request->id);
+        return view('admin.nipa.account-settings.order-status-edit',compact('data'));
+    }
     public function invoice_list()
     {
         $data=Order::orderBy('id','DESC')->get();

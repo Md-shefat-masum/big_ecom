@@ -151,6 +151,8 @@ Route::group([
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
+    Route::get('/order-status-edit/{id}', 'AccountSettingsController@order_status_edit')->name('order_status_edit');
+    Route::get('/edit-status', 'AccountSettingsController@edit-status')->name('edit-status');
     Route::get('/invoice-list', 'AccountSettingsController@invoice_list')->name('invoice_list');
     Route::get('/invoice-view/{id}', 'AccountSettingsController@invoice_view')->name('invoice_view');
     Route::get('/orders', 'AccountSettingsController@admin_orders')->name('admin_orders');
@@ -183,6 +185,7 @@ Route::group([
     Route::get('/product-details/{id}', 'FrontendController@product_details')->name('product_details');
     Route::get('/json-product-details/{id}', 'FrontendController@json_product_details')->name('json_product_details');
     Route::get('/get-product', 'FrontendController@frontend_get_product')->name('frontend_get_product');
+    Route::get('/get-product-image', 'FrontendController@get_product_image')->name('get_product_image');
 
 
     Route::get('/cart', 'FrontendController@frontend_cart')->name('frontend_cart');
