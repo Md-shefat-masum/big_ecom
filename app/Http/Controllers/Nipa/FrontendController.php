@@ -172,6 +172,8 @@ class FrontendController extends Controller
 
         $req_billing_address = (object) $request->billing_address;
         $address->user_id = Auth::user()->id;
+        $address->first_name = $req_billing_address->first_name;
+        $address->last_name = $req_billing_address->last_name;
         $address->street_address = $req_billing_address->street_address;
         $address->city = $req_billing_address->city;
         $address->phone = $req_billing_address->phone;

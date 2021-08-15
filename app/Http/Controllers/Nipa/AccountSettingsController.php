@@ -9,6 +9,7 @@ use App\Models\OrderInformation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AccountSettingsController extends Controller
 {
@@ -20,10 +21,26 @@ class AccountSettingsController extends Controller
     {
         return view('admin.nipa.account-settings.payment-method');
     }
-    public function order_status_edit(Request $request)
+    public function order_status_update(Request $request)
     {
-        $data=Order::findOrfail($request->id);
-        return view('admin.nipa.account-settings.order-status-edit',compact('data'));
+        //    dd($request->all());
+        $add = Order::find($request->id);
+        // $add->order_status = $request->order_status;
+        if($request->order_status =='pending')
+        {
+           
+            // $add->order_status = 'accept';
+            DB::table('orders')->where('id',$request->id )->update(['order_status' => 'process']);
+            return back();
+        }
+        // if($request->order_status =='pending')
+        // {
+           
+        //     // $add->order_status = 'accept';
+        //     DB::table('orders')->where('id',$request->id )->update(['order_status' => 'accept']);
+        //     return back();
+        // }
+
     }
     public function invoice_list()
     {

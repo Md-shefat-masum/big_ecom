@@ -37,8 +37,12 @@
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Order Status</label>
                                         <div class="col-sm-9">
-                                            <input type="text" v-model="form_data.product_condition_name" name="product_condition_name"
-                                                class="form-control">
+                                            <select name="cars" id="cars">
+                                                <option value="volvo">Peding</option>
+                                                <option value="volvo">Accept</option>
+                                                <option value="volvo">Process</option>
+                                                <option value="volvo">Complete</option>
+                                              </select>
                                         </div>
                                     </div>
 

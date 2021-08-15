@@ -42,37 +42,63 @@
                                                 <td>{{ $item->invoice_id }}</td>
                                                 <td>
                                                     <div>
-                                                        @if ($item->order_status == "pending")
-                                                        <a type="button" href=""
-                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Pending</span>
-                                                        </a>
-                                                        @endif
-                                                        @if ($item->order_status == "accept")
-                                                        <a type="button" href=""
-                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Accept</span>
-                                                        </a>
-                                                        @endif
-                                                        @if ($item->order_status == "process")
-                                                        <a type="button" href=""
-                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Process</span>
-                                                        </a>
-                                                        @endif
-                                                        @if ($item->order_status == "complete")
-                                                        <a type="button" href=""
-                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Complete</span>
-                                                        </a>
-                                                        @endif
+                                                        <form action="{{route('order_status_update')}}" method="post"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                                            @if ($item->order_status == "pending")
+                                                            <input type="hidden" name="order_status" value="pending">
+                                                            <button type="submit"
+                                                                class="btn btn-danger waves-effect waves-light m-1"><span>Pending</span>
+                                                            </button>
+                                                            @endif
+                                                        </form>
+                                                        <form action="{{route('order_status_update')}}" method="post"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                                            @if ($item->order_status == "process")
+                                                            <input type="hidden" name="order_status" value="process">
+                                                            <button type="submit"
+                                                                class="btn btn-info waves-effect waves-light m-1"><span>Process</span>
+                                                            </button>
+                                                            @endif
+                                                        </form>
+                                                        <form action="{{route('order_status_update')}}" method="post"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                                            @if ($item->order_status == "accept")
+                                                            <input type="hidden" name="order_status" value="accept">
+                                                            <button type="submit"
+                                                                class="btn btn-success waves-effect waves-light m-1"><span>Accept</span>
+                                                            </button>
+                                                            @endif
+                                                        </form>
 
+                                                        <form action="{{route('order_status_update')}}" method="post"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                                            @if ($item->order_status == "complete")
+                                                            <button type="submit"
+                                                                class="btn btn-danger waves-effect waves-light m-1"><span>Complete</span>
+                                                            </button>
+                                                            @endif
+                                                        </form>
 
 
                                                         <a type="button" href="{{ route('invoice_view',$item->id) }}"
                                                             class="btn btn-warning waves-effect waves-light m-1"><span>View</span>
                                                         </a>
-                                                        <a type="button" href="{{route('order_status_edit',$item->id)}}"
-                                                            class="btn btn-success waves-effect waves-light m-1"><i class="fa fa-pencil"></i><span>Edit Status</span>
-                                                        </a>
+                                                        {{-- <a type="button"
+                                                                href="{{route('order_status_edit',$item->id)}}"
+                                                        class="btn btn-success waves-effect waves-light m-1"><i
+                                                            class="fa fa-pencil"></i><span>Edit Status</span>
+                                                        </a> --}}
 
                                                     </div>
+
                                                 </td>
                                             </tr>
                                             @endforeach

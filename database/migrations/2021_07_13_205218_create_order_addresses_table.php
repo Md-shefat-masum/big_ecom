@@ -18,6 +18,8 @@ class CreateOrderAddressesTable extends Migration
     
             $table->string('user_id',100)->nullable();
             $table->string('invoice_id',200)->nullable();
+            $table->string('first_name',100)->nullable();
+            $table->string('last_name',100)->nullable();
             $table->string('company_name',100)->nullable();
             $table->text('street_address')->nullable();
             $table->string('zip_code',100)->nullable();

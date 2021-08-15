@@ -43,6 +43,18 @@ $order_info=DB::table('order_information')->where('invoice_id',$data->invoice_id
                                                     class="font-weight-bold text-uppercase">ID:</span><span
                                                     class="ml-1">
                                                     #{{$data->invoice_id}}</span></h3>
+                                            <div class="billed"><span
+                                                    class="font-weight-bold text-uppercase">TO:</span><span
+                                                    class="ml-1"> {{$order_ad->first_name ?? NUll}}
+                                                    {{$order_ad->last_name ?? NUll}}</span></div>
+                                            <div class="billed"><span
+                                                    class="font-weight-bold text-uppercase">PHONE:</span><span
+                                                    class="ml-1"> {{$order_ad->phone}}</span></div>
+                                            <div class="billed"><span
+                                                    class="font-weight-bold text-uppercase">EMAIL:</span><span
+                                                    class="ml-1"> {{$order_ad->email}}</span></div>
+                                            <div class="billed"><span class="font-weight-bold text-uppercase">ISSUE
+                                                    DATE::</span><span class="ml-1"> {{$data->invoice_date}}</span></div>
 
 
                                         </div>
@@ -68,9 +80,9 @@ $order_info=DB::table('order_information')->where('invoice_id',$data->invoice_id
                                                     <tr>
                                                         <td>{{$index}}</td>
                                                         <td>{{$item->product_name}}</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>{{$item->qty}}</td>
+                                                        <td>{{$item->price}}</td>
+                                                        <td>{{$item->qty * $item->price}}</td>
                                                     </tr>
                                                     @php
                                                     $index++;
@@ -82,7 +94,7 @@ $order_info=DB::table('order_information')->where('invoice_id',$data->invoice_id
                                                         <td></td>
                                                         <td></td>
                                                         <td>Total</td>
-                                                        <td>00</td>
+                                                        <td>{{$data->sub_total}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
