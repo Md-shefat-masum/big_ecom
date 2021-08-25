@@ -42,7 +42,7 @@
                                                 <td>{{ $item->invoice_id }}</td>
                                                 <td>
                                                     <div>
-                                                        <form action="{{route('order_status_update')}}" method="post"
+                                                        {{-- <form action="{{route('order_status_update')}}" method="post"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <input type="hidden" name="id" value="{{$item->id}}">
@@ -52,18 +52,17 @@
                                                                 class="btn btn-danger waves-effect waves-light m-1"><span>Accept</span>
                                                             </button>
                                                             @endif
-                                                        </form>
-                                                        <form action="{{route('order_status_update')}}" method="post"
+                                                        </form> --}}
+                                                        {{-- <form action="{{route('order_status_update')}}" method="post"
                                                             enctype="multipart/form-data">
                                                             @csrf
-                                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                                            <input type="hidden" name="id" value="{{$item->id}}"> --}}
                                                             @if ($item->order_status == "process")
-                                                            <input type="hidden" name="order_status" value="process">
-                                                            <button type="submit"
-                                                                class="btn btn-info waves-effect waves-light m-1"><span>Process</span>
-                                                            </button>
+                                                            <a href="{{route('delivery_man_assign')}}"
+                                                                class="btn btn-info waves-effect waves-light m-1"><span>Assign Order</span>
+                                                            </a>
                                                             @endif
-                                                        </form>
+                                                        {{-- </form> --}}
                                                         {{-- <form action="{{route('order_status_update')}}" method="post"
                                                             enctype="multipart/form-data">
                                                             @csrf

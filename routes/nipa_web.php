@@ -153,7 +153,9 @@ Route::group([
 ], function () {
     Route::post('/order-status-update', 'AccountSettingsController@order_status_update')->name('order_status_update');
     Route::get('/edit-status', 'AccountSettingsController@edit-status')->name('edit-status');
-    Route::get('/invoice-list', 'AccountSettingsController@invoice_list')->name('invoice_list');
+    Route::get('/order-list-pending', 'AccountSettingsController@order_list_pending')->name('order_list_pending');
+    Route::get('/order-list-process', 'AccountSettingsController@order_list_process')->name('order_list_process');
+    Route::get('/order-list-complete', 'AccountSettingsController@order_list_complete')->name('order_list_complete');
     Route::get('/invoice-view/{id}', 'AccountSettingsController@invoice_view')->name('invoice_view');
     Route::get('/orders', 'AccountSettingsController@admin_orders')->name('admin_orders');
     Route::get('/admin-orders-information', 'AccountSettingsController@admin_orders_information')->name('admin_orders_information');

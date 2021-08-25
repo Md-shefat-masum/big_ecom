@@ -42,10 +42,20 @@ class AccountSettingsController extends Controller
         // }
 
     }
-    public function invoice_list()
+    public function order_list_pending()
     {
-        $data=Order::orderBy('id','DESC')->get();
-        return view('admin.nipa.account-settings.invoice-list',compact('data'));
+        $data=Order::orderBy('id','ASC')->where('order_status','pending')->get();
+        return view('admin.nipa.account-settings.order-list-pending',compact('data'));
+    }
+    public function order_list_process()
+    {
+        $data=Order::orderBy('id','ASC')->where('order_status','process')->get();
+        return view('admin.nipa.account-settings.order-list-process',compact('data'));
+    }
+    public function order_list_complete()
+    {
+        $data=Order::orderBy('id','ASC')->where('order_status','complete')->get();
+        return view('admin.nipa.account-settings.order-list-complete',compact('data'));
     }
     public function invoice_view(Request $request)
     {

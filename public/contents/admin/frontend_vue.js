@@ -613,7 +613,7 @@ if (document.getElementById('add-checkout')) {
 
             // store: function () {
             //     let form_datas = new FormData($('#form_body')[0]);
-            //     axios.post('/add-checkout', form_datas)
+            //     axios.post('/save-checkout', form_datas)
             //         .then((res) => {
             //             console.log(res.data);
             //             // this.form_datas.clear();

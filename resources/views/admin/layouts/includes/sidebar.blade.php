@@ -23,6 +23,9 @@
                     <a href="{{ route('admin_user_index') }}"><i class="zmdi zmdi-dot-circle-alt"></i> index</a>
                 </li>
                 <li>
+                    <a href="{{ route('admin_delivery_man_index') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Delivery Man List</a>
+                </li>
+                <li>
                     <a href="{{ route('admin_user_role_index') }}"><i class="zmdi zmdi-dot-circle-alt"></i> User Role</a>
                 </li>
             </ul>
@@ -193,7 +196,13 @@
         </a>
         <ul class="">
             <li>
-                <a href="{{ route('invoice_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Order List</a>
+                <a href="{{ route('order_list_pending') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Pending Order List</a>
+            </li>
+            <li>
+                <a href="{{ route('order_list_process') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Processing Order List</a>
+            </li>
+            <li>
+                <a href="{{ route('order_list_complete') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Delivery Complete List</a>
             </li>
             <li>
                 <a href="{{ route('admin_orders') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Orders</a>

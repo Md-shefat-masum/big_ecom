@@ -152,18 +152,7 @@ class FrontendController extends Controller
     {
         // dd($request->all());
        
-
-        $order = new Order();
-        $order->user_id = Auth::user()->id;
-        $order->invoice_date = Carbon::now()->toDateTimeString();
-        // $order->total_discount = ;
-        $order->sub_total = $request->sub_total;
-        $order->total_price = $request->sub_total;
-        $order->created_at = Carbon::now()->toDateTimeString();
-        $order->save();
-        $order->invoice_id = 10000 + $order->id;
-        $order->save();
-
+        
         if (OrderAddress::where('user_id', Auth::user()->id)->exists()) {
             $address = OrderAddress::where('user_id', Auth::user()->id)->first();
         } else {
@@ -182,7 +171,7 @@ class FrontendController extends Controller
         $address->company_name = $req_billing_address->company_name;
         $address->zip_code = $req_billing_address->zip_code;
         $address->comment = $request->comment;
-        $address->invoice_id = 10000 + $order->id;
+        // $address->invoice_id = 10000 + $order->id;
         $address->created_at = Carbon::now()->toDateTimeString();
         $address->save();
 
@@ -200,7 +189,7 @@ class FrontendController extends Controller
         $billing_address->country = $req_billing_address->country;
         $billing_address->company_name = $req_billing_address->company_name;
         $billing_address->zip_code = $req_billing_address->zip_code;
-        $billing_address->invoice_id = 10000 + $order->id;
+        // $billing_address->invoice_id = 10000 + $order->id;
         $billing_address->created_at = Carbon::now()->toDateTimeString();
         $billing_address->save();
 
@@ -218,9 +207,21 @@ class FrontendController extends Controller
         $billing_address->country = $req_billing_address->country;
         $billing_address->company_name = $req_billing_address->company_name;
         $billing_address->zip_code = $req_billing_address->zip_code;
-        $shipping_address->invoice_id = 10000 + $order->id;
+        // $shipping_address->invoice_id = 10000 + $order->id;
         $shipping_address->created_at = Carbon::now()->toDateTimeString();
         $shipping_address->save();
+
+        $order = new Order();
+        $order->user_id = Auth::user()->id;
+        $order->invoice_date = Carbon::now()->toDateTimeString();
+        // $order->total_discount = ;
+        $order->sub_total = $request->sub_total;
+        $order->total_price = $request->sub_total;
+        $order->created_at = Carbon::now()->toDateTimeString();
+        $order->save();
+        $order->invoice_id = 10000 + $order->id;
+        $order->save();
+
 
         foreach ($request->c_cart as $cart) {
             // dd($request->cart);
