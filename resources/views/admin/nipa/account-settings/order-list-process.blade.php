@@ -58,12 +58,12 @@
                                                             @csrf
                                                             <input type="hidden" name="id" value="{{$item->id}}"> --}}
                                                             @if ($item->order_status == "process")
-                                                            <a href="{{route('delivery_man_assign')}}"
+                                                            <a href="{{route('delivery_man_assign',$item->id)}}"
                                                                 class="btn btn-info waves-effect waves-light m-1"><span>Assign Order</span>
                                                             </a>
                                                             @endif
                                                         {{-- </form> --}}
-                                                        {{-- <form action="{{route('order_status_update')}}" method="post"
+                                                        <form action="{{route('order_status_update')}}" method="post"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <input type="hidden" name="id" value="{{$item->id}}">
@@ -73,9 +73,9 @@
                                                                 class="btn btn-success waves-effect waves-light m-1"><span>Accept</span>
                                                             </button>
                                                             @endif
-                                                        </form> --}}
+                                                        </form>
 
-                                                        <form action="{{route('order_status_update')}}" method="post"
+                                                        {{-- <form action="{{route('order_status_update')}}" method="post"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <input type="hidden" name="id" value="{{$item->id}}">
@@ -84,7 +84,7 @@
                                                                 class="btn btn-danger waves-effect waves-light m-1"><span>Complete</span>
                                                             </button>
                                                             @endif
-                                                        </form>
+                                                        </form> --}}
 
 
                                                         <a type="button" href="{{ route('invoice_view',$item->id) }}"

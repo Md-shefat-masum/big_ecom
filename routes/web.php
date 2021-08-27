@@ -47,7 +47,7 @@ Route::group([
 ], function () {
     Route::get('/index', 'UserController@index')->name('admin_user_index');
     Route::get('/delivery-man', 'UserController@admin_delivery_man_index')->name('admin_delivery_man_index');
-    Route::get('/delivery-man-assign', 'UserController@delivery_man_assign')->name('delivery_man_assign');
+    
     Route::get('/view/{id}', 'UserController@view')->name('admin_user_view');
     Route::get('/create', 'UserController@create')->name('admin_user_create');
     Route::post('/store', 'UserController@store')->name('admin_user_store');

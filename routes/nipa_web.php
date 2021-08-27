@@ -156,6 +156,8 @@ Route::group([
     Route::get('/order-list-pending', 'AccountSettingsController@order_list_pending')->name('order_list_pending');
     Route::get('/order-list-process', 'AccountSettingsController@order_list_process')->name('order_list_process');
     Route::get('/order-list-complete', 'AccountSettingsController@order_list_complete')->name('order_list_complete');
+    Route::get('/delivery-man-assign/{id}', 'AccountSettingsController@delivery_man_assign')->name('delivery_man_assign');
+    Route::post('/assign-order', 'AccountSettingsController@assign_order')->name('assign_order');
     Route::get('/invoice-view/{id}', 'AccountSettingsController@invoice_view')->name('invoice_view');
     Route::get('/orders', 'AccountSettingsController@admin_orders')->name('admin_orders');
     Route::get('/admin-orders-information', 'AccountSettingsController@admin_orders_information')->name('admin_orders_information');

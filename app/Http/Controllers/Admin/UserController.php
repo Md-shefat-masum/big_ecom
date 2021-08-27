@@ -24,11 +24,7 @@ class UserController extends Controller
         $collection = User::active()->with('role_information')->where('role_id',6)->get();
         return view('admin.user.delivery-man-index',['collection'=>$collection]);
     }
-    public function delivery_man_assign()
-    {
-        $collection = User::active()->with('role_information')->where('role_id',6)->get();
-        return view('admin.user.delivery-man-assign',['collection'=>$collection]);
-    }
+  
 
     public function view($id)
     {
