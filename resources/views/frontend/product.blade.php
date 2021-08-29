@@ -61,12 +61,11 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img
-                                            :src="`/${item.related_image[0].image}`" alt=""></a>
+                                    <a class="primary_img" href="product-details.html">
+                                        <img :src="`/${item.related_image[0].image}`" alt=""></a>
 
-                                    <a class="secondary_img" href="product-details.html"
-                                        v-if="item.related_image[1]"><img :src="`/${item.related_image[1].image}`"
-                                            alt=""></a>
+                                    <a class="secondary_img" href="product-details.html" v-if="item.related_image[1]">
+                                        <img :src="`/${item.related_image[1].image}`" alt=""></a>
                                     <a class="secondary_img" href="product-details.html" v-else><img
                                             :src="`/${item.related_image[0].image}`" alt=""></a>
 

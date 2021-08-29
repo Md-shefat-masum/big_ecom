@@ -47,8 +47,9 @@
         <!--Start sidebar-wrapper-->
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo">
-                <img src="{{ asset('contents/admin') }}/images/logo-icon.png" class="logo-icon" alt="logo icon" />
-                <h5 class="logo-text">Ecommerce</h5>
+                <img src="{{ asset('contents/frontend') }}/assets/img/logo/logo.png" class="logo-icon" alt="logo icon"
+                    style="width: 215px !important;" />
+                {{-- <h5 class="logo-text">Ecommerce</h5> --}}
                 <div class="close-btn"><i class="zmdi zmdi-close"></i></div>
             </div>
 
@@ -210,7 +211,8 @@
         <footer class="footer">
             <div class="container">
                 <div class="text-center">
-                    Copyright © 2020 Dashtreme Admin
+                    <p>Copyright &copy; 2014-21 <a href="#" target="_blank">Brandszone</a>
+                        Develop By <a href="http://hsblco.com/" target="_blank">HSBLCO</a> Team</p>
                 </div>
             </div>
         </footer>

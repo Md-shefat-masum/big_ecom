@@ -521,11 +521,11 @@
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-5 col-sm-7">
+                    <div class="col-lg-2 col-md-5 col-sm-7">
                         <div class="widgets_container contact_us">
                             <h3>GET THE APP</h3>
                             <div class="aff_content">
-                                <p><strong>ANTOMI</strong> App is now available on Google Play & App Store. Get it now.
+                                <p><strong>Bandszone</strong> App is Coming Soon...
                                 </p>
                             </div>
                             <div class="app_img">
@@ -542,37 +542,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-md-5 col-sm-6">
+                        <div class="widgets_container widget_menu">
+                            <div class="widgets_container contact_us">
+                                <h3>Facebook Feed</h3>
+                                <div class="aff_content">
+
+                                    <iframe
+                                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbrandszoneglobal%2F&amp;tabs=timeline&amp;width=340&amp;height=500&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId"
+                                        width="100%" height="300" style="border:none;overflow:hidden" scrolling="yes"
+                                        frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-2 col-md-3 col-sm-5">
-                        <div class="widgets_container widget_menu">
-                            <h3>Information</h3>
-                            <div class="footer_menu">
-                                <ul>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="#">Delivery Information</a></li>
-                                    <li><a href="#">New products</a></li>
-                                    <li><a href="#">Best sales</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="#">Order History</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="widgets_container widget_menu">
-                            <h3>My Account</h3>
-                            <div class="footer_menu">
-                                <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="cart.html">Shopping Cart</a></li>
-                                    <li><a href="wishlist.html">Wish List</a></li>
-                                    <li><a href="#">Prices drop</a></li>
-                                    <li><a href="#">Order History</a></li>
-                                    <li><a href="#">International Orders</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-5 col-sm-6">
                         <div class="widgets_container widget_menu">
                             <h3>Customer Service</h3>
                             <div class="footer_menu">
@@ -587,7 +571,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-7 col-sm-12">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="widgets_container widget_menu">
+                            <h3>Service Page</h3>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="https://web.facebook.com/brandszoneglobal/?_rdc=1&_rdr"
+                                            target="_blank">Brandszone || Clothing</a></li>
+                                    <li><a href="https://www.facebook.com/gohonagram" target="_blank">GohonaGram ||
+                                            Jwellery</a></li>
+                                    <li><a href="https://www.facebook.com/mackuplover" target="_blank">Mackuplover || Health and Beauty
+                                            Care</a></li>
+                                    <li><a href="https://www.facebook.com/laajim" target="_blank">Laajim || Mobile and Gadgets</a>
+                                    </li>
+                                    <li><a href="https://www.facebook.com/orikacorporation" target="_blank">Orikacorporation || Building
+                                            Metarial</a></li>
+                                    <li><a href="https://www.facebook.com/Brothersecorporation" target="_blank">Brothersecorporation || Renoable Energy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+             
+                    <div class="col-lg-2 col-md-7 col-sm-12">
                         <div class="widgets_container">
                             <h3>CONTACT INFO</h3>
                             <div class="footer_contact">
@@ -597,13 +602,16 @@
                                             alt="">
                                     </div>
                                     <div class="contact_text">
-                                        <p>Hotline Free 24/24: <br> <strong>(+800) 123 456 789</strong></p>
+                                        <p>Hotline Free 24/24: <br> <strong> +880 1760686162</strong></p>
                                     </div>
                                 </div>
-                                <p>The Barn, Henley in Arden B578. England. Support@eCommerce</p>
+                                <p>218/3/A (3rd Floor) West kafrul, Begum Rokeya Sarani Ave, Shewrapara
+                                    Dhaka 1216, Bangladesh.
+                                    <br>
+                                    support@brandszone.com.bd</p>
                             </div>
 
-                            <div class="footer_social">
+                            {{-- <div class="footer_social">
                                 <ul>
                                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
@@ -611,7 +619,7 @@
                                     <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
                                     <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -620,14 +628,70 @@
         <div class="footer_bottom">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-4 col-md-4">
                         <div class="copyright_area">
-                            <p>Copyright &copy; 2020 <a href="#">Antomi</a> All Right Reserved.</p>
+                            <p>Copyright &copy; 2014-21 <a href="#" target="_blank">Brandszone</a>
+                                Develop By <a href="http://hsblco.com/" target="_blank">HSBLCO</a> Team</p>
+                            {{-- <p>Copyright &copy; 202! <a href="http://hsblco.com/" target="_blank">HSBLCO</a> All Right Reserved.</p> --}}
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-8 col-md-8">
                         <div class="footer_payment text-right">
-                            <img src="{{ asset('contents/frontend') }}/assets/img/icon/payment.png" alt="">
+                            {{-- <img src="{{ asset('contents/frontend') }}/assets/img/icon/payment.png" alt=""> --}}
+                            <div class="nov-row-wrap row">
+                                <div class="nov-image col-12">
+                                    <ul
+                                        style="padding: 0; display: flex;justify-content: space-between;flex-wrap: wrap;">
+                                        <li style="margin: 10px 0px !important;"><a href="">We
+                                                Accept : </a></li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/1.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/2.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/3.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/4.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/5.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/6.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/7.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/8.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/9.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/10.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/11.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/12.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/13.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/14.png" alt="">
+                                        </li>
+                                        <li style="list-style-type:none"><img style="height: 40px;"
+                                                src="{{ asset('contents/frontend') }}/assets/img/payment/15.png" alt="">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

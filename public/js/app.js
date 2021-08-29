@@ -2094,6 +2094,7 @@ var state = {
   },
   selected_product_for_quick_view: {},
   selected_product_for_cart: {},
+  selected_product_for_wishlist: {},
   latest_saved_cart: {},
   invoice_date: '',
   invoice_id: '',
@@ -2112,6 +2113,9 @@ var getters = {
   },
   get_selected_product_for_cart: function get_selected_product_for_cart(state) {
     return state.selected_product_for_cart;
+  },
+  get_selected_product_for_wishlist: function get_selected_product_for_wishlist(state) {
+    return state.selected_product_for_wishlist;
   },
   get_sub_total: function get_sub_total(state) {
     return state.sub_total;

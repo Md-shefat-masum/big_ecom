@@ -2,7 +2,7 @@
     <div class="row align-items-center">
         <div class="col-lg-2 col-md-3 col-4">
             <div class="logo">
-                <a href="index.html"><img src="{{ asset('contents/frontend') }}/assets/img/logo/logo.png" alt=""></a>
+                <a href="/"><img src="{{ asset('contents/frontend') }}/assets/img/logo/logo.png" alt=""></a>
             </div>
         </div>
         <div class="col-lg-7 col-md-12">
@@ -17,8 +17,8 @@
                                 href="{{route('frontend_product')}}">Product</a></li>
                         <li><a class="{{request()->is('cart') ? 'active' : ''}}"
                                 href="{{route('frontend_cart')}}">Cart</a></li>
-                        <li><a class="{{request()->is('wishlist') ? 'active' : ''}}"
-                                href="{{route('frontend_wishlist')}}">Wishlist</a></li>
+                        {{-- <li><a class="{{request()->is('wishlist') ? 'active' : ''}}"
+                                href="{{route('frontend_wishlist')}}">Wishlist</a></li> --}}
                         <li><a class="{{request()->is('contact') ? 'active' : ''}}"
                                 href="{{route('frontend_contact')}}">Contact Us</a></li>
                         <li><a class="{{request()->is('checkout') ? 'active' : ''}}"
@@ -43,11 +43,11 @@
         </div>
         <div class="col-lg-3 col-md-7 col-6">
             <div class="header_configure_area">
-                <div class="header_wishlist">
+                {{-- <div class="header_wishlist">
                     <a href="{{route('frontend_wishlist')}}"><i class="ion-android-favorite-outline"></i>
                         <span class="wishlist_count">3</span>
                     </a>
-                </div>
+                </div> --}}
                 <div class="mini_cart_wrapper">
                     <a href="javascript:void(0)">
                         <span id="mini_cart_two">
