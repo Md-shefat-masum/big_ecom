@@ -773,8 +773,8 @@ input[type=text]:focus {
   color: #4b71fc;
 }
 .footer {
-  position: unset;
-  display: none;
+  /* position: unset; */
+  /* display: none; */
 }
 input.form-control[type="file"] {
   height: 43px;

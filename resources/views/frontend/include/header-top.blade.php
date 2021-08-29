@@ -8,10 +8,10 @@
         <div class="col-lg-8 col-md-7">
             <div class="header_top_settings text-right">
                 <ul>
-                    <li><a href="#">Store Locations</a></li>
+                    {{-- <li><a href="#">Store Locations</a></li> --}}
                     <li><a href="#">Track Your Order</a></li>
-                    <li>Hotline: <a href="tel:+(012)800456789">(012) 800 456 789 </a></li>
-                    <li>Quality Guarantee Of Products</li>
+                    <li>Hotline: <a href="tel:+880 1760686162">+880 1760686162 </a></li>
+                    <li style="text-transform: inherit !important;">Email: info@brandszone.com.bd</li>
                 </ul>
             </div>
         </div>

@@ -773,3 +773,130 @@ if (document.getElementById('product-price')) {
 
     });
 }
+if (document.getElementById('product-price')) {
+    // alert('josko');
+    const app = new Vue({
+        el: '#product-price',
+        store: store,
+        data: function () {
+            return {
+                price_range: '',
+            }
+        },
+        created: function () {
+            this.init_jquery();
+            this.filter_products();
+            this.getProductFilter();
+        },
+        methods: {
+
+
+            ...window.mutation([
+                'add_selected_product_for_quick_view',
+                'add_selected_product_for_cart',
+
+            ]),
+
+            // init_jquery: function () {
+            //     let min_price = 0;
+            //     let max_price = 0;
+            //     $.get('/json-min-max-price', function (res) {
+            //         // console.log(res.data);
+            //         min_price=parseInt(res.min_price);
+            //         max_price=parseInt(res.max_price);
+
+            //         $("#slider-range").slider({
+            //             range: true,
+            //             min: min_price,
+            //             max: max_price,
+            //             values: [min_price, max_price],
+            //             slide: function (event, ui) {
+            //                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            //             }
+            //         });
+            //         $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            //             " - $" + $("#slider-range").slider("values", 1));
+            //         // let range = $('#amount').val();
+            //         // axios.get('/json-min-max-price?range='+range)
+            //         //     .then((res)=>{
+            //         //         console.log(res.data);
+            //         //     })
+
+            //     });
+
+
+            // },
+            // getProductFilter: function () {
+
+            //     axios.get('/json-min-max-price')
+            //         .then(res => {
+            //             // console.log(res.data);
+            //             this.price_range = res.data;
+            //         })
+
+            // },
+            // filter_products: function(){
+            //     // console.log(this.price_range, $('#amount').val());
+            //     let range = $('#amount').val();
+            //     let range_s= range.replace(/\$/g,'');
+            //     // let range_ss= range_s.replace('-','');
+            //     // range_ss.split(" ");
+            //     let min= parseInt(range_s.split("-")['0']);
+            //     let max= parseInt(range_s.split("-")['1']);
+            //     // console.log(range_s);
+            //     // console.log(max);
+            //     axios.get('/get-product-filter?min='+min+'&max='+max)
+            //         .then((res)=>{
+            //             console.log(res.data);
+            //             this.product_list = res.data;
+            //         })
+            // },
+
+
+        },
+
+    });
+}
+if (document.getElementById('wish-list')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#wish-list',
+        store: store,
+        data: function () {
+            return {
+                price_range: '',
+            }
+        },
+        created: function () {
+            // this.init_jquery();
+            // this.filter_products();
+            // this.getProductFilter();
+        },
+        methods: {
+
+
+            ...window.mutation([
+                'add_selected_product_for_cart',
+
+            ]),
+
+            store: function () {
+                let form_datas = new FormData($('#form_body')[0]);
+                axios.post('/edit-account', form_datas)
+                    .then((res) => {
+                        console.log(res.data);
+                        // this.form_datas.clear();
+                        toaster('success', 'Successful.');
+                    })
+                    .catch((err) => {
+                        // console.log(err.response);
+                        let errors = err.response.data.errors;
+                    })
+            },
+
+
+
+        },
+
+    });
+}
