@@ -13,4 +13,7 @@ class Order extends Model
     {
         return $this->hasMany('App\Models\OrderInformation','order_id','id');
     }
+    public function order_address(){
+        return $this->hasMany('App\Models\OrderAddress','user_id','user_id');
+    }
 }

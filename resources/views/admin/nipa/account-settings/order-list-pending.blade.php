@@ -3,135 +3,88 @@
 @section('content')
 
 <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container-fluid" id="pending_order_list">
+        @include('admin.layouts.includes.bread_cumb',['title'=>'View Product Reviews'])
 
-        <div class="page-wrapper">
-            <div class="page-content">
-
-                <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                    <div class="breadcrumb-title pe-3">Orders</div>
-
-
-                </div>
-                <div class="breadcrumb-subtitle">
-                    {{-- <p>Fill in the form below to specify the account details.</p> --}}
-                </div>
-                <div class="row">
-                    <div class="col-xl-9 mx-auto">
-                        <h6 class="mb-0 text-uppercase">Archived Invoices</h6>
-                        <hr>
-                        <div class="card border-top border-0 border-4 border-white">
-                            <div class="card-body">
-                                <div class="table-responsive" style="padding-bottom: 212px;">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Order Id</th>
-                                                <th scope="col">Invoice Id</th>
-                                                <th scope="col">View Invoice</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($data as $item)
-                                            @php
-
-                                            $inv=DB::table('order_addresses')->where('invoice_id',$item->invoice_id)->first();
-                                            @endphp
-                                            <tr>
-                                                <td>{{ $item->id }}</td>
-                                                <td>{{ $item->invoice_id }}</td>
-                                                <td>
-                                                    <div>
-                                                        {{-- <form method="post" action="{{route('order_status_update')}}">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$item->id}}">
-                                                        @if ($item->order_status == "pending")
-                                                        <input type="hidden" name="order_status" value="pending">
-                                                        <a class="btn btn-danger waves-effect waves-light m-1"
-                                                            data-toggle="modal"
-                                                            data-target="#exampleModal"><span>Accept</span>
-                                                        </a>
-                                                        @endif
-                                                        </form> --}}
-                                                        <form action="{{route('order_status_update')}}" method="post"
-                                                            id="order-confirmed" enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{$item->id}}">
-                                                            @if ($item->order_status == "pending")
-                                                            <input type="hidden" name="order_status" value="pending">
-                                                            <a href="{{route('order_status_update')}}"
-                                                                onclick="event.preventDefault(); confirm('Do you want to confirm the order?') && document.getElementById('order-confirmed').submit();"
-                                                                class="btn btn-danger waves-effect waves-light m-1"><span>Confirm</span>
-                                                            </a>
-                                                            @endif
-                                                        </form>
-                                                        {{-- <form action="{{route('order_status_update')}}"
-                                                        method="post"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$item->id}}">
-                                                        @if ($item->order_status == "process")
-                                                        <input type="hidden" name="order_status" value="process">
-                                                        <button type="submit"
-                                                            class="btn btn-info waves-effect waves-light m-1"><span>Process</span>
-                                                        </button>
-                                                        @endif
-                                                        </form> --}}
-                                                        {{-- <form action="{{route('order_status_update')}}"
-                                                        method="post"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$item->id}}">
-                                                        @if ($item->order_status == "accept")
-                                                        <input type="hidden" name="order_status" value="accept">
-                                                        <button type="submit"
-                                                            class="btn btn-success waves-effect waves-light m-1"><span>Accept</span>
-                                                        </button>
-                                                        @endif
-                                                        </form> --}}
-
-                                                        {{-- <form action="{{route('order_status_update')}}"
-                                                        method="post"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$item->id}}">
-                                                        @if ($item->order_status == "complete")
-                                                        <button type="submit"
-                                                            class="btn btn-danger waves-effect waves-light m-1"><span>Complete</span>
-                                                        </button>
-                                                        @endif
-                                                        </form> --}}
-
-
-                                                        <a type="button" href="{{ route('invoice_view',$item->id) }}"
-                                                            class="btn btn-warning waves-effect waves-light m-1"><span>View</span>
-                                                        </a>
-                                                        {{-- <a type="button"
-                                                                href="{{route('order_status_edit',$item->id)}}"
-                                                        class="btn btn-success waves-effect waves-light m-1"><i
-                                                            class="fa fa-pencil"></i><span>Edit Status</span>
-                                                        </a> --}}
-
-                                                    </div>
-
-                                                </td>
-                                            </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="filter_nav d-flex flex-wrap">
+                            <li><a href="#" class="custom_white_btn">DELETE SELECTED
+                                </a></li>
+                            <li><a href="#" class="custom_white_btn">Approve Selected</a></li>
+                            <li><a href="#" class="custom_white_btn">Export</a></li>
+                            <li><a href="#" class="custom_white_btn">Disapprove Selected</a></li>
+                            <li>
+                                <input type="text" class="custom_input" name="" placeholder="Search">
+                            </li>
+                            <li>
+                                <button class="custom_white_btn">Search</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="padding-bottom: 212px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><input type="checkbox"></th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Order Id</th>
+                                        <th scope="col">Customer Id</th>
+                                        <th scope="col">Customer Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col" class="text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in pending_order" :key="item.id">
+                                        <th scope="row"><input type="checkbox"></th>
+                                        <td>@{{item.invoice_date}}</td>
+                                        <td>
+                                          @{{item.invoice_id}}
+                                        </td>
+                                        <td>@{{item.order_address['0'].user_id}}</td>
+                                        <td>@{{item.order_address['0'].first_name}}@{{item.order_address['0'].last_name}}</td>
+                                        <td>@{{item.order_status}}</td>
+                                        <td>
+                                            <ul class="d-flex justify-content-end table_actions">
+                                                <li>
+                                                    <a href="#" style="font-size: 20px;"><i
+                                                            class="fa fa-list-ul"></i></a>
+                                                    <ul style="height: 210px; overflow: auto;">
+                                                        <li><a href="#">View Order</a></li>
+                                                        <li><a href="#">Order Details</a></li>
+                                                        <li><a href="#">Cancel Order</a></li>
+                                                        <li><a href="#">Refund Order</a></li>
+                                                        <li><a href="#">Edit Order</a></li>
+                                                        <li><a href="#">Print Invoice</a></li>
+                                                        <li><a href="#">Mail Invoice</a></li>
+                                                        <li><a href="#">Send Message</a></li>
+                                                        <li><a href="#">View Notes</a></li>
+                                                        <li><a href="#">View Order Timeline</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!--start overlay-->
         <div class="overlay"></div>
-
+        <!--end overlay-->
     </div>
     <!-- End container-fluid-->
 </div>
+@push('cjs')
+<script src="{{ asset('contents/admin') }}/product_new_vue.js"></script>
 
+@endpush
 @endsection

@@ -27,16 +27,16 @@ use Illuminate\Support\Facades\Validator;
 
 class FrontendController extends Controller
 {
-    
+
     public function home_all_product()
     {
         // $category=Category::orderBy('id','DESC')->paginate(8);
         // return view('frontend.index',['category' => $category]);
-   
+
     }
     public function json_home_category_product()
     {
-        $data = Product::orderBy('id','DESC')->paginate(8);
+        $data = Product::orderBy('id', 'DESC')->paginate(8);
         return $data;
     }
     // public function frontend_category()
@@ -49,12 +49,12 @@ class FrontendController extends Controller
     // }
     public function frontend_category()
     {
-        $data = Category::orderBy('id','DESC')->get();
+        $data = Category::orderBy('id', 'DESC')->get();
         return $data;
     }
     public function menu_category()
     {
-        $data = Category::orderBy('id','ASC')->get();
+        $data = Category::orderBy('id', 'ASC')->get();
         return $data;
     }
     public function frontend_product()
@@ -85,8 +85,8 @@ class FrontendController extends Controller
         $data = Product::find($id);
         return $data;
     }
- 
-  
+
+
     public function frontend_cart()
     {
         return view('frontend.cart');
@@ -151,8 +151,8 @@ class FrontendController extends Controller
     public function add_checkout(Request $request)
     {
         // dd($request->all());
-       
-        
+
+
         if (OrderAddress::where('user_id', Auth::user()->id)->exists()) {
             $address = OrderAddress::where('user_id', Auth::user()->id)->first();
         } else {
@@ -260,8 +260,8 @@ class FrontendController extends Controller
     {
         // $max_price = Product::orderBy('default_price', 'DESC')->first();
         // $min_price = Product::orderBy('default_price', 'ASC')->first();
-        $min=$request->min;
-        $max=$request->max;
+        $min = $request->min;
+        $max = $request->max;
         $data = Product::orderBy('id', 'DESC')->whereBetween('default_price', [$min, $max])->paginate(16);
         return $data;
     }

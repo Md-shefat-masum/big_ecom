@@ -252,3 +252,30 @@ if (document.getElementById('product_condition')) {
         },
     });
 }
+if (document.getElementById('pending_order_list')) {
+    // alert('ok');
+    const app = new Vue({
+        el: '#pending_order_list',
+        store: store,
+        data: function () {
+            return {
+
+                pending_order: {},
+            }
+        },
+        created: function () {
+            this.getPendingOrder();
+        },
+        methods: {
+            getPendingOrder: function () {
+                axios.get('/admin/json-order-list-pending')
+                .then(res => {
+                    // console.log(res.data);
+                    this.pending_order = res.data;
+                })
+            },
+
+
+        },
+    });
+}

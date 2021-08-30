@@ -97,10 +97,10 @@ if (document.getElementById('product_list')) {
 
             },
             getCatLimit: function () {
-                if(this.limit==9){
-                    this.limit=100;
-                }else{
-                    this.limit=9;
+                if (this.limit == 9) {
+                    this.limit = 100;
+                } else {
+                    this.limit = 9;
                 }
             },
 
@@ -259,13 +259,13 @@ if (document.getElementById('home-product-category-top')) {
 
             },
             getCatLimit: function () {
-                if(this.limit==9){
-                    this.limit=100;
-                }else{
-                    this.limit=9;
+                if (this.limit == 9) {
+                    this.limit = 100;
+                } else {
+                    this.limit = 9;
                 }
             },
-       
+
 
         },
         computed: {
