@@ -42,10 +42,16 @@
                                 <li>
                                     <button class="custom_white_btn">Search</button>
                                 </li>
+                                <li style="align-self: center;">
+                                    <pagination :data="products" :limit="-1" :size="'small'" :show-disabled="true" :align="'center'" @pagination-change-page="get_products">
+                                        <span slot="prev-nav"><i class="fa fa-angle-left"></i> Previous</span>
+                                        <span slot="next-nav">Next <i class="fa fa-angle-right"></i></span>
+                                    </pagination>
+                                </li>
                             </ul>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive" style="padding-bottom: 212px;">
+                            <div class="table-responsive" style="padding-bottom: 20px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -59,13 +65,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item in 10" :key="item">
+                                        <tr v-for="product in products.data" :key="product.id">
                                             <th scope="row"><input type="checkbox"></th>
-                                            <td><img src="https://cdn11.bigcommerce.com/s-9t3odtaup4/products/93/images/311/leparfaitmedium3.1623049257.50.50.jpg?c=1" alt=""></td>
-                                            <td>SLLPJ</td>
-                                            <td>N/A</td>
-                                            <td>[Sample] 1 L Le Parfait Jar</td>
-                                            <td>$7.00</td>
+                                            <td>
+                                                <img
+                                                    :src="`/${ product.related_image[0].image }`"
+                                                    :alt="product.product_name"
+                                                    style="height: 70px;">
+                                            </td>
+                                            <td>@{{ product.sku }}</td>
+                                            <td>@{{ product.track_inventory_on_the_variant_level_stock }}</td>
+                                            <td>@{{ product.product_name }}</td>
+                                            <td>$@{{ product.default_price }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-end table_actions">
                                                     <li><a href="#"><i class="fa fa-eye"></i></a></li>
@@ -83,8 +94,12 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="card-footer">
+                                    <pagination :data="products" :show-disabled="true" :align="'center'" @pagination-change-page="get_products"></pagination>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
@@ -98,7 +113,7 @@
     <!--End content-wrapper-->
 
     @push('cjs')
-        <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
+        <script src="{{ asset('contents/admin') }}/vue/product_list_vue.js"></script>
     @endpush
 @endsection
 

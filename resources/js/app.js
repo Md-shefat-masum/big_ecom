@@ -10,12 +10,13 @@ window.Vue = require('vue').default;
 
 window.store = require('./store/index');
 const { default: store } = window.store;
-Vue.component('pagination', require('laravel-vue-pagination'));
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 window.getters = mapGetters;
 window.mutation = mapMutations;
 window.action = mapActions;
+
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**
  * The following block of code may be used to automatically register your

@@ -19,7 +19,7 @@ class Product extends Model
             'variant_values_json',
     ];
 
- 
+
     public function getHsCodesJsonAttribute()
     {
         return json_decode($this->hs_codes);
@@ -52,6 +52,7 @@ class Product extends Model
     {
         return json_decode($this->selected_variant_options);
     }
+    
     public function related_image(){
         return $this->hasMany(ProductImage::class,'product_id');
     }

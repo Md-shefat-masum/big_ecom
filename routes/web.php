@@ -47,7 +47,7 @@ Route::group([
 ], function () {
     Route::get('/index', 'UserController@index')->name('admin_user_index');
     Route::get('/delivery-man', 'UserController@admin_delivery_man_index')->name('admin_delivery_man_index');
-    
+
     Route::get('/view/{id}', 'UserController@view')->name('admin_user_view');
     Route::get('/create', 'UserController@create')->name('admin_user_create');
     Route::post('/store', 'UserController@store')->name('admin_user_store');
@@ -93,7 +93,8 @@ Route::group([
     'namespace' => 'Admin\Product'
 ], function () {
 
-    Route::get('/view', 'ProductController@view')->name('admin_product_view');
+    Route::get('/list', 'ProductController@list')->name('admin_product_list');
+    Route::get('/list/json', 'ProductController@list_json')->name('admin_product_list_json');
 
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
     Route::post('/store-product', 'ProductController@store_product')->name('admin_product_store_product');
@@ -126,11 +127,8 @@ Route::group([
     Route::post('/store-brands', 'ProductController@store_brands')->name('admin_product_store_brands');
     Route::post('/update-brands', 'ProductController@update_brands')->name('admin_product_update_brands');
 
-
     Route::get('/search', 'ProductController@search')->name('admin_product_search');
     Route::get('/reviews', 'ProductController@reviews')->name('admin_product_reviews');
-
-
 });
 
 Route::group([

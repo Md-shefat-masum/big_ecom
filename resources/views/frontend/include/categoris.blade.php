@@ -19,9 +19,6 @@
                                     <div class="product_tab_btn">
                                         <ul class="nav" v-if="home_category">
 
-                                        
-
-
                                             <li>
                                                 <span slot="prev-nav">
                                                 {{-- <span slot="prev-nav">&lt; Previous
@@ -119,17 +116,11 @@
                                             </div>
 
                                         </div>
-
                                     </article>
                                 </div>
-
-
                             </div>
-
-
                         </div>
                         <!--product area end-->
-
                     </div>
                 </div>
             </div>
