@@ -949,14 +949,18 @@ input[type=text]:focus {
             top: 100%;
             opacity: 0;
             visibility: hidden;
+            transition: all linear .3s;
+            z-index: 9;
 
             li {
                 color: black;
-                margin-bottom: 10px;
+                // margin-bottom: 10px;
 
                 a {
                     color: black;
                     display: block;
+                    padding: 0px 0px 6px;
+                    transition: all linear .3s;
 
                     &:hover {
                         color: #4b71fc;

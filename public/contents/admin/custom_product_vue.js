@@ -910,11 +910,6 @@ if (document.getElementById('product')) {
     });
 }
 
-if (document.getElementById('product_list')) {
-    const app = new Vue({
-        el: '#product_list',
-    });
-}
 
 if (document.getElementById('product_option')) {
     const app = new Vue({

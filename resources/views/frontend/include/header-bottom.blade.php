@@ -7,13 +7,15 @@
                 </div>
                 <div class="categories_menu_toggle" style="display: {{ request()->is('/') ? 'block' : 'none' }};"  id="home-product-category-top">
                     <ul>
-   
+
                         <li class="menu_item_children" v-for="(category , index) in home_category" :key="category.id"  v-if="category.id <= limit">
                             <a href="#">@{{category.name}}
                                 <i class="fa fa-angle-right"></i>
                             </a>
                             <ul class="categories_mega_menu">
-                                <li class="menu_item_children menu_item_children_design" v-for="subcategory in home_category" :key="subcategory.id" v-if="subcategory.id == category.parent_id">
+                                <li class="menu_item_children menu_item_children_design"
+                                    v-for="subcategory in home_category" :key="subcategory.id"
+                                    v-if="subcategory.id == category.parent_id">
                                     <a href="#">Dresses1
                                         <i class="fa fa-angle-right"></i>
                                     </a>
@@ -60,34 +62,13 @@
 
                                     </ul> --}}
                                 </li>
-                                {{-- <li class="menu_item_children">
-                                    <a href="#">Dresses2
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="categories_mega_menu_two">
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater2 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater1</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <li class="menu_item_children menu_item_children_design"><a
-                                                href="#">Sweater2</a></li>
-
-                                    </ul>
-                                </li> --}}
-
                             </ul>
 
                         </li>
-                   
+
                         <li v-if="limit <= 9"><a href="#" @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li>
                         <li v-if="limit >= 10"><a href="#" @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> Less Categories</a></li>
-                   
+
 
                     </ul>
                 </div>

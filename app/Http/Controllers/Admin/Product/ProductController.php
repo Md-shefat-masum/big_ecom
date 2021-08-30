@@ -18,9 +18,17 @@ use Intervention\Image\Facades\Image as interImage;
 class ProductController extends Controller
 {
 
-    public function view()
+    public function list()
     {
-        return view('admin.product.view');
+        return view('admin.product.list');
+    }
+
+    public function list_json()
+    {
+        $products = Product::orderBy('id','DESC')
+                            ->with('related_image')
+                            ->paginate(5);
+        return $products;
     }
 
     public function create()

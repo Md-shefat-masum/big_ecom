@@ -39,7 +39,7 @@
         </a>
         <ul class="">
             <li>
-                <a href="{{ route('admin_product_view') }}"><i class="zmdi zmdi-dot-circle-alt"></i> View</a>
+                <a href="{{ route('admin_product_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i> List</a>
             </li>
             <li>
                 <a href="{{ route('admin_product_create') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Add</a>
@@ -82,7 +82,7 @@
             </li>
         </ul>
     </li>
-    
+
     <li>
         <a class="has-arrow" href="#">
             <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
@@ -124,7 +124,7 @@
             <li>
                 <a href="{{ route('admin_profile_additional_authentication') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Additional Authentication</a>
             </li>
-   
+
         </ul>
     </li>
     <li>
@@ -139,7 +139,7 @@
             <li>
                 <a href="{{ route('admin_store_setup_currencies') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Currencies</a>
             </li>
-          
+
             <li>
                 <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Payments</a>
             </li>
@@ -164,16 +164,16 @@
             <li>
                 <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Shipping</a>
             </li>
-          
+
             <li>
                 <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Tax</a>
             </li>
             <li>
                 <a href="#"><i class="zmdi zmdi-dot-circle-alt"></i>Accounting</a>
             </li>
-          
-          
-   
+
+
+
         </ul>
     </li>
     {{-- <li>
@@ -241,7 +241,7 @@
             <li>
                 <a href="{{ route('admin_storefront_web_pages') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Web Pages</a>
             </li>
-          
+
         </ul>
     </li>
     <li>
