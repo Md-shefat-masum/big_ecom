@@ -36,6 +36,19 @@ class ProductController extends Controller
         return view('admin.product.create');
     }
 
+    public function edit($id)
+    {
+        return view('admin.product.edit');
+    }
+
+    public function get_json($id)
+    {
+        $product = Product::find($id);
+        return response()->json([
+            'product' => $product,
+        ]);
+    }
+
     public function store_product(Request $request)
     {
 

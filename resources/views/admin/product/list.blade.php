@@ -85,7 +85,7 @@
                                                         <a href="#"><i class="fa fa-list-ul"></i></a>
                                                         <ul>
                                                             <li><a href="#">view</a></li>
-                                                            <li><a href="#">edit</a></li>
+                                                            <li><a :href="`/admin/product/edit/${product.id}`">edit</a></li>
                                                             <li><a href="#">view orders</a></li>
                                                         </ul>
                                                     </li>

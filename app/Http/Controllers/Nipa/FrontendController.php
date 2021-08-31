@@ -27,12 +27,12 @@ use Illuminate\Support\Facades\Validator;
 
 class FrontendController extends Controller
 {
-    
+
     public function home_all_product()
     {
         // $category=Category::orderBy('id','DESC')->paginate(8);
         // return view('frontend.index',['category' => $category]);
-   
+
     }
     public function json_home_category_product()
     {
@@ -81,12 +81,11 @@ class FrontendController extends Controller
     }
     public function json_product_details(Request $request, $id)
     {
-
         $data = Product::find($id);
         return $data;
     }
- 
-  
+
+
     public function frontend_cart()
     {
         return view('frontend.cart');
@@ -151,8 +150,8 @@ class FrontendController extends Controller
     public function add_checkout(Request $request)
     {
         // dd($request->all());
-       
-        
+
+
         if (OrderAddress::where('user_id', Auth::user()->id)->exists()) {
             $address = OrderAddress::where('user_id', Auth::user()->id)->first();
         } else {

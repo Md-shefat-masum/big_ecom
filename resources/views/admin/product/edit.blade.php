@@ -259,17 +259,20 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex align-items-center mb-3">
-                                                    <input @change="track_inventory = !track_inventory" name="track_inventory" id="track_inventory" class="form-control d-inline-block mr-2" style="width: 30px" type="checkbox">
+                                                    <input v-if="track_inventory == 'off'" @change="track_inventory = !track_inventory" name="track_inventory" id="track_inventory" class="form-control d-inline-block mr-2" style="width: 30px" type="checkbox">
+                                                    <input v-else @change="track_inventory = !track_inventory" checked name="track_inventory" id="track_inventory" class="form-control d-inline-block mr-2" style="width: 30px" type="checkbox">
                                                     <label for="track_inventory" style="line-height: 30px;margin: 0;">Track Inventory</label>
                                                 </div>
                                                 <div class="col-12" v-if="track_inventory">
                                                     <ul class="pl-5">
                                                         <li class="d-flex align-items-center mb-2">
-                                                            <input @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
+                                                            <input v-if="on_the_product_level == 'on'" checked @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
+                                                            <input v-else @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
                                                             <label style="line-height: 30px;margin: 0;" for=""> On the product level</label>
                                                         </li>
                                                         <li class="d-flex align-items-center mb-2">
-                                                            <input @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
+                                                            <input v-if="on_the_product_level == 'off'" checked @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
+                                                            <input v-else @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
                                                             <label style="line-height: 30px;margin: 0;" for=""> On the variant level</label>
                                                         </li>
                                                     </ul>
@@ -396,8 +399,8 @@
                                                                                         edit_column_name.name.toLowerCase().replaceAll(' ','_').replaceAll('-','_')
                                                                                         .replaceAll('(','_').replaceAll(')','_').replaceAll('/','_')+
                                                                                         '][]'"
-                                                                                :value="'variant_'+variation.replaceAll(' ','_')"
                                                                                 style="width: 24px; height:24px;">
+                                                                                {{-- :value="'variant_'+variation.replaceAll(' ','_')" --}}
                                                                         </span>
                                                                         <span v-else-if="edit_column_name.name == 'Variant (Read-only)'">
                                                                             @{{variation}}
@@ -799,7 +802,8 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <div class="col-12 d-flex align-items-center mb-3">
-                                                            <input id="custom_information" @click="manage_customs_information = !manage_customs_information" v-model="manage_customs_information" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                            <input v-if="manage_customs_information=='on'" checked id="custom_information" @click="manage_customs_information = !manage_customs_information" v-model="manage_customs_information" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                            <input v-else id="custom_information" @click="manage_customs_information = !manage_customs_information" v-model="manage_customs_information" name="custom_information" type="checkbox" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                             <label for="custom_information" style="line-height: 30px; margin: 0px;">Manage customs information</label>
                                                         </div>
                                                     </div>

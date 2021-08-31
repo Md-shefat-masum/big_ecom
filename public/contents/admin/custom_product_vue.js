@@ -261,6 +261,7 @@ if (document.getElementById('product')) {
                     },
                 ],
                 variation_permutaion: [],
+                variant_values: [],
 
                 modifier_options: [],
             }
@@ -269,6 +270,10 @@ if (document.getElementById('product')) {
             this.get_categories_tree_json();
             this.get_shared_variant_options();
             this.get_all_brands();
+
+            if(location.pathname.split('/')[4] && parseInt(location.pathname.split('/')[4]) > 0){
+                this.get_product(parseInt(location.pathname.split('/')[4]));
+            }
         },
         updated: function () {},
         watch: {
@@ -283,6 +288,61 @@ if (document.getElementById('product')) {
             // ...window.action([
             //     'fetch_category_info',
             // ]),
+            get_product: function(id){
+
+                axios.get('/admin/product/get-json/'+id)
+                    .then((res)=>{
+                        // console.log(res.data.product);
+
+                        let product = res.data.product;
+                        for (const key in product) {
+                            if (Object.hasOwnProperty.call(product, key)) {
+                                const element = product[key];
+
+                                if(Object.hasOwnProperty.call(this.$data, key)){
+                                    if(key == 'custom_fields'){
+                                        this.$data[key] = JSON.parse(element);
+                                    }
+                                    else if(key == 'hs_codes'){
+                                        this.$data[key] = JSON.parse(element);
+                                    }
+                                    else if(key == 'bulk_pricing_discount_options'){
+                                        this.$data[key] = JSON.parse(element);
+                                    }
+                                    else if(key == 'modifier_options'){
+                                        this.$data[key] = JSON.parse(element);
+                                    }
+                                    else if(key == 'selected_variant_options'){
+                                        this.$data[key] = JSON.parse(element);
+                                    }
+                                    else if(key == 'description'){
+                                        $('#mytextarea1').summernote('code',element)
+                                    }
+                                    else{
+                                        if(key == 'custom_fields'){
+                                            console.log({manage_customs_information:element});
+                                        }
+                                        this.$data[key] = element;
+                                    }
+                                }
+                                console.log({[key]:element});
+                                if(key == 'custom_information'){
+                                    this.$data['manage_customs_information'] = element;
+                                }
+                                if(key == 'variant_values_json'){
+                                    this.$data['variant_values'] = element;
+                                }
+                            }
+
+
+                        }
+                        // console.log(this.$data);
+                        setTimeout(() => {
+                            this.load_variant_values();
+                        }, 2000);
+                    })
+            },
+
 
             store_product: function () {
                 let form_data = new FormData($('#product_insert_form')[0]);
@@ -487,6 +547,42 @@ if (document.getElementById('product')) {
 
             remove_selected_variant_value: function (item_index, value_index) {
                 this.selected_variant_options[item_index].option_values_json.splice(value_index, 1);
+            },
+
+            load_variant_values: function(){
+                // console.log(this.variant_values);
+                let variant_values = this.variant_values;
+                let selector = '';
+                for (const varient_name in variant_values) {
+                    if (Object.hasOwnProperty.call(variant_values, varient_name)) {
+                        const varient_permutations = variant_values[varient_name];
+
+                        console.log(varient_name);
+
+                        for (const single_varient in varient_permutations) {
+                            if (Object.hasOwnProperty.call(varient_permutations, single_varient)) {
+                                const single_varient_value = varient_permutations[single_varient];
+
+                                // let selector = variant_values[blue,_sm][sku][]
+                                selector = `variant_values[${varient_name}][${single_varient}][]`;
+
+                                // console.log(selector);
+                                // console.log({[single_varient]: single_varient_value[0]});
+
+                                $(`input[name="${selector}"]`).val(single_varient_value[0]);
+
+                                if($(`input[name="${selector}"]`)[0].type == 'checkbox'){
+                                    if(single_varient_value[0]){
+                                        $(`input[name="${selector}"]`)[0].checked = true;
+                                    }
+                                }
+                                // $(`input[name="variant_values[blue,_sm][purchasable][]"]`).val("test");
+                                // console.log(selector);
+                            }
+                        }
+
+                    }
+                }
             },
 
             get_categories_tree_json: function () {

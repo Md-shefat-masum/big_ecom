@@ -97,6 +97,9 @@ Route::group([
     Route::get('/list/json', 'ProductController@list_json')->name('admin_product_list_json');
 
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
+    Route::get('/edit/{id}', 'ProductController@edit')->name('admin_product_edit');
+    Route::get('/get-json/{id}', 'ProductController@get_json')->name('admin_product_get_json');
+
     Route::post('/store-product', 'ProductController@store_product')->name('admin_product_store_product');
 
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
