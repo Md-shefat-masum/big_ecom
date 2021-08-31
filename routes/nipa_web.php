@@ -147,13 +147,14 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'user-role',
+    'prefix' => 'admin',
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
     Route::post('/order-status-update', 'AccountSettingsController@order_status_update')->name('order_status_update');
     Route::get('/edit-status', 'AccountSettingsController@edit-status')->name('edit-status');
     Route::get('/order-list-pending', 'AccountSettingsController@order_list_pending')->name('order_list_pending');
+    Route::get('/json-order-list-pending', 'AccountSettingsController@json_order_list_pending')->name('json_order_list_pending');
     Route::get('/order-list-process', 'AccountSettingsController@order_list_process')->name('order_list_process');
     Route::get('/order-list-complete', 'AccountSettingsController@order_list_complete')->name('order_list_complete');
     Route::get('/delivery-man-assign/{id}', 'AccountSettingsController@delivery_man_assign')->name('delivery_man_assign');

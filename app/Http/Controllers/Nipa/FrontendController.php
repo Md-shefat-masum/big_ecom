@@ -36,7 +36,7 @@ class FrontendController extends Controller
     }
     public function json_home_category_product()
     {
-        $data = Product::orderBy('id','DESC')->paginate(8);
+        $data = Product::orderBy('id', 'DESC')->paginate(8);
         return $data;
     }
     // public function frontend_category()
@@ -49,12 +49,12 @@ class FrontendController extends Controller
     // }
     public function frontend_category()
     {
-        $data = Category::orderBy('id','DESC')->get();
+        $data = Category::orderBy('id', 'DESC')->get();
         return $data;
     }
     public function menu_category()
     {
-        $data = Category::orderBy('id','ASC')->get();
+        $data = Category::orderBy('id', 'ASC')->get();
         return $data;
     }
     public function frontend_product()
@@ -259,8 +259,8 @@ class FrontendController extends Controller
     {
         // $max_price = Product::orderBy('default_price', 'DESC')->first();
         // $min_price = Product::orderBy('default_price', 'ASC')->first();
-        $min=$request->min;
-        $max=$request->max;
+        $min = $request->min;
+        $max = $request->max;
         $data = Product::orderBy('id', 'DESC')->whereBetween('default_price', [$min, $max])->paginate(16);
         return $data;
     }
