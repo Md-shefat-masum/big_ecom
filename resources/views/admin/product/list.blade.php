@@ -68,7 +68,7 @@
                                         <tr v-for="product in products.data" :key="product.id">
                                             <th scope="row"><input type="checkbox"></th>
                                             <td>
-                                                <img
+                                                <img v-if="product.related_image[0]"
                                                     :src="`/${ product.related_image[0].image }`"
                                                     :alt="product.product_name"
                                                     style="height: 70px;">
