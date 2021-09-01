@@ -399,6 +399,7 @@
                                                                                         edit_column_name.name.toLowerCase().replaceAll(' ','_').replaceAll('-','_')
                                                                                         .replaceAll('(','_').replaceAll(')','_').replaceAll('/','_')+
                                                                                         '][]'"
+                                                                                :value="'variant_'+variation.replaceAll(' ','_')"
                                                                                 style="width: 24px; height:24px;">
                                                                                 {{-- :value="'variant_'+variation.replaceAll(' ','_')" --}}
                                                                         </span>
@@ -952,13 +953,15 @@
                                                 <h5>Image</h5>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="use_thumbnail_1" v-model="open_graph_use_thumbnail_image" name="open_graph_use_thumbnail_image" checked type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="use_thumbnail_1" v-if="open_graph_use_thumbnail_image == 'on'" checked  name="open_graph_use_thumbnail_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="use_thumbnail_1" v-else name="open_graph_use_thumbnail_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                         <label for="use_thumbnail_1" style="line-height: 30px; margin: 0px;">Use thumbnail image</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="open_graph_dont_use_an_image" v-model="open_graph_dont_use_an_image" name="open_graph_dont_use_an_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="open_graph_dont_use_an_image" v-if="open_graph_dont_use_an_image == 'on'" checked name="open_graph_dont_use_an_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="open_graph_dont_use_an_image" v-else name="open_graph_dont_use_an_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                         <label for="open_graph_dont_use_an_image" style="line-height: 30px; margin: 0px;">Don’t use an image</label>
                                                     </div>
                                                 </div>
@@ -971,7 +974,7 @@
                                 <div class="form-group col-12">
                                     <label class="col-form-label"></label>
                                     <div class="">
-                                        <button type="button" @click.prevent="store_product" class="btn btn-white px-5"><i class="icon-lock"></i> Upload</button>
+                                        <button type="button" @click.prevent="update_product" class="btn btn-white px-5"><i class="icon-lock"></i> Upload</button>
                                     </div>
                                 </div>
                             </form>
@@ -1222,7 +1225,6 @@
         <script src="{{ asset('contents/admin') }}/custom_product_vue.js"></script>
 
         {{-- <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> --}}
-
         <script>
             $('.multiple-select').select2({
                 // theme: 'bootstrap4',

@@ -57,6 +57,7 @@
                                     <div class="card category_card_dropdown">
                                         <div class="card-header">
                                             <label for="" class=" col-form-label">Categories</label>
+                                            <input type="hidden" name="selected_categories">
                                         </div>
                                         <div class="card-body overflow-hidden category_block" v-html="category_html">
 
@@ -68,6 +69,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <label for="" class=" col-form-label">Description</label>
+                                            <input type="hidden" name="description">
                                         </div>
                                         <div class="card-body">
                                             <textarea name="" v-model="description" class="form-control" id="mytextarea1"></textarea>
@@ -259,13 +261,15 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex align-items-center mb-3">
-                                                    <input @change="track_inventory = !track_inventory" name="track_inventory" id="track_inventory" class="form-control d-inline-block mr-2" style="width: 30px" type="checkbox">
+                                                    <input v-if="track_inventory" checked @change="track_inventory = !track_inventory" name="track_inventory" id="track_inventory" class="form-control d-inline-block mr-2" style="width: 30px" type="checkbox">
+                                                    <input v-else @change="track_inventory = !track_inventory" name="track_inventory" id="track_inventory" class="form-control d-inline-block mr-2" style="width: 30px" type="checkbox">
                                                     <label for="track_inventory" style="line-height: 30px;margin: 0;">Track Inventory</label>
                                                 </div>
                                                 <div class="col-12" v-if="track_inventory">
                                                     <ul class="pl-5">
                                                         <li class="d-flex align-items-center mb-2">
-                                                            <input @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
+                                                            <input v-if="on_the_product_level" checked @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
+                                                            <input v-else @change="on_the_product_level = !on_the_product_level" type="radio" name="on_the_product_level" class="form-control mr-2" style="width: 30px">
                                                             <label style="line-height: 30px;margin: 0;" for=""> On the product level</label>
                                                         </li>
                                                         <li class="d-flex align-items-center mb-2">
@@ -948,13 +952,14 @@
                                                 <h5>Image</h5>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="use_thumbnail_1" v-model="open_graph_use_thumbnail_image" name="open_graph_use_thumbnail_image" checked type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="use_thumbnail_1" name="open_graph_use_thumbnail_image" checked type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
                                                         <label for="use_thumbnail_1" style="line-height: 30px; margin: 0px;">Use thumbnail image</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="d-flex align-items-center mb-3">
-                                                        <input id="open_graph_dont_use_an_image" v-model="open_graph_dont_use_an_image" name="open_graph_dont_use_an_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        <input id="open_graph_dont_use_an_image" name="open_graph_use_thumbnail_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;">
+                                                        {{-- <input id="open_graph_dont_use_an_image" name="open_graph_dont_use_an_image" type="radio" class="form-control d-inline-block mr-2" style="width: 25px;"> --}}
                                                         <label for="open_graph_dont_use_an_image" style="line-height: 30px; margin: 0px;">Don’t use an image</label>
                                                     </div>
                                                 </div>

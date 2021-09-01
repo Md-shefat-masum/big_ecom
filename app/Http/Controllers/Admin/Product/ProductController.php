@@ -51,6 +51,24 @@ class ProductController extends Controller
 
     public function store_product(Request $request)
     {
+        // dd($request->all());
+        $this->validate($request,[
+            'product_name' => ['required'],
+            'default_price' => ['required'],
+            'brand_id' => ['required'],
+            'selected_categories' => ['required','min:3'],
+            'description' => ['required','min:50'],
+            'upload_image' => ['required'],
+            'search_keywords' => ['required'],
+            'page_title' => ['required'],
+            'product_url' => ['required','unique:products'],
+            'meta_description' => ['required'],
+            'track_inventory_on_the_variant_level_stock' => ['required','integer','min:1'],
+            'track_inventory_on_the_variant_level_low_stock' => ['required','integer','min:1'],
+        ],[
+            'selected_categories.min' => 'No category is selected.',
+            'upload_image.required' => 'No image selected.',
+        ]);
 
         $product_info = $request->except([
             'selected_categories',
@@ -84,6 +102,63 @@ class ProductController extends Controller
 
         $product = Product::create($product_info);
 
+        if($request->hasFile('upload_image')){
+            // dd($request->file('upload_image'));
+            foreach ($request->file('upload_image') as $key => $image) {
+                // Storage::put('uploads/product', $image);
+                $path = $this->store_product_file($image);
+                ProductImage::insert([
+                    'product_id' => $product->id,
+                    'image' => $path,
+                    'creator' => Auth::user()->id,
+                    'created_at' => Carbon::now()->toDateTimeString(),
+                ]);
+            }
+        }
+
+        return [$path,$product,$product_info, $request->all(), $request->file('upload_image')];
+    }
+
+    public function update_product(Request $request)
+    {
+
+        $product_info = $request->except([
+            'selected_categories',
+            'image',
+            'bulk_pricing_discount_type',
+            'selected_variant_options',
+            'modifier_options',
+            'custom_fields',
+            'hs_codes',
+            'custom_field_name',
+            'custom_field_value',
+            'variant_values',
+            '_token',
+            'Variant_(Read-only)',
+            'purchasable',
+            'Default_Price',
+            'Image',
+            'Stock',
+            'SKU',
+            'Sale_Price',
+            'upload_image',
+        ]);
+
+        $product_info['bulk_pricing_discount_type'] = $request->bulk_pricing_discount_type;
+        $product_info['selected_categories'] = $request->selected_categories;
+        $product_info['selected_variant_options'] = $request->selected_variant_options;
+        $product_info['modifier_options'] = $request->modifier_options;
+        $product_info['custom_fields'] = $request->custom_fields;
+        $product_info['hs_codes'] = $request->hs_codes;
+        $product_info['variant_values'] = json_encode($request->variant_values);
+
+        $product = Product::find($request->id);
+        $product->fill($product_info);
+        $product->save();
+
+        // dd($product);
+
+        $path = '';
         if($request->hasFile('upload_image')){
             // dd($request->file('upload_image'));
             foreach ($request->file('upload_image') as $key => $image) {

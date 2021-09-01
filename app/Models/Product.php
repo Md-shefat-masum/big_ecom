@@ -17,9 +17,23 @@ class Product extends Model
             'bulk_pricing_discount_options_json',
             'custom_fields_json',
             'variant_values_json',
+            'related_categories',
     ];
 
 
+    public function getRelatedCategoriesAttribute()
+    {
+        $json_categories_id = json_decode($this->selected_categories);
+        $category = [];
+        // dd($json_categories_id,$this->selected_categories);
+
+        foreach ($json_categories_id as $id) {
+            if(Category::where('id',$id)->exists()){
+                array_push($category, Category::where('id',$id)->select('id','name')->first());
+            }
+        }
+        return $category;
+    }
     public function getHsCodesJsonAttribute()
     {
         return json_decode($this->hs_codes);
@@ -52,7 +66,7 @@ class Product extends Model
     {
         return json_decode($this->selected_variant_options);
     }
-    
+
     public function related_image(){
         return $this->hasMany(ProductImage::class,'product_id');
     }

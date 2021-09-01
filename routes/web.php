@@ -101,6 +101,7 @@ Route::group([
     Route::get('/get-json/{id}', 'ProductController@get_json')->name('admin_product_get_json');
 
     Route::post('/store-product', 'ProductController@store_product')->name('admin_product_store_product');
+    Route::post('/update-product', 'ProductController@update_product')->name('admin_product_update_product');
 
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
     Route::get('/categories_tree_json', 'ProductController@categories_tree_json')->name('admin_product_categories_tree_json');

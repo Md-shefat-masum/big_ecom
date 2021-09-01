@@ -27,6 +27,7 @@ if (document.getElementById('product')) {
                     }
                 },
 
+                id: '',
                 product_name: '',
                 sku: '',
                 product_type: '',
@@ -67,8 +68,8 @@ if (document.getElementById('product')) {
                     },
                 ],
 
-                track_inventory: false,
-                on_the_product_level: false,
+                track_inventory: true,
+                on_the_product_level: true,
 
                 track_inventory_on_the_variant_level_stock: 0,
                 track_inventory_on_the_variant_level_low_stock: 0,
@@ -106,6 +107,7 @@ if (document.getElementById('product')) {
 
                 categories: [],
                 selected_categories: [],
+                related_categories: [],
 
                 category_html: '',
                 show_advance_pricing: false,
@@ -272,7 +274,8 @@ if (document.getElementById('product')) {
             this.get_all_brands();
 
             if(location.pathname.split('/')[4] && parseInt(location.pathname.split('/')[4]) > 0){
-                this.get_product(parseInt(location.pathname.split('/')[4]));
+                this.id = parseInt(location.pathname.split('/')[4]);
+                this.get_product(this.id);
             }
         },
         updated: function () {},
@@ -292,7 +295,7 @@ if (document.getElementById('product')) {
 
                 axios.get('/admin/product/get-json/'+id)
                     .then((res)=>{
-                        // console.log(res.data.product);
+                        console.log(res.data.product);
 
                         let product = res.data.product;
                         for (const key in product) {
@@ -315,6 +318,9 @@ if (document.getElementById('product')) {
                                     else if(key == 'selected_variant_options'){
                                         this.$data[key] = JSON.parse(element);
                                     }
+                                    else if(key == 'selected_categories'){
+                                        this.$data[key] = JSON.parse(element);
+                                    }
                                     else if(key == 'description'){
                                         $('#mytextarea1').summernote('code',element)
                                     }
@@ -325,7 +331,7 @@ if (document.getElementById('product')) {
                                         this.$data[key] = element;
                                     }
                                 }
-                                console.log({[key]:element});
+                                // console.log({[key]:element});
                                 if(key == 'custom_information'){
                                     this.$data['manage_customs_information'] = element;
                                 }
@@ -339,10 +345,23 @@ if (document.getElementById('product')) {
                         // console.log(this.$data);
                         setTimeout(() => {
                             this.load_variant_values();
+
+                            let category_checkbox = $(`.category_block input[type="checkbox"]`);
+                            let categories = this.selected_categories;
+
+                            for (let index = 0; index < category_checkbox.length; index++) {
+                                const element = category_checkbox[index];
+                                if(typeof element == 'object'){
+                                    if(element.type == 'checkbox' && categories.includes(parseInt(element.value))){
+                                        $(element).parents('ul').css('display','block');
+                                        element.checked = true;
+                                    }
+                                }
+                            }
+                            this.draw_left_line();
                         }, 2000);
                     })
             },
-
 
             store_product: function () {
                 let form_data = new FormData($('#product_insert_form')[0]);
@@ -355,6 +374,23 @@ if (document.getElementById('product')) {
                 form_data.append('hs_codes', JSON.stringify(this.hs_codes));
 
                 axios.post('/admin/product/store-product', form_data)
+                    .then((res) => {
+                        console.log(res.data);
+                    })
+            },
+
+            update_product: function () {
+                let form_data = new FormData($('#product_insert_form')[0]);
+                form_data.append('id', this.id);
+                form_data.append('description', $('#mytextarea1').summernote('code'));
+                form_data.append('selected_categories', JSON.stringify(this.selected_categories));
+                form_data.append('bulk_pricing_discount_options', JSON.stringify(this.bulk_pricing_discount_options));
+                form_data.append('selected_variant_options', JSON.stringify(this.selected_variant_options));
+                form_data.append('modifier_options', JSON.stringify(this.modifier_options));
+                form_data.append('custom_fields', JSON.stringify(this.custom_fields));
+                form_data.append('hs_codes', JSON.stringify(this.hs_codes));
+
+                axios.post('/admin/product/update-product', form_data)
                     .then((res) => {
                         console.log(res.data);
                     })
@@ -557,7 +593,7 @@ if (document.getElementById('product')) {
                     if (Object.hasOwnProperty.call(variant_values, varient_name)) {
                         const varient_permutations = variant_values[varient_name];
 
-                        console.log(varient_name);
+                        // console.log(varient_name);
 
                         for (const single_varient in varient_permutations) {
                             if (Object.hasOwnProperty.call(varient_permutations, single_varient)) {
