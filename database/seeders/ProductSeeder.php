@@ -349,11 +349,11 @@ class ProductSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
             Product::create([
-                'product_name' => $product_names[$i],
-                'sku' => 'thx-'.rand(1000,9999),
+                'product_name' => 'TEST-'.$product_names[$i],
+                'sku' => 'TEST-'.rand(1000,9999),
                 'product_type' => 'physical',
                 'default_price' => rand(200, 600),
-                'brand_id' => ['oppo','Plus point','Easy'][rand(0,2)],
+                'brand_id' => [1,2,3][rand(0,2)],
                 'weight' => '300',
                 'selected_categories' => json_encode([rand(1,10),rand(11,20),rand(21,30)]),
                 'description' => '

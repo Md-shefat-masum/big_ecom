@@ -43,7 +43,7 @@
                                 <div class="form-group col-md-6 col-xl-4">
                                     <label for="brand_id" class=" col-form-label">Brand</label>
                                     <select name="brand_id" v-model="brand_id"  class="form-control">
-                                        <option v-for="brand in brands" :key="brand.id" :value="brand.name">@{{ brand.name }}</option>
+                                        <option v-for="brand in brands" :key="brand.id" :value="brand.id">@{{ brand.name }}</option>
                                     </select>
                                 </div>
 
@@ -87,6 +87,9 @@
                                                 <button class="btn btn-outline-secondary" type="button"><i class="fa fa-plus"></i>Add from URL</button>
                                                 <label class="btn btn-outline-secondary mb-0" for="upload_image"><i class="fa fa-upload"></i> Upload Image</label>
                                                 <input type="file" class="" name="upload_image[]" multiple style="opacity: 0;" id="upload_image">
+                                            </div>
+                                            <div class="gallery mt-2">
+
                                             </div>
                                         </div>
                                     </div>

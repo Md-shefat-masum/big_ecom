@@ -20,7 +20,6 @@ class Product extends Model
             'related_categories',
     ];
 
-
     public function getRelatedCategoriesAttribute()
     {
         $json_categories_id = json_decode($this->selected_categories);
@@ -69,5 +68,10 @@ class Product extends Model
 
     public function related_image(){
         return $this->hasMany(ProductImage::class,'product_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 }

@@ -5,15 +5,12 @@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Brandszone</title>
+    <title>Online Shopping Mall || New experience of buying and selling</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('contents/frontend') }}/assets/img/favicon.ico">
-
-    <!-- CSS
-    ========================= -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('fab.png') }}">
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/plugins.css">
@@ -213,7 +210,7 @@
     <!--header area end-->
 
 
-    <div class="modal fade" v-if="Object.keys(get_selected_product_for_quick_view).length > 0" id="quick_view_modal"
+    {{-- <div class="modal fade" v-if="Object.keys(get_selected_product_for_quick_view).length > 0" id="quick_view_modal"
         tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -231,45 +228,13 @@
                                     <div class="tab-content product-details-large">
                                         <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                             <div class="modal_tab_img">
-                                                <a href="#"><img
-                                                        src="{{ asset('contents/frontend') }}/assets/img/product/productbig2.jpg"
-                                                        alt="" /></a>
+                                                <a href="#">
+                                                    <img src="{{ asset('contents/frontend') }}/assets/img/product/productbig2.jpg" alt="" />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    {{--
-                                    <div class="modal_tab_button">
-                                        <ul class="nav product_navactive owl-carousel" role="tablist">
-                                            <li>
-                                                <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false">
-                                                    <img src="{{ asset('contents/frontend') }}/assets/img/product/product1.jpg"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab"
-                                            aria-controls="tab2" aria-selected="false">
-                                            <img src="{{ asset('contents/frontend') }}/assets/img/product/product6.jpg"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link button_three" data-toggle="tab" href="#tab3" role="tab"
-                                            aria-controls="tab3" aria-selected="false">
-                                            <img src="{{ asset('contents/frontend') }}/assets/img/product/product9.jpg"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link" data-toggle="tab" href="#tab4" role="tab"
-                                            aria-controls="tab4" aria-selected="false">
-                                            <img src="{{ asset('contents/frontend') }}/assets/img/product/product14.jpg"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul>
                                 </div>
-                                --}}
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-12">
@@ -344,10 +309,9 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+    </div> --}}
 
-    <div class="modal fade" id="cart_product_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    {{-- <div class="modal fade" id="cart_product_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div v-if="Object.keys(get_selected_product_for_cart).length > 0" class="modal-dialog modal-dialog-centered"
             role="document">
             <div class="modal-content">
@@ -365,9 +329,10 @@
                                     <div class="tab-content product-details-large">
                                         <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                             <div class="modal_tab_img">
-                                                <a href="#"><img
-                                                        src="{{ asset('contents/frontend') }}/assets/img/product/productbig2.jpg"
-                                                        alt="" /></a>
+                                                <a href="#">
+                                                    <img src="{{ asset('contents/frontend') }}/assets/img/product/productbig2.jpg"
+                                                        alt="" />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -379,7 +344,6 @@
                                         <h2>@{{get_selected_product_for_cart.product_name}}</h2>
                                     </div>
                                     <div class="modal_price mb-10">
-                                        {{-- <input type="hidden" v-model="cart_option.price" :value="get_selected_product_for_cart.default_price" /> --}}
                                         <span class="new_price">$@{{get_selected_product_for_cart.default_price}}</span>
                                         <span class="old_price">$78.99</span>
                                     </div>
@@ -411,26 +375,11 @@
                                                 <option value="1">pink</option>
                                                 <option value="1">orange</option>
                                             </select>
-                                            {{-- <input min="1" max="100" value="1" type="number"> --}}
                                         </div>
                                         <div class="modal_add_to_cart">
                                             <form action="">
-                                                {{-- <input min="1" max="100" v-model="cart_option.qty" step="1" type="number" /> --}}
                                                 <input min="1" max="100" step="1" value="1" v-model="cart_option.qty"
                                                     type="number">
-                                                {{--
-                                                <button
-                                                    type="button"
-                                                    @click.prevent="add_new_product_to_cart(
-                                                        {
-                                                            cart_option,
-                                                            product: get_selected_product_for_cart
-                                                        }
-                                                    )"
-                                                >
-                                                    add to cart
-                                                </button>
-                                                --}}
                                                 <button type="button" @click.prevent="add_new_product_to_cart(
                                                         {
                                                             cart_option,
@@ -469,7 +418,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- @include('frontend.include.banner') --}}
 
@@ -547,11 +496,6 @@
                             <div class="widgets_container contact_us">
                                 <h3>Facebook Feed</h3>
                                 <div class="aff_content">
-
-                                    <iframe
-                                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbrandszoneglobal%2F&amp;tabs=timeline&amp;width=340&amp;height=500&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId"
-                                        width="100%" height="300" style="border:none;overflow:hidden" scrolling="yes"
-                                        frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -591,7 +535,7 @@
                             </div>
                         </div>
                     </div>
-             
+
                     <div class="col-lg-2 col-md-7 col-sm-12">
                         <div class="widgets_container">
                             <h3>CONTACT INFO</h3>
@@ -700,28 +644,21 @@
     </footer>
     <!--footer area end-->
 
-    <!-- modal area start-->
-
-    <!-- modal area end-->
-
-
-    <!-- JS
-============================================ -->
     <script src="/js/app.js"></script>
 
     <script>
         $.ajaxSetup({
-        cache:false,
-        contentType: false,
-        processData: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        }
-    });
-    $( document ).ajaxSuccess((e,res)=>console.log((res.responseJSON && res.responseJSON) || res));
-    $( document ).ajaxError(function( event, res ) {
-        console.log(res.responseJSON.errors || res);
-    });
+            cache:false,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
+        $( document ).ajaxSuccess((e,res)=>console.log((res.responseJSON && res.responseJSON) || res));
+        $( document ).ajaxError(function( event, res ) {
+            console.log(res.responseJSON.errors || res);
+        });
     </script>
     <!-- Plugins JS -->
     <script src="{{ asset('contents/frontend') }}/assets/js/plugins.js"></script>

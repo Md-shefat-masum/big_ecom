@@ -43,7 +43,7 @@ class ProductController extends Controller
 
     public function get_json($id)
     {
-        $product = Product::find($id);
+        $product = Product::where('id',$id)->with(['related_image'])->first();
         return response()->json([
             'product' => $product,
         ]);
@@ -102,6 +102,11 @@ class ProductController extends Controller
 
         $product = Product::create($product_info);
 
+        // foreach (json_decode($request->selected_categories) as $category_id) {
+
+        // }
+        $product->categories()->attach(json_decode($request->selected_categories));
+
         if($request->hasFile('upload_image')){
             // dd($request->file('upload_image'));
             foreach ($request->file('upload_image') as $key => $image) {
@@ -156,11 +161,19 @@ class ProductController extends Controller
         $product->fill($product_info);
         $product->save();
 
+        $product->categories()->sync(json_decode($request->selected_categories));
+
         // dd($product);
 
         $path = '';
         if($request->hasFile('upload_image')){
             // dd($request->file('upload_image'));
+            foreach ($product->related_image()->get() as $single_imge) {
+                if(file_exists(public_path($single_imge->image))){
+                    unlink(public_path($single_imge->image));
+                }
+            }
+            ProductImage::where('product_id',$product->id)->delete();
             foreach ($request->file('upload_image') as $key => $image) {
                 // Storage::put('uploads/product', $image);
                 $path = $this->store_product_file($image);
@@ -205,7 +218,7 @@ class ProductController extends Controller
             $constraint->aspectRatio();
         });
         $canvas->insert($image);
-        $canvas->insert(interImage::make(public_path('avatar.png')), 'bottom-right');
+        $canvas->insert(interImage::make(public_path('ilogo.png')), 'bottom-right');
 
         $path = 'uploads/product/product_image_400x400_' . $temp_name . '.' . $extension;
         $canvas->save($path);

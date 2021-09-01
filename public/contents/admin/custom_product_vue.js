@@ -42,6 +42,7 @@ if (document.getElementById('product')) {
 
                 description: '',
                 product_image: [],
+                related_image: [],
 
                 product_identifier_sku: '',
                 manufacture_part_number: '',
@@ -277,12 +278,35 @@ if (document.getElementById('product')) {
                 this.id = parseInt(location.pathname.split('/')[4]);
                 this.get_product(this.id);
             }
+
+            let that = this;
+            $(function(){
+                $('#upload_image').on('change', function() {
+                    $('.gallery').html('');
+                    that.imagesPreview(this, 'div.gallery');
+                });
+            })
         },
         updated: function () {},
         watch: {
             selected_variant_options: {
                 handler: function (val, old_val) {
                     this.permutation();
+                },
+                deep: true,
+            },
+            product_name: {
+                handler: function (val, old_val) {
+                    // this.permutation();
+
+                    this.page_title = this.product_name;
+                    this.meta_description = this.product_name;
+                    this.product_url = this.product_name.replaceAll(' ','-').toLowerCase();
+
+                    this.search_keywords = this.search_keywords || '';
+                    this.search_keywords = this.search_keywords && this.search_keywords.replaceAll(this.product_name,'');
+                    this.search_keywords += ( this.product_name + ',');
+
                 },
                 deep: true,
             },
@@ -375,7 +399,9 @@ if (document.getElementById('product')) {
 
                 axios.post('/admin/product/store-product', form_data)
                     .then((res) => {
-                        console.log(res.data);
+                        // console.log(res.data);
+                        toaster('success', 'data Inserted');
+                        window.location.reload();
                     })
             },
 
@@ -392,7 +418,9 @@ if (document.getElementById('product')) {
 
                 axios.post('/admin/product/update-product', form_data)
                     .then((res) => {
-                        console.log(res.data);
+                        // console.log(res.data);
+                        toaster('success', 'data updated');
+                        window.location.reload();
                     })
             },
 
@@ -400,6 +428,7 @@ if (document.getElementById('product')) {
                 axios.get('/admin/product/brands-json')
                     .then((res) => {
                         this.brands = res.data;
+                        this.brand_id = this.brands.length>0?this.brands[0].id:'';
                     })
             },
 
@@ -445,6 +474,22 @@ if (document.getElementById('product')) {
                     // });
 
                 });
+            },
+
+            imagesPreview : function(input, placeToInsertImagePreview) {
+
+                if (input.files) {
+                    var filesAmount = input.files.length;
+
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img style="width: 50px;height:50;margin:2px;border:1px solid white;padding:2px;border-radius:3px;">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
             },
 
             get_shared_variant_options: function () {

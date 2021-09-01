@@ -197,7 +197,6 @@ if (document.getElementById('home-product-category')) {
         store: store,
         data: function () {
             return {
-
                 home_category: {},
                 home_category_product: {},
             }
@@ -208,13 +207,11 @@ if (document.getElementById('home-product-category')) {
         },
         methods: {
             getHomeCat: function () {
-
                 axios.get('/frontend-category')
                     .then(res => {
                         // console.log(res.data);
                         this.home_category = res.data;
                     })
-
             },
             getCatroduct: function (page = 1) {
 
