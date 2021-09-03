@@ -18,7 +18,7 @@ class CategoryProductSeeder extends Seeder
     {
         DB::table('category_product')->truncate();
 
-        for ($i=1; $i <= 20 ; $i++) {
+        for ($i=1; $i <= Category::count() ; $i++) {
             for ($j=1; $j < 5; $j++) {
                 DB::table('category_product')->insert([
                     'category_id' => $i,

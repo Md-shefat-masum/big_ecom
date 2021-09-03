@@ -5,71 +5,46 @@
                 <div class="categories_title">
                     <h2 class="categori_toggle">ALL CATEGORIES</h2>
                 </div>
-                <div class="categories_menu_toggle" style="display: {{ request()->is('/') ? 'block' : 'none' }};"  id="home-product-category-top">
-                    <ul>
+                <div class="categories_menu_toggle" style="display: {{ request()->is('/') ? 'block' : 'none' }};" >
+                    <ul id="nav_menu">
+                        @php
+                            function printNestedArray($a,$parent_id) {
+                                $a = (object) $a;
+                                $id = $a->id;
+                                $category_name = $a->name;
+                                $has_child = isset($a->child) && is_array($a->child) && count($a->child)>0;
 
-                        <li class="menu_item_children" v-for="(category , index) in home_category" :key="category.id"  v-if="category.id <= limit">
-                            <a href="#">@{{category.name}}
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                            <ul class="categories_mega_menu">
-                                <li class="menu_item_children menu_item_children_design"
-                                    v-for="subcategory in home_category" :key="subcategory.id"
-                                    v-if="subcategory.id == category.parent_id">
-                                    <a href="#">Dresses1
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    {{-- <ul class="categories_mega_menu_two">
-                                        <li class="menu_item_children menu_item_children_design"><a href="#">Sweater2 <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu_three">
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater3 <i class="fa fa-angle-right"></i></a>
-                                                    <ul class="categories_mega_menu_four">
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater4 <i class="fa fa-angle-right"></i></a>
-                                                            <ul class="categories_mega_menu_five">
-                                                                <li
-                                                                    class="menu_item_children menu_item_children_design">
-                                                                    <a href="#">Sweater5 <i
-                                                                            class="fa fa-angle-right"></i></a>
-                                                                    <ul class="categories_mega_menu_six">
-                                                                        <li
-                                                                            class="menu_item_children menu_item_children_design">
-                                                                            <a href="#">Sweater6</a></li>
-                                                                        <li
-                                                                            class="menu_item_children menu_item_children_design">
-                                                                            <a href="#">Sweater6</a></li>
+                                $arrow = "";
+                                if($has_child){
+                                    $arrow = "<i class='fa fa-angle-right'></i>";
+                                }
+                                echo "
+                                    <li class='menu_item_children'>
+                                        <a href='#'> {$category_name}
+                                            {$arrow}
+                                        </a>
+                                ";
 
-                                                                    </ul>
-                                                                </li>
-                                                                <li
-                                                                    class="menu_item_children menu_item_children_design">
-                                                                    <a href="#">Sweater5</a></li>
+                                if ( $has_child ) {
+                                    echo "<ul>";
+                                        // dd($a->child);
+                                        foreach ($a->child as $child) {
+                                            $child = (object) $child;
+                                            $module = $child->name.'_'.$child->id;
+                                            printNestedArray($child,$a->id);
+                                        }
+                                    echo "</ul>";
+                                }
 
-                                                            </ul>
-                                                        </li>
-                                                        <li class="menu_item_children menu_item_children_design"><a
-                                                                href="#">Sweater4</a></li>
-
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children menu_item_children_design"><a
-                                                        href="#">Sweater3</a></li>
-
-                                            </ul>
-                                        </li>
-
-                                    </ul> --}}
-                                </li>
-                            </ul>
-
-                        </li>
-
-                        <li v-if="limit <= 9"><a href="#" @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li>
-                        <li v-if="limit >= 10"><a href="#" @click.prevent="getCatLimit"><i class="fa fa-plus" aria-hidden="true"></i> Less Categories</a></li>
-
-
+                                echo "</li>";
+                            }
+                            $categories = App\Http\Controllers\Admin\Product\ProductController::static_categories_tree_json();
+                            // dd($categories);
+                            foreach ($categories as $key => $category) {
+                                $category = (object) $category;
+                                printNestedArray($category,$category->id);
+                            }
+                        @endphp
                     </ul>
                 </div>
             </div>

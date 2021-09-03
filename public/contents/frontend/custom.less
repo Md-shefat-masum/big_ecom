@@ -1,0 +1,24 @@
+#nav_menu {
+    li {
+        position: relative;
+
+        ul {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            display: none;
+            visibility: hidden;
+            width: 185px;
+            transition: all linear .3s;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
+        }
+
+        &:hover {
+            &>ul {
+                display: block;
+                visibility: visible;
+            }
+        }
+    }
+}

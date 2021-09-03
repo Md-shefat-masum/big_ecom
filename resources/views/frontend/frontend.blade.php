@@ -17,6 +17,7 @@
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('contents/frontend') }}/custom.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
         function toaster(icon, message){
@@ -198,8 +199,6 @@
                 @include('frontend.include.header-middle')
 
                 <!--header middel end-->
-
-
 
                 <!--header bottom satrt-->
                 @include('frontend.include.header-bottom')

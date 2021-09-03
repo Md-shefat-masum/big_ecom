@@ -18,6 +18,11 @@ class Category extends Model
 
     public function products()
     {
+        return $this->belongsToMany(Product::class)->select(['product_name']);
+    }
+
+    public function products_custom()
+    {
         return $this->belongsToMany(Product::class);
     }
 }

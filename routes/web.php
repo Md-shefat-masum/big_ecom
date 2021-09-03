@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', 'WebsiteController@index')->name('website_index');
 
-Route::get('/get-category-product/{category_id}/json', 'WebsiteController@get_category_product');
+Route::get('/get-category-product/{category_id}/{chunk_size}/{chunk_no}/json', 'JsonController@get_category_product')->name('get_category_product_json');
 
 Route::get('/get-auth-info',function(){
     return Auth::user();

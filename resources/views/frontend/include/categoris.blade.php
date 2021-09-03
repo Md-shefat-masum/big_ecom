@@ -3,7 +3,6 @@
     @foreach (App\Models\Category::where('parent_id',0)->select(['id','name'])->get() as $category)
         @php
             $sub_categories = $category->child()->select(['id','name'])->get();
-            // dd();
         @endphp
         <div class="home_section_design" id="category_post_list_{{$category->id}}">
             <div class="container">
@@ -15,29 +14,26 @@
                                     <div class="section_title s_title_style3">
                                         <h2>{{$category->name}}</h2>
                                     </div>
-                                    <pagination v-if="load" :data="home_category_product" :limit="-1" @pagination-change-page="getCatroduct">
+                                    {{-- <pagination v-if="load" :data="products" :limit="-1" @pagination-change-page="get_products">--}}
                                         <div class="product_tab_btn">
-                                            <ul class="nav" v-if="home_category">
-
+                                            <ul class="nav" v-if="load">
                                                 <li>
                                                     <span slot="prev-nav">
-                                                    {{-- <span slot="prev-nav">&lt; Previous
-                                                    <span slot="next-nav">Next &gt;</span> --}}
-                                                    <a style="">
-                                                        <i class="ion-ios-arrow-back left-icon"></i>
-                                                    </a>
-                                                </span>
+                                                        <a href="#"  @click.prevent="get_products(prevPageUrl)">
+                                                            <i :style="`${!prevPageUrl && 'background: #b3b2b2;border-color: #a9a9a9;'}`" class="ion-ios-arrow-back left-icon"></i>
+                                                        </a>
+                                                    </span>
                                                 </li>
                                                 <li>
                                                     <span slot="next-nav">
-                                                    <a>
-                                                        <i class="ion-ios-arrow-forward right-icon"></i>
-                                                    </a>
-                                                </span>
+                                                        <a href="#" @click.prevent="get_products(nextPageUrl)">
+                                                            <i :style="`${!nextPageUrl && 'background: #b3b2b2;border-color: #a9a9a9;'}`" class="ion-ios-arrow-forward right-icon"></i>
+                                                        </a>
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </div>
-                                    </pagination>
+                                    {{-- </pagination> --}}
                                 </div>
                             </div>
                         </div>
@@ -50,7 +46,7 @@
                                 <div class="category_menu_content" style="position: relative; z-index: 99;">
                                     <ul>
                                         @foreach ($sub_categories as $subcategory)
-                                            <li><a href="#">{{ $subcategory->name }}</a></li>
+                                            <li><a href="#" @click.prevent="get_products(`/get-category-product/{{$subcategory->id}}/2/1/json`)">{{ $subcategory->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -64,16 +60,16 @@
                             <!--product area start-->
                             <div class="product_area">
                                 <div class="row no-gutters" v-if="load">
-                                    <div class="col-md-3" v-for="front_category in home_category_product.data"
-                                        :key="front_category.id">
+                                    <div class="col-md-3" v-for="product in products" :key="(Math.random()*10000)">
                                         <article class="single_product">
 
                                             <div class="product_thumb">
                                                 <a class="primary_img" href="product-details.html">
-                                                    <img src="{{ asset('contents/frontend') }}/assets/img/product/product17.jpg" alt="">
+                                                    <img v-if="product.related_images[0]" :src="`/${product.related_images[0].image}`" alt="">
                                                 </a>
                                                 <a class="secondary_img" href="product-details.html">
-                                                    <img src="{{ asset('contents/frontend') }}/assets/img/product/product18.jpg" alt="">
+                                                    <img v-if="product.related_images[1]" :src="`/${product.related_images[1].image}`" alt="">
+                                                    <img v-else src="{{ asset('contents/frontend') }}/assets/img/product/product18.jpg" alt="">
                                                 </a>
                                                 <div class="label_product">
 
@@ -101,11 +97,11 @@
                                             <div class="product_content">
                                                 <div class="product_content_inner">
                                                     <h4 class="product_name">
-                                                        <a href="product-details.html">@{{front_category.product_name}} </a>
+                                                        <a href="product-details.html">@{{product.product_name}} </a>
                                                     </h4>
                                                     <div class="price_box">
                                                         <span class="old_price">$65.00</span>
-                                                        <span class="current_price">$@{{front_category.default_price}}</span>
+                                                        <span class="current_price">$@{{product.default_price}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="add_to_cart">
@@ -131,20 +127,38 @@
                         store: store,
                         data: function(){
                             return {
-                                products: {},
+                                products: [],
+                                total: 0,
+                                lastPage: 0,
+                                perPage: 4,
+                                currentPage: 1,
                                 load: false,
+                                nextPageUrl: '',
+                                prevPageUrl: '',
+
+                                defaultUrl: '',
                             }
                         },
                         created: function(){
-                            // this.get_products();
-                            console.log('hi');
+                            this.defaultUrl = `/get-category-product/{{$category->id}}/${this.perPage}/${this.currentPage}/json`;
+                            this.get_products(this.defaultUrl);
                         },
                         methods:{
-                            get_products: function(page=1){
-                                axios.get('/admin/product/list/json?page='+page)
+                            get_products: function(url){
+                                // console.log(url);
+                                url.length>0 &&
+                                axios.get(url)
                                     .then((res)=>{
                                         // console.log(res.data);
-                                        this.products = res.data;
+                                        this.products = res.data.items;
+                                        this.total = res.data.total;
+                                        this.lastPage = res.data.lastPage;
+                                        this.perPage = res.data.perPage;
+                                        this.currentPage = res.data.currentPage;
+                                        this.nextPageUrl = res.data.nextPageUrl;
+                                        this.prevPageUrl = res.data.prevPageUrl;
+
+                                        this.load = true;
                                     })
                             }
                         }

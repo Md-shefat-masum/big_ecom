@@ -10,64 +10,93 @@ class Product extends Model
     use HasFactory;
     protected $guarded = [];
     protected $appends = [
-            'hs_codes_json',
-            'modifier_options_json',
-            'category_json',
-            'selected_variant_option_json',
-            'bulk_pricing_discount_options_json',
-            'custom_fields_json',
-            'variant_values_json',
-            'related_categories',
+        'hs_codes_json',
+        'modifier_options_json',
+        'category_json',
+        'selected_variant_option_json',
+        'bulk_pricing_discount_options_json',
+        'custom_fields_json',
+        'variant_values_json',
+        'related_categories',
+        'related_images',
     ];
 
     public function getRelatedCategoriesAttribute()
     {
-        $json_categories_id = json_decode($this->selected_categories);
-        $category = [];
-        // dd($json_categories_id,$this->selected_categories);
+        if ($this->selected_categories) {
+            $json_categories_id = json_decode($this->selected_categories);
+            $category = [];
+            // dd($json_categories_id,$this->selected_categories);
 
-        foreach ($json_categories_id as $id) {
-            if(Category::where('id',$id)->exists()){
-                array_push($category, Category::where('id',$id)->select('id','name')->first());
+            foreach ($json_categories_id as $id) {
+                if (Category::where('id', $id)->exists()) {
+                    array_push($category, Category::where('id', $id)->select('id', 'name')->first());
+                }
             }
+            return $category;
         }
-        return $category;
+    }
+    public function getRelatedImagesAttribute()
+    {
+        return ProductImage::where('product_id', $this->id)->get();
     }
     public function getHsCodesJsonAttribute()
     {
-        return json_decode($this->hs_codes);
+        if (isset($this->hs_codes)) {
+            return json_decode($this->hs_codes);
+        }
+        return 0;
     }
     public function getModifierOptionsJsonAttribute()
     {
-        return json_decode($this->modifier_options);
+        if (isset($this->modifier_options)) {
+            return json_decode($this->modifier_options);
+        }
+        return 0;
     }
     public function getVariantValuesJsonAttribute()
     {
-        return json_decode($this->variant_values);
+        if (isset($this->variant_values)) {
+            return json_decode($this->variant_values);
+        }
+        return 0;
     }
 
     public function getCategoryJsonAttribute()
     {
-        return json_decode($this->selected_categories);
+        if (isset($this->selected_categories)) {
+            return json_decode($this->selected_categories);
+        }
+        return 0;
     }
 
     public function getCustomFieldsJsonAttribute()
     {
-        return json_decode($this->custom_fields);
+        if (isset($this->custom_fields)) {
+            return json_decode($this->custom_fields);
+        }
+        return 0;
     }
 
     public function getBulkPricingDiscountOptionsJsonAttribute()
     {
-        return json_decode($this->bulk_pricing_discount_options);
+        if (isset($this->bulk_pricing_discount_options)) {
+            return json_decode($this->bulk_pricing_discount_options);
+        }
+        return 0;
     }
 
     public function getSelectedVariantOptionJsonAttribute()
     {
-        return json_decode($this->selected_variant_options);
+        if (isset($this->selected_variant_options)) {
+            return json_decode($this->selected_variant_options);
+        }
+        return 0;
     }
 
-    public function related_image(){
-        return $this->hasMany(ProductImage::class,'product_id');
+    public function related_image()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id');
     }
 
     public function categories()

@@ -414,6 +414,11 @@ class ProductController extends Controller
         return view('admin.product.categories.categories', compact('categories'));
     }
 
+    public static function static_categories_tree_json()
+    {
+        return (new self)->make_category_tree_array();
+    }
+
     public function categories_tree_json()
     {
         return $this->make_category_tree_array();
