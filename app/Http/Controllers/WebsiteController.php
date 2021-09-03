@@ -15,10 +15,15 @@ class WebsiteController extends Controller
 
     public function category_products($slug,$id)
     {
-        dd([
-            'slug' => $slug,
-            'id' => $id,
-        ]);
+        $category = null;
+        if(Category::where('id',$id)->exists()){
+            $category = Category::where('id',$id)->first();
+        }
+        return view('frontend.category_product',compact('category'));
+        // dd([
+        //     'slug' => $slug,
+        //     'id' => $id,
+        // ]);
     }
 
 

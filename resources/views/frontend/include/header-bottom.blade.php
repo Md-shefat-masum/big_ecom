@@ -9,11 +9,12 @@
                     <ul id="nav_menu">
                         @php
                             function printNestedArray($a,$parent_id) {
+                                // dd($a);
                                 $a = (object) $a;
                                 $id = $a->id;
                                 $category_name = $a->name;
                                 $has_child = isset($a->child) && is_array($a->child) && count($a->child)>0;
-                                $route = route('website_category_products',[$a->slug,$a->id]);
+                                $route = route('website_category_products',[strtolower(str_replace(' ','-',$a->name)),$a->id]);
 
                                 $arrow = "";
                                 if($has_child){

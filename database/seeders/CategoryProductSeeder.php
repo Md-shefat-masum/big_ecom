@@ -19,13 +19,24 @@ class CategoryProductSeeder extends Seeder
         DB::table('category_product')->truncate();
 
         for ($i=1; $i <= Category::count() ; $i++) {
-            for ($j=1; $j < 5; $j++) {
-                DB::table('category_product')->insert([
-                    'category_id' => $i,
-                    'product_id' => rand(1,20),
-                    'created_at' => Carbon::now()->toDateTimeString(),
-                ]);
+            if($i%2 == 0){
+                for ($j=1; $j <= 20; $j++) {
+                    DB::table('category_product')->insert([
+                        'category_id' => $i,
+                        'product_id' => rand(1,20),
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                }
+            }else{
+                for ($j=20; $j >= 1; $j--) {
+                    DB::table('category_product')->insert([
+                        'category_id' => $i,
+                        'product_id' => rand(1,20),
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                }
             }
+
         }
 
 

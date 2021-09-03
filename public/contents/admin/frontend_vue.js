@@ -70,31 +70,73 @@ if (document.getElementById('product_list')) {
                 limit: 9,
                 home_category: {},
                 // selected_product_for_modal : null,
+
+                products: [],
+                total: 0,
+                lastPage: 0,
+                perPage: 5,
+                currentPage: 1,
+                load: false,
+                nextPageUrl: '',
+                prevPageUrl: '',
+
+                defaultUrl: '',
+                category_id: null,
+
             }
         },
         created: function () {
-            this.getProduct();
-            // this.getProductImage();
             this.init_jquery();
             this.filter_products();
             this.getProductFilter();
             this.getHomeCat();
-            // this.getCatroduct();
+
+            this.category_id = location.pathname.split('/')[3];
+            if (this.category_id) {
+                this.defaultUrl = `/get-category-product/${this.category_id}/${this.perPage}/${this.currentPage}/json`;
+                this.get_products(this.defaultUrl);
+            }
+
         },
         methods: {
             ...window.mutation([
                 'add_selected_product_for_quick_view',
                 'add_selected_product_for_cart',
-
             ]),
-            getHomeCat: function () {
 
+            get_widget_category_product: function(data,url_path){
+                const state = data;
+                const title = '';
+                const url = url_path;
+
+                history.pushState(state, title, url);
+                this.get_products(`/get-category-product/${data.id}/${this.perPage}/1/json`);
+            },
+
+            get_products: function (url) {
+                // console.log(url);
+                url.length > 0 &&
+                    axios.get(url)
+                    .then((res) => {
+                        // console.log(res.data);
+                        this.products = res.data.items;
+                        this.total = res.data.total;
+                        this.lastPage = res.data.lastPage;
+                        this.perPage = res.data.perPage;
+                        this.currentPage = res.data.currentPage;
+                        this.nextPageUrl = res.data.nextPageUrl;
+                        this.prevPageUrl = res.data.prevPageUrl;
+
+                        this.load = true;
+                    })
+            },
+
+            getHomeCat: function () {
                 axios.get('/menu-category')
                     .then(res => {
                         // console.log(res.data);
                         this.home_category = res.data;
                     })
-
             },
             getCatLimit: function () {
                 if (this.limit == 9) {
@@ -104,24 +146,6 @@ if (document.getElementById('product_list')) {
                 }
             },
 
-            getProduct: function () {
-
-                axios.get('/get-product')
-                    .then(res => {
-                        console.log(res.data);
-                        this.product_list = res.data;
-                    })
-
-            },
-            // getProductImage: function () {
-
-            //     axios.get('/get-product-image')
-            //         .then(res => {
-            //             console.log(res.data);
-            //             this.image_list = res.data;
-            //         })
-
-            // },
             init_jquery: function () {
                 let min_price = 0;
                 let max_price = 0;
@@ -149,6 +173,22 @@ if (document.getElementById('product_list')) {
 
                 });
 
+                let that = this;
+                $(window).on('load', function () {
+                    var container = $('#demo');
+                    container.pagination({
+                        dataSource: [1, 2, 3],
+                        pageSize: 1,
+                        showGoInput: true,
+                        showGoButton: true,
+                        callback: function (data, pagination) {
+                            // console.log(pagination, data[0]);
+                            that.currentPage = data[0];
+                            that.defaultUrl = `/get-category-product/${that.category_id}/${that.perPage}/${that.currentPage}/json`;
+                            that.get_products(that.defaultUrl);
+                        },
+                    });
+                })
 
             },
             getProductFilter: function () {

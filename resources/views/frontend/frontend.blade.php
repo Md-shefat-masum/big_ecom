@@ -643,21 +643,46 @@
     </footer>
     <!--footer area end-->
 
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel">Alert</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>This site under maintanance</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/js/app.js"></script>
 
     <script>
-        $.ajaxSetup({
-            cache:false,
-            contentType: false,
-            processData: false,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            }
-        });
-        $( document ).ajaxSuccess((e,res)=>console.log((res.responseJSON && res.responseJSON) || res));
-        $( document ).ajaxError(function( event, res ) {
-            console.log(res.responseJSON.errors || res);
-        });
+        $(function(){
+            $.ajaxSetup({
+                cache:false,
+                contentType: false,
+                processData: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
+            $( document ).ajaxSuccess((e,res)=>console.log((res.responseJSON && res.responseJSON) || res));
+            $( document ).ajaxError(function( event, res ) {
+                console.log(res.responseJSON.errors || res);
+            });
+
+            $('#alertModal').modal('show');
+        })
+
+
     </script>
     <!-- Plugins JS -->
     <script src="{{ asset('contents/frontend') }}/assets/js/plugins.js"></script>
@@ -666,9 +691,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script src="{{ asset('contents/frontend') }}/assets/js/main.js"></script>
-    <script src="{{ asset('contents/admin') }}/frontend_vue.js"></script>
 
     @stack('js')
+    {{-- <link rel="stylesheet" href="https://pagination.js.org/dist/2.1.5/pagination.css"> --}}
+    <script src="{{ asset('contents/admin') }}/frontend_vue.js"></script>
 
 </body>
 

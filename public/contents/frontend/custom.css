@@ -16,3 +16,37 @@
   display: block;
   visibility: visible;
 }
+.pagination ul li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: #f1f1f1;
+  border-radius: unset;
+  margin-left: unset;
+}
+.paginationjs {
+  display: inline-flex;
+}
+.paginationjs .paginationjs-go-input input {
+  display: inline-block;
+  width: 70px;
+  margin: 0px 4px;
+  border-radius: 3px;
+  outline: 0;
+  border: 1px solid;
+  padding: 4px;
+  box-sizing: border-box;
+  height: 30px;
+}
+.paginationjs .paginationjs-go-button input {
+  background: transparent;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.paginationjs .paginationjs-go-button input:hover {
+  background: #c40316;
+  color: #ffffff;
+  border: 1px solid;
+}

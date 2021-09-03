@@ -46,7 +46,7 @@
                                 <div class="category_menu_content" style="position: relative; z-index: 99;">
                                     <ul>
                                         @foreach ($sub_categories as $subcategory)
-                                            <li><a href="#" @click.prevent="get_products(`/get-category-product/{{$subcategory->id}}/2/1/json`)">{{ $subcategory->name }}</a></li>
+                                            <li><a href="#" @click.prevent="get_products(`/get-category-product/{{$subcategory->id}}/${perPage}/1/json`)">{{ $subcategory->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>

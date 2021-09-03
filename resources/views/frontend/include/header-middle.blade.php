@@ -13,8 +13,8 @@
                         </li>
 
                         {{-- <li><a href="about.html">About Us</a></li> --}}
-                        <li><a class="{{request()->is('product') ? 'active' : ''}}"
-                                href="{{route('frontend_product')}}">Product</a></li>
+                        {{-- <li><a class="{{request()->is('product') ? 'active' : ''}}"
+                                href="{{route('frontend_product')}}">Product</a></li> --}}
                         <li><a class="{{request()->is('cart') ? 'active' : ''}}"
                                 href="{{route('frontend_cart')}}">Cart</a></li>
                         {{-- <li><a class="{{request()->is('wishlist') ? 'active' : ''}}"
