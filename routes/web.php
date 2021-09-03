@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', 'WebsiteController@index')->name('website_index');
+Route::get('/category/{slug}/{id}/products', 'WebsiteController@category_products')->name('website_category_products');
 
 Route::get('/get-category-product/{category_id}/{chunk_size}/{chunk_no}/json', 'JsonController@get_category_product')->name('get_category_product_json');
 
@@ -106,6 +107,7 @@ Route::group([
     Route::post('/update-product', 'ProductController@update_product')->name('admin_product_update_product');
 
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
+
     Route::get('/categories_tree_json', 'ProductController@categories_tree_json')->name('admin_product_categories_tree_json');
     Route::get('/create-category', 'ProductController@create_category')->name('admin_product_create_category');
     Route::get('/edit-category/{id}/{category_name}', 'ProductController@edit_category')->name('admin_product_edit_category');

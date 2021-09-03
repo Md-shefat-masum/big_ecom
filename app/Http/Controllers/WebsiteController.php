@@ -10,8 +10,15 @@ class WebsiteController extends Controller
 {
     public function index()
     {
-        
         return view('frontend.index');
+    }
+
+    public function category_products($slug,$id)
+    {
+        dd([
+            'slug' => $slug,
+            'id' => $id,
+        ]);
     }
 
 

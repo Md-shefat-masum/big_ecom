@@ -13,6 +13,7 @@
                                 $id = $a->id;
                                 $category_name = $a->name;
                                 $has_child = isset($a->child) && is_array($a->child) && count($a->child)>0;
+                                $route = route('website_category_products',[$a->slug,$a->id]);
 
                                 $arrow = "";
                                 if($has_child){
@@ -20,7 +21,7 @@
                                 }
                                 echo "
                                     <li class='menu_item_children'>
-                                        <a href='#'> {$category_name}
+                                        <a href='{$route}'> {$category_name}
                                             {$arrow}
                                         </a>
                                 ";
