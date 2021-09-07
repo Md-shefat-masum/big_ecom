@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image as interImage;
+use App\Exceptions\InvalidOrderException;
+use Facade\FlareClient\Http\Response;
+use Throwable;
 
 class ProductController extends Controller
 {
@@ -25,9 +28,9 @@ class ProductController extends Controller
 
     public function list_json()
     {
-        $products = Product::orderBy('id','DESC')
-                            ->with('related_image')
-                            ->paginate(5);
+        $products = Product::orderBy('id', 'DESC')
+            ->with('related_image')
+            ->paginate(5);
         return $products;
     }
 
@@ -43,7 +46,7 @@ class ProductController extends Controller
 
     public function get_json($id)
     {
-        $product = Product::where('id',$id)->with(['related_image'])->first();
+        $product = Product::where('id', $id)->with(['related_image'])->first();
         return response()->json([
             'product' => $product,
         ]);
@@ -52,20 +55,20 @@ class ProductController extends Controller
     public function store_product(Request $request)
     {
         // dd($request->all());
-        $this->validate($request,[
+        $this->validate($request, [
             'product_name' => ['required'],
             'default_price' => ['required'],
             'brand_id' => ['required'],
-            'selected_categories' => ['required','min:3'],
-            'description' => ['required','min:50'],
+            'selected_categories' => ['required', 'min:3'],
+            'description' => ['required', 'min:50'],
             'upload_image' => ['required'],
             'search_keywords' => ['required'],
             'page_title' => ['required'],
-            'product_url' => ['required','unique:products'],
+            'product_url' => ['required', 'unique:products'],
             'meta_description' => ['required'],
-            'track_inventory_on_the_variant_level_stock' => ['required','integer','min:1'],
-            'track_inventory_on_the_variant_level_low_stock' => ['required','integer','min:1'],
-        ],[
+            'track_inventory_on_the_variant_level_stock' => ['required', 'integer', 'min:1'],
+            'track_inventory_on_the_variant_level_low_stock' => ['required', 'integer', 'min:1'],
+        ], [
             'selected_categories.min' => 'No category is selected.',
             'upload_image.required' => 'No image selected.',
         ]);
@@ -100,28 +103,42 @@ class ProductController extends Controller
         $product_info['hs_codes'] = $request->hs_codes;
         $product_info['variant_values'] = json_encode($request->variant_values);
 
-        $product = Product::create($product_info);
-
-        // foreach (json_decode($request->selected_categories) as $category_id) {
-
-        // }
-        $product->categories()->attach(json_decode($request->selected_categories));
-
-        if($request->hasFile('upload_image')){
-            // dd($request->file('upload_image'));
+        $related_iamges_id = [];
+        if ($request->hasFile('upload_image')) {
             foreach ($request->file('upload_image') as $key => $image) {
-                // Storage::put('uploads/product', $image);
-                $path = $this->store_product_file($image);
-                ProductImage::insert([
-                    'product_id' => $product->id,
-                    'image' => $path,
-                    'creator' => Auth::user()->id,
-                    'created_at' => Carbon::now()->toDateTimeString(),
-                ]);
+                try {
+                    $path = $this->store_product_file($image);
+                    $id = ProductImage::insertGetId([
+                        // 'product_id' => $product->id,
+                        'product_id' => 0,
+                        'image' => $path,
+                        'creator' => Auth::user()->id,
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                    array_push($related_iamges_id, $id);
+                } catch (Throwable $e) {
+                    report($e);
+                    return response()->json($e, 500);
+                }
             }
         }
 
-        return [$path,$product,$product_info, $request->all(), $request->file('upload_image')];
+        // dd($related_iamges_id);
+
+        if (count($related_iamges_id) > 0) {
+            $product = Product::create($product_info);
+            $product->categories()->attach(json_decode($request->selected_categories));
+
+            for ($i = 0; $i < count($related_iamges_id); $i++) {
+                $related_iamge = ProductImage::find($related_iamges_id[$i]);
+                $related_iamge->product_id = $product->id;
+                $related_iamge->save();
+            }
+
+            return [$product, $product_info, $request->all(), $request->file('upload_image')];
+        } else {
+            return response()->json('Upload valid jpg or jpeg image.', 500);
+        }
     }
 
     public function update_product(Request $request)
@@ -159,34 +176,38 @@ class ProductController extends Controller
 
         $product = Product::find($request->id);
         $product->fill($product_info);
-        $product->save();
 
+        if ($request->hasFile('upload_image')) {
+            // dd($request->file('upload_image'));
+            foreach ($product->related_image()->get() as $single_imge) {
+                if (file_exists(public_path($single_imge->image))) {
+                    unlink(public_path($single_imge->image));
+                }
+            }
+            ProductImage::where('product_id', $product->id)->delete();
+            foreach ($request->file('upload_image') as $key => $image) {
+                try {
+                    $path = $this->store_product_file($image);
+                    ProductImage::insert([
+                        'product_id' => $product->id,
+                        'image' => $path,
+                        'creator' => Auth::user()->id,
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                } catch (Throwable $e) {
+                    report($e);
+                    return response()->json($e, 500);
+                }
+            }
+        }
+
+        $product->save();
         $product->categories()->sync(json_decode($request->selected_categories));
 
         // dd($product);
 
         $path = '';
-        if($request->hasFile('upload_image')){
-            // dd($request->file('upload_image'));
-            foreach ($product->related_image()->get() as $single_imge) {
-                if(file_exists(public_path($single_imge->image))){
-                    unlink(public_path($single_imge->image));
-                }
-            }
-            ProductImage::where('product_id',$product->id)->delete();
-            foreach ($request->file('upload_image') as $key => $image) {
-                // Storage::put('uploads/product', $image);
-                $path = $this->store_product_file($image);
-                ProductImage::insert([
-                    'product_id' => $product->id,
-                    'image' => $path,
-                    'creator' => Auth::user()->id,
-                    'created_at' => Carbon::now()->toDateTimeString(),
-                ]);
-            }
-        }
-
-        return [$path,$product,$product_info, $request->all(), $request->file('upload_image')];
+        return [$path, $product, $product_info, $request->all(), $request->file('upload_image')];
     }
 
     public function store_product_file($image)
@@ -233,13 +254,13 @@ class ProductController extends Controller
 
     public function option()
     {
-        $options = ProductOption::orderBy('display_name','ASC')->where('status',1)->get();
-        return view('admin.product.option.options',compact('options'));
+        $options = ProductOption::orderBy('display_name', 'ASC')->where('status', 1)->get();
+        return view('admin.product.option.options', compact('options'));
     }
 
     public function option_json()
     {
-        return ProductOption::orderBy('display_name','ASC')->where('status',1)->get();
+        return ProductOption::orderBy('display_name', 'ASC')->where('status', 1)->get();
     }
 
     public function create_option()
@@ -250,7 +271,7 @@ class ProductController extends Controller
     public function edit_option($id)
     {
         $option = ProductOption::find($id);
-        return view('admin.product.option.options_edit',compact('option'));
+        return view('admin.product.option.options_edit', compact('option'));
     }
 
     public function get_option($id)
@@ -261,24 +282,24 @@ class ProductController extends Controller
     public function check_option_exists(Request $request)
     {
         $key = $request->unique_name;
-        if(ProductOption::where('unique_name',$key)->exists()){
-            $option = ProductOption::where('unique_name',$key)->first();
-            if($request->form_type == 'edit'){
-                if($option->display_name == $request->display_name && $option->id == $request->id){
+        if (ProductOption::where('unique_name', $key)->exists()) {
+            $option = ProductOption::where('unique_name', $key)->first();
+            if ($request->form_type == 'edit') {
+                if ($option->display_name == $request->display_name && $option->id == $request->id) {
                     return 0;
                 }
             }
             return 1;
-        }else{
+        } else {
             return 0;
         }
     }
 
     public function store_option(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'display_name' => ['required'],
-            'unique_name' => ['required','unique:product_options'],
+            'unique_name' => ['required', 'unique:product_options'],
         ]);
         // $request_data = $request->all();
         // $request_data['option_values'] = json_decode($request->option_values);
@@ -289,7 +310,7 @@ class ProductController extends Controller
         $option->option_values = $request->option_values;
         $option->creator = Auth::user()->id;
         $option->save();
-        $option->slug = $option->id.uniqid(5);
+        $option->slug = $option->id . uniqid(5);
         $option->save();
 
         return $option;
@@ -297,7 +318,7 @@ class ProductController extends Controller
 
     public function update_option(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'display_name' => ['required'],
             'unique_name' => ['required'],
         ]);
@@ -318,7 +339,7 @@ class ProductController extends Controller
     {
         $option = ProductOption::find($id);
         $option->delete();
-        return redirect()->back()->with('success','data deleted successfully.');
+        return redirect()->back()->with('success', 'data deleted successfully.');
     }
 
     public function reviews()
@@ -328,13 +349,13 @@ class ProductController extends Controller
 
     public function brands()
     {
-        $brands = Brand::where('status',1)->orderBy('id','DESC')->get();
-        return view('admin.product.brand.brands',compact('brands'));
+        $brands = Brand::where('status', 1)->orderBy('id', 'DESC')->get();
+        return view('admin.product.brand.brands', compact('brands'));
     }
 
     public function brands_json()
     {
-        return Brand::where('status',1)->orderBy('id','DESC')->get();
+        return Brand::where('status', 1)->orderBy('id', 'DESC')->get();
     }
 
     public function create_brands()
@@ -345,34 +366,34 @@ class ProductController extends Controller
     public function edit_brands($id)
     {
         $brand = Brand::find($id);
-        return view('admin.product.brand.edit-brands',compact('brand'));
+        return view('admin.product.brand.edit-brands', compact('brand'));
     }
 
     public function store_brands(Request $request)
     {
-        $this->validate($request,[
-            'name' => ['required','unique:brands']
+        $this->validate($request, [
+            'name' => ['required', 'unique:brands']
         ]);
 
         $brand = new Brand();
         $brand->name = $request->name;
         $brand->creator = Auth::user()->id;
         $brand->save();
-        $brand->slug = $brand->id.uniqid(5);
+        $brand->slug = $brand->id . uniqid(5);
         $brand->save();
-        return redirect()->back()->with('success','new brand created');
+        return redirect()->back()->with('success', 'new brand created');
     }
 
     public function update_brands(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => ['required']
         ]);
 
         $brand = Brand::find($request->id);
 
-        if($request->name != $brand->name){
-            $this->validate($request,[
+        if ($request->name != $brand->name) {
+            $this->validate($request, [
                 'name' => ['unique:brands']
             ]);
         }
@@ -380,9 +401,9 @@ class ProductController extends Controller
         $brand->name = $request->name;
         $brand->creator = Auth::user()->id;
         $brand->save();
-        $brand->slug = $brand->id.uniqid(5);
+        $brand->slug = $brand->id . uniqid(5);
         $brand->save();
-        return redirect()->back()->with('success','brand udated.');
+        return redirect()->back()->with('success', 'brand udated.');
     }
 
     public function categories()
@@ -452,7 +473,7 @@ class ProductController extends Controller
     public function create_category()
     {
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories,[]);
+        $category_tree_view = $this->make_category_tree($categories, []);
         /*$categories = [
             [
                 'id' => 11,
@@ -474,12 +495,12 @@ class ProductController extends Controller
         return view('admin.product.categories.create', compact('categories', 'category_tree_view'));
     }
 
-    public function edit_category($id,$category_name)
+    public function edit_category($id, $category_name)
     {
         $category = Category::find($id);
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories,$category);
-        return view('admin.product.categories.edit', compact('category','categories', 'category_tree_view'));
+        $category_tree_view = $this->make_category_tree($categories, $category);
+        return view('admin.product.categories.edit', compact('category', 'categories', 'category_tree_view'));
     }
 
     public function category_data($id)
@@ -516,16 +537,16 @@ class ProductController extends Controller
 
         return $all_category;
     }
-    public function make_category_tree($categories,$default_category)
+    public function make_category_tree($categories, $default_category)
     {
-        return view('admin.product.categories.category_tree_view', compact('categories','default_category'))->render();
+        return view('admin.product.categories.category_tree_view', compact('categories', 'default_category'))->render();
     }
 
     public function store_category(Request $request)
     {
         $this->validate($request, [
             'name' => ['required'],
-            'url' => ['required', 'unique:categories','min:3'],
+            'url' => ['required', 'unique:categories', 'min:3'],
             // 'description' => ['required'],
             // 'parent_id' => ['required'],
             // 'template_layout_file' => ['required'],
@@ -536,7 +557,7 @@ class ProductController extends Controller
             // 'meta_keywords' => ['required'],
             // 'meta_description' => ['required'],
             // 'search_keywords' => ['required'],
-        ],[
+        ], [
             // 'url.min' => ['url is not valid'],
         ]);
 
@@ -555,7 +576,7 @@ class ProductController extends Controller
         }
 
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories,[]);
+        $category_tree_view = $this->make_category_tree($categories, []);
 
         return response()->json([
             'categories' => $categories,
@@ -565,7 +586,7 @@ class ProductController extends Controller
 
     public function store_category_from_product_create(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => ['required'],
         ]);
         $category = new Category();
@@ -573,7 +594,7 @@ class ProductController extends Controller
         $category->parent_id = $request->parent;
         $category->creator = Auth::user()->id;
         $category->save();
-        $category->slug = $category->id.uniqid(5);
+        $category->slug = $category->id . uniqid(5);
         $category->url = Str::slug($request->name) . $category->id . rand(1111, 9999);
         $category->save();
 
@@ -584,7 +605,7 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => ['required'],
-            'url' => ['required','min:3'],
+            'url' => ['required', 'min:3'],
             // 'description' => ['required'],
             // 'parent_id' => ['required'],
             // 'template_layout_file' => ['required'],
@@ -595,7 +616,7 @@ class ProductController extends Controller
             // 'meta_keywords' => ['required'],
             // 'meta_description' => ['required'],
             // 'search_keywords' => ['required'],
-        ],[
+        ], [
             // 'url.min' => ['url is not valid'],
         ]);
 
@@ -613,7 +634,7 @@ class ProductController extends Controller
         }
 
         $categories = $this->make_category_tree_array();
-        $category_tree_view = $this->make_category_tree($categories,$category);
+        $category_tree_view = $this->make_category_tree($categories, $category);
 
         return response()->json([
             'categories' => $categories,
@@ -623,9 +644,9 @@ class ProductController extends Controller
 
     public function rearenge_category(Request $request)
     {
-        if(!$request->parent_id){
+        if (!$request->parent_id) {
             $parent_id = 0;
-        }else{
+        } else {
             $parent_id = $request->parent_id;
         }
         Category::where('id', $request->id)->update([
@@ -636,14 +657,12 @@ class ProductController extends Controller
 
     public function categorie_url_check(Request $request)
     {
-        if(Category::where('url', $request->url)->exists()){
-            if($request->has('id') && Category::where('url', $request->url)->where('id',$request->id)->exists()){
+        if (Category::where('url', $request->url)->exists()) {
+            if ($request->has('id') && Category::where('url', $request->url)->where('id', $request->id)->exists()) {
                 return response()->json(false);
-            }
-            elseif($request->has('id') && Category::where('url', $request->url)->exists()){
-                return response()->json(true.'2nd');
-            }
-            else{
+            } elseif ($request->has('id') && Category::where('url', $request->url)->exists()) {
+                return response()->json(true . '2nd');
+            } else {
                 return response()->json(false);
             }
         }

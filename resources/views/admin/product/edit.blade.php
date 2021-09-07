@@ -84,13 +84,12 @@
                                             <div>
                                                 <button class="btn btn-outline-secondary" type="button"><i class="fa fa-plus"></i>Add from URL</button>
                                                 <label class="btn btn-outline-secondary mb-0" for="upload_image"><i class="fa fa-upload"></i> Upload Image</label>
-                                                <input type="file" class="" name="upload_image[]" multiple style="opacity: 0;" id="upload_image">
+                                                <input type="file" class="" accept=".jpg, .jpeg, .png" name="upload_image[]" multiple style="opacity: 0;" id="upload_image">
                                             </div>
                                             <div class="gallery mt-2">
                                                 <span class="d-inline-block" v-for="image in related_image" :key="image.id">
                                                     <img :src="`/${image.image}`" style="width: 50px;height:50;margin:2px;border:1px solid white;padding:2px;border-radius:3px;" />
                                                 </span>
-
                                             </div>
                                         </div>
                                     </div>

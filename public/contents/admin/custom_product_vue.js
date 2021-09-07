@@ -319,7 +319,7 @@ if (document.getElementById('product')) {
 
                 axios.get('/admin/product/get-json/'+id)
                     .then((res)=>{
-                        console.log(res.data.product);
+                        // console.log(res.data.product);
 
                         let product = res.data.product;
                         for (const key in product) {
@@ -403,6 +403,12 @@ if (document.getElementById('product')) {
                         toaster('success', 'data Inserted');
                         window.location.reload();
                     })
+                    .catch((err)=>{
+                        toaster('error', 'please try again.');
+                        if(err.response.data.errorInfo.length > 0){
+                            console.log(err.response.data.errorInfo);
+                        }
+                    })
             },
 
             update_product: function () {
@@ -421,6 +427,12 @@ if (document.getElementById('product')) {
                         // console.log(res.data);
                         toaster('success', 'data updated');
                         window.location.reload();
+                    })
+                    .catch((err)=>{
+                        toaster('error', 'please try again.');
+                        if(err.response.data.errorInfo.length > 0){
+                            console.log(err.response.data.errorInfo);
+                        }
                     })
             },
 

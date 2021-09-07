@@ -775,6 +775,9 @@ input[type=text]:focus {
 .table_actions li ul li a:hover {
   color: #4b71fc;
 }
+.pace.pace-active {
+  background-color: #00000066;
+}
 .footer {
   position: unset;
   display: none;
