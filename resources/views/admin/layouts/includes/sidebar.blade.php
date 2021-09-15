@@ -42,7 +42,10 @@
                 <a href="{{ route('admin_product_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i> List</a>
             </li>
             <li>
-                <a href="{{ route('admin_product_create') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Add</a>
+                <a href="{{ route('admin_product_create') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Create Product</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_product_create_campain') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Create Campain</a>
             </li>
             <li>
                 <a href="{{ route('admin_product_search') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Search</a>

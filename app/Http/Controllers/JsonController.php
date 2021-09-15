@@ -137,4 +137,27 @@ class JsonController extends Controller
         // return $result;
         dd([$data, $chunk_size, $chunk_no, $route_name, $result, Product::paginate(2)]);
     }
+
+    public function search_product()
+    {
+        $key = request()->key;
+        $products = Product::where('status',1)
+                            ->where('product_name',$key)
+                            ->orWhere('sku',$key)
+                            ->orWhere('brand_id',$key)
+
+                            ->orWhere('product_name','LIKE','%'.$key.'%')
+                            ->orWhere('sku','LIKE','%'.$key.'%')
+                            ->orWhere('brand_id','LIKE','%'.$key.'%')
+
+                            ->select([
+                                'id',
+                                'product_name',
+                                'default_price',
+                            ])
+
+                            ->paginate(5);
+
+        return response()->json($products);
+    }
 }

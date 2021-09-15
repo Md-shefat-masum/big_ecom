@@ -30,6 +30,11 @@ class ProductController extends Controller
     {
         $products = Product::orderBy('id', 'DESC')
             ->with('related_image')
+            ->select([
+                'product_name',
+                'default_price',
+                'id',
+            ])
             ->paginate(5);
         return $products;
     }
@@ -37,6 +42,11 @@ class ProductController extends Controller
     public function create()
     {
         return view('admin.product.create');
+    }
+
+    public function create_campain()
+    {
+        return view('admin.product.campeing.create_campain');
     }
 
     public function edit($id)

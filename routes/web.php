@@ -27,6 +27,7 @@ Route::get('/', 'WebsiteController@index')->name('website_index');
 Route::get('/category/{slug}/{id}/products', 'WebsiteController@category_products')->name('website_category_products');
 
 Route::get('/get-category-product/{category_id}/{chunk_size}/{chunk_no}/json', 'JsonController@get_category_product')->name('get_category_product_json');
+Route::post('/search-product/json', 'JsonController@search_product')->name('search_product_json');
 
 Route::get('/get-auth-info',function(){
     return Auth::user();
@@ -100,6 +101,7 @@ Route::group([
     Route::get('/list/json', 'ProductController@list_json')->name('admin_product_list_json');
 
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
+    Route::get('/create-campain', 'ProductController@create_campain')->name('admin_product_create_campain');
     Route::get('/edit/{id}', 'ProductController@edit')->name('admin_product_edit');
     Route::get('/get-json/{id}', 'ProductController@get_json')->name('admin_product_get_json');
 
