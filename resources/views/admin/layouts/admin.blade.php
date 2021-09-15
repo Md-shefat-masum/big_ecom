@@ -12,6 +12,8 @@
     <title>Big Ecomerce</title>
     <!-- loader-->
     <link href="{{ asset('contents/admin') }}/css/pace.min.css" rel="stylesheet" />
+    {{-- <link href="{{ asset('contents/admin') }}/css/pace_flash.css" rel="stylesheet" /> --}}
+    {{-- <link href="{{ asset('contents/admin') }}/css/pace_center.css" rel="stylesheet" /> --}}
     <script src="{{ asset('contents/admin') }}/js/pace.min.js"></script>
     <!--favicon-->
     <link rel="icon" href="{{ asset('contents/admin') }}/images/favicon.ico" type="image/x-icon" />
@@ -29,7 +31,8 @@
     <!-- Custom Style-->
     <link href="{{ asset('contents/admin') }}/css/app-style.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('contents/admin') }}/custom.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> --}}
+    <script src="{{ asset('contents/admin') }}/js/s_alert.js"></script>
     <script>
         function toaster(icon, message){
                 Toast.fire({
@@ -286,7 +289,7 @@
 
 {{-- file mananger --}}
 @once
-@include('admin.product.components.file_manager')
+    @include('admin.product.components.file_manager')
 @endonce
 
 

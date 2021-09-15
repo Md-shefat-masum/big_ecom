@@ -4,17 +4,17 @@
 
     <div class="content-wrapper">
         <div class="container-fluid" id="campeing_form">
-            @include('admin.layouts.includes.bread_cumb',['title'=>'Campeing Create'])
+            @include('admin.layouts.includes.bread_cumb',['title'=>'Campeing Mnagement'])
 
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card" id="edit_campeing">
                         <div class="card-body">
                             <div class="card-header">
-                                <h4>Create Campeing</h4>
+                                <h4>Edit Campeing</h4>
                             </div>
                             <div class="card-header">
-                                <form action="#" id="campeign_form" @submit.prevent="create_campeing"  name="campeign_form">
+                                <form action="#" id="campeign_form" @submit.prevent="update_campeing"  name="campeign_form">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">

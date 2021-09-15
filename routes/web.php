@@ -98,15 +98,25 @@ Route::group([
 ], function () {
 
     Route::get('/list', 'ProductController@list')->name('admin_product_list');
+    Route::get('/list-campeing', 'ProductController@list_campeing')->name('admin_product_list_campeing');
+
     Route::get('/list/json', 'ProductController@list_json')->name('admin_product_list_json');
+    Route::get('/list-campeing/json', 'ProductController@list_campeing_json')->name('admin_product_list_campeing_json');
 
     Route::get('/create', 'ProductController@create')->name('admin_product_create');
-    Route::get('/create-campain', 'ProductController@create_campain')->name('admin_product_create_campain');
+    Route::get('/create-campeing', 'ProductController@create_campain')->name('admin_product_create_campain');
+    Route::get('/edit-campeing/{id}', 'ProductController@edit_campeing')->name('admin_product_edit_campeing');
     Route::get('/edit/{id}', 'ProductController@edit')->name('admin_product_edit');
     Route::get('/get-json/{id}', 'ProductController@get_json')->name('admin_product_get_json');
+    Route::get('/get-campeing-json/{id}', 'ProductController@get_campeing_json')->name('admin_product_get_campeing_json');
 
     Route::post('/store-product', 'ProductController@store_product')->name('admin_product_store_product');
     Route::post('/update-product', 'ProductController@update_product')->name('admin_product_update_product');
+
+    Route::post('/store-campeing', 'ProductController@store_campeing')->name('admin_product_store_campeing');
+    Route::post('/update-campeing', 'ProductController@update_campeing')->name('admin_product_update_campeing');
+    Route::post('/delete-campeing', 'ProductController@delete_campeing')->name('admin_product_delete_campeing');
+
 
     Route::get('/categories', 'ProductController@categories')->name('admin_product_categories');
 

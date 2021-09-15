@@ -149,7 +149,7 @@
                                 url.length>0 &&
                                 axios.get(url)
                                     .then((res)=>{
-                                        // console.log(res.data);
+                                        // console.log(res);
                                         this.products = res.data.items;
                                         this.total = res.data.total;
                                         this.lastPage = res.data.lastPage;

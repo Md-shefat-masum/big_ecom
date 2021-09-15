@@ -45,9 +45,6 @@
                 <a href="{{ route('admin_product_create') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Create Product</a>
             </li>
             <li>
-                <a href="{{ route('admin_product_create_campain') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Create Campain</a>
-            </li>
-            <li>
                 <a href="{{ route('admin_product_search') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Search</a>
             </li>
             <li>
@@ -82,6 +79,21 @@
             </li>
             <li>
                 <a href="{{ route('country_name') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Country Name</a>
+            </li>
+        </ul>
+    </li>
+
+    <li>
+        <a class="has-arrow" href="#">
+            <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
+            <div class="menu-title">Offer Management</div>
+        </a>
+        <ul class="">
+            <li>
+                <a href="{{ route('admin_product_create_campain') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Create</a>
+            </li>
+            <li>
+                <a href="{{ route('admin_product_list_campeing') }}"><i class="zmdi zmdi-dot-circle-alt"></i> All</a>
             </li>
         </ul>
     </li>
@@ -221,6 +233,7 @@
             <div class="menu-title">Account Settings</div>
         </a>
         <ul class="">
+
             <li>
                 <a href="{{ route('admin_account_settings_invoices') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Invoices and Billing</a>
             </li>

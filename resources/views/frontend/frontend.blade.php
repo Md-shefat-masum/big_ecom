@@ -14,6 +14,10 @@
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/plugins.css">
+    {{-- <link href="{{ asset('contents/admin') }}/css/pace.min.css" rel="stylesheet" /> --}}
+    <link href="{{ asset('contents/admin') }}/css/pace_flash.css" rel="stylesheet" />
+    {{-- <link href="{{ asset('contents/admin') }}/css/pace_center.css" rel="stylesheet" /> --}}
+    <script src="{{ asset('contents/admin') }}/js/pace.min.js"></script>
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/style.css">

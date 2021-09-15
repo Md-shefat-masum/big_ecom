@@ -22,25 +22,43 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.axios.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    Pace.restart();
+    $(`form div>div.text-danger`).remove();
+    $(`input`).siblings('.text-danger').remove();
+    $(`textarea`).siblings('.text-danger').remove();
+    return config;
+});
+
 window.axios.interceptors.response.use((response) => response, (error) => {
     // whatever you want to do with the error
     // console.log(error.response.data.errors);
     let object = error.response.data.errors;
     $(`input`).siblings('.text-danger').remove();
     $(`textarea`).siblings('.text-danger').remove();
+    toaster('error','Check errors.');
     for (const key in object) {
         if (Object.hasOwnProperty.call(object, key)) {
             const element = object[key];
-            $(`#${key}`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
-            $(`input[name="${key}"]`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
-            $(`select[name="${key}"]`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
-            $(`input[name="${key}"]`).trigger('focus');
-            $(`textarea[name="${key}"]`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
-            $(`textarea[name="${key}"]`).trigger('focus');
+            if (document.getElementById(`${key}`)) {
+                $(`#${key}`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
+            } else {
+                $(`input[name="${key}"]`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
+                $(`select[name="${key}"]`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
+                $(`input[name="${key}"]`).trigger('focus');
+                $(`textarea[name="${key}"]`).parent('div').append(`<div class="text-danger">${element[0]}</div>`);
+                $(`textarea[name="${key}"]`).trigger('focus');
+            }
             console.log({
                 [key]: element
             });
         }
+    }
+
+    if(typeof error.response.data === 'string'){
+        toaster('error',error.response.data);
     }
     throw error;
 });

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image as interImage;
 use App\Exceptions\InvalidOrderException;
+use App\Models\ProductOffer;
 use Facade\FlareClient\Http\Response;
 use Throwable;
 
@@ -49,6 +50,11 @@ class ProductController extends Controller
         return view('admin.product.campeing.create_campain');
     }
 
+    public function edit_campeing($id)
+    {
+        return view('admin.product.campeing.edit_campain');
+    }
+
     public function edit($id)
     {
         return view('admin.product.edit');
@@ -60,6 +66,12 @@ class ProductController extends Controller
         return response()->json([
             'product' => $product,
         ]);
+    }
+
+    public function get_campeing_json($id)
+    {
+        $campeing = ProductOffer::where('id',$id)->first();
+        return response()->json($campeing,200);
     }
 
     public function store_product(Request $request)
@@ -678,13 +690,142 @@ class ProductController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function store_campeing(Request $request)
     {
-        //
+        $this->validate($request, [
+            'type' => ['required'],
+            'name' => ['required'],
+            'start_date' => ['required', 'before:end_date'],
+            'end_date' => ['required', 'after:start_date'],
+            'camp_selected_products' => ['required', 'min:10'],
+            'image' => ['required'],
+            'note' => ['required'],
+        ], [
+            'camp_selected_products.required' => 'no product selected'
+        ]);
+
+        $data = $request->except(['image','camp_selected_products']);
+        $data['products'] = $request->camp_selected_products;
+
+        try {
+            if ($request->has('image')) {
+                $file = $request->image;
+                // dd($file);
+                $extension = $file->getClientOriginalExtension();
+                $temp_name  = uniqid(10) . time();
+
+                $image = interImage::make($file);
+
+                // square
+                $canvas = interImage::canvas(600, 600);
+                $image->fit(600, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $canvas->insert($image);
+                $canvas->insert(interImage::make(public_path('ilogo.png')), 'bottom-right');
+
+                $path = 'uploads/product_offer/product_offer_image_400x400_' . $temp_name . '.' . $extension;
+                $canvas->save($path);
+
+                $data['image'] = $path;
+            }
+        } catch (\Throwable $e) {
+            // report($e);
+            // abort(500, $e->getMessage());
+            return response()->json('image uploading failed',500);
+        }
+
+        $data['creator'] = Auth::user()->id;
+        $offer = ProductOffer::create($data);
+        $offer->slug = $offer->id.time();
+        $offer->save();
+
+        return $offer;
     }
 
-    public function destroy($id)
+    public function update_campeing(Request $request)
     {
-        //
+        $this->validate($request, [
+            'type' => ['required'],
+            'name' => ['required'],
+            'start_date' => ['required', 'before:end_date'],
+            'end_date' => ['required', 'after:start_date'],
+            'camp_selected_products' => ['required', 'min:10'],
+            'note' => ['required'],
+        ], [
+            'camp_selected_products.required' => 'no product selected'
+        ]);
+
+        $data = $request->except(['image','camp_selected_products']);
+        $data['products'] = $request->camp_selected_products;
+
+        try {
+            if ($request->has('image')) {
+                $file = $request->image;
+                // dd($file);
+                $extension = $file->getClientOriginalExtension();
+                $temp_name  = uniqid(10) . time();
+
+                $image = interImage::make($file);
+
+                // square
+                $canvas = interImage::canvas(600, 600);
+                $image->fit(600, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $canvas->insert($image);
+                $canvas->insert(interImage::make(public_path('ilogo.png')), 'bottom-right');
+
+                $path = 'uploads/product_offer/product_offer_image_400x400_' . $temp_name . '.' . $extension;
+                $canvas->save($path);
+
+                $data['image'] = $path;
+            }
+        } catch (\Throwable $e) {
+            // report($e);
+            // abort(500, $e->getMessage());
+            return response()->json('image uploading failed',500);
+        }
+
+        $data['creator'] = Auth::user()->id;
+        $offer = ProductOffer::find($request->id);
+        $offer->fill($data);
+        $offer->save();
+
+        return $offer;
+    }
+
+    public function list_campeing()
+    {
+        return view('admin.product.campeing.list');
+    }
+
+    public function list_campeing_json(Request $request)
+    {
+        if($request->has('show_type') && $request->show_type == 'campeing'){
+            $campeings = ProductOffer::where('status',1)->where('type','campeing')->orderBy('id','DESC')->paginate(5);
+        }
+        else if($request->has('show_type') && $request->show_type == 'offer'){
+            $campeings = ProductOffer::where('status',1)->where('type','offer')->orderBy('id','DESC')->paginate(5);
+        }
+        else if($request->has('show_type') && $request->show_type == 'date_over'){
+            $campeings = ProductOffer::where('status',1)->where('end_date','<',Carbon::today())->orderBy('id','DESC')->paginate(5);
+        }
+        else if($request->has('show_type') && $request->show_type == 'deleted'){
+            $campeings = ProductOffer::where('status',0)->orderBy('id','DESC')->paginate(5);
+        }
+        else{
+            $campeings = ProductOffer::where('status',1)->orderBy('id','DESC')->paginate(5);
+        }
+
+        return response()->json($campeings,200);
+    }
+
+    public function delete_campeing(Request $request)
+    {
+        $offer = ProductOffer::where('id',$request->id)->first();
+        $offer->status = 0;
+        $offer->save();
+        return response()->json('successfully deleted');
     }
 }

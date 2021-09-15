@@ -1918,6 +1918,14 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  Pace.restart();
+  $("form div>div.text-danger").remove();
+  $("input").siblings('.text-danger').remove();
+  $("textarea").siblings('.text-danger').remove();
+  return config;
+});
 window.axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
@@ -1926,18 +1934,28 @@ window.axios.interceptors.response.use(function (response) {
   var object = error.response.data.errors;
   $("input").siblings('.text-danger').remove();
   $("textarea").siblings('.text-danger').remove();
+  toaster('error', 'Check errors.');
 
   for (var key in object) {
     if (Object.hasOwnProperty.call(object, key)) {
       var element = object[key];
-      $("#".concat(key)).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
-      $("input[name=\"".concat(key, "\"]")).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
-      $("select[name=\"".concat(key, "\"]")).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
-      $("input[name=\"".concat(key, "\"]")).trigger('focus');
-      $("textarea[name=\"".concat(key, "\"]")).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
-      $("textarea[name=\"".concat(key, "\"]")).trigger('focus');
+
+      if (document.getElementById("".concat(key))) {
+        $("#".concat(key)).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
+      } else {
+        $("input[name=\"".concat(key, "\"]")).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
+        $("select[name=\"".concat(key, "\"]")).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
+        $("input[name=\"".concat(key, "\"]")).trigger('focus');
+        $("textarea[name=\"".concat(key, "\"]")).parent('div').append("<div class=\"text-danger\">".concat(element[0], "</div>"));
+        $("textarea[name=\"".concat(key, "\"]")).trigger('focus');
+      }
+
       console.log(_defineProperty({}, key, element));
     }
+  }
+
+  if (typeof error.response.data === 'string') {
+    toaster('error', error.response.data);
   }
 
   throw error;
