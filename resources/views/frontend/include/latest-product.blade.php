@@ -44,10 +44,10 @@
                 $offers = App\Models\ProductOffer::where('type','campeing')
                                             ->where('status',1)->where('end_date','>',Carbon\Carbon::today())
                                             ->select(['name','id','slug','total','image','discount','subtotal','start_date','end_date'])
-                                            ->orderBy('id','DESC')->limit(6)->get();
+                                            ->orderBy('id','DESC')->limit(4)->get();
             @endphp
             @foreach ($offers as $item)
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <article class="single_product">
                         <div class="product_thumb">
                             <a class="primary_img" href="product-countdown.html">
