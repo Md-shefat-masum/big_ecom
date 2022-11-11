@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class ProductTaxClassController extends Controller
+class ProductTaxclassController extends Controller
 {
 
     public function index()

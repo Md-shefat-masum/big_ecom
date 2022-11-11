@@ -1,5 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
+.shefat {
+  font-weight: 600;
+}
+.shefat .masum {
+  color: red;
+  font-family: sans-serif;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

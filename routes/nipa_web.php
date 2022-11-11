@@ -80,14 +80,14 @@ Route::group([
     'middleware' => ['auth', 'check_user_is_active', 'super_admin'],
     'namespace' => 'Nipa'
 ], function () {
-    Route::get('/product-tax-class', 'ProductTaxClassController@index')->name('product_tax_class');
-    Route::get('/product-tax-class/add', 'ProductTaxClassController@add')->name('product_tax_class_add');
-    Route::post('/product-tax-class/submit', 'ProductTaxClassController@insert')->name('product_tax_class_insert');
-    Route::get('/product-tax-class-view/{id}', 'ProductTaxClassController@view')->name('product_tax_class_view');
-    Route::get('/product-tax-class-delete/{id}', 'ProductTaxClassController@delete')->name('product_tax_class_delete');
-    Route::get('/product-tax-class-edit/{id}', 'ProductTaxClassController@edit')->name('product_tax_class_edit');
-    Route::get('/product-tax-class-get/{id}', 'ProductTaxClassController@get_tax_json')->name('product_tax_class_get');
-    Route::post('/product-tax-class-update', 'ProductTaxClassController@update')->name('product_tax_class_update');
+    Route::get('/product-tax-class', 'ProductTaxclassController@index')->name('product_tax_class');
+    Route::get('/product-tax-class/add', 'ProductTaxclassController@add')->name('product_tax_class_add');
+    Route::post('/product-tax-class/submit', 'ProductTaxclassController@insert')->name('product_tax_class_insert');
+    Route::get('/product-tax-class-view/{id}', 'ProductTaxclassController@view')->name('product_tax_class_view');
+    Route::get('/product-tax-class-delete/{id}', 'ProductTaxclassController@delete')->name('product_tax_class_delete');
+    Route::get('/product-tax-class-edit/{id}', 'ProductTaxclassController@edit')->name('product_tax_class_edit');
+    Route::get('/product-tax-class-get/{id}', 'ProductTaxclassController@get_tax_json')->name('product_tax_class_get');
+    Route::post('/product-tax-class-update', 'ProductTaxclassController@update')->name('product_tax_class_update');
 });
 Route::group([
     'prefix' => 'admin',
@@ -210,7 +210,7 @@ Route::group([
 
     Route::get('/frontend-category', 'FrontendController@frontend_category')->name('frontend_category');
     Route::get('/menu-category', 'FrontendController@menu_category')->name('menu_category');
-    
+
     Route::get('/home-all-product', 'FrontendController@home_all_product')->name('home_all_product');
 
     Route::get('/json-home-category-product', 'FrontendController@json_home_category_product')->name('json_home_category_product');
