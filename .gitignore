@@ -1,10 +1,12 @@
 /node_modules
 /public/hot
 /public/storage
+/public/uploads
 /storage/*.key
 /vendor
 .env
 .zip
+big_ecom.zip
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
