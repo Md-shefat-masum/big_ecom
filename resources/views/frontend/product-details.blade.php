@@ -103,7 +103,7 @@
                                     <span class="current_price">$@{{this.product_item.sales_price}}</span>
                                 </div>
                                 <div class="product_desc">
-                                    <p>@{{this.product_item.description}} </p>
+                                    <div v-html="this.product_item.description"></div>
                                 </div>
                                 <div class="product_variant color">
                                     <h3>Available Options</h3>
@@ -311,7 +311,8 @@
                                 </div>
                             </div>
                             <div class="product_info_content">
-                                <p>@{{this.product_item.description}}</p>
+                                {{-- <p>@{{this.product_item.description}}</p> --}}
+                                <div v-html="this.product_item.description"></div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="Pricing" role="tabpanel">
@@ -536,7 +537,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                  
+
                                     </div> --}}
                                 </form>
                             </div>
