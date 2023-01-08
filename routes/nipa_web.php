@@ -193,7 +193,7 @@ Route::group([
     Route::get('/get-product-image', 'FrontendController@get_product_image')->name('get_product_image');
 
 
-    Route::get('/cart', 'FrontendController@frontend_cart')->name('frontend_cart');
+    // Route::get('/cart', 'FrontendController@frontend_cart')->name('frontend_cart');
     Route::post('/add-to-cart', 'FrontendController@add_to_cart')->name('add_to_cart');
 
     Route::get('/wishlist', 'FrontendController@frontend_wishlist')->name('frontend_wishlist');
@@ -202,7 +202,7 @@ Route::group([
     Route::get('/get-account', 'FrontendController@frontend_get_account')->name('frontend_get_account');
     Route::post('/edit-account', 'FrontendController@frontend_edit_account')->name('frontend_edit_account');
 
-    Route::get('/contact', 'FrontendController@frontend_contact')->name('frontend_contact');
+    // Route::get('/contact', 'FrontendController@frontend_contact')->name('frontend_contact');
     Route::get('/invoice', 'FrontendController@frontend_invoice')->name('frontend_invoice');
     Route::get('/checkout', 'FrontendController@frontend_checkout')->name('frontend_checkout')->middleware('auth');
     Route::post('/save-checkout', 'FrontendController@add_checkout')->name('add_checkout')->middleware('auth');
