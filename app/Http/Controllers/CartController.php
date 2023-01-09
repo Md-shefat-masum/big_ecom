@@ -43,6 +43,26 @@ class CartController extends Controller
     public function cart_save() {
         Session::put('carts', $this->cart);
     }
+    public function qty_increase($id) {
+        foreach ($this->cart as $key => $value) {
+            if($value['product']->id == $id)
+            {
+                $value['qty']+= 1;
+            }
+        }
+        return $this->cart;
+    }
+    public function qty_decrease($id) {
+        foreach ($this->cart as $key => $value) {
+            if($value['product']->id == $id)
+            {
+                if($value['qty']>0) {
+                    $value['qty']-= 1;
+                }
+            }
+        }
+        return $this->cart;
+    }
     public function get($id=null) {
         if($id) {
 
