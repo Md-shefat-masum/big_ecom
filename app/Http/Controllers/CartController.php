@@ -63,6 +63,17 @@ class CartController extends Controller
         }
         return $this->cart;
     }
+    public function remove($id) {
+        foreach ($this->cart as $key => $value) {
+            if($value['product']->id == $id)
+            {
+                array_splice($this->cart, $key, 1);
+                Session::put('carts', $this->cart);
+            }
+        }
+        
+        return $this->cart;
+    }
     public function get($id=null) {
         if($id) {
 

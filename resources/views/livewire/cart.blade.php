@@ -36,8 +36,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="product-total"><span>{{ $cart['product']->default_price }}</span></td>
-                                        <td class="product-remove"><a href="#/"><i class="fa fa-trash-o"></i></a></td>
+                                        <td class="product-total"><span>{{ $cart['product']->default_price * $cart['qty'] }}</span></td>
+                                        <td class="product-remove"><a href="javascript:void(0)" wire:click="remove({{ $cart['product']['id'] }})"><i class="fa fa-trash-o"></i></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -46,10 +46,10 @@
                     </div>
                     <div class="cart-shiping-update-wrapper">
                         <div class="cart-shiping-btn continure-btn">
-                            <a class="btn btn-link" href="shop.html"><i class="fa fa-angle-left"></i> Back To Shop</a>
+                            <a class="btn btn-link" href="/"><i class="fa fa-angle-left"></i> Back To Shop</a>
                         </div>
                         <div class="cart-shiping-btn update-btn">
-                            <a class="btn btn-link" href="shop.html"><i class="fa fa-repeat"></i> Back To Shop</a>
+                            <a class="btn btn-link" href="/"><i class="fa fa-repeat"></i> Back To Shop</a>
                         </div>
                     </div>
                 </div>

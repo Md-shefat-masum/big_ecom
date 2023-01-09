@@ -34,6 +34,6 @@ class Cart extends Component
     public function remove($id)
     {
         $cart = new CartController();
-        $cart->qty_decrease($id);
+        $cart->remove($id);
     }
 }
