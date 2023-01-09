@@ -230,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Helper' => \App\Http\Controllers\HelperController::class,
+        'CartHandler' => \App\Http\Controllers\CartController::class
     ],
 
 ];

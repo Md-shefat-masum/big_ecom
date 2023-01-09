@@ -7,6 +7,7 @@
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('contents/frontend') }}/assets/images/favicon.png">
 
@@ -42,6 +43,7 @@
         
 
         @yield('content')
+        
         <footer class="footer-area footer-three-area">
             <div class="container">
                 <!--== Start Footer Main ==-->
@@ -496,11 +498,13 @@
     <script src="{{ asset('contents/frontend') }}/assets/js/main.js"></script>
     @livewireScripts
     <script src="/js/frontend.js" defer></script>
+    
     <script defer>
         document.addEventListener("DOMContentLoaded", () => {
             Livewire.hook('component.initialized', (component) => {
                 //
                 // console.log('34',component.data);
+
             })
             Livewire.hook('element.initialized', (el, component) => {
                 // console.log('37',component.data);
@@ -512,6 +516,7 @@
             Livewire.hook('message.sent', (message, component) => {})
             Livewire.hook('message.failed', (message, component) => {})
             Livewire.hook('message.received', (message, component) => {
+                // console.log(message, component);
                 let access_token = message.response.serverMemo.data?.access_token;
                 if(access_token){
                     window.localStorage.setItem('token',access_token);
@@ -527,6 +532,7 @@
             window.livewire.start();
         });
     </script>
+    <script src="{{ asset('contents/frontend') }}/assets/js/cart.js" defer></script>
 </body>
 
 </html>

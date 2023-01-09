@@ -26,5 +26,15 @@ class WebsiteController extends Controller
         // ]);
     }
 
+    public function add_to_cart(Request $request)
+    {
+        $cart = new CartController();
+        $cart->add_to_cart($request->id, $request->qty);
+        return response()->json([
+            'request' => $request->all(),
+            'cart' => $cart->get()
+        ]);
+    }
+
 
 }

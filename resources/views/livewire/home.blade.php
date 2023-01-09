@@ -11,7 +11,8 @@
         @include('frontend.include.categories')
         <!--== End Features Area Wrapper ==-->
 
-        @livewire('products')
+        @livewire('home-page-product')
+        
         {{-- @include('frontend.include.hot_product') --}}
 
     </main>

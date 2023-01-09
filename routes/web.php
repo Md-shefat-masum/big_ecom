@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,8 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
 
 Route::prefix('')->namespace('Controllers')->group(function () {
     // Route::get('/', 'WebsiteController@index')->name('website_index');
-
+    Route::post('add_to_cart', 'WebsiteController@add_to_cart');
+    
     Route::get('/category/{slug}/{id}/products', 'WebsiteController@category_products')->name('website_category_products');
 
     Route::get('/get-category-product/{category_id}/{chunk_size}/{chunk_no}/json', 'JsonController@get_category_product')->name('get_category_product_json');
