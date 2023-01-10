@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -34,6 +35,11 @@ class WebsiteController extends Controller
             'request' => $request->all(),
             'cart' => $cart->get()
         ]);
+    }
+
+    public function clear_cart()
+    {
+        session()->forget('carts');
     }
 
 

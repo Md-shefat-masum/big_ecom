@@ -31,15 +31,26 @@
                                             <div class="product-details-quality">
                                                 <div class="pro-qty">
                                                     <div wire:click="decrease({{ $cart['product']['id'] }})" class= "dec qty-btn">-</div>
-                                                    <input type="text" title="Quantity" value="{{ $cart['qty'] }}">
+                                                    <input type="text" title="Quantity" wire:keyup.debounce.500ms="quantityChange($event.target.value, {{ $cart['product']['id'] }})" value="{{ $cart['qty'] }}">
                                                     <div wire:click="increase({{ $cart['product']['id'] }})" class="inc qty-btn">+</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="product-total"><span>{{ $cart['product']->default_price * $cart['qty'] }}</span></td>
+                                        <td class="product-total">
+                                            @if ($cart['product']->default_price == "Call for Price" || $cart['product']->default_price == "Out of Stock")
+                                                <span>
+                                                    {{ 0 * $cart['qty'] }}
+                                                </span>
+                                            @else
+                                                <span>
+                                                    {{ $cart['product']->default_price * $cart['qty'] }}
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td class="product-remove"><a href="javascript:void(0)" wire:click="remove({{ $cart['product']['id'] }})"><i class="fa fa-trash-o"></i></a></td>
                                     </tr>
                                     @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -47,6 +58,9 @@
                     <div class="cart-shiping-update-wrapper">
                         <div class="cart-shiping-btn continure-btn">
                             <a class="btn btn-link" href="/"><i class="fa fa-angle-left"></i> Back To Shop</a>
+                        </div>
+                        <div class="cart-shiping-btn continure-btn">
+                            <a class="btn btn-link" href="#">Total Cart product</a>
                         </div>
                         <div class="cart-shiping-btn update-btn">
                             <a class="btn btn-link" href="/"><i class="fa fa-repeat"></i> Back To Shop</a>

@@ -37,6 +37,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
 Route::prefix('')->namespace('Controllers')->group(function () {
     // Route::get('/', 'WebsiteController@index')->name('website_index');
     Route::post('add_to_cart', 'WebsiteController@add_to_cart');
+    Route::get('clear_cart', 'WebsiteController@clear_cart');
     
     Route::get('/category/{slug}/{id}/products', 'WebsiteController@category_products')->name('website_category_products');
 

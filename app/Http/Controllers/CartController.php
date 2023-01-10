@@ -43,6 +43,13 @@ class CartController extends Controller
     public function cart_save() {
         Session::put('carts', $this->cart);
     }
+    
+    public function cart_count()
+    {
+        $count = count($this->cart);
+        return $count;
+    }
+
     public function qty_increase($id) {
         foreach ($this->cart as $key => $value) {
             if($value['product']->id == $id)
@@ -74,6 +81,20 @@ class CartController extends Controller
         
         return $this->cart;
     }
+
+    public function qty_change($qty, $id) {
+        foreach ($this->cart as $key => $value) {
+            if($value['product']->id == $id)
+            {
+                $qty = (int)$qty;
+                if($value['qty']>0) {
+                    $value['qty'] = $qty;
+                }
+            }
+        }
+        return $this->cart;
+    }
+
     public function get($id=null) {
         if($id) {
 

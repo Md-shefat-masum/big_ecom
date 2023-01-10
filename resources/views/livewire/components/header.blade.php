@@ -5,7 +5,7 @@
             <div class="row align-items-center justify-content-between align-items-center">
                 <div class="col-auto">
                     <div class="header-logo-area">
-                        <a href="index.html">
+                        <a href="/">
                             <img class="logo-main" src="{{ asset('contents/frontend') }}/assets/images/logo.png" width="182" height="31" alt="Logo" />
                         </a>
                     </div>
@@ -20,13 +20,8 @@
                     <a href="login-register.html" class="header-action-account">Offers</a>
                     <a href="login-register.html" class="header-action-account">Deals</a>
                     <a href="login-register.html" class="header-action-account single-nav">Login / SignUp</a>
-                    <a class="header-action-wishlist" href="shop-wishlist.html">
-                        <i class="icon-heart"></i>
-                    </a>
-                    <button class="header-action-cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithCartSidebar" aria-controls="offcanvasWithCartSidebar">
-                        <i class="cart-icon icon-handbag"></i>
-                        <span class="cart-count">01</span>
-                    </button>
+                    
+                    @livewire('cart-count')
                 </div>
             </div>
         </div>
@@ -50,13 +45,8 @@
                         <a href="login-register.html" class="header-action-user me-lg-4 me-xl-0 d-xl-none">
                             <i class="icon icon-user"></i>
                         </a>
-                        <a class="header-action-wishlist" href="shop-wishlist.html">
-                            <i class="icon-heart"></i>
-                        </a>
-                        <button class="header-action-cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithCartSidebar" aria-controls="offcanvasWithCartSidebar">
-                            <i class="cart-icon icon-handbag"></i>
-                            <span class="cart-count">01</span>
-                        </button>
+                        
+                        @livewire('cart-count')
                         <button class="btn-menu d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                             <i class="fa fa-bars"></i>
                         </button>

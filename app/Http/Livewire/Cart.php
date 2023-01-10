@@ -8,10 +8,15 @@ use Livewire\Component;
 class Cart extends Component
 {
     public $carts;
+    public $cart_amount;
+    private $cart_handler;
+    
+    public function __construct() {
+        $this->cart_handler = new CartController();
+    }
     public function render()
     {
-        $cart = new CartController();
-        $this->carts = $cart->get();
+        $this->carts = $this->cart_handler->get();
         return view('livewire.cart')
         ->extends('frontend.layout', [
             'title' => 'login',
@@ -21,19 +26,30 @@ class Cart extends Component
 
     public function increase($id)
     {
-        $cart = new CartController();
-        $cart->qty_increase($id);
+        $this->cart_handler->qty_increase($id);
+        $this->emit('cartAdded');
     }
 
     public function decrease($id)
     {
-        $cart = new CartController();
-        $cart->qty_decrease($id);
+        $this->cart_handler->qty_decrease($id);
+        $this->emit('cartAdded');
     }
 
     public function remove($id)
     {
-        $cart = new CartController();
-        $cart->remove($id);
+        $this->cart_handler->remove($id);
+        $this->emit('cartAdded');
+    }
+
+    public function quantityChange($qty, $id)
+    {
+        $this->cart_handler->qty_change($qty, $id);
+        $this->emit('cartAdded');
+    }
+
+    public function CountCart()
+    {
+        $this->cart_handler->cart_count();
     }
 }

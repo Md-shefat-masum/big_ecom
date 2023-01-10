@@ -40,7 +40,6 @@
     <!--== Wrapper Start ==-->
     <div class="wrapper home-five-wrapper">
         @livewire('components.header')
-        
 
         @yield('content')
         
