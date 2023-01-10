@@ -59,12 +59,6 @@
                         <div class="cart-shiping-btn continure-btn">
                             <a class="btn btn-link" href="/"><i class="fa fa-angle-left"></i> Back To Shop</a>
                         </div>
-                        <div class="cart-shiping-btn continure-btn">
-                            <a class="btn btn-link" href="#">Total Cart product</a>
-                        </div>
-                        <div class="cart-shiping-btn update-btn">
-                            <a class="btn btn-link" href="/"><i class="fa fa-repeat"></i> Back To Shop</a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">

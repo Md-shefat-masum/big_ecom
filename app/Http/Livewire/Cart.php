@@ -27,25 +27,25 @@ class Cart extends Component
     public function increase($id)
     {
         $this->cart_handler->qty_increase($id);
-        $this->emit('cartAdded');
+        $this->emit('cartUpdated');
     }
 
     public function decrease($id)
     {
         $this->cart_handler->qty_decrease($id);
-        $this->emit('cartAdded');
+        $this->emit('cartUpdated');
     }
 
     public function remove($id)
     {
         $this->cart_handler->remove($id);
-        $this->emit('cartAdded');
+        $this->emit('cartRemoved');
     }
 
     public function quantityChange($qty, $id)
     {
         $this->cart_handler->qty_change($qty, $id);
-        $this->emit('cartAdded');
+        $this->emit('cartUpdated');
     }
 
     public function CountCart()

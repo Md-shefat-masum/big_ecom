@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\CartController;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -27,7 +28,8 @@ class HomePageProduct extends Component
 
     public function render()
     {
-        return view('livewire.home-page-product');
+        
+        return view('livewire.home-page-product');        
     }
 
     public function get_products()
@@ -47,8 +49,11 @@ class HomePageProduct extends Component
         }
     }
 
-    public function addToCart()
+    public function addToCart($id, $qty=1)
     {
-        
+        $cart = new CartController();
+        $cart->add_to_cart($id, $qty);
+        session()->flash('message', 'Post successfully updated.');
+        $this->emit('cartAdded');
     }
 }

@@ -9,7 +9,6 @@
             <button data-filter=".filterHeadphone">Headphone</button>
             <button data-filter=".filterDigitalCamera">Digital Camera</button>
         </div>
-
         <div class="row">
             @foreach ($products as $product)
             @php
@@ -40,7 +39,7 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="ms-4 product-item-price mb-4">{{ $product->default_price }}</div>
-                                <button type="button" onclick="addToCart({!! $product->id !!})" class="info-btn-cart me-4 mb-4"><i class="icon-handbag"></i></button>
+                                <button type="button" wire:click="addToCart({!! $product->id !!})" class="info-btn-cart me-4 mb-4"><i class="icon-handbag"></i></button>
                             </div>
                         </div>
                     </div>

@@ -31,7 +31,52 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/custom.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        window.s_alert = (icon="success", title="success") => {
+            return Toast.fire({
+                icon,
+                title
+            })
+        };
+
+        window.c_alert = async (icon="question", title="Are you sure?",text='') => {
+            let confirm = await Swal.fire({
+                title,
+                text,
+                icon,
+                showCancelButton: true,
+                confirmButtonText: 'Yes, do it!',
+                confirmButtonColor: 'rgba(0,0,0,0)',
+                cancelButtonColor: 'rgba(0,0,0,0)',
+                customClass: {
+                    confirmButton: 'btn btn-outline-success',
+                    cancelButton: 'btn btn-outline-danger'
+                },
+            })
+            if (confirm.isConfirmed) {
+                return true;
+            } else if (confirm.isDismissed) {
+                return false
+            }
+        };
+        // window.addEventListener('load',function() {
+        //     window.s_alert('success', 'Added to cart successfully');
+        // });
+    </script>
     @livewireStyles
 </head>
 
@@ -498,39 +543,7 @@
     @livewireScripts
     <script src="/js/frontend.js" defer></script>
     
-    <script defer>
-        document.addEventListener("DOMContentLoaded", () => {
-            Livewire.hook('component.initialized', (component) => {
-                //
-                // console.log('34',component.data);
-
-            })
-            Livewire.hook('element.initialized', (el, component) => {
-                // console.log('37',component.data);
-                // component.data.auth_check?window.location.href='/admin':'';
-            })
-            Livewire.hook('element.updating', (fromEl, toEl, component) => {})
-            Livewire.hook('element.updated', (el, component) => {})
-            Livewire.hook('element.removed', (el, component) => {})
-            Livewire.hook('message.sent', (message, component) => {})
-            Livewire.hook('message.failed', (message, component) => {})
-            Livewire.hook('message.received', (message, component) => {
-                // console.log(message, component);
-                let access_token = message.response.serverMemo.data?.access_token;
-                if(access_token){
-                    window.localStorage.setItem('token',access_token);
-                    window.location.href = "/admin";
-                }
-            })
-            Livewire.hook('message.processed', (message, component) => {
-                // console.log('48');
-            })
-        });
-        document.addEventListener("turbolinks:load", function(event) {
-            console.log('load');
-            window.livewire.start();
-        });
-    </script>
+    <script src="{{ asset('contents/frontend') }}/assets/js/livewire_hook.js" defer></script>
     <script src="{{ asset('contents/frontend') }}/assets/js/cart.js" defer></script>
 </body>
 

@@ -2,7 +2,6 @@
 
 
     <main class="main-content">
-
         <!--== Start Hero Area Wrapper ==-->
         @include('frontend.include.banner')
         <!--== End Hero Area Wrapper ==-->
