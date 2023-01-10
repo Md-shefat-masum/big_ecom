@@ -1,259 +1,205 @@
-<div class="section-space shop-checkout-area">
+
+
+<div class="pt-2 section-space shop-checkout-area">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="checkout-coupon-wrap mb-8 mb-lg-10 pb-lg-2">
-                    <p class="cart-page-title">Have a coupon? <a class="checkout-coupon-active" href="#/">Click here to enter your code</a></p>
-                    <form class="checkout-coupon-content" action="#">
-                        <p>If you have a coupon code, please apply it below.</p>
-                        <input type="text" placeholder="Coupon code">
-                        <button type="submit">Apply coupon</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-7">
-                <div class="billing-info-wrap">
-                    <h3>Billing Details</h3>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>First name <abbr class="required" title="required">*</abbr></label>
-                                <input type="text">
-                            </div>
+        <h2 class="py-5">Checkout</h2>
+        <form class="checkout-content" id="checkout-form" action="https://www.startech.com.bd/checkout/onepagecheckout" method="post">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="card checkout-section checkout-box h-100">
+                        <div class="section-head">
+                            <h2><span>1</span>Customer Information</h2>
                         </div>
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>Last name <abbr class="required" title="required">*</abbr></label>
-                                <input type="text">
+                        <div class="address">
+                            <div class="multiple-form-group">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-firstname">First Name</label>
+                                    <input class="form-control" name="firstname" type="text" id="input-firstname" value="" placeholder="First Name*" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="input-lastname">Last Name</label>
+                                    <input type="text" id="input-lastname" name="lastname" value="" class="form-control" placeholder="Last Name*" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>Company name (optional) <abbr class="required" title="required">*</abbr></label>
-                                <input type="text">
+        
+                            <div class="form-group">
+                                <label class="control-label" for="input-address">Address</label>
+                                <input type="text" id="input-address" name="address_1" value="" class="form-control" placeholder="Address*" />
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-select mb-4">
-                                <label>Country / Region <abbr class="required" title="required">*</abbr></label>
-                                <div class="select-style">
-                                    <select class="select-active">
-                                        <option>Bangladesh</option>
-                                        <option>Bahrain</option>
-                                        <option>Azerbaijan</option>
-                                        <option>Barbados</option>
-                                        <option>Barbados</option>
+                            <div class="form-group">
+                                <label class="control-label" for="input-telephone">Mobile</label>
+                                <input type="tel" id="input-telephone" name="telephone" value="" class="form-control" placeholder="Telephone*" />
+                            </div>
+                            <div class="form-group" for="input-email">
+                                <label class="control-label">Email</label>
+                                <input type="email" id="input-email" name="email" value="" class="form-control" placeholder="E-Mail*" />
+                            </div>
+                            <div class="multiple-form-group">
+                                <div class="form-group" for="input-city">
+                                    <label class="control-label">City</label>
+                                    <input type="text" id="input-city" name="city" value="" class="form-control" placeholder="City*" />
+                                </div>
+                                <div class="form-group" for="input-zone">
+                                    <label class="control-label">Zone</label>
+                                    <select name="zone_id" id="input-zone" class="form-control">
+                                        <option value="322" selected=""> Dhaka City</option>
+                                        <option value="323"> Khulna City</option>
+                                        <option value="4231"> Rangpur City</option>
+                                        <option value="321">Chittagong City</option>
+                                        <option value="4233">Gazipur City</option>
+                                        <option value="4232">Others</option>
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>Street Address <abbr class="required" title="required">*</abbr></label>
-                                <input class="billing-address" placeholder="House number and street name" type="text">
-                                <input placeholder="Apartment, suite, unit, etc. (optional)" type="text">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>Town / City <abbr class="required" title="required">*</abbr></label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-select mb-4">
-                                <label>District <abbr class="required" title="required">*</abbr></label>
-                                <div class="select-style">
-                                    <select class="select-active">
-                                        <option>Select an option…</option>
-                                        <option>Barguna</option>
-                                        <option>Bandarban</option>
-                                        <option>Barbados</option>
-                                        <option>Barbados</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>Postcode / ZIP (optional) <abbr class="required" title="required">*</abbr></label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>Phone <abbr class="required" title="required">*</abbr></label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="billing-info mb-4">
-                                <label>Email Address <abbr class="required" title="required">*</abbr></label>
-                                <input type="text">
+                            <div class="form-group">
+                                <label class="control-label">Comment</label>
+                                <textarea class="form-control" name="comment" value="" placeholder="Comment" rows="6"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="checkout-account">
-                        <input class="checkout-toggle" type="checkbox">
-                        <span>Ship to a different address?</span>
-                    </div>
-                    <div class="different-address open-toggle mt-30">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>First name <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <div class="row row-payment-delivery-order">
+                        <div class="col-md-6 col-sm-12 payment-methods">
+                            <div class="card checkout-section checkout-box h-100">
+                                <div class="section-head">
+                                    <h2><span>2</span>Payment Method</h2>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>Last name <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>Company name (optional) <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="billing-select mb-4">
-                                    <label>Country / Region <abbr class="required" title="required">*</abbr></label>
-                                    <div class="select-style">
-                                        <select class="select-active">
-                                            <option>Bangladesh</option>
-                                            <option>Bahrain</option>
-                                            <option>Azerbaijan</option>
-                                            <option>Barbados</option>
-                                            <option>Barbados</option>
-                                        </select>
+                                <div class="">
+                                    <p>Select a payment method</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payment_method" value="cod" checked="checked" />
+                                        Cash on Delivery
+                                    </label>
+                                    <br />
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payment_method" value="pod" />
+                                        POS on Delivery
+                                    </label>
+                                    <br />
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payment_method" value="online" />
+                                        Online Payment
+                                    </label>
+                                    <br />
+                                    <div class="accepted-logo">
+                                        <h5>We Accept :</h5>
+                                        <a href="#"><img class="logo logo-visa" src="{{ asset('contents/frontend/assets/images/card-logo.png') }}" /></a>
+                                        <div class="clear"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>Street Address <abbr class="required" title="required">*</abbr></label>
-                                    <input class="billing-address" placeholder="House number and street name" type="text">
-                                    <input placeholder="Apartment, suite, unit, etc. (optional)" type="text">
+                        </div>
+                        <div class="col-md-6 col-sm-12 delivery-methods">
+                            <div class="card checkout-section checkout-box h-100">
+                                <div class="section-head">
+                                    <h2><span>3</span>Delivery Method</h2>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>Town / City <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
+                                <div class="">
+                                    <p>Select a delivery method</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="shipping_method" value="flat.flat" checked="checked" />
+                                        Home Delivery - 60৳
+                                    </label>
+                                    <br />
+                                    <input type="hidden" name="flat.flat.title" value="Home Delivery" />
+                                    <label class="radio-inline">
+                                        <input type="radio" name="shipping_method" value="pickup.pickup" />
+                                        Store Pickup - 0৳
+                                    </label>
+                                    <br />
+                                    <input type="hidden" name="pickup.pickup.title" value="Store Pickup" />
+                                    <label class="radio-inline">
+                                        <input type="radio" name="shipping_method" value="express.express" />
+                                        Request Express - Charge Applicable
+                                    </label>
+                                    <br />
                                 </div>
+                                
                             </div>
-                            <div class="col-12">
-                                <div class="billing-select mb-4">
-                                    <label>District <abbr class="required" title="required">*</abbr></label>
-                                    <div class="select-style">
-                                        <select class="select-active">
-                                            <option>Select an option…</option>
-                                            <option>Barguna</option>
-                                            <option>Bandarban</option>
-                                            <option>Barbados</option>
-                                            <option>Barbados</option>
-                                        </select>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="checkout-section card checkout-box voucher-coupon mt-3 p-1">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12" id="gift-voucher">
+                                            <div class="input-group">
+                                                <input type="text" name="voucher" placeholder="Gift Voucher" id="input-voucher" class="form-control" />
+                                                <span class="input-group-btn"><button type="button" id="button-voucher" data-loading-text="Loading..." class="btn st-outline">Apply Voucher</button></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12" id="discount-coupon">
+                                            <div class="input-group">
+                                                <input type="text" name="coupon" placeholder="Promo / Coupon Code" id="input-coupon" class="form-control" />
+                                                <span class="input-group-btn"><button type="button" id="button-coupon" data-loading-text="Loading..." class="btn st-outline">Apply Coupon</button></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>Postcode / ZIP (optional) <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
+                        </div>
+                        <div class="col-md-12 col-sm-12 details-section-wrap">
+                            <div class="card checkout-section checkout-box">
+                                <div class="section-head">
+                                    <h2><span>4</span>Order Overview</h2>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>Phone <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="billing-info mb-4">
-                                    <label>Email Address <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
+                                <div class="card-body">
+                                    <table class="table table-bordered bg-white checkout-data">
+                                        <thead>
+                                            <tr>
+                                                <td>Product Name</td>
+                                                <td>Price</td>
+                                                <td class="text-right">Total</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="name">
+                                                    <a href="https://www.startech.com.bd/amd-ryzen-5-5600x-processor">AMD Ryzen 5 5600X Processor</a>
+                                                    <div class="options"></div>
+                                                    <div class="fade">220</div>
+                                                </td>
+                                                <td class="price"><span>20,000৳</span> <span> x </span> <span>1</span></td>
+                                                <td class="price text-right">20,000৳</td>
+                                            </tr>
+                                            <tr class="total">
+                                                <td colspan="2" class="text-right"><strong>Sub-Total:</strong></td>
+                                                <td class="text-right"><span class="amount">20,000৳</span></td>
+                                            </tr>
+                                            <tr class="total">
+                                                <td colspan="2" class="text-right"><strong>Home Delivery:</strong></td>
+                                                <td class="text-right"><span class="amount">60৳</span></td>
+                                            </tr>
+                                            <tr class="total">
+                                                <td colspan="2" class="text-right"><strong>Total:</strong></td>
+                                                <td class="text-right"><span class="amount">20,060৳</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="additional-info-wrap">
-                        <label>Order notes (optional)</label>
-                        <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="message"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="your-order-area mt-10 mt-lg-0">
-                    <h4>Your order</h4>
-                    <div class="your-order-wrap">
-                        <div class="your-order-info-wrap">
-                            <div class="your-order-title">
-                                <h6>Product <span>Subtotal</span></h6>
-                            </div>
-                            <div class="your-order-product">
-                                <ul>
-                                    <li>Digital Lens Camera × 4 <span>$140.00 </span></li>
-                                    <li>Headphone Supersonic × 1 <span>$39.59 </span></li>
-                                </ul>
-                            </div>
-                            <div class="your-order-subtotal">
-                                <h3>Subtotal <span>$617.59</span></h3>
-                            </div>
-                            <div class="your-order-shipping">
-                                <span>Shipping</span>
-                                <ul>
-                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Free shipping</label></li>
-                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Flat rate: <span>$100.00</span></label></li>
-                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Local pickup: <span>$120.00</span></label></li>
-                                </ul>
-                            </div>
-                            <div class="your-order-total">
-                                <h3>Total <span>$617.59 </span></h3>
-                            </div>
-                        </div>
-                        <div class="payment-method">
-                            <div class="pay-top sin-payment">
-                                <input id="payment_method_1" class="input-radio" type="radio" value="cheque" checked="checked" name="payment_method">
-                                <label for="payment_method_1"> Direct Bank Transfer </label>
-                                <div class="payment-box payment_method_bacs">
-                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
-                                </div>
-                            </div>
-                            <div class="pay-top sin-payment">
-                                <input id="payment-method-2" class="input-radio" type="radio" value="cheque" name="payment_method">
-                                <label for="payment-method-2">Check payments</label>
-                                <div class="payment-box payment_method_bacs">
-                                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                </div>
-                            </div>
-                            <div class="pay-top sin-payment">
-                                <input id="payment-method-3" class="input-radio" type="radio" value="cheque" name="payment_method">
-                                <label for="payment-method-3">Cash on delivery </label>
-                                <div class="payment-box payment_method_bacs">
-                                    <p>Pay with cash upon delivery. </p>
-                                </div>
-                            </div>
-                            <div class="pay-top sin-payment sin-payment-3">
-                                <input id="payment-method-4" class="input-radio" type="radio" value="cheque" name="payment_method">
-                                <label for="payment-method-4">PayPal <img alt="" src="assets/images/photos/paypal.webp" width="35" height="23"><a href="#">What is PayPal?</a></label>
-                                <div class="payment-box payment_method_bacs">
-                                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="payment-condition">
-                            <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="shop-checkout.html">privacy policy</a>.</p>
-                        </div>
-                    </div>
-                    <div class="place-order">
-                        <a href="shop-checkout.html">Place Order</a>
-                    </div>
+            <hr>
+            <div class="checkout-final-action mt-3">
+                <div class="agree-text" style="margin-bottom: 10px;">
+                    <input type="checkbox" name="agree" value="1" checked="checked" />
+                    I have read and agree to the 
+                    <a href="https://www.startech.com.bd/warranty-policy" target="_blank">
+                        <b>Terms and Conditions</b>
+                    </a>, 
+                    <a href="https://www.startech.com.bd/privacy" target="_blank">
+                        <b>Privacy Policy</b>
+                    </a> and
+                    <a href="https://www.startech.com.bd/refund-policy" target="_blank">
+                        <b>Refund and Return Policy</b>
+                    </a>
                 </div>
+                <button id="button-confirm" class="btn submit-btn pull-right" type="submit">Confirm Order</button>
             </div>
-        </div>
+        </form>
+        
     </div>
 </div>

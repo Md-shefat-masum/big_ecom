@@ -17,6 +17,7 @@ class Cart extends Component
     public function render()
     {
         $this->carts = $this->cart_handler->get();
+        $this->CountCart();
         return view('livewire.cart')
         ->extends('frontend.layout', [
             'title' => 'login',
@@ -50,6 +51,6 @@ class Cart extends Component
 
     public function CountCart()
     {
-        $this->cart_handler->cart_count();
+        $this->cart_amount = $this->cart_handler->cart_count();
     }
 }
