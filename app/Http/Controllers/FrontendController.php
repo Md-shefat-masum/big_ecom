@@ -29,14 +29,16 @@ class FrontendController extends Controller
             ], 422);
         }
 
-        $order_info = new OrderAddress();
-        $order_info->first_name = $request->first_name;
-        $order_info->last_name = $request->last_name;
-        $order_info->address = $request->address;
-        $order_info->mobile_number = $request->mobile_number;
-        $order_info->email = $request->email;
-        $order_info->zone = $request->zone;
-        $order_info->comment = $request->comment;
-        $order_info->save();
+        return response()->json($request->all());
+
+        // $order_info = new OrderAddress();
+        // $order_info->first_name = $request->first_name;
+        // $order_info->last_name = $request->last_name;
+        // $order_info->address = $request->address;
+        // $order_info->mobile_number = $request->mobile_number;
+        // $order_info->email = $request->email;
+        // $order_info->zone = $request->zone;
+        // $order_info->comment = $request->comment;
+        // $order_info->save();
     }
 }
