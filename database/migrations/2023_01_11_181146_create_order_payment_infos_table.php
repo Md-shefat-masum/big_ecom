@@ -15,13 +15,13 @@ class CreateOrderPaymentInfosTable extends Migration
     {
         Schema::create('order_payment_infos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('payment_id');
-            $table->string('mobile_number', 100);
-            $table->string('card_number', 100);
-            $table->string('bank_ac_no', 100);
-            $table->string('payment_method', 200);
+            $table->bigInteger('order_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('payment_id')->nullable();
+            $table->string('mobile_number', 100)->nullable();
+            $table->string('card_number', 100)->nullable();
+            $table->string('bank_ac_no', 100)->nullable();
+            $table->string('payment_method', 200)->nullable();
             $table->timestamps();
         });
     }

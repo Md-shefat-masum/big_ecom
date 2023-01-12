@@ -15,12 +15,12 @@ class CreateOrderDeliveryInfosTable extends Migration
     {
         Schema::create('order_delivery_infos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id');
-            $table->bigInteger('user_id');
-            $table->string('order_method', 255);
-            $table->string('curieer_name', 255);
-            $table->text('address');
-            $table->text('user_location');
+            $table->bigInteger('order_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->string('order_method', 255)->nullable();
+            $table->string('curieer_name', 255)->nullable();
+            $table->text('address')->nullable();
+            $table->text('user_location')->nullable();
             $table->timestamps();
         });
     }
