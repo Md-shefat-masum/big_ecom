@@ -42,6 +42,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function login(Request $request)
+    {
+        return view('auth.login');
+    }
+
     protected function attemptLogin(Request $request)
     {
 
@@ -57,7 +62,7 @@ class LoginController extends Controller
             Auth::logout();
             return redirect()->back()->with('error','your accont is blocked');;
         }
-        return '/admin';
+        return redirect()->route('admin_index');
     }
 
 

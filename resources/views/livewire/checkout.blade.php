@@ -3,7 +3,7 @@
 <div class="pt-2 section-space shop-checkout-area">
     <div class="container">
         <h2 class="py-5">Checkout</h2>
-        <form class="checkout-content" id="checkout-form" action="https://www.startech.com.bd/checkout/onepagecheckout" method="post">
+        <form class="checkout-content" id="checkout-form" onsubmit="checkout(event)" method="post">
             <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <div class="card checkout-section checkout-box h-100">
@@ -14,34 +14,34 @@
                             <div class="multiple-form-group">
                                 <div class="form-group">
                                     <label class="control-label" for="input-firstname">First Name</label>
-                                    <input class="form-control" name="firstname" type="text" id="input-firstname" value="" placeholder="First Name*" />
+                                    <input class="form-control" name="firstname" type="text" id="input-firstname" placeholder="First Name*" />
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="input-lastname">Last Name</label>
-                                    <input type="text" id="input-lastname" name="lastname" value="" class="form-control" placeholder="Last Name*" />
+                                    <input type="text" id="input-lastname" name="lastname" class="form-control" placeholder="Last Name*" />
                                 </div>
                             </div>
         
                             <div class="form-group">
                                 <label class="control-label" for="input-address">Address</label>
-                                <input type="text" id="input-address" name="address_1" value="" class="form-control" placeholder="Address*" />
+                                <input type="text" id="input-address" name="address" class="form-control" placeholder="Address*" />
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="input-telephone">Mobile</label>
-                                <input type="tel" id="input-telephone" name="telephone" value="" class="form-control" placeholder="Telephone*" />
+                                <input type="tel" id="input-telephone" name="mobile_number" class="form-control" placeholder="Telephone*" />
                             </div>
                             <div class="form-group" for="input-email">
                                 <label class="control-label">Email</label>
-                                <input type="email" id="input-email" name="email" value="" class="form-control" placeholder="E-Mail*" />
+                                <input type="email" id="input-email" name="email" class="form-control" placeholder="E-Mail*" />
                             </div>
                             <div class="multiple-form-group">
                                 <div class="form-group" for="input-city">
                                     <label class="control-label">City</label>
-                                    <input type="text" id="input-city" name="city" value="" class="form-control" placeholder="City*" />
+                                    <input type="text" id="input-city" name="city" class="form-control" placeholder="City*" />
                                 </div>
                                 <div class="form-group" for="input-zone">
                                     <label class="control-label">Zone</label>
-                                    <select name="zone_id" id="input-zone" class="form-control">
+                                    <select id="input-zone" class="form-control">
                                         <option value="322" selected=""> Dhaka City</option>
                                         <option value="323"> Khulna City</option>
                                         <option value="4231"> Rangpur City</option>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Comment</label>
-                                <textarea class="form-control" name="comment" value="" placeholder="Comment" rows="6"></textarea>
+                                <textarea class="form-control" name="comment" placeholder="Comment" rows="6"></textarea>
                             </div>
                         </div>
                     </div>
@@ -187,17 +187,17 @@
                 <div class="agree-text" style="margin-bottom: 10px;">
                     <input type="checkbox" name="agree" value="1" checked="checked" />
                     I have read and agree to the 
-                    <a href="https://www.startech.com.bd/warranty-policy" target="_blank">
+                    <a href="/warranty-policy" target="_blank">
                         <b>Terms and Conditions</b>
                     </a>, 
-                    <a href="https://www.startech.com.bd/privacy" target="_blank">
+                    <a href="/privacy" target="_blank">
                         <b>Privacy Policy</b>
                     </a> and
-                    <a href="https://www.startech.com.bd/refund-policy" target="_blank">
+                    <a href="/refund-policy" target="_blank">
                         <b>Refund and Return Policy</b>
                     </a>
                 </div>
-                <button id="button-confirm" class="btn submit-btn pull-right" type="submit">Confirm Order</button>
+                <button id="button-confirm"  class="btn submit-btn pull-right" type="submit">Confirm Order</button>
             </div>
         </form>
         

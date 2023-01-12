@@ -203,9 +203,9 @@ Route::group([
     Route::post('/edit-account', 'FrontendController@frontend_edit_account')->name('frontend_edit_account');
 
     // Route::get('/contact', 'FrontendController@frontend_contact')->name('frontend_contact');
-    Route::get('/invoice', 'FrontendController@frontend_invoice')->name('frontend_invoice');
-    Route::get('/checkout', 'FrontendController@frontend_checkout')->name('frontend_checkout')->middleware('auth');
-    Route::post('/save-checkout', 'FrontendController@add_checkout')->name('add_checkout')->middleware('auth');
+    // Route::get('/invoice', 'FrontendController@frontend_invoice')->name('frontend_invoice');
+    // Route::get('/checkout', 'FrontendController@frontend_checkout')->name('frontend_checkout')->middleware('auth');
+    // Route::post('/save-checkout', 'FrontendController@add_checkout')->name('add_checkout')->middleware('auth');
     Route::get('/get-checkout-information', 'FrontendController@get_checkout_information')->name('get_checkout_information')->middleware('auth');
 
     Route::get('/frontend-category', 'FrontendController@frontend_category')->name('frontend_category');

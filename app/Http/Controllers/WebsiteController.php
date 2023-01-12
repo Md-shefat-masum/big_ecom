@@ -42,5 +42,10 @@ class WebsiteController extends Controller
         session()->forget('carts');
     }
 
+    public function cart_all()
+    {
+        ddd(session()->get('carts'));
+    }
+
 
 }

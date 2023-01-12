@@ -21,7 +21,14 @@ class CreateOrdersTable extends Migration
             $table->string('sub_total',100)->nullable();
             $table->string('invoice_id',100)->nullable();
             $table->string('invoice_date',100)->nullable();
-            $table->string('delivery_date',100)->nullable();
+            // total discount
+            $table->double('total_discount')->nullable();
+            // order coupon
+            $table->string('order_coupon', 255)->nullable();
+            // coupon discount
+            $table->double('coupon_discount', 255)->nullable();
+            $table->string('payment_status', 255)->nullable();
+            $table->text('delivery_method')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

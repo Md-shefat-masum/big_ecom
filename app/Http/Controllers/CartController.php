@@ -13,10 +13,10 @@ class CartController extends Controller
     public $cart = [];
 
     public function __construct() {
-        if(auth()->check()) {
-            $this->cart = Cart::Where('user_id', auth()->user()->id)->get();
-        }else {
-        }
+        // if(auth()->check()) {
+        //     $this->cart = Cart::Where('user_id', auth()->user()->id)->get();
+        // }else {
+        // }
         if(Session::has("carts")) {
             $this->cart = Session::get("carts");
         }
@@ -31,9 +31,14 @@ class CartController extends Controller
         ->select("id", "product_name", "default_price")
         ->first();
 
+        $price = $product->price;
+        if(!is_numeric($price)) {
+            $price = 0;
+        }
         $temp_arr = [
             "product" => $product,
-            "qty" => $qty
+            "qty" => $qty,
+            "price" => 0 
         ];
 
         array_push($this->cart, collect($temp_arr));
@@ -48,6 +53,18 @@ class CartController extends Controller
     {
         $count = count($this->cart);
         return $count;
+    }
+
+    public function cart_total()
+    {
+        $total = 0;
+        foreach ($this->cart as $value) {
+            // if($value['product']->id == $id)
+            if($value['product']->default_price !== "Call for Price" || $value['product']->default_price !== "Out of Stock") {
+                $total += $value['product']->default_price * $value['qty'];
+            }
+        }
+        return $total;
     }
 
     public function qty_increase($id) {

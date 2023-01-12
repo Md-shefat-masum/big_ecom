@@ -39,11 +39,14 @@ Route::prefix('')->namespace('Controllers')->group(function () {
     // Route::get('/', 'WebsiteController@index')->name('website_index');
     Route::post('add_to_cart', 'WebsiteController@add_to_cart');
     Route::get('clear_cart', 'WebsiteController@clear_cart');
+    Route::get('cart_all', 'WebsiteController@cart_all');
     
     Route::get('/category/{slug}/{id}/products', 'WebsiteController@category_products')->name('website_category_products');
 
     Route::get('/get-category-product/{category_id}/{chunk_size}/{chunk_no}/json', 'JsonController@get_category_product')->name('get_category_product_json');
     Route::post('/search-product/json', 'JsonController@search_product')->name('search_product_json');
+
+    Route::post('/checkout', 'FrontendController@confirm_order');
 
     Route::get('/get-auth-info',function(){
         return Auth::user();
@@ -58,6 +61,9 @@ Route::prefix('')->namespace('Controllers')->group(function () {
         Route::get('/', 'AdminController@index')->name('admin_index');
         Route::post('/set-theme', 'AdminController@set_theme')->name('admin_set_theme');
     });
+
+    Route::get('/login', 'Auth\LoginController@login')->name('login');
+    Route::post('/login', 'Auth\LoginController@attemptLogin')->name('login');
 
     // user management
     Route::group([
@@ -214,5 +220,8 @@ Route::prefix('')->namespace('Controllers')->group(function () {
         dd($request->all());
     })->name('route name');
 
+
 });
+
+include_once("nipa_web.php");
 
