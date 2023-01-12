@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -24,6 +25,26 @@ class WebsiteController extends Controller
         //     'slug' => $slug,
         //     'id' => $id,
         // ]);
+    }
+
+    public function add_to_cart(Request $request)
+    {
+        $cart = new CartController();
+        $cart->add_to_cart($request->id, $request->qty);
+        return response()->json([
+            'request' => $request->all(),
+            'cart' => $cart->get()
+        ]);
+    }
+
+    public function clear_cart()
+    {
+        session()->forget('carts');
+    }
+
+    public function cart_all()
+    {
+        ddd(session()->get('carts'));
     }
 
 

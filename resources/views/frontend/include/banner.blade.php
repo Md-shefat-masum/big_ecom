@@ -1,28 +1,46 @@
-<section class="slider_section slider_s_seven mb-60 mt-20">
-    <div class="container">
+<div class="hero-five-slider-area">
+    <div class="container custom-container bg-white bg-white-wrp pt-xl-4 pb-6">
         <div class="row">
-            <div class="col-lg-9 offset-lg-3">
-                <div class="slider_area slider3_carousel owl-carousel">
-                    <div class="single_slider d-flex align-items-center"
-                        data-bgimg="{{ asset('contents/frontend') }}/assets/img/slider/slider20.jpg">
-                        <div class="slider_content slider_c_seven">
-                            <h3>new collection</h3>
-                            <h1>new Arrivals <br> cellphone new model 2019</h1>
-                            <p>discount <span> -30% off</span> this week</p>
-                            <a class="button" href="shop.html">DISCOVER NOW</a>
+            <div class="col-12">
+                <div class="swiper hero-five-slider-container ms-n3">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide hero-five-slide-item bg-img h-100" data-bg-img="{{ asset('contents/frontend') }}/assets/images/slider/slider5-bg1.jpg">
+                            <div class="row align-items-center position-relative h-100">
+                                <div class="col-12 col-sm-6 col-lg-7">
+                                    <div class="hero-five-slide-content">
+                                        <h4 class="hero-five-slide-sub-title">New Arrival</h4>
+                                        <h1 class="hero-five-slide-title">Small & Thin Smart Watch</h1>
+                                        <a class="btn btn-border" href="shop.html">Shop Now <i class="icon fa fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-5">
+                                    <div class="hero-five-slide-thumb">
+                                        <img src="{{ asset('contents/frontend') }}/assets/images/slider/slider5.png" width="370" height="259" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide hero-five-slide-item bg-img h-100" data-bg-img="{{ asset('contents/frontend') }}/assets/images/slider/slider5-bg1.jpg">
+                            <div class="row align-items-center position-relative h-100">
+                                <div class="col-12 col-sm-6 col-lg-7">
+                                    <div class="hero-five-slide-content">
+                                        <h4 class="hero-five-slide-sub-title">New Arrival</h4>
+                                        <h1 class="hero-five-slide-title">Small & Thin Smart Watch</h1>
+                                        <a class="btn btn-border" href="shop.html">Shop Now <i class="icon fa fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-5">
+                                    <div class="hero-five-slide-thumb">
+                                        <img src="{{ asset('contents/frontend') }}/assets/images/slider/slider5.png" width="370" height="259" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="single_slider d-flex align-items-center"
-                        data-bgimg="{{ asset('contents/frontend') }}/assets/img/slider/slider19.jpg">
-                        <div class="slider_content slider_c_seven">
-                            <h3>new collection</h3>
-                            <h1>happy summer <br> vagetable organic food 2019</h1>
-                            <p>discount <span> -30% off</span> this week</p>
-                            <a class="button" href="shop.html">DISCOVER NOW</a>
-                        </div>
-                    </div>
+                    <!--== Add Pagination ==-->
+                    <div class="hero-slide-five-pagination"></div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>

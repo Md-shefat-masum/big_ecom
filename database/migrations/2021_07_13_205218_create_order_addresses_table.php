@@ -15,20 +15,16 @@ class CreateOrderAddressesTable extends Migration
     {
         Schema::create('order_addresses', function (Blueprint $table) {
             $table->id();
-    
-            $table->string('user_id',100)->nullable();
-            $table->string('invoice_id',200)->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('order_id')->nullable();
             $table->string('first_name',100)->nullable();
             $table->string('last_name',100)->nullable();
-            $table->string('company_name',100)->nullable();
-            $table->text('street_address')->nullable();
-            $table->string('zip_code',100)->nullable();
-            $table->string('city',100)->nullable();
-            $table->string('country',100)->nullable();
-            $table->text('comment')->nullable();
-            $table->string('phone',100)->nullable();
-            $table->string('phone2',100)->nullable();
+            $table->string('mobile_number',100)->nullable();
             $table->string('email',100)->nullable();
+            $table->text('address')->nullable();
+            $table->string('city',100)->nullable();
+            $table->string('zone',100)->nullable();
+            $table->text('comment')->nullable();
             $table->string('creator',100)->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();

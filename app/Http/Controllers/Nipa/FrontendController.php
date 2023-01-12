@@ -249,6 +249,8 @@ class FrontendController extends Controller
         ]);
     }
 
+
+
     public function get_checkout_information()
     {
         $order = Order::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->with('order_information')->first();
