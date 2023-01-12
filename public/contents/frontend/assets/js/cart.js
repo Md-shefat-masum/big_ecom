@@ -32,18 +32,20 @@ function checkout(event) {
         response.data = await res.json();
         return response;
     }).then(res => {
-        console.log(res);
+        if(res.status === 422) {
+            error_response(res.data)
+        }
     })
 }
 
-function error_response() {
-    
+function error_response(data) {
+    // console.log(data);
     $('.loader_body').removeClass('active');
     $('form button').prop('disabled',false);
     $('#backend_body .main_content').css({overflowY:'scroll'});
     // whatever you want to do with the error
     // console.log(error.response.data.errors);
-    let object = error.response?.data?.data;
+    let object = data.data;
     $(`label`).siblings(".text-danger").remove();
     $(`select`).siblings(".text-danger").remove();
     $(`input`).siblings(".text-danger").remove();
@@ -94,17 +96,13 @@ function error_response() {
 
     $('.form_errors').html(error_html);
 
-    if (typeof error ?.response ?.data === "string") {
-        console.log("error", error ?.response ?.data ?error ?.response ?.data : error.response);
+    if (typeof data === "string") {
+        // console.log("error", data);
     } else {
-        console.log(error.response);
+        // console.log(data);
     }
 
-    if(error.response.status == 401){
-        window.clear_session();
-    }
-
-    window.s_alert('error',error.response?.statusText)
-    throw error;
+    window.s_alert('error',data.err_message)
+    throw data;
     
 }
