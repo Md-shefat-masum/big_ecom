@@ -15,12 +15,12 @@ class CreateOrderPaymentsTable extends Migration
     {
         Schema::create('order_payments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id');
-            $table->bigInteger('user_id');
-            $table->string('payment_method', 100);
-            $table->double('amount');
-            $table->string('trx_id', 200);
-            $table->string('status', 200);
+            $table->bigInteger('order_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->string('payment_method', 100)->nullable();
+            $table->double('amount')->nullable();
+            $table->string('trx_id', 200)->nullable();
+            $table->string('status', 200)->nullable();
             $table->timestamps();
         });
     }
