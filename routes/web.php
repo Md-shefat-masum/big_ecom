@@ -48,6 +48,9 @@ Route::prefix('')->namespace('Controllers')->group(function () {
 
     Route::post('/checkout', 'FrontendController@confirm_order');
 
+    Route::get('/login', 'Auth\LoginController@login')->name('login');
+    Route::post('/login', 'Auth\LoginController@attemptLogin')->name('login');
+
     Route::get('/get-auth-info',function(){
         return Auth::user();
     })->name('route name');
@@ -62,8 +65,7 @@ Route::prefix('')->namespace('Controllers')->group(function () {
         Route::post('/set-theme', 'AdminController@set_theme')->name('admin_set_theme');
     });
 
-    Route::get('/login', 'Auth\LoginController@login')->name('login');
-    Route::post('/login', 'Auth\LoginController@attemptLogin')->name('login');
+    
 
     // user management
     Route::group([
