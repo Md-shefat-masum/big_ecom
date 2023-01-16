@@ -38,6 +38,21 @@ function checkout(event) {
     })
 }
 
+$('#bkash_section').hide();
+$('#bank_section').hide();
+$('#bkash_btn').change(function () {
+    $('#bkash_section').show();
+    $('#bank_section').hide();
+});
+$('#bank_transfer_btn').change(function () {
+    $('#bkash_section').hide();
+    $('#bank_section').show();
+});
+$('#cod_btn').change(function () {
+    $('#bkash_section').hide();
+    $('#bank_section').hide();
+});
+
 function error_response(data) {
     // console.log(data);
     $('.loader_body').removeClass('active');
@@ -104,5 +119,4 @@ function error_response(data) {
 
     window.s_alert('error',data.err_message)
     throw data;
-    
 }

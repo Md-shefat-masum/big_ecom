@@ -14,11 +14,11 @@
                             <div class="multiple-form-group">
                                 <div class="form-group">
                                     <label class="control-label" for="input-firstname">First Name</label>
-                                    <input class="form-control" name="firstname" type="text" id="input-firstname" placeholder="First Name*" />
+                                    <input class="form-control" name="first_name" type="text" id="input-firstname" placeholder="First Name*" />
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="input-lastname">Last Name</label>
-                                    <input type="text" id="input-lastname" name="lastname" class="form-control" placeholder="Last Name*" />
+                                    <input type="text" id="input-lastname" name="last_name" class="form-control" placeholder="Last Name*" />
                                 </div>
                             </div>
         
@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="form-group" for="input-zone">
                                     <label class="control-label">Zone</label>
-                                    <select id="input-zone" class="form-control">
+                                    <select id="input-zone" name="zone" class="form-control">
                                         <option value="322" selected=""> Dhaka City</option>
                                         <option value="323"> Khulna City</option>
                                         <option value="4231"> Rangpur City</option>
@@ -68,50 +68,88 @@
                                 <div class="">
                                     <p>Select a payment method</p>
                                     <label class="radio-inline">
-                                        <input type="radio" name="payment_method" value="cod" checked="checked" />
+                                        <input type="radio" id="cod_btn" name="payment_method" value="cod" checked />
                                         Cash on Delivery
                                     </label>
                                     <br />
                                     <label class="radio-inline">
-                                        <input type="radio" name="payment_method" value="pod" />
-                                        POS on Delivery
+                                        <input type="radio" id="bkash_btn" name="payment_method" value="bkash" />
+                                        Bkash
                                     </label>
                                     <br />
                                     <label class="radio-inline">
-                                        <input type="radio" name="payment_method" value="online" />
-                                        Online Payment
+                                        <input type="radio" id="bank_transfer_btn" name="payment_method" value="bank" />
+                                        Bank Transfer
                                     </label>
                                     <br />
-                                    <div class="accepted-logo">
-                                        <h5>We Accept :</h5>
-                                        <a href="#"><img class="logo logo-visa" src="{{ asset('contents/frontend/assets/images/card-logo.png') }}" /></a>
-                                        <div class="clear"></div>
+                                    <div id="bkash_section" class="border border-1 rounded-1 my-2 p-2">
+                                        <p class="mb-3">
+                                            অনুগ্রহ করে আপনার বিকাশ ‘পেমেন্ট অপশন’ থেকে আপনার পেমেন্ট কমপ্লিট করুন। তারপর নিচের ফর্মটি ফিলাপ করুন। আমাদের বিকাশ একাউন্টে টাকা পাঠানোর নিয়মঃ
+                                        </p>
+                                        <ul class="mb-3">
+                                            <li class="d-flex gap-2"><span>১।</span> <span>*247# ডায়াল করে বিকাশ মোবাইল মেন্যুতে যান</span></li>
+                                            <li class="d-flex gap-2"><span>২।</span> <span>"Payment" অপশন সিলেক্ট করুন।</span></li>
+                                            <li class="d-flex gap-2"><span>৩।</span> <span>Enter Merchant Bkash account এ : +8801315-373025 নাম্বারটি লিখুন</span></li>
+                                            <li class="d-flex gap-2"><span>৪।</span> <span> Amount এ আপনার বিল এমাউন্টটি লিখুন।</span></li>
+                                            <li class="d-flex gap-2"><span>৫।</span> <span>Enter Reference এ আপনার নামের প্রথম শব্দ লিখুন।</span></li>
+                                            <li class="d-flex gap-2"><span>৬।</span> <span>Enter counter number এ 1 লিখুন।</span></li>
+                                            <li class="d-flex gap-2"><span>৭।</span> <span>আপনার বিকাশ মোবাইল মেন্যু পিনটি দিয়ে লেনদেনটি সম্পন্ন করুন।</span></li>
+                                            <li class="d-flex gap-2"><b>bKash Agent No : </b> <b>+8801315373025</b></li>
+                                            <div class="form-group">
+                                                <label class="control-label" for="input-firstname"><b>BKash Number: </b></label>
+                                                <input class="form-control" name="bkash_number" type="text" id="input-firstname" placeholder="013******" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="input-firstname"><b>BKash transaction ID: </b></label>
+                                                <input class="form-control" name="bkash_trx_id" type="text" id="input-firstname" placeholder="TRX-4548" />
+                                            </div>
+                                        </ul>
                                     </div>
+
+                                    <div id="bank_section" class="border border-1 rounded-1 my-2 p-2">
+                                        <p class="mb-3">
+                                            Please go to your personal bank or log into your online banking portal, and follow the guideline:
+                                        </p>
+                                        <ul class="mb-3">
+                                            <li class="d-flex gap-2"><span>1।</span> <span>specify that you would like to send your funds to another bank account, 
+                                                and provides the bank account details obtained when they submitted the order.</span></li>
+                                            <li class="d-flex gap-2"><span>2।</span> <span>Send the funds and the bank transfer has been initiated.</span></li>
+                                            <li class="d-flex gap-2"><span>3।</span> <span>The payment is complete when we payment reaches the receiving account.</span></li>
+                                            <li class="d-flex gap-2"><span>4।</span> <span>Provide us the transaction ID</span></li>
+                                            <div class="form-group">
+                                                <label class="control-label" for="input-firstname"><b>Bank account no: </b></label>
+                                                <input class="form-control" name="bkash_number" type="text" id="input-firstname" placeholder="013******" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="input-firstname"><b>Transaction ID: </b></label>
+                                                <input class="form-control" name="bkash_trx_id" type="text" id="input-firstname" placeholder="TRX-4548" />
+                                            </div>
+                                        </ul>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12 delivery-methods">
-                            <div class="card checkout-section checkout-box h-100">
+                            <div class="card checkout-section">
                                 <div class="section-head">
                                     <h2><span>3</span>Delivery Method</h2>
                                 </div>
                                 <div class="">
                                     <p>Select a delivery method</p>
                                     <label class="radio-inline">
-                                        <input type="radio" name="shipping_method" value="flat.flat" checked="checked" />
+                                        <input type="radio" name="shipping_method" wire:change="updateShipping({!! $value=60 !!})" value="home_delivery"/>
                                         Home Delivery - 60৳
                                     </label>
                                     <br />
-                                    <input type="hidden" name="flat.flat.title" value="Home Delivery" />
                                     <label class="radio-inline">
-                                        <input type="radio" name="shipping_method" value="pickup.pickup" />
+                                        <input type="radio" name="shipping_method" checked wire:change="updateShipping({!! $value=0 !!})" value="pickup" />
                                         Store Pickup - 0৳
                                     </label>
                                     <br />
-                                    <input type="hidden" name="pickup.pickup.title" value="Store Pickup" />
                                     <label class="radio-inline">
-                                        <input type="radio" name="shipping_method" value="express.express" />
-                                        Request Express - Charge Applicable
+                                        <input type="radio" name="shipping_method" wire:change="updateShipping({!! $value=120 !!})" value="outside_dhaka" />
+                                        Home Delivery outside Dhaka - 120৳
                                     </label>
                                     <br />
                                 </div>
@@ -153,26 +191,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="name">
-                                                    <a href="https://www.startech.com.bd/amd-ryzen-5-5600x-processor">AMD Ryzen 5 5600X Processor</a>
-                                                    <div class="options"></div>
-                                                    <div class="fade">220</div>
-                                                </td>
-                                                <td class="price"><span>20,000৳</span> <span> x </span> <span>1</span></td>
-                                                <td class="price text-right">20,000৳</td>
-                                            </tr>
+                                            @if ($carts)    
+                                                @foreach ($carts as $cart)
+                                                <tr>
+                                                    <td class="name">
+                                                        <a href="javascript:void(0)">{{ $cart['product']->product_name }}</a>
+                                                        <div class="options"></div>
+                                                    </td>
+                                                    <td class="price"><span>{{ $cart['product']->default_price }}৳</span> <span> x </span> <span>{{ $cart['qty'] }}</span></td>
+                                                    <td class="price text-right">{{ $cart['product']->default_price }}৳</td>
+                                                </tr>
+                                                @endforeach
+                                            @endif
+                                            
                                             <tr class="total">
                                                 <td colspan="2" class="text-right"><strong>Sub-Total:</strong></td>
-                                                <td class="text-right"><span class="amount">20,000৳</span></td>
+                                                <td class="text-right"><span class="amount">{{ $cart_total }}৳</span></td>
                                             </tr>
                                             <tr class="total">
-                                                <td colspan="2" class="text-right"><strong>Home Delivery:</strong></td>
-                                                <td class="text-right"><span class="amount">60৳</span></td>
+                                                <td colspan="2" class="text-right"><strong>Delivery:</strong></td>
+                                                <td class="text-right"><span class="amount">{{ $shipping_method }}৳</span></td>
                                             </tr>
                                             <tr class="total">
                                                 <td colspan="2" class="text-right"><strong>Total:</strong></td>
-                                                <td class="text-right"><span class="amount">20,060৳</span></td>
+                                                <td class="text-right"><span class="amount">{{ $cart_total }}</span></td>
                                             </tr>
                                         </tbody>
                                     </table>

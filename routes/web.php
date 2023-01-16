@@ -48,8 +48,8 @@ Route::prefix('')->namespace('Controllers')->group(function () {
 
     Route::post('/checkout', 'FrontendController@confirm_order');
 
-    Route::get('/login', 'Auth\LoginController@login')->name('login');
-    Route::post('/login', 'Auth\LoginController@attemptLogin')->name('login');
+    Route::get('/login', 'FrontendController@login')->name('login');
+    Route::post('/login', 'FrontendController@loginSubmit')->name('login');
 
     Route::get('/get-auth-info',function(){
         return Auth::user();
