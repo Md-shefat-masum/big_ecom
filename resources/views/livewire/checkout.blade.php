@@ -206,6 +206,7 @@
                                             
                                             <tr class="total">
                                                 <td colspan="2" class="text-right"><strong>Sub-Total:</strong></td>
+                                                <input type="hidden" name="cart_total" value="{{ $cart_total }}" id="order_total">
                                                 <td class="text-right"><span class="amount">{{ $cart_total }}৳</span></td>
                                             </tr>
                                             <tr class="total">
@@ -214,7 +215,8 @@
                                             </tr>
                                             <tr class="total">
                                                 <td colspan="2" class="text-right"><strong>Total:</strong></td>
-                                                <td class="text-right"><span class="amount">{{ $cart_total }}</span></td>
+                                                <input type="hidden" name="order_total" value="{{ $order_total }}" id="order_total">
+                                                <td class="text-right"><span class="amount">{{ $order_total }}</span></td>
                                             </tr>
                                         </tbody>
                                     </table>

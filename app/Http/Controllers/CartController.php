@@ -99,6 +99,11 @@ class CartController extends Controller
         return $this->cart;
     }
 
+    public function emptyCart()
+    {
+        session()->forget('carts');
+    }
+
     public function qty_change($qty, $id) {
         foreach ($this->cart as $key => $value) {
             if($value['product']->id == $id)

@@ -27,7 +27,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_coupon', 255)->nullable();
             // coupon discount
             $table->double('coupon_discount', 255)->nullable();
-            $table->string('payment_status', 255)->nullable();
+            $table->string('payment_status', 255)->default('pending')->nullable();
             $table->text('delivery_method')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();

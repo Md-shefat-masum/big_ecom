@@ -11,6 +11,7 @@ class Checkout extends Component
     public $carts;
     public $cart_total;
     public $shipping_method=0;
+    public $order_total;
 
     public function __construct() {
         $this->cart_handler = new CartController();
@@ -18,7 +19,8 @@ class Checkout extends Component
     public function render()
     {
         $this->carts = $this->cart_handler->get();
-        $this->cart_total = $this->shipping_method + $this->cart_handler->cart_total();
+        $this->cart_total = $this->cart_handler->cart_total();
+        $this->order_total = $this->shipping_method + $this->cart_handler->cart_total();
         return view('livewire.checkout')
         ->extends('frontend.layout', [
             'title' => 'Checkout',
@@ -28,6 +30,6 @@ class Checkout extends Component
     public function updateShipping($value)
     {
         $this->shipping_method = $value;
-        $this->cart_total = $this->shipping_method + $this->cart_total;
+        $this->order_total = $this->shipping_method + $this->cart_total;
     }
 }

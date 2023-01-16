@@ -35,6 +35,9 @@ function checkout(event) {
         if(res.status === 422) {
             error_response(res.data)
         }
+        if(res.status === 200) {
+            location.href = "/order-complete";
+        }
     })
 }
 
