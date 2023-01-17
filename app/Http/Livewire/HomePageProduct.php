@@ -13,7 +13,14 @@ class HomePageProduct extends Component
     public $skip;
     public $total;
     public $total_page;
+    public $view_product;
     public $current_page = 0;
+    public $is_showModal = false;
+
+    protected $listeners = [
+        'viewProduct' => 'quickView',
+        'CloseViewProduct' => 'closeQuickView'
+    ];
 
     public function mount()
     {
@@ -32,6 +39,16 @@ class HomePageProduct extends Component
         return view('livewire.home-page-product');        
     }
 
+    public function quickView($product)
+    {
+        $this->is_showModal = true;
+        $this->view_product = Product::find($product);
+    }
+
+    public function closeQuickView() {
+        $this->is_showModal = false;
+    }
+
     public function get_products()
     {
         $this->skip = ($this->current_page-1) * $this->take;
@@ -40,6 +57,8 @@ class HomePageProduct extends Component
             ->skip($this->skip)
             ->get()->toArray());
     }
+
+
 
     public function nextPage()
     {

@@ -121,12 +121,12 @@
                                 <div class="grand-total-wrap mt-10 mt-lg-4">
                                     <div class="grand-total-content">
                                         <h5>Subtotal 
-                                            {{ $cart_total }}
+                                            {{ number_format($cart_total) }}
                                         </h5>
                                         
                                         <div class="grand-total">
                                             <h4 class="mt-2">Total 
-                                                {{ $cart_total }}
+                                                {{ number_format($cart_total) }}
                                             </h4>
                                         </div>
                                     </div>

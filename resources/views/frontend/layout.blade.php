@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/custom.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -183,85 +182,7 @@
         <!--== Scroll Top Button ==-->
         <div class="scroll-to-top"><span class="fa fa-angle-double-up"></span></div>
 
-        <!--== Start Product Quick View Modal ==-->
-        <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="product-quick-view-content">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"><span>×</span></button>
-                            <div class="row row-gutter-0">
-                                <div class="col-lg-6">
-                                    <div class="single-product-slider">
-                                        <div class="single-product-thumb">
-                                            <div class="swiper single-product-quick-view-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide">
-                                                        <div class="thumb-item">
-                                                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/m1.jpg" alt="Image" width="640" height="710">
-                                                        </div>
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <div class="thumb-item">
-                                                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/m2.jpg" alt="Image" width="640" height="710">
-                                                        </div>
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <div class="thumb-item">
-                                                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/m3.jpg" alt="Image" width="640" height="710">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Add Arrows -->
-                                                <div class="swiper-button-next"></div>
-                                                <div class="swiper-button-prev"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="product-detail-content mt-6 mt-lg-0">
-                                        <h2 class="product-detail-title mt-n1 me-10">Android Television Super Salon New DGT -256</h2>
-                                        <div class="product-detail-price">$160.00 - <span class="price-old">$260.00</span></div>
-                                        <div class="product-detail-review">
-                                            <div class="product-detail-review-icon">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                            </div>
-                                            <p class="product-detail-review-show">( 1 Review )</p>
-                                        </div>
-                                        <p class="product-detail-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimo veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                                        <div class="mb-3">
-                                            <div class="pro-qty mb-2 mb-sm-0">
-                                                <input type="text" title="Quantity" value="01">
-                                            </div>
-                                            <button class="product-detail-cart-btn" type="button" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Add to cart</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="product-detail-compare-btn" data-bs-toggle="modal" data-bs-target="#action-CompareModal">
-                                                <i class="icon icon-shuffle"></i> Compare
-                                            </button>
-                                            <button type="button" class="product-detail-wishlist-btn" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                                <i class="icon icon-heart"></i> Add to wishlist
-                                            </button>
-                                        </div>
-                                        <ul class="product-detail-meta pt-6">
-                                            <li><span>SKU:</span> WX-256HG</li>
-                                            <li><span>Categories:</span> Home, Electronic</li>
-                                            <li><span>Tag</span> Electronic</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <!--== End Product Quick View Modal ==-->
+        
 
         <!--== Start Product Quick Wishlist Modal ==-->
         <aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
@@ -545,6 +466,27 @@
     
     <script src="{{ asset('contents/frontend') }}/assets/js/livewire_hook.js" defer></script>
     <script src="{{ asset('contents/frontend') }}/assets/js/cart.js" defer></script>
+
+    {{-- <script>
+        function showModal() {
+            document.querySelector('body').classList.add('modal-open');
+            document.querySelector('body').style.overflow= 'hidden';
+            document.querySelector('body').style.paddingRight= '17px';
+            document.querySelector('#action-QuickViewModal').classList.add('show');
+            document.querySelector('#action-QuickViewModal').classList.add('d-block');
+            document.querySelector('.modal-backdrop').classList.remove('d-none');
+            document.querySelector('#closeModalbutton').addEventListener('click', hideModal);
+        }
+        
+        function hideModal() {
+            document.querySelector('body').classList.remove('modal-open');
+            document.querySelector('body').style.overflow= '';
+            document.querySelector('body').style.paddingRight= '';
+            document.querySelector('#action-QuickViewModal').classList.remove('show');
+            document.querySelector('#action-QuickViewModal').classList.remove('d-block');
+            document.querySelector('.modal-backdrop').classList.add('d-none');
+        }
+    </script> --}}
 </body>
 
 </html>

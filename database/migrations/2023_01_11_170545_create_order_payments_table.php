@@ -17,10 +17,14 @@ class CreateOrderPaymentsTable extends Migration
             $table->id();
             $table->bigInteger('order_id')->nullable();
             $table->bigInteger('user_id')->nullable();
-            $table->string('payment_method', 100)->nullable();
+            $table->string('payment_method', 40)->nullable();
+            $table->string('bkash_number', 20)->nullable();
+            $table->string('bkash_trx_id', 100)->nullable();
+            $table->string('bank_account_no', 100)->nullable();
+            $table->string('bank_trx_id', 100)->nullable();
             $table->double('amount')->nullable();
-            $table->string('trx_id', 200)->nullable();
-            $table->string('status', 200)->nullable();
+            $table->string('trx_id', 100)->nullable();
+            $table->string('status', 30)->nullable();
             $table->timestamps();
         });
     }

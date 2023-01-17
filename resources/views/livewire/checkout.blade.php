@@ -82,7 +82,7 @@
                                         Bank Transfer
                                     </label>
                                     <br />
-                                    <div id="bkash_section" class="border border-1 rounded-1 my-2 p-2">
+                                    <div id="bkash_section" class="border border-1 rounded-1 my-2 p-2 d-none">
                                         <p class="mb-3">
                                             অনুগ্রহ করে আপনার বিকাশ ‘পেমেন্ট অপশন’ থেকে আপনার পেমেন্ট কমপ্লিট করুন। তারপর নিচের ফর্মটি ফিলাপ করুন। আমাদের বিকাশ একাউন্টে টাকা পাঠানোর নিয়মঃ
                                         </p>
@@ -106,7 +106,7 @@
                                         </ul>
                                     </div>
 
-                                    <div id="bank_section" class="border border-1 rounded-1 my-2 p-2">
+                                    <div id="bank_section" class="border border-1 rounded-1 my-2 p-2 d-none">
                                         <p class="mb-3">
                                             Please go to your personal bank or log into your online banking portal, and follow the guideline:
                                         </p>
@@ -118,11 +118,11 @@
                                             <li class="d-flex gap-2"><span>4।</span> <span>Provide us the transaction ID</span></li>
                                             <div class="form-group">
                                                 <label class="control-label" for="input-firstname"><b>Bank account no: </b></label>
-                                                <input class="form-control" name="bkash_number" type="text" id="input-firstname" placeholder="013******" />
+                                                <input class="form-control" name="bank_account_no" type="text" id="input-firstname" placeholder="013******" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="input-firstname"><b>Transaction ID: </b></label>
-                                                <input class="form-control" name="bkash_trx_id" type="text" id="input-firstname" placeholder="TRX-4548" />
+                                                <input class="form-control" name="bank_transaction_id" type="text" id="input-firstname" placeholder="TRX-4548" />
                                             </div>
                                         </ul>
                                     </div>
