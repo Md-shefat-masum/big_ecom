@@ -32,9 +32,9 @@
                                             <td class="cart-quality">
                                                 <div class="product-details-quality">
                                                     <div class="pro-qty">
-                                                        <div wire:click="decrease({{ $cart['product']['id'] }})" class= "dec qty-btn">-</div>
+                                                        <div wire:click.debounce.500ms="decrease({{ $cart['product']['id'] }})" class= "dec qty-btn">-</div>
                                                         <input type="text" title="Quantity" wire:keyup.debounce.500ms="quantityChange($event.target.value, {{ $cart['product']['id'] }})" value="{{ $cart['qty'] }}">
-                                                        <div wire:click="increase({{ $cart['product']['id'] }})" class="inc qty-btn">+</div>
+                                                        <div wire:click.debounce.500ms="increase({{ $cart['product']['id'] }})" class="inc qty-btn">+</div>
                                                     </div>
                                                 </div>
                                             </td>

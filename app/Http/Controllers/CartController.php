@@ -60,8 +60,11 @@ class CartController extends Controller
         $total = 0;
         foreach ($this->cart as $value) {
             // if($value['product']->id == $id)
-            if($value['product']->default_price !== "Call for Price" || $value['product']->default_price !== "Out of Stock") {
+            
+            if(is_numeric($value['product']->default_price)) {
                 $total += $value['product']->default_price * $value['qty'];
+            }else {
+                0 * $value['qty'];
             }
         }
         return $total;

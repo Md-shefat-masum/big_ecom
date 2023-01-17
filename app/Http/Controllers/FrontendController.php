@@ -76,7 +76,11 @@ class FrontendController extends Controller
             $order_details = new OrderDetails();
             $order_details->order_id = $order->id;
             $order_details->product_id = $product['product']->id;
-            $order_details->product_price = $product['product']->default_price;
+            if(is_numeric($product['product']->default_price)) {
+                $order_details->product_price = $product['product']->default_price;
+            }else {
+                $order_details->product_price = 0;
+            }
             $order_details->qty = $product['qty'];
             $order_details->save();
         }
