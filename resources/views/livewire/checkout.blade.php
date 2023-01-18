@@ -97,11 +97,11 @@
                                             <li class="d-flex gap-2"><b>bKash Agent No : </b> <b>+8801315373025</b></li>
                                             <div class="form-group">
                                                 <label class="control-label" for="input-firstname"><b>BKash Number: </b></label>
-                                                <input class="form-control" name="bkash_number" type="text" id="input-firstname" placeholder="013******" />
+                                                <input class="form-control" name="bkash_number" type="text" id="bkash_number" placeholder="013******" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="input-firstname"><b>BKash transaction ID: </b></label>
-                                                <input class="form-control" name="bkash_trx_id" type="text" id="input-firstname" placeholder="TRX-4548" />
+                                                <input class="form-control" name="bkash_trx_id" type="text" id="bkash_trx" placeholder="TRX-4548" />
                                             </div>
                                         </ul>
                                     </div>
@@ -118,11 +118,11 @@
                                             <li class="d-flex gap-2"><span>4।</span> <span>Provide us the transaction ID</span></li>
                                             <div class="form-group">
                                                 <label class="control-label" for="input-firstname"><b>Bank account no: </b></label>
-                                                <input class="form-control" name="bank_account_no" type="text" id="input-firstname" placeholder="013******" />
+                                                <input class="form-control" name="bank_account_no" type="text" id="bank_ac_no" placeholder="013******" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="input-firstname"><b>Transaction ID: </b></label>
-                                                <input class="form-control" name="bank_transaction_id" type="text" id="input-firstname" placeholder="TRX-4548" />
+                                                <input class="form-control" name="bank_transaction_id" type="text" id="bank_trx_no" placeholder="TRX-4548" />
                                             </div>
                                         </ul>
                                     </div>

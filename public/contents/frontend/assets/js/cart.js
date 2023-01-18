@@ -45,10 +45,14 @@ function checkout(event) {
 $('#bkash_btn').change(function () {
     $('#bkash_section').removeClass('d-none');
     $('#bank_section').addClass('d-none');
+    $('#bkash_number').attr('required');
+    $('#bkash_trx_id').attr('required');
 });
 $('#bank_transfer_btn').change(function () {
     $('#bkash_section').addClass('d-none');
     $('#bank_section').removeClass('d-none');
+    $('#bank_ac_no').attr('required');
+    $('#bank_trx_no').attr('required');
 });
 $('#cod_btn').change(function () {
     $('#bkash_section').addClass('d-none');

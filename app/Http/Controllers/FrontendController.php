@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderAddress;
+use App\Models\OrderDeliveryInfo;
 use App\Models\OrderDetails;
+use App\Models\OrderPayment;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class FrontendController extends Controller
 {
     public function confirm_order(Request $request)
     {
         $carts = new CartController();
+
+        
         $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'string'],
             'last_name' => ['required'],
@@ -25,6 +30,10 @@ class FrontendController extends Controller
             'city' => ['required', 'string'],
             'zone' => ['required', 'string'],
             'payment_method' => ['required'],
+            'bkash_number' => ['required_if:payment_method,==,bkash'],
+            'bkash_trx_id' => ['required_if:payment_method,==,bkash'],
+            'bank_account_no' => ['required_if:payment_method,==,bank'],
+            'bank_transaction_id' => ['required_if:payment_method,==,bank'],
             'shipping_method' => ['required'],
         ]);
 
@@ -70,6 +79,32 @@ class FrontendController extends Controller
         $order_info->zone = $request->zone;
         $order_info->comment = $request->comment;
         $order_info->save();
+
+        $order_payment = new OrderPayment();
+        $order_payment->order_id = $order->id;
+        $order_payment->payment_method = $request->payment_method;
+        $order_payment->bkash_number = $request->bkash_number;
+        $order_payment->bkash_trx_id = $request->bkash_trx_id;
+        $order_payment->bank_account_no = $request->bank_account_no;
+        $order_payment->bank_trx_id = $request->bank_trx_id;
+        $order_payment->amount = $order->total_price;
+        $order_payment->trx_id = uniqid();
+        $order_payment->status = "Pending";
+        $order_payment->save();
+
+        $order_delivery = new OrderDeliveryInfo();
+        $order_delivery->order_id = $order->id;
+        $order_delivery->delivery_method = $request->shipping_method;
+        if($request->shipping_method == 'cod') {
+            $order_delivery->delivery_cost = 0;
+        }
+        if($request->shipping_method == 'home_delivery') {
+            $order_delivery->delivery_cost = 60;
+        }
+        if($request->shipping_method == 'outside_dhaka') {
+            $order_delivery->delivery_cost = 120;
+        }
+        $order_delivery->save();        
         
         $cart_products = $carts->get();
         foreach ($cart_products as $key => $product) {
@@ -106,3 +141,4 @@ class FrontendController extends Controller
     }
 
 }
+
