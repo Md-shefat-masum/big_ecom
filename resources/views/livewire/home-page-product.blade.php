@@ -16,7 +16,7 @@
             @endphp
                 <div class="col-md-3 mb-4">
                     <div class="product-item product-item-border custom-product-item">
-                        <a class="product-item-thumb" href="shop-single-product.html">
+                        <a class="product-item-thumb" href="/product-details">
                             @if (count($product->related_images) > 0)
                                 <img src="{{ $product->related_images[0]['image'] }}" width="233" height="245" alt="Image-HasTech">
                             @endif
@@ -29,7 +29,7 @@
                         </div>
                         <div class="product-bottom">
                             <div class="product-item-info text-center pb-6">
-                                <h5 class="product-item-title mb-2"><a href="shop-single-product.html">{{ $product->product_name }}</a></h5>
+                                <h5 class="product-item-title mb-2"><a href="javascript:void(0)" wire:click="details({{ $product->id }})">{{ $product->product_name }}</a></h5>
                                 {{-- <div class="product-item-price mb-0">{{ $product->default_price }}<span class="price-old">{{ $product->default_price }}</span></div> --}}
                             </div>
                             <div class="d-flex justify-content-between">

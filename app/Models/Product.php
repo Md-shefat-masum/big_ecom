@@ -18,7 +18,7 @@ class Product extends Model
         'custom_fields_json',
         'variant_values_json',
         'related_categories',
-        'related_images',
+        'related_images'
     ];
 
     public function getRelatedCategoriesAttribute()
@@ -36,6 +36,12 @@ class Product extends Model
             return $category;
         }
     }
+
+    // public function getMainDescription()
+    // {
+        
+    // }
+
     public function getRelatedImagesAttribute()
     {
         return ProductImage::where('product_id', $this->id)->get();

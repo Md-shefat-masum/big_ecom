@@ -58,7 +58,10 @@ class HomePageProduct extends Component
             ->get()->toArray());
     }
 
-
+    public function details($id)
+    {
+        return redirect()->to("/product-details/$id");
+    }
 
     public function nextPage()
     {

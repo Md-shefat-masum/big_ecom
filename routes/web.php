@@ -31,6 +31,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     Route::get('/cart', "Cart");
     Route::get('/checkout', "Checkout");
     Route::get('/order-complete', "OrderComplete");
+    Route::get('/product-details/{id}', ProductDetails::class)->name('product_details');
     // Route::get('/login', "Login");
     // Route::get('/register', "Register");
 });
@@ -226,5 +227,5 @@ Route::prefix('')->namespace('Controllers')->group(function () {
 
 });
 
-include_once("nipa_web.php");
+// include_once("nipa_web.php");
 
