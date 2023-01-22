@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -18,7 +19,8 @@ class Product extends Model
         'custom_fields_json',
         'variant_values_json',
         'related_categories',
-        'related_images'
+        'related_images',
+        "total_description"
     ];
 
     public function getRelatedCategoriesAttribute()
@@ -37,10 +39,26 @@ class Product extends Model
         }
     }
 
-    // public function getMainDescription()
-    // {
+    public function getTotalDescriptionAttribute()
+    {
+        $description_check = Str::contains($this->description, '<h2 style="margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding: 0px; line-height: 26px;">Specification</h2>');
         
-    // }
+        if($description_check) {
+            $description_split = explode('<h2 style="margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding: 0px; line-height: 26px;">Specification</h2>' , $this->description);
+            $key_fetures = $description_split[0];
+            $specification = $description_split[1];
+
+            if(Str::contains($key_fetures, '<p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p><p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p>')) {
+                $key_fetures = Str::replace('<p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p>', '' ,$key_fetures);
+                // ddd($key_fetures);
+            }
+
+            return [
+                "key_fetures" => $key_fetures,
+                "main_description" => $specification,
+            ];
+        }
+    }
 
     public function getRelatedImagesAttribute()
     {

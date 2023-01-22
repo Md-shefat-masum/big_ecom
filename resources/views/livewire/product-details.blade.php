@@ -26,7 +26,11 @@
                         </div>
                         <p class="product-detail-review-show">( 1 Review )</p>
                     </div>
-                    <p class="product-detail-desc">{!! $product->description !!}</p>
+                    <p class="product-detail-desc">
+                        @if ($product->total_description)
+                            {!! $product->total_description['key_fetures'] !!}
+                        @endif
+                    </p>
                     <div class="mb-3">
                         <div class="pro-qty">
                             <input type="text" title="Quantity" value="01">
@@ -76,18 +80,20 @@
 
         <!--== Start Product Detail Tab Area Wrapper ==-->
         <div class="nav product-detail-nav" id="product-detail-nav-tab" role="tablist">
-            <button class="product-detail-nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
-            <button class="product-detail-nav-link" id="specification-tab" data-bs-toggle="tab" data-bs-target="#specification" type="button" role="tab" aria-controls="specification" aria-selected="false">Specification</button>
-            <button class="product-detail-nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="false">Review</button>
+            <a href="#description" class="product-detail-nav-link active"  aria-controls="description" aria-selected="true">Description</a>
+            <a href="#review" class="product-detail-nav-link" id="review-tab" aria-controls="review" aria-selected="false">Review</a>
         </div>
         <div class="tab-content" id="product-detail-nav-tabContent">
-            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+            <div class="tab-pane fade show active" id="description">
+                <h2 class="my-4">Description</h2>
                 <p class="product-detail-nav-description">
-                    {!! $product->description !!}
+                    @if ($product->total_description)
+                        {!! $product->total_description['main_description'] !!}
+                    @endif
                 </p>
             </div>
 
-            <div class="tab-pane" id="specification" role="tabpanel" aria-labelledby="specification-tab">
+            {{-- <div class="tab-pane" id="specification" role="tabpanel" aria-labelledby="specification-tab">
                 <ul class="product-detail-info-wrap">
                     <li><span>Weight :</span> 250 g</li>
                     <li><span>Dimensions :</span>10 x 10 x 15 cm</li>
@@ -95,77 +101,83 @@
                     <li><span>Other Info :</span> American heirloom jean shorts pug seitan letterpress</li>
                 </ul>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius velit corporis quo voluptate culpa soluta, esse accusamus, sunt quia omnis amet temporibus sapiente harum quam itaque libero tempore. Ipsum, ducimus. lorem</p>
-            </div>
+            </div> --}}
 
-            <div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">
+            <div class="tab-pane" id="review">
                 <!--== Start Reviews Content Item ==-->
-                <div class="product-review-item">
-                    <div class="product-review-top">
-                        <div class="product-review-thumb">
-                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c1.png" alt="Images">
-                        </div>
-                        <div class="product-review-content">
-                            <h4 class="product-review-name">Tomas Doe</h4>
-                            <h5 class="product-review-designation">Delveloper</h5>
-                            <div class="product-review-icon">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
+                <div class="card border-light mt-5">
+                    <div class="card-body">
+                        <h2 class="my-4">Reviews</h2>
+                        <div class="product-review-item">
+                            <div class="product-review-top">
+                                <div class="product-review-thumb">
+                                    <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c1.png" alt="Images">
+                                </div>
+                                <div class="product-review-content">
+                                    <h4 class="product-review-name">Tomas Doe</h4>
+                                    <h5 class="product-review-designation">Delveloper</h5>
+                                    <div class="product-review-icon">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                </div>
                             </div>
+                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
+                            <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                         </div>
-                    </div>
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
-                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                </div>
-                <!--== End Reviews Content Item ==-->
-
-                <!--== Start Reviews Content Item ==-->
-                <div class="product-review-item product-review-reply">
-                    <div class="product-review-top">
-                        <div class="product-review-thumb">
-                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c2.png" alt="Images">
-                        </div>
-                        <div class="product-review-content">
-                            <h4 class="product-review-name">Robat Fiftyk</h4>
-                            <h5 class="product-review-designation">UI/UX Designer</h5>
-                            <div class="product-review-icon">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
+                        <!--== End Reviews Content Item ==-->
+        
+                        <!--== Start Reviews Content Item ==-->
+                        <div class="product-review-item product-review-reply">
+                            <div class="product-review-top">
+                                <div class="product-review-thumb">
+                                    <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c2.png" alt="Images">
+                                </div>
+                                <div class="product-review-content">
+                                    <h4 class="product-review-name">Robat Fiftyk</h4>
+                                    <h5 class="product-review-designation">UI/UX Designer</h5>
+                                    <div class="product-review-icon">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                </div>
                             </div>
+                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
+                            <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                         </div>
-                    </div>
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
-                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                </div>
-                <!--== End Reviews Content Item ==-->
-
-                <!--== Start Reviews Content Item ==-->
-                <div class="product-review-item mb-0">
-                    <div class="product-review-top">
-                        <div class="product-review-thumb">
-                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c3.png" alt="Images">
-                        </div>
-                        <div class="product-review-content">
-                            <h4 class="product-review-name">Arry twentyk</h4>
-                            <h5 class="product-review-designation">UI/UX Designer</h5>
-                            <div class="product-review-icon">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
+                        <!--== End Reviews Content Item ==-->
+        
+                        <!--== Start Reviews Content Item ==-->
+                        <div class="product-review-item mb-0">
+                            <div class="product-review-top">
+                                <div class="product-review-thumb">
+                                    <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c3.png" alt="Images">
+                                </div>
+                                <div class="product-review-content">
+                                    <h4 class="product-review-name">Arry twentyk</h4>
+                                    <h5 class="product-review-designation">UI/UX Designer</h5>
+                                    <div class="product-review-icon">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                </div>
                             </div>
+                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
+                            <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                         </div>
+                        <!--== End Reviews Content Item ==-->
                     </div>
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
-                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                 </div>
-                <!--== End Reviews Content Item ==-->
+                
             </div>
         </div>
         <!--== End Product Detail Tab Area Wrapper ==-->
