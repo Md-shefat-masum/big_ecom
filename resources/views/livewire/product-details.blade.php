@@ -108,6 +108,30 @@
                 <div class="card border-light mt-5">
                     <div class="card-body">
                         <h2 class="my-4">Reviews</h2>
+                        
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form id="review-form" onsubmit="reviewSubmit(event)" method="post">
+                                    <div class="form-group">
+                                        <label for="">your rating</label>
+                                        <input type="hidden" name="rating" id="rating">
+                                        <ul class="d-flex gap-1">
+                                            <li><i data-serial="1" class="review_star fa fa-star"></i></li>
+                                            <li><i data-serial="2" class="review_star fa fa-star"></i></li>
+                                            <li><i data-serial="3" class="review_star fa fa-star"></i></li>
+                                            <li><i data-serial="4" class="review_star fa fa-star"></i></li>
+                                            <li><i data-serial="5" class="review_star fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="reviewInput">your review</label>
+                                      <textarea type="text" name="review" class="form-control" id="reviewInput" aria-describedby="reviewInputHelp"></textarea>
+                                    </div>
+                                    <button type="submit" class="my-3 btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>   
+                        
                         <div class="product-review-item">
                             <div class="product-review-top">
                                 <div class="product-review-thumb">
@@ -182,6 +206,24 @@
         </div>
         <!--== End Product Detail Tab Area Wrapper ==-->
     </div>
+    <script>
+        var elements = document.getElementsByClassName("review_star");
+        let selected_star = 0;
+        for(var i = 0; i < elements.length; i++){
+            elements[i].addEventListener("mouseover", function () {
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.color = "gray"; 
+                }
+                selected_star = this.dataset.serial;
+                for (let index = 0; index < selected_star; index++) {
+                    elements[index].style.color = 'orange';
+                }
+                document.getElementById('rating').value = selected_star;
+            });   
+        }
+        
+        // });
+    </script>
 </div>
 <!--== End Product Detail Area Wrapper ==-->
 

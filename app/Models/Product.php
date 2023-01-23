@@ -50,7 +50,6 @@ class Product extends Model
 
             if(Str::contains($key_fetures, '<p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p><p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p>')) {
                 $key_fetures = Str::replace('<p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p>', '' ,$key_fetures);
-                // ddd($key_fetures);
             }
 
             return [
