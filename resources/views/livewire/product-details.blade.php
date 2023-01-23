@@ -104,7 +104,12 @@
             </div> --}}
 
             <div class="tab-pane" id="review">
-                <!--== Start Reviews Content Item ==-->
+                
+                <button type="button" id="login_modal" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                </button>
+                  
+
                 <div class="card border-light mt-5">
                     <div class="card-body">
                         <h2 class="my-4">Reviews</h2>

@@ -60,6 +60,9 @@ function reviewSubmit(event) {
         if(res.status === 422) {
             error_response(res.data)
         }
+        if(res.status === 401) {
+            $("#login_modal").click();
+        }
         if(res.status === 200) {
             window.s_alert("success", "Review created successfully")
         }
@@ -68,7 +71,7 @@ function reviewSubmit(event) {
     document.getElementById("review_description").value = "";
 }
 
-
+$("#login_modal").addClass('d-none');
 $('#bkash_btn').change(function () {
     $('#bkash_section').removeClass('d-none');
     $('#bank_section').addClass('d-none');
