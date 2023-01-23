@@ -115,6 +115,7 @@
                                     <div class="form-group">
                                         <label for="">your rating</label>
                                         <input type="hidden" name="rating" id="rating">
+                                        <input type="hidden" value="{{ $product->id }}" name="product_id" id="product_id">
                                         <ul class="d-flex gap-1">
                                             <li><i data-serial="1" class="review_star fa fa-star"></i></li>
                                             <li><i data-serial="2" class="review_star fa fa-star"></i></li>
@@ -125,7 +126,7 @@
                                     </div>
                                     <div class="form-group">
                                       <label for="reviewInput">your review</label>
-                                      <textarea type="text" name="review" class="form-control" id="reviewInput" aria-describedby="reviewInputHelp"></textarea>
+                                      <textarea type="text" name="review_description" id="review_description" class="form-control" id="reviewInput" aria-describedby="reviewInputHelp"></textarea>
                                     </div>
                                     <button type="submit" class="my-3 btn btn-primary">Submit</button>
                                 </form>

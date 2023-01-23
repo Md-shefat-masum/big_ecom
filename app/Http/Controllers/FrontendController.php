@@ -7,6 +7,7 @@ use App\Models\OrderAddress;
 use App\Models\OrderDeliveryInfo;
 use App\Models\OrderDetails;
 use App\Models\OrderPayment;
+use App\Models\ProductReview;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -125,6 +126,42 @@ class FrontendController extends Controller
             "message" => "Order Completed Successfully"
         ], 200);
 
+    }
+
+    public function reviewSubmit(Request $request)
+    {
+        if(Auth::check()) {
+            $validator = Validator::make($request->all(), [
+                'rating' => ['required', 'numeric'],
+                'review_description' => ['required', 'string']
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'data' => $validator->errors(),
+                ], 422);
+            }
+    
+            $product_review = new ProductReview();
+            $product_review->user_id = $request->user_id;
+            $product_review->product_id = $request->product_id;
+            $product_review->star = $request->rating;
+            $product_review->review_description = $request->review_description;
+            $product_review->creator = $request->user_id;
+            $product_review->approve = 0;
+            $product_review->status = 1;
+            $product_review->save();
+    
+            return response()->json([
+                "message" => "Product review created Successfully"
+            ], 200);
+        }else {
+            return response()->json([
+                'message' => 'you are not authanticated'
+            ], 401);
+        }
+        
     }
 
     public function login() {

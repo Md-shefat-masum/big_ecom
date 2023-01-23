@@ -41,6 +41,33 @@ function checkout(event) {
     })
 }
 
+function reviewSubmit(event) {
+    event.preventDefault();
+    let formData = new FormData(event.target);
+
+    fetch("/review_submit", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: formData
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
+    }).then(res => {
+        if(res.status === 422) {
+            error_response(res.data)
+        }
+        if(res.status === 200) {
+            window.s_alert("success", "Review created successfully")
+        }
+    })
+
+    document.getElementById("review_description").value = "";
+}
+
 
 $('#bkash_btn').change(function () {
     $('#bkash_section').removeClass('d-none');

@@ -49,6 +49,7 @@ Route::prefix('')->namespace('Controllers')->group(function () {
     Route::post('/search-product/json', 'JsonController@search_product')->name('search_product_json');
 
     Route::post('/checkout', 'FrontendController@confirm_order');
+    Route::post('/review_submit', 'FrontendController@reviewSubmit');
 
     Route::get('/login', 'FrontendController@login')->name('login');
     Route::post('/login', 'FrontendController@loginSubmit')->name('login');
