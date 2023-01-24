@@ -170,7 +170,7 @@
     </div>
     <script>
         var elements = document.getElementsByClassName("review_star");
-        let selected_star = 0;
+        var selected_star = 0;
         for(var i = 0; i < elements.length; i++){
             elements[i].addEventListener("mouseover", function () {
                 for (var i = 0; i < elements.length; i++) {
@@ -187,6 +187,5 @@
         // });
     </script>
 </div>
-<!--== End Product Detail Area Wrapper ==-->
 
 

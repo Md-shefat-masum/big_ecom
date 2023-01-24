@@ -77,6 +77,22 @@
         // });
     </script>
     @livewireStyles
+    @livewireScripts
+
+    <!-- Vendors JS -->
+    <script src="{{ asset('contents/frontend') }}/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('contents/frontend') }}/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="{{ asset('contents/frontend') }}/assets/js/plugins/swiper-bundle.min.js"></script>
+
+
+    <!-- Custom Main JS -->
+    <script src="{{ asset('contents/frontend') }}/assets/js/main.js" defer></script>
+    <script src="/js/frontend.js" defer></script>
+    
+    <script src="{{ asset('contents/frontend') }}/assets/js/livewire_hook.js" defer></script>
+    <script src="{{ asset('contents/frontend') }}/assets/js/cart.js" defer></script>
+    <script src="{{ asset('contents/frontend') }}/assets/js/review.js" defer></script>
 </head>
 
 <body>
@@ -476,43 +492,8 @@
 
     <!-- JS Vendor, Plugins & Activation Script Files -->
 
-    <!-- Vendors JS -->
-    <script src="{{ asset('contents/frontend') }}/assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('contents/frontend') }}/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-    <script src="{{ asset('contents/frontend') }}/assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <!-- Plugins JS -->
-    <script src="{{ asset('contents/frontend') }}/assets/js/plugins/swiper-bundle.min.js"></script>
-
-
-    <!-- Custom Main JS -->
-    <script src="{{ asset('contents/frontend') }}/assets/js/main.js"></script>
-    @livewireScripts
-    <script src="/js/frontend.js" defer></script>
     
-    <script src="{{ asset('contents/frontend') }}/assets/js/livewire_hook.js" defer></script>
-    <script src="{{ asset('contents/frontend') }}/assets/js/cart.js" defer></script>
-    <script src="{{ asset('contents/frontend') }}/assets/js/review.js" defer></script>
 
-    {{-- <script>
-        function showModal() {
-            document.querySelector('body').classList.add('modal-open');
-            document.querySelector('body').style.overflow= 'hidden';
-            document.querySelector('body').style.paddingRight= '17px';
-            document.querySelector('#action-QuickViewModal').classList.add('show');
-            document.querySelector('#action-QuickViewModal').classList.add('d-block');
-            document.querySelector('.modal-backdrop').classList.remove('d-none');
-            document.querySelector('#closeModalbutton').addEventListener('click', hideModal);
-        }
-        
-        function hideModal() {
-            document.querySelector('body').classList.remove('modal-open');
-            document.querySelector('body').style.overflow= '';
-            document.querySelector('body').style.paddingRight= '';
-            document.querySelector('#action-QuickViewModal').classList.remove('show');
-            document.querySelector('#action-QuickViewModal').classList.remove('d-block');
-            document.querySelector('.modal-backdrop').classList.add('d-none');
-        }
-    </script> --}}
 </body>
 
 </html>

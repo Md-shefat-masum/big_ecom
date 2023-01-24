@@ -4,7 +4,6 @@ use App\Http\Controllers\WebsiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +31,8 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     Route::get('/checkout', "Checkout");
     Route::get('/order-complete', "OrderComplete");
     Route::get('/product-details/{id}', ProductDetails::class)->name('product_details');
+    Route::get('/category-product/{id}', CategoryProduct::class)->name('product_details');
+    // Route::get('/category-product/{id}', CategoryProduct::class)->name('category_product');
     // Route::get('/login', "Login");
     // Route::get('/register', "Register");
 });

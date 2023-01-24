@@ -16,7 +16,7 @@
             @endphp
                 <div class="col-md-3 mb-4">
                     <div class="product-item product-item-border custom-product-item">
-                        <a class="product-item-thumb" href="/product-details">
+                        <a class="product-item-thumb" href="javascript:void(0)" wire:click="details({{ $product->id }})">
                             @if (count($product->related_images) > 0)
                                 <img src="{{ $product->related_images[0]['image'] }}" width="233" height="245" alt="Image-HasTech">
                             @endif

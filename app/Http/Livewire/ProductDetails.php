@@ -11,12 +11,11 @@ class ProductDetails extends Component
     public $product_id;
     public $product;
     protected $listeners = [
-        'test' => 'test'
+        'product_cart_update' => 'product_cart_update'
     ];
 
-    public function test()
+    public function product_cart_update()
     {
-        dd("test");
     }
     public function mount($id)
     {
@@ -29,7 +28,7 @@ class ProductDetails extends Component
             'product' => $this->product,
         ])
         ->extends('frontend.layout', [
-            'title' => 'Checkout',
+            'title' => 'Product Details',
             'meta_image' => 'https://www.prossodprokashon.com/uploads/file_manager/fm_image_350x500_106195df55457491637211989.jpg',
         ]);
     }
@@ -38,8 +37,6 @@ class ProductDetails extends Component
     {
         $cart = new CartController();
         $cart->add_to_cart($id, $qty);
-        // session()->flash('message', 'Post successfully updated.');
-        // dd("test");
-        $this->emitSelf('test');
+        $this->emitUp('product_cart_update');
     }
 }

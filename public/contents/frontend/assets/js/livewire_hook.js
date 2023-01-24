@@ -14,16 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
     Livewire.hook('message.sent', (message, component) => {})
     Livewire.hook('message.failed', (message, component) => {})
     Livewire.hook('message.received', (message, component) => {
-        
-        // component.listeners.includes("cartAdded")&&
-        // window.s_alert("success", "Product Added to cart successfully.")
+        console.log(message);
 
-    
-        // component.listeners.includes("cartUpdated")&&
-        // window.s_alert("success", "Product Updated.")
-
-        // component.listeners.includes("cartRemoved")&&
-        // window.s_alert("success", "Product Removed from cart.")
+        if(message.component.listeners.includes("product_cart_update")) {
+            Livewire.emit('cartAdded');
+            window.s_alert("success", "Product Added to cart successfully.")
+        }
 
         let access_token = message.response.serverMemo.data?.access_token;
         if(access_token){
@@ -35,8 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // console.log('48');
     })
     Livewire.on('cartAdded', ()=> {
-        document.querySelector('.modal-backdrop').classList.add('d-none');  
+        document.querySelector('.modal-backdrop')?.classList.add('d-none');  
         window.s_alert("success", "Product Added to cart successfully.")
+    });
+    Livewire.on('test', ()=> {
+        window.s_alert("success", "test")
     });
     Livewire.on('cartRemoved', ()=> {
         window.s_alert("success", "Product Removed from cart.")

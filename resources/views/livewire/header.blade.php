@@ -74,7 +74,7 @@
                         <ul class="main-nav justify-content-center">
                             @foreach ($categories as $category)    
                             <li class="main-nav-item">
-                                <a class="main-nav-link" href="about-us.html">
+                                <a class="main-nav-link" href="javascript:void(0)" wire:click="category_product({{ $category->id }})">
                                     {{ $category->name }}
                                 </a>
                             </li>
