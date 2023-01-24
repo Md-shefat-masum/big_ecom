@@ -9,11 +9,13 @@ class CartCount extends Component
 {
     private $cart_handler;
     public $carts;
+
     protected $listeners = [
         'cartAdded' => 'render',
         'cartRemoved' => 'render',
         'cartUpdated' => 'render'
     ];
+    
     public function __construct() {
         $this->cart_handler = new CartController();
     }

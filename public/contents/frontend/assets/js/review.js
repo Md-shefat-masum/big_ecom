@@ -93,6 +93,7 @@ function reviewSubmit() {
         if(res.status === 200) {
             window.s_alert("success", "Review created successfully");
             document.getElementById("review_description").value = "";
+            Livewire.emit('reviewAdded');
         }
     })
     

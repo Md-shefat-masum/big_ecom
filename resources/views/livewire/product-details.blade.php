@@ -106,7 +106,7 @@
             <div class="tab-pane" id="review">
                 
                 <button type="button" id="login_modal" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Launch demo modal
+                    login/register
                 </button>
                   
 
@@ -114,7 +114,7 @@
                     <div class="card-body">
                         <h2 class="my-4">Reviews</h2>
                         
-                        <div class="card mb-4">
+                        <div class="card border-light mb-4">
                             <div class="card-body">
                                 <form id="review-form" onsubmit="reviewSubmit(event)" method="post">
                                     <div class="form-group">
@@ -138,7 +138,9 @@
                             </div>
                         </div>   
                         
-                        <div class="product-review-item">
+                        @livewire('reviews', ['product_id' => $product->id])
+
+                        {{-- <div class="product-review-item">
                             <div class="product-review-top">
                                 <div class="product-review-thumb">
                                     <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c1.png" alt="Images">
@@ -157,54 +159,8 @@
                             </div>
                             <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
                             <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                        </div>
-                        <!--== End Reviews Content Item ==-->
-        
-                        <!--== Start Reviews Content Item ==-->
-                        <div class="product-review-item product-review-reply">
-                            <div class="product-review-top">
-                                <div class="product-review-thumb">
-                                    <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c2.png" alt="Images">
-                                </div>
-                                <div class="product-review-content">
-                                    <h4 class="product-review-name">Robat Fiftyk</h4>
-                                    <h5 class="product-review-designation">UI/UX Designer</h5>
-                                    <div class="product-review-icon">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
-                            <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                        </div>
-                        <!--== End Reviews Content Item ==-->
-        
-                        <!--== Start Reviews Content Item ==-->
-                        <div class="product-review-item mb-0">
-                            <div class="product-review-top">
-                                <div class="product-review-thumb">
-                                    <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/c3.png" alt="Images">
-                                </div>
-                                <div class="product-review-content">
-                                    <h4 class="product-review-name">Arry twentyk</h4>
-                                    <h5 class="product-review-designation">UI/UX Designer</h5>
-                                    <div class="product-review-icon">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales egestas augue neque euismod scelerisque viverra.</p>
-                            <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                        </div>
-                        <!--== End Reviews Content Item ==-->
+                        </div> --}}
+
                     </div>
                 </div>
                 

@@ -146,11 +146,11 @@ class FrontendController extends Controller
             }
     
             $product_review = new ProductReview();
-            $product_review->user_id = $request->user_id;
+            $product_review->user_id = Auth::user()->id;
             $product_review->product_id = $request->product_id;
             $product_review->star = $request->rating;
             $product_review->review_description = $request->review_description;
-            $product_review->creator = $request->user_id;
+            $product_review->creator = Auth::user()->id;
             $product_review->approve = 0;
             $product_review->status = 1;
             $product_review->save();

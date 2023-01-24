@@ -10,7 +10,14 @@ class ProductDetails extends Component
 {
     public $product_id;
     public $product;
+    protected $listeners = [
+        'test' => 'test'
+    ];
 
+    public function test()
+    {
+        dd("test");
+    }
     public function mount($id)
     {
         $this->product = Product::find($id);
@@ -31,7 +38,8 @@ class ProductDetails extends Component
     {
         $cart = new CartController();
         $cart->add_to_cart($id, $qty);
-        session()->flash('message', 'Post successfully updated.');
-        $this->emit('cartAdded');
+        // session()->flash('message', 'Post successfully updated.');
+        // dd("test");
+        $this->emitSelf('test');
     }
 }
