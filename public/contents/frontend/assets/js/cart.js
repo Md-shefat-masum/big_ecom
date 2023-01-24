@@ -41,6 +41,58 @@ function checkout(event) {
     })
 }
 
+function login(params) {
+    fetch("/website_login", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: formData
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
+    }).then(res => {
+        console.log(res);
+        if(res.status === 422) {
+            error_response(res.data)
+        }
+        if(res.status === 401) {
+            $("#login_modal").click();
+        }
+        if(res.status === 200) {
+            window.s_alert("success", "Review created successfully")
+        }
+    })
+}
+
+function register(params) {
+    fetch("/website_login", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: formData
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
+    }).then(res => {
+        console.log(res);
+        if(res.status === 422) {
+            error_response(res.data)
+        }
+        if(res.status === 401) {
+            $("#login_modal").click();
+        }
+        if(res.status === 200) {
+            window.s_alert("success", "Review created successfully")
+        }
+    })
+}
+
 function reviewSubmit(event) {
     event.preventDefault();
     let formData = new FormData(event.target);

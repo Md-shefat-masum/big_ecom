@@ -12,8 +12,10 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 
 class FrontendController extends Controller
 {
@@ -162,6 +164,53 @@ class FrontendController extends Controller
             ], 401);
         }
         
+    }
+
+    public function website_login(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        Auth::login($user);
+
+        return response()->json([
+            'message' => 'you are logged in'
+        ], 200);
+    }
+    
+    public function website_register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['unique:users'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'mobile_number' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'data' => $validator->errors(),
+            ], 422);
+        } else {
+            $data = $request->except(['password', 'password_confirmation', 'image']);
+            $data['role_id'] = 4;
+            $data['password'] = Hash::make($request->password);
+            $data['first_name'] = $request->name;
+            $data['phone'] = $request->mobile_number;
+            $user = User::create($data);
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $path = 'uploads/users/pp-' . $user->user_name . '-' . $user->id . rand(1000, 9999) . '.' . $file->getClientOriginalExtension();
+                Image::make($file)->fit(200, 200)->save(public_path($path));
+                $user->photo = $path;
+            }
+            $user->slug = $user->name . $user->id . rand(1000, 9999);
+            $user->save();
+
+            Auth::login($user);
+            $user = User::where('id', Auth::user()->id)->with('roles')->first();
+            return response()->json($user, 200);
+        }
     }
 
     public function login() {

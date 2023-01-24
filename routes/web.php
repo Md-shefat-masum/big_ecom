@@ -53,6 +53,8 @@ Route::prefix('')->namespace('Controllers')->group(function () {
 
     Route::get('/login', 'FrontendController@login')->name('login');
     Route::post('/login', 'FrontendController@loginSubmit')->name('login');
+    Route::post('/website_login', 'FrontendController@website_login')->name('website_login');
+    Route::post('/website_register', 'FrontendController@website_register')->name('website_register');
 
     Route::get('/get-auth-info',function(){
         return Auth::user();

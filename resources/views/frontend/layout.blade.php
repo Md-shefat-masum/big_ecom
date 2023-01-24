@@ -215,38 +215,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="exampleModalLabel">Authentication</h5>
+                    <button type="button" id="login_modal_close" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 d-felx">
                             <div class="justify-content-center">
-                                <h3>Login</h3>
-                                <p>Please enter your username and password to login.</p>
-                                
-                                <form action="#" method="post">
-                                    <div class="login-register-input">
-                                        <div class="form-group">
-                                            <input type="text" name="user-name" placeholder="Username or email address" />
-                                        </div>
-                                    </div>
-                                    <div class="login-register-input">
-                                        <div class="form-group">
-                                            <input type="password" name="user-password" placeholder="Password" />
-                                            <div class="forgot">
-                                                <a href="login-register.html">Forgot?</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="remember-me-btn">
-                                        <input id="remember-me-checkbox" type="checkbox" />
-                                        <label for="remember-me-checkbox">Remember me</label>
-                                    </div>
-                                    <div class="btn-register">
-                                        <a class="btn-register-now" href="account.html">Login</a>
-                                    </div>
-                                </form>
+                                @include('frontend.include.website_login')
                             </div>  
                         </div>
                     </div>      
@@ -515,6 +491,7 @@
     
     <script src="{{ asset('contents/frontend') }}/assets/js/livewire_hook.js" defer></script>
     <script src="{{ asset('contents/frontend') }}/assets/js/cart.js" defer></script>
+    <script src="{{ asset('contents/frontend') }}/assets/js/review.js" defer></script>
 
     {{-- <script>
         function showModal() {
