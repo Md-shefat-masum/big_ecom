@@ -58,7 +58,7 @@
                                     <!--== Start Product Item ==-->
                                         <div class="product-item">
     
-                                            <a class="product-item-thumb" href="shop-single-product.html">
+                                            <a class="product-item-thumb" href="{{ route('product_details', $product->id) }}">
                                                 <img src="/{{ $product->related_images[0]['image'] }}" width="270" height="264" alt="Image-HasTech">
                                             </a>
                                             {{-- <span class="badges">-10%</span> --}}

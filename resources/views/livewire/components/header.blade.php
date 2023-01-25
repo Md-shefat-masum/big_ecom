@@ -16,8 +16,8 @@
                             <i class="icon-magnifier"></i>
                         </button>
                     </form>
-                    <a href="login-register.html" class="header-action-account">Offers</a>
-                    <a href="login-register.html" class="header-action-account">Deals</a>
+                    <a href="#" class="header-action-account">Offers</a>
+                    <a href="#" class="header-action-account">Deals</a>
                     <a href="/login" class="header-action-account single-nav">Login / SignUp</a>
                     
                     @livewire('cart-count')
@@ -30,7 +30,7 @@
             <div class="row align-items-center justify-content-between align-items-center">
                 <div class="col-auto">
                     <div class="header-logo-area">
-                        <a href="index.html">
+                        <a href="/">
                             <img class="logo-main" src="{{ asset('contents/frontend') }}/assets/images/logo.png" width="182" height="31" alt="Logo" />
                         </a>
                     </div>

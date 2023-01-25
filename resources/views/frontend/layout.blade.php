@@ -5,7 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Chittagong Computed Limited</title>
     <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
+
+    <meta name="title" content="A perfect It solution. Let's Make Your Best Pc">
+    <meta name="description" content="A perfect It solution for building your dream pc. Let's Make Your Best Pc with us.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
@@ -95,7 +97,7 @@
                     <div class="row mb-n6">
                         <div class="col-md-6 col-lg-3 mb-6">
                             <div class="widget-item">
-                                <a class="widget-logo" href="index.html">
+                                <a class="widget-logo" href="/">
                                     <img src="{{ asset('contents/frontend') }}/assets/images/logo.png" alt="Logo" width="182" height="31">
                                 </a>
                                 <div class="widget-contact widget-contact-two">
@@ -172,7 +174,7 @@
                 <!--== Start Footer Bottom ==-->
                 <div class="footer-bottom">
                     <p class="copyright">© {{ now()->year }} Ctgcomputer. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://techparkit.org/">TechPark It</a></p>
-                    <a href="shop.html"><img src="{{ asset('contents/frontend') }}/assets/images/shop/payment.png" alt="Image-techparkIt"></a>
+                    <a href="#"><img src="{{ asset('contents/frontend') }}/assets/images/shop/payment.png" alt="Image-techparkIt"></a>
                 </div>
                 <!--== End Footer Bottom ==-->
             </div>
