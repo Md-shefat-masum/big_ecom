@@ -30,8 +30,8 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     Route::get('/cart', "Cart");
     Route::get('/checkout', "Checkout");
     Route::get('/order-complete', "OrderComplete");
-    Route::get('/product-details/{id}', ProductDetails::class)->name('product_details');
-    Route::get('/category-product/{id}', CategoryProduct::class)->name('product_details');
+    Route::get('/product/{id}', ProductDetails::class)->name('product_details');
+    Route::get('/category/{id}/{category_name}', CategoryProduct::class)->name('category_product');
     // Route::get('/category-product/{id}', CategoryProduct::class)->name('category_product');
     // Route::get('/login', "Login");
     // Route::get('/register', "Register");
@@ -54,6 +54,7 @@ Route::prefix('')->namespace('Controllers')->group(function () {
 
     Route::get('/login', 'FrontendController@login')->name('login');
     Route::post('/login', 'FrontendController@loginSubmit')->name('login');
+    Route::get('/logout', 'FrontendController@logout')->name('logout');
     Route::post('/website_login', 'FrontendController@website_login')->name('website_login');
     Route::post('/website_register', 'FrontendController@website_register')->name('website_register');
 
@@ -229,7 +230,7 @@ Route::prefix('')->namespace('Controllers')->group(function () {
     })->name('route name');
 
 
+    include_once("nipa_web.php");
 });
 
-// include_once("nipa_web.php");
 

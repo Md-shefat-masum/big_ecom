@@ -217,6 +217,12 @@ class FrontendController extends Controller
         return view('auth.login');
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
     public function loginSubmit()
     {
         $user = User::where('email', request()->email)->first();

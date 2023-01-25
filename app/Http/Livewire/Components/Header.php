@@ -13,8 +13,10 @@ class Header extends Component
         $this->categories = Category::where('parent_id', 0)->select('id', 'name')->get();
         return view('livewire.components.header');
     }
-    public function category_product($id)
+    public function category_product($data)
     {
-        return redirect()->to("/category-product/$id");
+        $id = $data['id'];
+        $name = str_replace(' ', '-', strtolower($data['name']));
+        return redirect()->to("/category/$id/$name");
     }
 }

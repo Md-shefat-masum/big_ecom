@@ -63,7 +63,16 @@
                         <ul class="main-nav justify-content-center">
                             @foreach ($categories as $category)    
                             <li class="main-nav-item">
-                                <a class="main-nav-link" href="javascript:void(0)" wire:click="category_product({{ $category->id }})">
+                                @php
+                                    $data = [
+                                        "id" => $category->id,
+                                        "category_name" => str_replace(' ', '-', strtolower($category->name))
+                                    ];
+                                @endphp
+                                {{-- <a class="main-nav-link" href="javascript:void(0)" wire:click="category_product({{ $data['id'] }}, {{ $data['name'] }})">
+                                    {{ $category->name }}
+                                </a> --}}
+                                <a class="main-nav-link" href="{{ route('category_product', $data) }}" >
                                     {{ $category->name }}
                                 </a>
                             </li>
