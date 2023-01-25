@@ -18,7 +18,7 @@
                     </form>
                     <a href="login-register.html" class="header-action-account">Offers</a>
                     <a href="login-register.html" class="header-action-account">Deals</a>
-                    <a href="login-register.html" class="header-action-account single-nav">Login / SignUp</a>
+                    <a href="/login" class="header-action-account single-nav">Login / SignUp</a>
                     
                     @livewire('cart-count')
                 </div>
@@ -40,8 +40,8 @@
                         <button class="btn-search-menu d-xl-none me-lg-4 me-xl-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
                             <i class="search-icon icon-magnifier"></i>
                         </button>
-                        <a href="login-register.html" class="header-action-account d-none d-xl-block">Login / SignUp</a>
-                        <a href="login-register.html" class="header-action-user me-lg-4 me-xl-0 d-xl-none">
+                        <a href="/login" class="header-action-account d-none d-xl-block">Login / SignUp</a>
+                        <a href="/login" class="header-action-user me-lg-4 me-xl-0 d-xl-none">
                             <i class="icon icon-user"></i>
                         </a>
                         

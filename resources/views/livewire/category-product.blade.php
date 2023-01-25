@@ -74,7 +74,7 @@
                                                 </button>
                                             </div>
                                             <div class="product-item-info text-center pb-6">
-                                                <h5 class="product-item-title mb-2"><a href="shop-single-product.html">{{ $product->product_name }}</a></h5>
+                                                <h5 class="product-item-title mb-2"><a href="{{ route('product_details', $product->id) }}">{{ $product->product_name }}</a></h5>
                                                 <div class="product-item-price">{{ $product->default_price }}</span></div>
                                                 <div class="product-item-review-icon">
                                                     <i class="fa fa-star"></i>

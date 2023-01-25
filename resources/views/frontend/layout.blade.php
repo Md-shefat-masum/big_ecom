@@ -96,19 +96,19 @@
                         <div class="col-md-6 col-lg-3 mb-6">
                             <div class="widget-item">
                                 <a class="widget-logo" href="index.html">
-                                    <img src="{{ asset('contents/frontend') }}/assets/images/logo-light.png" alt="Logo" width="182" height="31">
+                                    <img src="{{ asset('contents/frontend') }}/assets/images/logo.png" alt="Logo" width="182" height="31">
                                 </a>
                                 <div class="widget-contact widget-contact-two">
-                                    <p class="widget-contact-desc me-n1">If you have any question. please contact us <a href="mailto://demo@example.com">demo@example.com</a></p>
+                                    <p class="widget-contact-desc me-n1">If you have any question. please contact us 
+                                        <a href="mailto://ctgcomputercentre2008@gmail.com">ctgcomputercentre2008@gmail.com</a></p>
                                     <div class="widget-info-item mb-6">
                                         <img src="{{ asset('contents/frontend') }}/assets/images/icons/pin.png" alt="Icon">
-                                        <p>Your address goes here. 123, Address.</p>
+                                        <p>Computer City Centre (Multiplan), Level: 4, Shop: 407-409, 69-71 New Elephant Road</p>
                                     </div>
                                     <div class="widget-info-item">
                                         <img src="{{ asset('contents/frontend') }}/assets/images/icons/mobile.png" alt="Icon">
                                         <div class="info-item-call">
-                                            <a href="tel://+0123456789 "> + 0 123 456 789 </a>
-                                            <a href="tel://+0129456789 "> + 0 129 456 789 </a>
+                                            <a href="tel://+8801733-080350"> 01733-080350 </a>
                                         </div>
                                     </div>
                                 </div>
@@ -120,13 +120,13 @@
                                 <h4 class="widget-title widget-collapsed-title collapsed" data-bs-toggle="collapse" data-bs-target="#widgetTitleId-1">Information</h4>
                                 <div id="widgetTitleId-1" class="collapse widget-collapse-body">
                                     <ul class="widget-nav">
-                                        <li><a href="about-us.html">About us</a></li>
-                                        <li><a href="account.html">Delivery information</a></li>
-                                        <li><a href="contact.html">Privacy Policy</a></li>
-                                        <li><a href="shop.html">Sales</a></li>
-                                        <li><a href="contact.html">Terms & Conditions</a></li>
-                                        <li><a href="contact.html">Shipping Policy</a></li>
-                                        <li><a href="contact.html">EMI Payment</a></li>
+                                        <li><a href="#">About us</a></li>
+                                        <li><a href="#">Delivery information</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Sales</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Shipping Policy</a></li>
+                                        <li><a href="#">EMI Payment</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -137,13 +137,13 @@
                                 <h4 class="widget-title widget-collapsed-title collapsed" data-bs-toggle="collapse" data-bs-target="#widgetTitleId-2">Account</h4>
                                 <div id="widgetTitleId-2" class="collapse widget-collapse-body">
                                     <ul class="widget-nav">
-                                        <li><a href="account.html">My account</a></li>
-                                        <li><a href="account.html">My orders</a></li>
-                                        <li><a href="account.html">Returns</a></li>
-                                        <li><a href="account.html">Shipping</a></li>
-                                        <li><a href="shop-wishlist.html">Wishlist</a></li>
-                                        <li><a href="contact.html">How Does It Work</a></li>
-                                        <li><a href="account.html">Merchant Sign Up</a></li>
+                                        <li><a href="#">My account</a></li>
+                                        <li><a href="#">My orders</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Shipping</a></li>
+                                        <li><a href="#">Wishlist</a></li>
+                                        <li><a href="#">How Does It Work</a></li>
+                                        <li><a href="#">Merchant Sign Up</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -154,13 +154,13 @@
                                 <h4 class="widget-title widget-collapsed-title collapsed" data-bs-toggle="collapse" data-bs-target="#widgetTitleId-3">Store</h4>
                                 <div id="widgetTitleId-3" class="collapse widget-collapse-body">
                                     <ul class="widget-nav">
-                                        <li><a href="shop.html">Affiliate</a></li>
-                                        <li><a href="shop.html">Bestsellers</a></li>
-                                        <li><a href="shop.html">Discount</a></li>
-                                        <li><a href="shop.html">Latest products</a></li>
-                                        <li><a href="shop.html">Sale</a></li>
-                                        <li><a href="shop.html">All Collection</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="#">Affiliate</a></li>
+                                        <li><a href="#">Bestsellers</a></li>
+                                        <li><a href="#">Discount</a></li>
+                                        <li><a href="#">Latest products</a></li>
+                                        <li><a href="#">Sale</a></li>
+                                        <li><a href="#">All Collection</a></li>
+                                        <li><a href="#">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -171,8 +171,8 @@
 
                 <!--== Start Footer Bottom ==-->
                 <div class="footer-bottom">
-                    <p class="copyright">© 2022 Elehaus. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://themeforest.net/user/hastech/portfolio">HasTech</a></p>
-                    <a href="shop.html"><img src="{{ asset('contents/frontend') }}/assets/images/shop/payment.png" alt="Image-HasTech"></a>
+                    <p class="copyright">© {{ now()->year }} Ctgcomputer. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://techparkit.org/">TechPark It</a></p>
+                    <a href="shop.html"><img src="{{ asset('contents/frontend') }}/assets/images/shop/payment.png" alt="Image-techparkIt"></a>
                 </div>
                 <!--== End Footer Bottom ==-->
             </div>
