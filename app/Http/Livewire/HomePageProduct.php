@@ -20,13 +20,8 @@ class HomePageProduct extends Component
     protected $listeners = [
         'viewProduct' => 'quickView',
         'CloseViewProduct' => 'closeQuickView',
-        // 'test' => 'test'
     ];
 
-    public function test()
-    {
-        dd("test");
-    }
     public function mount()
     {
         $this->products = [];

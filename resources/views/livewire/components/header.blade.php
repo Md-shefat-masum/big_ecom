@@ -1,4 +1,3 @@
-<!--== Start Header Wrapper ==-->
 <header class="header-wrapper">
     <div class="header-middle d-none d-xl-block">
         <div class="container custom-container">
@@ -64,7 +63,7 @@
                         <ul class="main-nav justify-content-center">
                             @foreach ($categories as $category)    
                             <li class="main-nav-item">
-                                <a class="main-nav-link" href="about-us.html">
+                                <a class="main-nav-link" href="javascript:void(0)" wire:click="category_product({{ $category->id }})">
                                     {{ $category->name }}
                                 </a>
                             </li>
@@ -83,5 +82,4 @@
         </div>
     </div>
 </header>
-<!--== End Header Wrapper ==-->
 

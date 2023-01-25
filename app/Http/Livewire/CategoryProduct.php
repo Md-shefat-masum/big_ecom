@@ -2,23 +2,33 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CategoryProduct extends Component
 {
     
-    public $products;
+    protected $products=null;
+    public $category_id;
 
     public function mount($id)
     {
-        $this->products = Product::where('category',$id)->get();
+        $this->category_id = $id;
+    
+        // $this->products = Category::where('id', $id)->with('products_custom')->first();
+        $this->products = Product::whereExists(function ($query) use($id) {
+            $query->from('category_product')
+                  ->whereColumn('category_product.product_id', 'products.id')
+                  ->where('category_product.category_id', $id);
+        });
     }
 
     public function render()
     {
         return view('livewire.category-product', [
-            'products' => $this->products,
+            'all_products' => $this->products->paginate(18),
         ])
         ->extends('frontend.layout', [
             'title' => 'Category wise Products',
