@@ -23,10 +23,10 @@
                                     @if ($cart)    
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <a href="{{ route('product_details', $product->id) }}"><img class="w-100" src="{{ asset('contents/frontend') }}/assets/images/shop/w1.png" alt="Image" width="96" height="96"></a>
+                                                <a href="{{ route('product_details', $cart['product']['id']) }}"><img class="w-100" src="{{ asset('contents/frontend') }}/assets/images/shop/w1.png" alt="Image" width="96" height="96"></a>
                                             </td>
                                             <td class="product-name">
-                                                <h5><a href="{{ route('product_details', $product->id) }}">{{ $cart['product']->product_name }}</a></h5>
+                                                <h5><a href="{{ route('product_details', $cart['product']['id']) }}">{{ $cart['product']->product_name }}</a></h5>
                                             </td>
                                             <td class="product-price"><span class="amount">{{ $cart['product']->default_price }}</span></td>
                                             <td class="cart-quality">
