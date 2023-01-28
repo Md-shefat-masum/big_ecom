@@ -129,7 +129,7 @@
                             </div>
                         </div> --}}
     
-                        <div class="widget-item widget-item-one">
+                        <div class="widget-item widget-item-one" style="height: 420px; overflow-x: auto;">
                             <h3 class="widget-two-title text-black">Product Filter</h3>
                             <div class="widget-filter-size">
                                 <h4 class="filter-size-title">Filter By Brand</h4>

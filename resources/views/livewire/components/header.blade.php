@@ -90,5 +90,48 @@
             </div>
         </div>
     </div>
+
+    <aside class="aside-side-menu-wrapper off-canvas-area offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions">
+        <div class="sidemenu-top">
+        </div>
+        <div class="offcanvas-header" data-bs-dismiss="offcanvas">
+            <h5>Menu</h5>
+            <button type="button" class="btn-close">×</button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- Start Mobile Menu Wrapper -->
+            <div class="res-mobile-menu">
+                <nav id="offcanvasNav" class="offcanvas-menu">
+
+                    <ul>
+                        <li><h5>All categories</h5></li>
+                        @foreach ($categories as $category)    
+                        <li>
+                            @php
+                                $data = [
+                                    "id" => $category->id,
+                                    "category_name" => str_replace(' ', '-', strtolower($category->name))
+                                ];
+                            @endphp
+                            {{-- <a class="main-nav-link" href="javascript:void(0)" wire:click="category_product({{ $data['id'] }}, {{ $data['name'] }})">
+                                {{ $category->name }}
+                            </a> --}}
+                            <a class="main-nav-link" href="{{ route('category_product', $data) }}" >
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                        @endforeach 
+                        {{-- <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
+                        <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
+                        
+                        <li class="main-nav-item"><a class="main-nav-link" href="contact.html">Contact</a></li> --}}
+                        <li class="main-nav-item"><a class="main-nav-link" href="/contact">Contact</a></li>
+                        <li class="main-nav-item"><a class="main-nav-link" href="/cart">Cart</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Mobile Menu Wrapper -->
+        </div>
+    </aside>
 </header>
 
