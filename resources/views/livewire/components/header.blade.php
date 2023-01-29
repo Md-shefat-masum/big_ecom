@@ -1,7 +1,7 @@
 <header class="header-wrapper">
     <div class="header-middle d-none d-xl-block">
         <div class="container custom-container">
-            <div class="row align-items-center justify-content-between align-items-center">
+            <div class="row align-items-center justify-content-between align-items-center navbar-parent">
                 <div class="col-auto">
                     <div class="header-logo-area">
                         <a href="/">
@@ -11,11 +11,12 @@
                 </div>
                 <div class="col-auto d-flex justify-content-end align-items-center">
                     <form class="header-search-box d-none d-md-block">
-                        <input class="form-control" type="text" id="search" placeholder="Search Products" />
+                        <input wire:model="searchQuery" wire:keyup="search_product" class="form-control" type="text" id="search" placeholder="Search Products" />
                         <button type="submit" class="btn-src">
                             <i class="icon-magnifier"></i>
                         </button>
                     </form>
+                    
                     <a href="#" class="header-action-account">Offers</a>
                     <a href="#" class="header-action-account">Deals</a>
                     @if (Auth::check())
@@ -26,6 +27,19 @@
                     
                     @livewire('cart-count')
                 </div>
+                @if ($search_products)
+                    <div class="search_result">
+                        <div class="list-group list-group-flush">
+                            @foreach ($search_products as $item)
+                                
+                                <a href="{{ route('product_details', $item->id) }}" class="list-group-item list-group-item-action">
+                                    <img src="/{{ $item->related_images[0]['image'] }}" width="80" height="80" alt="Image-Ctgcomputer">
+                                    {{ $item->product_name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
