@@ -18,7 +18,11 @@
                     </form>
                     <a href="#" class="header-action-account">Offers</a>
                     <a href="#" class="header-action-account">Deals</a>
-                    <a href="/login" class="header-action-account single-nav">Login / SignUp</a>
+                    @if (Auth::user())
+                        <a href="/login" class="header-action-account single-nav">Dashboard</a>
+                    @else
+                        <a href="/login" class="header-action-account single-nav">Login / SignUp</a>
+                    @endif
                     
                     @livewire('cart-count')
                 </div>
@@ -82,7 +86,6 @@
                             
                             <li class="main-nav-item"><a class="main-nav-link" href="contact.html">Contact</a></li> --}}
                             <li class="main-nav-item"><a class="main-nav-link" href="/contact">Contact</a></li>
-                            <li class="main-nav-item"><a class="main-nav-link" href="/cart">Cart</a></li>
                         </ul>
                     </div>
                 </div>
@@ -126,7 +129,6 @@
                         
                         <li class="main-nav-item"><a class="main-nav-link" href="contact.html">Contact</a></li> --}}
                         <li class="main-nav-item"><a class="main-nav-link" href="/contact">Contact</a></li>
-                        <li class="main-nav-item"><a class="main-nav-link" href="/cart">Cart</a></li>
                     </ul>
                 </nav>
             </div>

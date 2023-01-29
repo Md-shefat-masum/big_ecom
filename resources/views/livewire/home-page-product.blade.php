@@ -1,14 +1,7 @@
 
 <div class="product-area section-two-space">
     <div class="container custom-container">
-        <h2 class="text-center mb-4 mt-n2">Hot Products</h2>
-        <div class="masonry-filter-menu text-center mb-8">
-            <button class="active" data-filter="*">All</button>
-            <button data-filter=".filterAudio">Audio/Video</button>
-            <button data-filter=".filterGamming">Gamming</button>
-            <button data-filter=".filterHeadphone">Headphone</button>
-            <button data-filter=".filterDigitalCamera">Digital Camera</button>
-        </div>
+        <h2 class="text-center mb-4 mt-n2 mb-10">Hot Products</h2>
         <div class="row">
             @foreach ($products as $product)
             @php
