@@ -37,6 +37,7 @@
                                     {{ $item->product_name }}
                                 </a>
                             @endforeach
+                                <a href="" class="my-5 list-group-item list-group-item-action active text-center">View more</a>
                         </div>
                     </div>
                 @endif
