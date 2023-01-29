@@ -7,7 +7,14 @@ use Livewire\Component;
 
 class Home extends Component
 {
+    public $search;
     public $categories;
+
+    public function search()
+    {
+        
+    }
+
     public function render()
     {
         $this->categories = Category::where('parent_id', 0)->select('id', 'name')->get();

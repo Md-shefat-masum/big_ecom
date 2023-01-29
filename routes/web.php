@@ -32,6 +32,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     Route::get('/order-complete', "OrderComplete");
     Route::get('/product/{id}', ProductDetails::class)->name('product_details');
     Route::get('/category/{id}/{category_name}', CategoryProduct::class)->name('category_product');
+    Route::get('/product/search/{search}', SearchProduct::class)->name('search_product');
     // Route::get('/category-product/{id}', CategoryProduct::class)->name('category_product');
     // Route::get('/login', "Login");
     // Route::get('/register', "Register");
@@ -39,7 +40,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
 
 
 Route::prefix('')->namespace('Controllers')->group(function () {
-    
+
     Route::post('add_to_cart', 'WebsiteController@add_to_cart');
     Route::get('clear_cart', 'WebsiteController@clear_cart');
     Route::get('cart_all', 'WebsiteController@cart_all');
