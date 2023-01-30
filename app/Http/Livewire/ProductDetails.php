@@ -33,6 +33,8 @@ class ProductDetails extends Component
             'meta' => [
                 "title" => $this->product->product_name . " - " . $_SERVER['SERVER_NAME'],
                 "image" => url('') . '/' . $this->product->related_images[0]['image'],
+                "og_image" => url('') . '/' . $this->product->related_images[0]['image'],
+                "twitter_image" => url('') . '/' . $this->product->related_images[0]['image'],
                 "description" => $meta_decription,
                 "price" => $this->product->default_price,
                 "keywords" => $this->product->search_keywords

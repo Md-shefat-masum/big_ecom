@@ -231,13 +231,13 @@
                 <div class="agree-text" style="margin-bottom: 10px;">
                     <input type="checkbox" name="agree" value="1" checked="checked" />
                     I have read and agree to the 
-                    <a href="/warranty-policy" target="_blank">
+                    <a href="#" target="_blank">
                         <b>Terms and Conditions</b>
                     </a>, 
-                    <a href="/privacy" target="_blank">
+                    <a href="#" target="_blank">
                         <b>Privacy Policy</b>
                     </a> and
-                    <a href="/refund-policy" target="_blank">
+                    <a href="#" target="_blank">
                         <b>Refund and Return Policy</b>
                     </a>
                 </div>
