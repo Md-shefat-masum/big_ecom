@@ -10,7 +10,8 @@
                     </div>
                 </div>
                 <div class="col-auto d-flex justify-content-end align-items-center">
-                    <form class="header-search-box d-none d-md-block">
+
+                    <form class="header-search-box d-none d-md-block" wire:submit.prevent="submitSearchPage">
                         <input wire:model="searchQuery" wire:keyup="search_product" class="form-control" type="text" id="search" placeholder="Search Products" />
                         <button type="submit" class="btn-src">
                             <i class="icon-magnifier"></i>
@@ -20,7 +21,7 @@
                     <a href="#" class="header-action-account">Offers</a>
                     <a href="#" class="header-action-account">Deals</a>
                     @if (Auth::check())
-                        <a href="/login" class="header-action-account single-nav">Dashboard</a>
+                        <a href="/admin" class="header-action-account single-nav">Dashboard</a>
                     @else
                         <a href="/login" class="header-action-account single-nav">Login / SignUp</a>
                     @endif
@@ -37,7 +38,7 @@
                                     {{ $item->product_name }}
                                 </a>
                             @endforeach
-                                <a href="" class="my-5 list-group-item list-group-item-action active text-center">View more</a>
+                                <a href="{{ route('search_product', $searchQuery) }}" class="my-5 list-group-item list-group-item-action active text-center">View more</a>
                         </div>
                     </div>
                 @endif

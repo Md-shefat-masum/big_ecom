@@ -185,9 +185,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            console.log("asfasfa");
-        </script>
     </div>
 </div>
 

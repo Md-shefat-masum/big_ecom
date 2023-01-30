@@ -7,15 +7,29 @@ use Livewire\Component;
 
 class SearchProduct extends Component
 {
-    public $products;
+    protected $products=[];
 
     public function mount($search)
     {
-        $this->products = Product::where($search);
+        $query = Product::where('status', 1);
+        if(strlen($search) > 0) {
+            $query->where(function ($q) use ($search) {
+                $q->Where('product_name', 'LIKE', '%' . $search . '%')
+                ->orWhere('default_price', 'LIKE', '%' . $search . '%');
+            })->select('id', 'default_price', 'product_name');
+            $this->products = $query->paginate(20);
+        }else {
+            $this->products = null;
+        }
     }
 
     public function render()
     {
-        return view('livewire.search-product');
+        return view('livewire.search-product', [
+            'products' => $this->products,
+        ])->extends('frontend.layout', [
+            'title' => 'Category Products',
+            'meta_image' => 'https://www.prossodprokashon.com/uploads/file_manager/fm_image_350x500_106195df55457491637211989.jpg',
+        ]);
     }
 }

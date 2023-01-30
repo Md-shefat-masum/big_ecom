@@ -27,6 +27,11 @@ class Header extends Component
         }
     }
 
+    public function submitSearchPage()
+    {
+        return redirect()->to("product/search/$this->searchQuery");
+    }
+
     public function render()
     {
         $this->categories = Category::where('parent_id', 0)->select('id', 'name')->get();
