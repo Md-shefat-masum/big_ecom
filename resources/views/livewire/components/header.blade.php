@@ -32,8 +32,13 @@
                     <div class="search_result">
                         <div class="list-group list-group-flush">
                             @foreach ($search_products as $item)
-                                
-                                <a href="{{ route('product_details', $item->id) }}" class="list-group-item list-group-item-action">
+                                @php
+                                    $data = [
+                                        "id" => $item->id,
+                                        "product_name" => str_replace(' ', '-', strtolower($item->product_name))
+                                    ];
+                                @endphp
+                                <a href="{{ route('product_details', $data) }}" class="list-group-item list-group-item-action">
                                     <img src="/{{ $item->related_images[0]['image'] }}" width="80" height="80" alt="Image-Ctgcomputer">
                                     {{ $item->product_name }}
                                 </a>

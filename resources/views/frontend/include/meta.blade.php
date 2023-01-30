@@ -52,7 +52,7 @@
     <meta name="developer-email" content="{{ $developer_email }}">
     <meta name="developer-company" content="{{ $developer_company }}">
     <meta name="copyright" content="{{ $copyright }}">
-    <meta name="revisit" content="{{ $revisit }}">
+    {{-- <meta name="revisit" content="{{ $revisit }}"> --}}
     <meta name="price" content="{{ $price }}">
 
     <meta name="keywords" content="{{ $keywords }}">
@@ -64,8 +64,8 @@
     <meta property="og:type" content="{{ $og_type }}" />
     <meta property="og:url" content="{{ $identifier }}" />
     <meta property="og:image" content="{{ $og_image }}" />
-    <meta property="og:image:width" content="600" />
-    <meta property="og:image:height" content="315" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
 
     <meta name="twitter:title" content="{{ $twitter_title }}">
     <meta name="twitter:description" content="{{ $twitter_description }}">

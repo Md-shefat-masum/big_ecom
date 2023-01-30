@@ -6,10 +6,17 @@
             @foreach ($products as $product)
             @php
                 $product = (object) $product;
+                
+                $data = [
+                    "id" => $product->id,
+                    "product_name" => str_replace(' ', '-', strtolower($product->product_name))
+                ];
+                               
             @endphp
                 <div class="col-md-3 mb-4">
                     <div class="product-item product-item-border custom-product-item">
-                        <a class="product-item-thumb" href="{{ route('product_details', $product->id) }}">
+                        
+                        <a class="product-item-thumb" href="{{ route('product_details', $data) }}">
                             @if (count($product->related_images) > 0)
                                 <img src="{{ $product->related_images[0]['image'] }}" width="233" height="245" alt="Image-Ctgcomputer">
                             @endif
@@ -22,7 +29,7 @@
                         </div>
                         <div class="product-bottom">
                             <div class="product-item-info text-center pb-6">
-                                <h5 class="product-item-title mb-2"><a href="{{ route('product_details', $product->id) }}">{{ $product->product_name }}</a></h5>
+                                <h5 class="product-item-title mb-2"><a href="{{ route('product_details', $data) }}">{{ $product->product_name }}</a></h5>
                                 {{-- <div class="product-item-price mb-0">{{ $product->default_price }}<span class="price-old">{{ $product->default_price }}</span></div> --}}
                             </div>
                             <div class="d-flex justify-content-between">

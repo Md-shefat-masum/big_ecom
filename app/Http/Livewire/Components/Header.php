@@ -29,7 +29,7 @@ class Header extends Component
 
     public function submitSearchPage()
     {
-        return redirect()->to("product/search/$this->searchQuery");
+        return redirect()->route('search_product', $this->searchQuery);
     }
 
     public function render()

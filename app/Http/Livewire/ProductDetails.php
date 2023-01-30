@@ -14,9 +14,7 @@ class ProductDetails extends Component
         'product_cart_update' => 'product_cart_update'
     ];
 
-    public function product_cart_update()
-    {
-    }
+    
     public function mount($id)
     {
         $this->product = Product::find($id);
@@ -24,20 +22,22 @@ class ProductDetails extends Component
 
     public function render()
     {
-        $meta_decription = strip_tags($this->product->description);
-        $meta_decription = Str::limit($meta_decription, 300, '...');
+        if(isset($this->product->description)) { 
+            $meta_decription = strip_tags($this->product->description);
+            $meta_decription = Str::limit($meta_decription, 300, '...');
+        }
         return view('livewire.product-details', [
             'product' => $this->product,
         ])
         ->extends('frontend.layout', [
             'meta' => [
-                "title" => $this->product->product_name . " - " . $_SERVER['SERVER_NAME'],
-                "image" => url('') . '/' . $this->product->related_images[0]['image'],
-                "og_image" => url('') . '/' . $this->product->related_images[0]['image'],
-                "twitter_image" => url('') . '/' . $this->product->related_images[0]['image'],
-                "description" => $meta_decription,
-                "price" => $this->product->default_price,
-                "keywords" => $this->product->search_keywords
+                "title" => isset($this->product->product_name) ? $this->product->product_name . " - " . $_SERVER['SERVER_NAME'] :  "",
+                "image" => isset($this->product->related_images[0]['image']) ? url('') . '/' . $this->product->related_images[0]['image'] : "",
+                "og_image" => isset($this->product->related_images[0]['image']) ? url('') . '/' . $this->product->related_images[0]['image'] : "",
+                "twitter_image" => isset($this->product->related_images[0]['image']) ? url('') . '/' . $this->product->related_images[0]['image'] : "",
+                "description" => $meta_decription ?? "",
+                "price" => isset($this->product->default_price) ? $this->product->default_price : "" ,
+                "keywords" => isset($this->product->search_keywords) ? $this->product->search_keywords : ""
             ],
         ]);
     }

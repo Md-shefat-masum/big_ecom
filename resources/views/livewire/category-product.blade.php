@@ -57,8 +57,14 @@
                                     <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
                                     <!--== Start Product Item ==-->
                                         <div class="product-item">
+                                            @php
+                                                $data = [
+                                                    "id" => $product->id,
+                                                    "product_name" => str_replace(' ', '-', strtolower($product->product_name))
+                                                ];
+                                            @endphp
     
-                                            <a class="product-item-thumb" href="{{ route('product_details', $product->id) }}">
+                                            <a class="product-item-thumb" href="{{ route('product_details', $data) }}">
                                                 <img src="/{{ $product->related_images[0]['image'] }}" width="270" height="264" alt="Image-HasTech">
                                             </a>
                                             {{-- <span class="badges">-10%</span> --}}
@@ -74,7 +80,7 @@
                                                 </button>
                                             </div>
                                             <div class="product-item-info text-center pb-6">
-                                                <h5 class="product-item-title mb-2"><a href="{{ route('product_details', $product->id) }}">{{ $product->product_name }}</a></h5>
+                                                <h5 class="product-item-title mb-2"><a href="{{ route('product_details', $data) }}">{{ $product->product_name }}</a></h5>
                                                 <div class="product-item-price">{{ $product->default_price }}</span></div>
                                                 <div class="product-item-review-icon">
                                                     <i class="fa fa-star"></i>
