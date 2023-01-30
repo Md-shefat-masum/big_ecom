@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Chittagong Computed Limited</title>
-    <meta name="robots" content="noindex, follow" />
 
-    <meta name="title" content="A perfect It solution. Let's Make Your Best Pc">
-    <meta name="description" content="A perfect It solution for building your dream pc. Let's Make Your Best Pc with us.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('contents/frontend') }}/assets/images/favicon.png">
+    
+    @include('frontend.include.meta',[
+        'meta' => $meta??[]
+    ])
 
     <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
 

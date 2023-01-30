@@ -14,10 +14,12 @@ class CategoryProduct extends Component
     public $max_price=0;
     public $brands;
     public $sub_categories;
+    public $category_name;
 
-    public function mount($id)
+    public function mount($id, $category_name)
     {
         $this->category_id = $id;
+        $this->category_name = $category_name;
         session()->put('category_url',  explode('?',url()->full())[0]);
         $this->brands = Brand::where('status', 1)->limit(60)->get();
         $this->sub_categories = Category::where('parent_id', $id)->select('id','name')->get();
@@ -51,14 +53,14 @@ class CategoryProduct extends Component
         $pagination_links = str_replace("livewire/message/", "", $pagination_links);
         $pagination_links = str_replace(url('')."/category-product?", $url."?", $pagination_links);
 
-        // dump($_SERVER, url(''));
         return view('livewire.category-product', [
             'all_products' => $temp,
             'links' => $pagination_links
         ])
         ->extends('frontend.layout', [
-            'title' => 'Category Products',
-            'meta_image' => 'https://www.prossodprokashon.com/uploads/file_manager/fm_image_350x500_106195df55457491637211989.jpg',
+            'meta' => [
+                "title" => $this->category_name . " - " . $_SERVER['SERVER_NAME']
+            ],
         ]);
     }
 }
