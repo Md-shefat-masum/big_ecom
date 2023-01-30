@@ -1,5 +1,6 @@
     @php
         $title = isset($meta['title'])? $meta['title'] : 'Chittagong Computed Limited';
+        $image = isset($meta['image'])? $meta['image'] :  url('') . '/logo.png';
         $classification = isset($meta['classification'])? $meta['classification'] : 'Ecommerce';
         $identifier = url('');
         $directory = "submission";
@@ -25,16 +26,17 @@
         $og_site_name = isset($meta['og_site_name'])? $meta['og_site_name'] : "Chittagong computer";
         $og_description = isset($meta['og_description'])? $meta['og_description'] : "A perfect It solution for building your dream pc. Let's Make Your Best Pc with us.";
         $og_type = isset($meta['og_type'])? $meta['og_type'] : "Ecommerce";
-        $og_image = isset($meta['og_image'])? $meta['og_image'] : "https://ctgcomputer.com/contents/frontend/assets/images/logo.png";
+        $og_image = isset($meta['og_image'])? $meta['og_image'] : url('') . '/logo.png';
 
         $twitter_title = isset($meta['twitter_title'])? $meta['twitter_title'] : "Ctg computer. A perfect It solution. Let's Make Your Best Pc";
         $twitter_description = isset($meta['twitter_description'])? $meta['twitter_description'] : "A perfect It solution for building your dream pc. Let's Make Your Best Pc with us.";
-        $twitter_image = isset($meta['twitter_image'])? $meta['twitter_image'] : "https://ctgcomputer.com/contents/frontend/assets/images/logo.png";
+        $twitter_image = isset($meta['twitter_image'])? $meta['twitter_image'] : url('') . '/logo.png';
         $twitter_card = isset($meta['twitter_card'])? $meta['twitter_card'] : "summary_large_image";
     @endphp
     <meta name="robots" content="index, follow">
     <!-- <meta http-equiv="refresh" content="5"> -->
 
+    <meta name="image" content="{{ $image }}">
     <meta name="Classification" content="{{ $classification }}">
     <title>{{ $title }}</title>
     <meta name="identifier-URL" content="{{ $identifier }}">

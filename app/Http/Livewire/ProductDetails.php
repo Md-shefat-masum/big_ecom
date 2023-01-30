@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Http\Controllers\CartController;
 use App\Models\Product;
 use Livewire\Component;
-
+use Illuminate\Support\Str;
 class ProductDetails extends Component
 {
     public $product_id;
@@ -24,12 +24,19 @@ class ProductDetails extends Component
 
     public function render()
     {
+        $meta_decription = strip_tags($this->product->description);
+        $meta_decription = Str::limit($meta_decription, 300, '...');
         return view('livewire.product-details', [
             'product' => $this->product,
         ])
         ->extends('frontend.layout', [
-            'title' => 'Product Details',
-            'meta_image' => 'https://www.prossodprokashon.com/uploads/file_manager/fm_image_350x500_106195df55457491637211989.jpg',
+            'meta' => [
+                "title" => $this->product->product_name . " - " . $_SERVER['SERVER_NAME'],
+                "image" => url('') . '/' . $this->product->related_images[0]['image'],
+                "description" => $meta_decription,
+                "price" => $this->product->default_price,
+                "keywords" => $this->product->search_keywords
+            ],
         ]);
     }
     

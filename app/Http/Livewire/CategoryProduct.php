@@ -59,7 +59,7 @@ class CategoryProduct extends Component
         ])
         ->extends('frontend.layout', [
             'meta' => [
-                "title" => $this->category_name . " - " . $_SERVER['SERVER_NAME']
+                "title" => $this->category_name . " - " . $_SERVER['SERVER_NAME'],
             ],
         ]);
     }
