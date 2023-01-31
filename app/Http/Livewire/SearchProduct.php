@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\CartController;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -23,6 +24,14 @@ class SearchProduct extends Component
             $this->products = null;
         }
         
+    }
+
+    public function addToCart($id, $qty=1)
+    {
+        $cart = new CartController();
+        $cart->add_to_cart($id, $qty);
+        session()->flash('message', 'Post successfully updated.');
+        $this->emit('cartAdded');
     }
 
     public function render()

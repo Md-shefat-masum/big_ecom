@@ -33,7 +33,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     Route::get('/product/{id}/{product_name}', ProductDetails::class)->name('product_details');
     Route::get('/category/{id}/{category_name}', CategoryProduct::class)->name('category_product');
     // Route::get('/product/search/{search}', SearchProduct::class)->name('search_product');
-    Route::get('/all_product/search/{search}', SearchProduct::class)->name('search_product');
+    Route::any('/search-product/{search}', SearchProduct::class)->name('search_product');
     Route::get('/offer/prodcuts', OfferProducts::class)->name('offer_products');
     Route::get('/product/quick_view/{id}', OfferProducts::class)->name('quick_view_product');
     // Route::get('/category-product/{id}', CategoryProduct::class)->name('category_product');

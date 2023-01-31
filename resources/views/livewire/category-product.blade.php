@@ -55,46 +55,10 @@
                         <div class="tab-pane fade show active" id="column-three" role="tabpanel" aria-labelledby="column-three-tab">
                             <div class="row mb-n6">
                                 @foreach ($all_products as $product)    
-                                    <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
-                                    <!--== Start Product Item ==-->
-                                        <div class="product-item">
-                                            @php
-                                                $data = [
-                                                    "id" => $product->id,
-                                                    "product_name" => str_replace(' ', '-', strtolower($product->product_name))
-                                                ];
-                                            @endphp
-    
-                                            <a class="product-item-thumb" href="{{ route('product_details', $data) }}">
-                                                <img src="/{{ $product->related_images[0]['image'] }}" width="270" height="264" alt="Image-HasTech">
-                                            </a>
-                                            @if ($product->discounts)
-                                                <span class="badges">-{{ $product->discounts['discount_percent'] }}%</span>
-                                            @endif
-                                            {{-- <span class="badges">-10%</span> --}}
-                                            <div class="product-item-action">
-                                                <button type="button" onclick="showQuickView({{ $product->id }})" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal" class="product-action-btn action-btn-quick-view">
-                                                    <i class="icon-magnifier"></i>
-                                                </button>
-                                            </div>
-                                            <div class="product-item-info text-center pb-6">
-                                                <h5 class="product-item-title mb-2"><a href="{{ route('product_details', $data) }}">{{ $product->product_name }}</a></h5>
-                                                @if ($product->discounts)
-                                                    <div class="product-item-price">{{ $product->default_price-$product->discounts['discount_amount'] }} ৳  -<span class="price-old">{{ $product->default_price }} ৳</span></div>
-                                                @else
-                                                {{ $product->default_price }} ৳
-                                                @endif
-                                                <div class="product-item-review-icon">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--== End Product Item ==-->
-                                    </div>
+                                    @include('livewire.product',  [
+                                        'product' => $product,
+                                        'class' => "col-sm-6 col-lg-6 col-xl-4 mb-6"
+                                    ])
                                 @endforeach
                                 
                                 <div class="col-12">
@@ -123,19 +87,6 @@
                 <div class="col-lg-4 col-xl-3 order-1 order-lg-0">
                     <!--== Start Sidebar Area Wrapper ==-->
                     <div class="sidebar-area mt-10 mt-lg-0">
-                        {{-- <div class="widget-item widget-item-one pb-5">
-                            <h3 class="widget-two-title text-black">Category</h3>
-                            <div class="widget-categories-list">
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm1.png" alt="Icon"></span> Headphone (32)</a>
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm2.png" alt="Icon"></span> Video Game (12)</a>
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm3.png" alt="Icon"></span> Protable Speakers (19)</a>
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm4.png" alt="Icon"></span> Digital Camera (25)</a>
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm5.png" alt="Icon"></span> Gadgets (15)</a>
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm6.png" alt="Icon"></span> Home Appliances (45)</a>
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm7.png" alt="Icon"></span> Audio Record (25)</a>
-                                <a class="widget-category-item" href="shop.html"> <span class="icon"><img src="assets/images/icons/vm8.png" alt="Icon"></span> Computer/Laptop (08)</a>
-                            </div>
-                        </div> --}}
     
                         <div class="widget-item widget-item-one" style="height: 420px; overflow-x: auto;">
                             <h3 class="widget-two-title text-black">Product Filter</h3>
