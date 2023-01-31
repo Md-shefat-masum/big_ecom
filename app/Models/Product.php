@@ -117,9 +117,18 @@ class Product extends Model
         return 0;
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class, 'product_id');
+    }
+
     public function related_image()
     {
         return $this->hasMany(ProductImage::class, 'product_id');
+    }
+
+    public function discounts() {
+        return $this->hasOne(DiscountProduct::class, 'product_id');
     }
 
     public function categories()

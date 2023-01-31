@@ -1,3 +1,10 @@
+.header-search-box {
+  background-color: transparent;
+  margin-right: 94px;
+  min-width: 450px;
+  position: relative;
+  width: 100%;
+}
 .gap-1 {
   gap: 10px !important;
 }

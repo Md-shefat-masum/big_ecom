@@ -19,7 +19,6 @@
                     </form>
                     
                     <a href="#" class="header-action-account">Offers</a>
-                    <a href="#" class="header-action-account">Deals</a>
                     @if (Auth::check())
                         <a href="/admin" class="header-action-account single-nav">Dashboard</a>
                     @else

@@ -17,21 +17,34 @@
                     <div class="product-detail-content">
                         <h2 class="product-detail-title mt-n1 me-10">{{ $product->product_name }}</h2>
                         <div class="product-detail-price">{{ $product->default_price }}</div>
-                        <div class="product-detail-review">  
-                            <div class="product-detail-review-icon">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <p class="product-detail-review-show">( 1 Review )</p>
+                        <div class="product-detail-review"> 
+
+                            @if ($product->reviews->avg('star') > 0)
+                                <div class="product-detail-review-icon">
+                                    @for ($i = 0; $i < floor($product->reviews->avg('star')); $i++)
+                                        <i class="fa fa-star"></i>
+                                    @endfor
+                                    @for ($j = $i; $j < 5; $j++)
+                                        @if ($j == $i && fmod($product->reviews->avg('star'), $i))
+                                            <i class="fa fa-star-half-o"></i>
+                                        @else
+                                            <i class="fa fa-star-o"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+                                <p class="product-detail-review-show"> {{ $product->reviews->avg('star') }} ( {{ $product->reviews->count() }} Review )</p>
+                            @endif
+                            
+                            
                         </div>
                         <p class="product-detail-desc">
                             @if ($product->total_description)
                                 {!! $product->total_description['key_fetures'] !!}
+                            @else
+                                {!! $product->description !!}
                             @endif
                         </p>
+                        
                         <div class="mb-3">
                             <div class="pro-qty">
                                 <input type="text" title="Quantity" value="01">
@@ -94,6 +107,8 @@
                     <p class="product-detail-nav-description">
                         @if ($product->total_description)
                             {!! $product->total_description['main_description'] !!}
+                        @else
+                            {!! $product->description !!}
                         @endif
                     </p>
                 </div>
