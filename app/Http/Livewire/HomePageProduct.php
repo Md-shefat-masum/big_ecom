@@ -54,12 +54,11 @@ class HomePageProduct extends Component
         $this->skip = ($this->current_page-1) * $this->take;
         $this->products = array_merge($this->products, Product::take($this->take)
         ->with('discounts', function($q) {
-            $q->orderBy('created_at','DESC')->select('id', 'product_id' ,'discount_percent', 'discount_amount')->first();
+            $q->orderBy('created_at','DESC')->select('id', 'product_id' ,'discount_percent', 'discount_amount');
         })
         ->skip($this->skip)
         ->select('id', 'product_name', 'default_price')
         ->get()->toArray());
-        ddd($this->products);
     }
 
     public function details($id)

@@ -15,12 +15,14 @@
             @endphp
                 <div class="col-md-3 mb-4">
                     <div class="product-item product-item-border custom-product-item">
-                        
                         <a class="product-item-thumb" href="{{ route('product_details', $data) }}">
                             @if (count($product->related_images) > 0)
-                                <img src="{{ $product->related_images[0]['image'] }}" width="233" height="245" alt="Image-Ctgcomputer">
+                                <img src="{{ $product->related_images[0]['image'] }}" width="228" height="228" alt="Image-Ctgcomputer">
                             @endif
                         </a>
+                        @if ($product->discounts)
+                            <span class="badges">-{{ $product->discounts['discount_percent'] }}%</span>
+                        @endif
                         <div class="product-item-action">
                             
                             <button type="button" onclick="showModal({{ $product->id }})" class="product-action-btn action-btn-quick-view">
@@ -33,7 +35,13 @@
                                 {{-- <div class="product-item-price mb-0">{{ $product->default_price }}<span class="price-old">{{ $product->default_price }}</span></div> --}}
                             </div>
                             <div class="d-flex justify-content-between">
-                                <div class="ms-4 product-item-price mb-4">{{ $product->default_price }}</div>
+                                <div class="ms-4 product-item-price mb-4">
+                                    @if ($product->discounts)
+                                        <div class="product-item-price">{{ $product->default_price-$product->discounts['discount_amount'] }} ৳  -<span class="price-old">{{ $product->default_price }} ৳</span></div>
+                                    @else
+                                    {{ $product->default_price }} ৳
+                                    @endif
+                                </div>
                                 <button type="button" wire:click="addToCart({!! $product->id !!})" class="info-btn-cart me-4 mb-4"><i class="icon-handbag"></i></button>
                             </div>
                         </div>

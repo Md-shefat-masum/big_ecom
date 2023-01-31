@@ -18,7 +18,7 @@
                         </button>
                     </form>
                     
-                    <a href="#" class="header-action-account">Offers</a>
+                    <a href="{{ route('offer_products') }}" class="header-action-account">Offers</a>
                     @if (Auth::check())
                         <a href="/admin" class="header-action-account single-nav">Dashboard</a>
                     @else
