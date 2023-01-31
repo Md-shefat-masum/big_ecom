@@ -20,6 +20,7 @@ class CreateDiscountProductsTable extends Migration
             $table->float('discount_percent');
             $table->float('discount_amount');
             $table->integer('creator');
+            $table->dateTime('discount_last_date')->nullable();
             $table->timestamps();
         });
     }

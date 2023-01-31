@@ -4,7 +4,7 @@
         <div class="row">
 
             @foreach ($products as $product)
-            @php
+            @php  
                 $product = (object) $product;
                 
                 $data = [

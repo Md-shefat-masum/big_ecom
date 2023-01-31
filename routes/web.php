@@ -35,6 +35,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     // Route::get('/product/search/{search}', SearchProduct::class)->name('search_product');
     Route::get('/all_product/search/{search}', SearchProduct::class)->name('search_product');
     Route::get('/offer/prodcuts', OfferProducts::class)->name('offer_products');
+    Route::get('/product/quick_view/{id}', OfferProducts::class)->name('quick_view_product');
     // Route::get('/category-product/{id}', CategoryProduct::class)->name('category_product');
     // Route::get('/login', "Login");
     // Route::get('/register', "Register");
@@ -42,7 +43,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
 
 
 Route::prefix('')->namespace('Controllers')->group(function () {
-
+    Route::get('/product_quickview/{id}', 'WebsiteController@single_product_details')->name('single_product_view');
     Route::post('add_to_cart', 'WebsiteController@add_to_cart');
     Route::get('clear_cart', 'WebsiteController@clear_cart');
     Route::get('cart_all', 'WebsiteController@cart_all');

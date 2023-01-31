@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\CartController;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -15,7 +16,10 @@ class CategoryProduct extends Component
     public $brands;
     public $sub_categories;
     public $category_name;
+    public $is_showModal = false;
+    public $view_product;
 
+    
     public function mount($id, $category_name)
     {
         $this->category_id = $id;
@@ -25,6 +29,23 @@ class CategoryProduct extends Component
         $this->sub_categories = Category::where('parent_id', $id)->select('id','name')->get();
     }
 
+    public function quickView($product)
+    {
+        // $this->is_showModal = true;
+        // $this->view_product = Product::find($product);
+    }
+
+    public function addToCart($id, $qty=1)
+    {
+        $cart = new CartController();
+        $cart->add_to_cart($id, $qty);
+        session()->flash('message', 'Post successfully updated.');
+        $this->emit('cartAdded');
+    }
+
+    public function closeQuickView() {
+        $this->is_showModal = false;
+    }
 
     public function PriceFilter($formData) {
         // dd($formData);

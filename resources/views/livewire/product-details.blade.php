@@ -16,7 +16,12 @@
                 <div class="col-lg-6">
                     <div class="product-detail-content">
                         <h2 class="product-detail-title mt-n1 me-10">{{ $product->product_name }}</h2>
-                        <div class="product-detail-price">{{ $product->default_price }}</div>
+                        @if ($product->discounts)
+                            <div class="product-detail-price">{{ $product->default_price-$product->discounts['discount_amount'] }} ৳ - <span class="price-old">{{ $product->default_price }} ৳</span></div>
+                        @else
+                            <div class="product-detail-price">{{ $product->default_price }}</div>
+                        @endif
+
                         <div class="product-detail-review"> 
 
                             @if ($product->reviews->avg('star') > 0)

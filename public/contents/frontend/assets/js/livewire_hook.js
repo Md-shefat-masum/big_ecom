@@ -58,6 +58,18 @@ function showModal(product) {
         // document.querySelector('#closeModalbutton').addEventListener('click', closeModal);
     }, 500);
 }
+
+function showQuickView(product) {
+    fetch("/product_quickview/"+product, {
+        method: "get"
+    }).then(res => {
+        return res.text()
+    }).then(res => {
+        console.log(res);
+        document.getElementById('quick_view_product_modal').innerHTML = res
+    })
+}
+
 function closeModal() {
     Livewire.emit('CloseViewProduct');
 

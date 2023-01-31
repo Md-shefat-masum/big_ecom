@@ -42,6 +42,15 @@ class WebsiteController extends Controller
         session()->forget('carts');
     }
 
+    public function single_product_details($id)
+    {
+        $product = Product::find($id);
+        return view('livewire.quick-view-product', compact('product'))->render();
+        // return response()->json([
+        //     "product" => $product
+        // ]);
+    }
+
     public function cart_all()
     {
         ddd(session()->get('carts'));

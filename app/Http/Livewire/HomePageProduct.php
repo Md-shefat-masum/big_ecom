@@ -35,7 +35,6 @@ class HomePageProduct extends Component
 
     public function render()
     {
-        
         return view('livewire.home-page-product');        
     }
 

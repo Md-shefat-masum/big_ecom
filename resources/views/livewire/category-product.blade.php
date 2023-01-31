@@ -19,20 +19,21 @@
                 <div class="col-lg-8 col-xl-9 order-0 order-lg-1">
                     <!--== Start Product Top Bar Area Wrapper ==-->
                     <div class="shop-top-bar">
-                        <div class="nav nav-tabs shop-filter-nav active" id="nav-tab" role="tablist">
+                        {{-- <div class="nav nav-tabs shop-filter-nav active" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="column-three-tab" data-bs-toggle="tab" data-bs-target="#column-three" type="button" role="tab" aria-controls="column-three" aria-selected="true"><i class="icon-grid icons"></i></button>
                             <button class="nav-link mr-0" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false"><i class="icon-list icons"></i></button>
-                        </div>
-                        <select class="select-shoing">
+                        </div> --}}
+                        {{-- <select class="select-shoing">
                             <option data-display="Default Sorting">Default Sorting</option>
                             <option value="1">Featured</option>
                             <option value="2">Best Selling</option>
                             <option value="3">Price: low to high</option>
                             <option value="4">Price: high to low</option>
-                        </select>
+                        </select> --}}
                         <div class="product-showing-count">
-                            Showing <span>1–9</span> of <span>10</span> results
+                            Showing <span>{{ ($all_products->currentpage()-1)*$all_products->perpage()+1}} to {{$all_products->currentpage()*$all_products->perpage() }}</span> of <span>{{ $all_products->total() }}</span> results
                         </div>
+                        
                         {{-- <nav class="pagination-area ms-md-auto mt-3 mt-md-0">
                             <ul class="page-numbers">
                                 <li>
@@ -67,21 +68,22 @@
                                             <a class="product-item-thumb" href="{{ route('product_details', $data) }}">
                                                 <img src="/{{ $product->related_images[0]['image'] }}" width="270" height="264" alt="Image-HasTech">
                                             </a>
+                                            @if ($product->discounts)
+                                                <span class="badges">-{{ $product->discounts['discount_percent'] }}%</span>
+                                            @endif
                                             {{-- <span class="badges">-10%</span> --}}
                                             <div class="product-item-action">
-                                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                                    <i class="icon-heart"></i>
-                                                </button>
-                                                <button type="button" class="product-action-btn action-btn-compare" data-bs-toggle="modal" data-bs-target="#action-CompareModal">
-                                                    <i class="icon-shuffle"></i>
-                                                </button>
-                                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                                <button type="button" onclick="showQuickView({{ $product->id }})" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal" class="product-action-btn action-btn-quick-view">
                                                     <i class="icon-magnifier"></i>
                                                 </button>
                                             </div>
                                             <div class="product-item-info text-center pb-6">
                                                 <h5 class="product-item-title mb-2"><a href="{{ route('product_details', $data) }}">{{ $product->product_name }}</a></h5>
-                                                <div class="product-item-price">{{ $product->default_price }}</span></div>
+                                                @if ($product->discounts)
+                                                    <div class="product-item-price">{{ $product->default_price-$product->discounts['discount_amount'] }} ৳  -<span class="price-old">{{ $product->default_price }} ৳</span></div>
+                                                @else
+                                                {{ $product->default_price }} ৳
+                                                @endif
                                                 <div class="product-item-review-icon">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -192,5 +194,13 @@
             </div>
         </div>
     </div>
+
+    {{-- @if ($this->is_showModal == true)     --}}
+        <!--== Start Product Quick View Modal ==-->
+        
+                
+            
+        <!--== End Product Quick View Modal ==-->
+    {{-- @endif --}}
 </div>
 

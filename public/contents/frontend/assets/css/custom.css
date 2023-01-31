@@ -108,3 +108,27 @@
     z-index: 9999;
   }
 }
+.product-detail-desc div,
+.product-detail-desc p,
+.product-detail-desc ul,
+.product-detail-desc span,
+.product-detail-desc section,
+.product-detail-desc ol,
+.product-detail-desc i,
+.product-detail-desc h1,
+.product-detail-desc h2,
+.product-detail-desc h3,
+.product-detail-desc h4,
+.product-detail-desc h5,
+.product-detail-desc h6,
+.product-detail-desc b,
+.product-detail-desc table {
+  max-width: 100% !important;
+  line-height: auto !important;
+  margin-bottom: unset !important;
+}
+.modal-body .product-detail-desc {
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-x: auto;
+}
