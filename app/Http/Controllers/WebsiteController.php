@@ -32,9 +32,9 @@ class WebsiteController extends Controller
         $cart = new CartController();
         $cart->add_to_cart($request->id, $request->qty);
         return response()->json([
-            'request' => $request->all(),
-            'cart' => $cart->get()
-        ]);
+            'cart' => $cart->get(),
+            "message" => "Product added to cart successfully"
+        ], 200);
     }
 
     public function clear_cart()

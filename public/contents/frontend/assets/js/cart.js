@@ -9,11 +9,24 @@ function addToCart(product_id, qty=1) {
             id: product_id,
             qty: qty
         })
-    }).then(res => {
-        return res.json()
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
     }).then(res => {
         console.log(res);
+        if(res.status === 200) {
+            // error_response(res.data)
+            window.s_alert("success", res.data.message)
+            $("#close_quick_view_modal").click();
+            Livewire.emit('cartAdded');
+        }
     })
+}
+
+function quick_view_add_to_cart(product_id) {
+    Livewire.emit('viewProduct', product);
 }
 
 function checkout(event) {
