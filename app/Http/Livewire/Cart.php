@@ -11,6 +11,7 @@ class Cart extends Component
     public $cart_amount;
     public $cart_total;
     private $cart_handler;
+    public $status_message;
     
     public function __construct() {
         $this->cart_handler = new CartController();
@@ -32,28 +33,33 @@ class Cart extends Component
     {
         $this->cart_handler->qty_increase($id);
         $this->cart_total = $this->cart_handler->cart_total();
-        $this->emit('cartUpdated');
+        $this->status_message = 'cartUpdated';
+        // $this->emit('cartUpdated');
     }
 
     public function decrease($id)
     {
         $this->cart_handler->qty_decrease($id);
         $this->cart_total = $this->cart_handler->cart_total();
-        $this->emit('cartUpdated');
+        $this->status_message = 'cartUpdated';
+        // $this->emit('cartUpdated');
     }
 
     public function remove($id)
     {
         $this->cart_handler->remove($id);
         $this->cart_total = $this->cart_handler->cart_total();
-        $this->emit('cartRemoved');
+        $this->status_message = 'cartRemoved';
+        $this->CountCart();
+        // $this->emit('cartRemoved');
     }
 
     public function quantityChange($qty, $id)
     {
         $this->cart_handler->qty_change($qty, $id);
         $this->cart_total = $this->cart_handler->cart_total();
-        $this->emit('cartUpdated');
+        $this->status_message = 'cartUpdated';
+        // $this->emit('cartUpdated');
     }
 
     public function CountCart()

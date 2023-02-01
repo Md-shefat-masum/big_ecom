@@ -156,7 +156,7 @@
                                 
                             </div>
                         </div>
-                        <div class="col-md-12 col-sm-12">
+                        <div class="col-md-12 col-sm-12 d-none">
                             <div class="checkout-section card checkout-box voucher-coupon mt-3 p-1">
                                 <div class="card-body">
                                     <div class="row">
@@ -176,7 +176,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-sm-12 details-section-wrap">
+                        <div class="col-md-12 col-sm-12 details-section-wrap mt-5">
                             <div class="card checkout-section checkout-box">
                                 <div class="section-head">
                                     <h2><span>4</span>Order Overview</h2>

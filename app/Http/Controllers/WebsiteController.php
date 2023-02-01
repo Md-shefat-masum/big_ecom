@@ -14,13 +14,13 @@ class WebsiteController extends Controller
         return view('frontend.index');
     }
 
-    public function category_products($slug,$id)
+    public function category_products($slug, $id)
     {
         $category = null;
-        if(Category::where('id',$id)->exists()){
-            $category = Category::where('id',$id)->first();
+        if (Category::where('id', $id)->exists()) {
+            $category = Category::where('id', $id)->first();
         }
-        return view('frontend.category_product',compact('category'));
+        return view('frontend.category_product', compact('category'));
         // dd([
         //     'slug' => $slug,
         //     'id' => $id,
@@ -33,7 +33,8 @@ class WebsiteController extends Controller
         $cart->add_to_cart($request->id, $request->qty);
         return response()->json([
             'cart' => $cart->get(),
-            "message" => "Product added to cart successfully"
+            "message" => "Product added to cart successfully",
+            'cart_count' => $cart->cart_count(),
         ], 200);
     }
 
@@ -55,6 +56,4 @@ class WebsiteController extends Controller
     {
         ddd(session()->get('carts'));
     }
-
-
 }

@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
     Livewire.hook('message.sent', (message, component) => {})
     Livewire.hook('message.failed', (message, component) => {})
     Livewire.hook('message.received', (message, component) => {
-        console.log(message);
+        find_event_status(message);
 
-        if(message.component.listeners.includes("product_cart_update")) {
-            Livewire.emit('cartAdded');
-            window.s_alert("success", "Product Added to cart successfully.")
-        }
+        // if(message.component.listeners.includes("product_cart_update")) {
+        //     Livewire.emit('cartAdded');
+        //     window.s_alert("success", "Product Added to cart successfully.")
+        // }
 
         let access_token = message.response.serverMemo.data?.access_token;
         if(access_token){
@@ -65,7 +65,6 @@ function showQuickView(product) {
     }).then(res => {
         return res.text()
     }).then(res => {
-        console.log(res);
         document.getElementById('quick_view_product_modal').innerHTML = res
     })
 }
@@ -85,3 +84,15 @@ function closeModal() {
 document.addEventListener("turbolinks:load", function(event) {
     window.livewire.start();
 });
+
+var find_event_status = (message) => {
+    // console.log(message);
+    let data = message.response.serverMemo.data;
+    let status = message.response.serverMemo.data?.status_message;
+    if(status === 'cartRemoved'){
+        update_cart_count_html(data.cart_amount);
+    }
+}
+var update_cart_count_html = (cart_amount) =>{
+    document.querySelector('.cart-count').innerHTML = cart_amount
+}

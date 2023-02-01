@@ -17,9 +17,9 @@
                     <div class="product-detail-content">
                         <h2 class="product-detail-title mt-n1 me-10">{{ $product->product_name }}</h2>
                         @if ($product->discounts)
-                            <div class="product-detail-price">{{ $product->default_price-$product->discounts['discount_amount'] }} ৳ - <span class="price-old">{{ $product->default_price }} ৳</span></div>
+                            <div class="product-detail-price">{{ number_format($product->default_price-$product->discounts['discount_amount']) }} ৳ - <span class="price-old">{{ number_format($product->default_price) }} ৳</span></div>
                         @else
-                            <div class="product-detail-price">{{ $product->default_price }}</div>
+                            <div class="product-detail-price">{{ number_format($product->default_price) }} ৳</div>
                         @endif
 
                         <div class="product-detail-review"> 
@@ -54,7 +54,7 @@
                             <div class="pro-qty">
                                 <input type="text" title="Quantity" value="01">
                             </div>
-                            <button wire:click="addToCart({!! $product->id !!})" class="product-detail-cart-btn" type="button">Add to cart</button>
+                            <button onclick="addToCart({{ $product->id }})" class="product-detail-cart-btn" type="button">Add to cart</button>
                         </div>
                         <!--== Start Features Area Wrapper ==-->
                         <div class="features-two-area">

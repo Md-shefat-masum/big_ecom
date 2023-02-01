@@ -25,14 +25,15 @@ class CartController extends Controller
 
     public function add_to_cart($id, $qty)
     {   
-        if(count($this->cart) > 0) {
-            foreach ($this->cart as $key => $value) {
-                if($value['product']->id == $id)
-                {
-                    $value['qty']+= 1;
-                }
+        
+        foreach ($this->cart as $key => $value) {
+            if($value['product']->id == $id)
+            {
+                $value['qty']+= 1;
+                return $this->cart;
             }
         }
+        
         $product = Product::where('id', $id)
         ->where('status', 1)
         ->select("id", "product_name", "default_price")

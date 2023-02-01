@@ -101,10 +101,7 @@
                                 </a>
                             </li>
                             @endforeach 
-                            {{-- <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
-                            <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
                             
-                            <li class="main-nav-item"><a class="main-nav-link" href="contact.html">Contact</a></li> --}}
                             <li class="main-nav-item"><a class="main-nav-link" href="/contact">Contact</a></li>
                         </ul>
                     </div>

@@ -15,12 +15,12 @@ function addToCart(product_id, qty=1) {
         response.data = await res.json();
         return response;
     }).then(res => {
-        console.log(res);
         if(res.status === 200) {
             // error_response(res.data)
             window.s_alert("success", res.data.message)
             $("#close_quick_view_modal").click();
-            Livewire.emit('cartAdded');
+            update_cart_count_html(res.data.cart_count);
+            // Livewire.emit('cartAdded');
         }
     })
 }

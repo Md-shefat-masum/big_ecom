@@ -3,7 +3,7 @@
     @php
         $data = [
             "id" => $product->id,
-            "product_name" => str_replace(' ', '-', strtolower($product->product_name))
+            "product_name" => \Illuminate\Support\Str::slug($product->product_name)
         ];
     @endphp
     
@@ -30,9 +30,15 @@
             <div class="d-flex justify-content-between">
                 <div class="ms-4 product-item-price mb-4">
                     @if ($product->discounts)
-                        <div class="product-item-price">{{ $product->default_price-$product->discounts['discount_amount'] }} ৳  -<span class="price-old">{{ $product->default_price }} ৳</span></div>
+                        <div class="product-item-price">
+                            {{ number_format($product->default_price-$product->discounts['discount_amount']) }} ৳  -<span class="price-old">{{ number_format($product->default_price) }} ৳</span>
+                        </div>
                     @else
-                    {{ $product->default_price }} ৳
+                        @if (is_numeric($product->default_price))
+                            {{ number_format($product->default_price) }} ৳
+                        @else
+                            {{ $product->default_price }}
+                        @endif
                     @endif
                 </div>
                 <button type="button" onclick="addToCart({{ $product->id }})" class="info-btn-cart me-4 mb-4"><i class="icon-handbag"></i></button>

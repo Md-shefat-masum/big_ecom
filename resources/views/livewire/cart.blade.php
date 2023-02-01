@@ -24,7 +24,7 @@
                                         @php
                                             $data = [
                                                 "id" => $cart['product']['id'],
-                                                "product_name" => str_replace(' ', '-', strtolower($cart['product']['product_name']))
+                                                "product_name" => \Illuminate\Support\Str::slug($cart['product']->product_name)
                                             ];
                                         @endphp
                                         <tr>
@@ -44,9 +44,9 @@
                                             <td class="cart-quality">
                                                 <div class="product-details-quality">
                                                     <div class="pro-qty">
-                                                        <div wire:click.debounce.500ms="decrease({{ $cart['product']['id'] }})" class= "dec qty-btn">-</div>
-                                                        <input type="text" title="Quantity" wire:keyup.debounce.500ms="quantityChange($event.target.value, {{ $cart['product']['id'] }})" value="{{ $cart['qty'] }}">
-                                                        <div wire:click.debounce.500ms="increase({{ $cart['product']['id'] }})" class="inc qty-btn">+</div>
+                                                        <div wire:click.debounce.200ms="decrease({{ $cart['product']['id'] }})" class= "dec qty-btn">-</div>
+                                                        <input type="text" title="Quantity" wire:keyup.debounce.200ms="quantityChange($event.target.value, {{ $cart['product']['id'] }})" value="{{ $cart['qty'] }}">
+                                                        <div wire:click.debounce.200ms="increase({{ $cart['product']['id'] }})" class="inc qty-btn">+</div>
                                                     </div>
                                                 </div>
                                             </td>
@@ -64,6 +64,27 @@
                                             <td class="product-remove"><a href="javascript:void(0)" wire:click="remove({{ $cart['product']['id'] }})"><i class="fa fa-trash-o"></i></a></td>
                                             
                                             <div wire:loading wire:target="remove({{ $cart['product']['id'] }})">
+                                                <div class="cart_loader text-center">
+                                                    <div class="spinner-border spinner-border-lg" role="status">
+                                                      <span class="visually-hidden">updating cart...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div wire:loading wire:target="decrease({{ $cart['product']['id'] }})">
+                                                <div class="cart_loader text-center">
+                                                    <div class="spinner-border spinner-border-lg" role="status">
+                                                      <span class="visually-hidden">updating cart...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div wire:loading wire:target="increase({{ $cart['product']['id'] }})">
+                                                <div class="cart_loader text-center">
+                                                    <div class="spinner-border spinner-border-lg" role="status">
+                                                      <span class="visually-hidden">updating cart...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div wire:loading wire:target="quantityChange({{ $cart['product']['id'] }})">
                                                 <div class="cart_loader text-center">
                                                     <div class="spinner-border spinner-border-lg" role="status">
                                                       <span class="visually-hidden">updating cart...</span>
