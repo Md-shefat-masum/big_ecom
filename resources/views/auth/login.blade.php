@@ -1,8 +1,41 @@
-@extends('layouts.app')
+@extends('frontend.layout')
 
 @section('content')
+<div class="login-register-area section-space">
+
+</div>
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-md-5 login-register-border">
+            <div class="login-register-content">
+                <div class="login-register-title mb-30">
+                    <h3>Login</h3>
+                    <p>Welcome back! Please enter your username and password to login. </p>
+                </div>
+                <div class="login-register-style login-register-pr">
+                    <form action="#" method="post">
+                        <div class="login-register-input">
+                            <input type="text" name="user-name" placeholder="Username or email address">
+                        </div>
+                        <div class="login-register-input">
+                            <input type="password" name="user-password" placeholder="Password">
+                            <div class="forgot">
+                                <a href="login-register.html">Forgot?</a>
+                            </div>
+                        </div>
+                        <div class="remember-me-btn">
+                            <input id="remember-me-checkbox" type="checkbox">
+                            <label for="remember-me-checkbox">Remember me</label>
+                        </div>
+                        <div class="btn-register">
+                            <a class="btn-register-now" href="account.html">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
@@ -22,7 +55,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                {{-- <?= dd(Session::all()); ?> --}}
+                                
                                 @if (Session::has('error'))
                                     <span class="text-danger" role="alert">
                                         <strong>{{ Session::get('error') }}</strong>
@@ -74,6 +107,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
