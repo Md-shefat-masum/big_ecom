@@ -29,12 +29,18 @@
                                         @endphp
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <a href="{{ route('product_details', $data) }}"><img class="w-100" src="{{ asset('contents/frontend') }}/assets/images/shop/w1.png" alt="Image" width="96" height="96"></a>
+                                                <a href="{{ route('product_details', $data) }}">
+                                                    @if ($cart['product']->related_image)
+                                                        <img src="/{{ $cart['product']->related_image[0]->image }}" alt="Image" height="96">
+                                                    @else
+                                                        <img src="{{ asset('contents/frontend/') }}/assets/images/empty.png" alt="Image" height="96">
+                                                    @endif
+                                                </a>
                                             </td>
                                             <td class="product-name">
                                                 <h5><a href="{{ route('product_details', $data) }}">{{ $cart['product']->product_name }}</a></h5>
                                             </td>
-                                            <td class="product-price"><span class="amount">{{ $cart['product']->default_price }}</span></td>
+                                            <td class="product-price"><span class="amount">{{ $cart['price'] }}</span></td>
                                             <td class="cart-quality">
                                                 <div class="product-details-quality">
                                                     <div class="pro-qty">
@@ -51,7 +57,7 @@
                                                     </span>
                                                 @else
                                                     <span>
-                                                        {{ $cart['product']->default_price * $cart['qty'] }}
+                                                        {{ $cart['price'] * $cart['qty'] }}
                                                     </span>
                                                 @endif
                                             </td>

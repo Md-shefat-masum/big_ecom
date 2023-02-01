@@ -24,26 +24,45 @@ class CartController extends Controller
     }
 
     public function add_to_cart($id, $qty)
-    {
-    
+    {   
+        if(count($this->cart) > 0) {
+            foreach ($this->cart as $key => $value) {
+                if($value['product']->id == $id)
+                {
+                    $value['qty']+= 1;
+                }
+            }
+        }
         $product = Product::where('id', $id)
         ->where('status', 1)
         ->select("id", "product_name", "default_price")
+        ->with(['discounts', 'related_image' => function($q) {
+            $q->select('id', 'product_id' ,'image');
+        }])
         ->first();
 
-        $price = $product->price;
+        // dd($product);
+
+        if($product->discounts) {
+            $price = (float)$product->default_price-(float)$product->discounts['discount_amount'];
+        }else {
+            $price = (float)$product->default_price;
+        }
+        
         if(!is_numeric($price)) {
             $price = 0;
         }
+
         $temp_arr = [
             "product" => $product,
             "qty" => $qty,
-            "price" => 0 
+            "price" => $price 
         ];
 
         array_push($this->cart, collect($temp_arr));
         $this->cart_save();
-
+        
+    
     }
     public function cart_save() {
         Session::put('carts', $this->cart);
@@ -61,8 +80,8 @@ class CartController extends Controller
         foreach ($this->cart as $value) {
             // if($value['product']->id == $id)
             
-            if(is_numeric($value['product']->default_price)) {
-                $total += $value['product']->default_price * $value['qty'];
+            if(is_numeric($value['price'])) {
+                $total += $value['price'] * $value['qty'];
             }else {
                 0 * $value['qty'];
             }
