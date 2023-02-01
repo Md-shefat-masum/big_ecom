@@ -29,7 +29,7 @@
             </div>
             <div class="d-flex justify-content-between">
                 <div class="ms-4 product-item-price mb-4">
-                    @if ($product->discounts)
+                    @if ($product->discounts && $product->discounts['discount_last_date'] > Carbon\Carbon::now())
                         <div class="product-item-price">
                             {{ number_format($product->default_price-$product->discounts['discount_amount']) }} ৳  -<span class="price-old">{{ number_format($product->default_price) }} ৳</span>
                         </div>

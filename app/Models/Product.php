@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\CategoryProduct;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -129,6 +130,10 @@ class Product extends Model
 
     public function discounts() {
         return $this->hasOne(DiscountProduct::class, 'product_id');
+    }
+
+    public function brand() {
+        return $this->hasOneThrough(Brand::class, CategoryProduct::class);
     }
 
     public function categories()

@@ -92,15 +92,17 @@
                             <h3 class="widget-two-title text-black">Product Filter</h3>
                             <div class="widget-filter-size">
                                 <h4 class="filter-size-title">Filter By Brand</h4>
+                                
                                 <div class="filter-form-check">
                                     <input class="filter-form-check-input" type="checkbox" id="filterSizeChecked1">
                                     <label class="filter-form-check-label" for="filterSizeChecked1">All</label>
                                 </div>
                                 @foreach ($brands as $item)    
                                     <div class="filter-form-check">
-                                        <input class="filter-form-check-input" type="checkbox" id="filterSizeChecked2">
-                                        <label class="filter-form-check-label" for="filterSizeChecked2">{{ $item->name }}</label>
+                                        <input class="filter-form-check-input" wire:model="brand_ids" wire:click.debounce.500ms="filterBrand()" value="{{ $item->id }}" name="brand_checkbox" type="checkbox" id="filterBrandcheck">
+                                        <label class="filter-form-check-label" for="filterBrandcheck">{{ $item->name }}</label>
                                     </div>
+                                    
                                 @endforeach
                                 </div>
                             </div>
