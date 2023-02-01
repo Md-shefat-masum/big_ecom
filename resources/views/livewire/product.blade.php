@@ -35,7 +35,7 @@
                     {{ $product->default_price }} ৳
                     @endif
                 </div>
-                <button type="button" wire:click="addToCart({!! $product->id !!})" class="info-btn-cart me-4 mb-4"><i class="icon-handbag"></i></button>
+                <button type="button" onclick="addToCart({{ $product->id }})" class="info-btn-cart me-4 mb-4"><i class="icon-handbag"></i></button>
             </div>
         </div>
     </div>

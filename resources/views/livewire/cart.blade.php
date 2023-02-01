@@ -56,9 +56,18 @@
                                                 @endif
                                             </td>
                                             <td class="product-remove"><a href="javascript:void(0)" wire:click="remove({{ $cart['product']['id'] }})"><i class="fa fa-trash-o"></i></a></td>
+                                            
+                                            <div wire:loading wire:target="remove({{ $cart['product']['id'] }})">
+                                                <div class="cart_loader text-center">
+                                                    <div class="spinner-border spinner-border-lg" role="status">
+                                                      <span class="visually-hidden">updating cart...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
-                                    @endif
-                                    @endforeach
+                                        @endif
+                                        @endforeach
+                                        
                                 </tbody>
                                 @else
                                     <div class="text-center">

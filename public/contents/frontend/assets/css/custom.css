@@ -127,6 +127,19 @@
   line-height: auto !important;
   margin-bottom: unset !important;
 }
+.cart_loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: #9eafd2c9;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
 .modal-body .product-detail-desc {
   margin-top: 20px;
   max-height: 300px;
