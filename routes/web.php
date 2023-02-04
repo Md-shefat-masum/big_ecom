@@ -29,6 +29,7 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     Route::get('/contact', "Contact");
     Route::get('/cart', "Cart");
     Route::get('/checkout', "Checkout");
+    Route::get('/profile', "Profile");
     Route::get('/order-complete', "OrderComplete");
     Route::get('/product/{id}/{product_name}', ProductDetails::class)->name('product_details');
     Route::get('/category/{id}/{category_name}', CategoryProduct::class)->name('category_product');

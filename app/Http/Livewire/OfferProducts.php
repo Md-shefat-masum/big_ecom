@@ -35,6 +35,6 @@ class OfferProducts extends Component
             'meta' => [
                 "title" => "Offer products, Best deal" . " - " . $_SERVER['SERVER_NAME'],
             ],
-        ]);;
+        ]);
     }
 }
