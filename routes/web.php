@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/about', [WebsiteController::class, 'about']);
 
 
-Auth::routes();
+// Auth::routes();s
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -60,6 +60,8 @@ Route::prefix('')->namespace('Controllers')->group(function () {
     Route::get('/login', 'FrontendController@login')->name('login');
     Route::post('/login', 'FrontendController@loginSubmit')->name('login');
     Route::get('/logout', 'FrontendController@logout')->name('logout');
+
+    // Auth::routes();
     Route::post('/website_login', 'FrontendController@website_login')->name('website_login');
     Route::post('/website_register', 'FrontendController@website_register')->name('website_register');
 

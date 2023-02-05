@@ -14,7 +14,9 @@ class Profile extends Component
     {
 
         $this->user = Auth::user();
-        $this->orders = Order::where('user_id', $this->user->id)->paginate(20);
+        if($this->user) {
+            $this->orders = Order::where('user_id', $this->user->id)->paginate(20);
+        }
         return view('livewire.profile', [
             "orders" => $this->orders
         ])->extends('frontend.layout', [
