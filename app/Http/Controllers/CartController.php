@@ -24,26 +24,46 @@ class CartController extends Controller
     }
 
     public function add_to_cart($id, $qty)
-    {
-    
+    {   
+        
+        foreach ($this->cart as $key => $value) {
+            if($value['product']->id == $id)
+            {
+                $value['qty']+= 1;
+                return $this->cart;
+            }
+        }
+        
         $product = Product::where('id', $id)
         ->where('status', 1)
         ->select("id", "product_name", "default_price")
+        ->with(['discounts', 'related_image' => function($q) {
+            $q->select('id', 'product_id' ,'image');
+        }])
         ->first();
 
-        $price = $product->price;
+        // dd($product);
+
+        if($product->discounts) {
+            $price = (float)$product->default_price-(float)$product->discounts['discount_amount'];
+        }else {
+            $price = (float)$product->default_price;
+        }
+        
         if(!is_numeric($price)) {
             $price = 0;
         }
+
         $temp_arr = [
             "product" => $product,
             "qty" => $qty,
-            "price" => 0 
+            "price" => $price 
         ];
 
         array_push($this->cart, collect($temp_arr));
         $this->cart_save();
-
+        
+    
     }
     public function cart_save() {
         Session::put('carts', $this->cart);
@@ -60,8 +80,11 @@ class CartController extends Controller
         $total = 0;
         foreach ($this->cart as $value) {
             // if($value['product']->id == $id)
-            if($value['product']->default_price !== "Call for Price" || $value['product']->default_price !== "Out of Stock") {
-                $total += $value['product']->default_price * $value['qty'];
+            
+            if(is_numeric($value['price'])) {
+                $total += $value['price'] * $value['qty'];
+            }else {
+                0 * $value['qty'];
             }
         }
         return $total;
@@ -97,6 +120,11 @@ class CartController extends Controller
         }
         
         return $this->cart;
+    }
+
+    public function emptyCart()
+    {
+        session()->forget('carts');
     }
 
     public function qty_change($qty, $id) {

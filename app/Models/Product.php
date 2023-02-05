@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\CategoryProduct;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -19,6 +21,7 @@ class Product extends Model
         'variant_values_json',
         'related_categories',
         'related_images',
+        "total_description"
     ];
 
     public function getRelatedCategoriesAttribute()
@@ -36,6 +39,27 @@ class Product extends Model
             return $category;
         }
     }
+
+    public function getTotalDescriptionAttribute()
+    {
+        $description_check = Str::contains($this->description, '<h2 style="margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding: 0px; line-height: 26px;">Specification</h2>');
+        
+        if($description_check) {
+            $description_split = explode('<h2 style="margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding: 0px; line-height: 26px;">Specification</h2>' , $this->description);
+            $key_fetures = $description_split[0];
+            $specification = $description_split[1];
+
+            if(Str::contains($key_fetures, '<p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p><p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p>')) {
+                $key_fetures = Str::replace('<p style="margin: 0px; padding: 0px 0px 10px; display: block; line-height: 20px;"><br></p>', '' ,$key_fetures);
+            }
+
+            return [
+                "key_fetures" => $key_fetures,
+                "main_description" => $specification,
+            ];
+        }
+    }
+
     public function getRelatedImagesAttribute()
     {
         return ProductImage::where('product_id', $this->id)->get();
@@ -94,9 +118,22 @@ class Product extends Model
         return 0;
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class, 'product_id');
+    }
+
     public function related_image()
     {
         return $this->hasMany(ProductImage::class, 'product_id');
+    }
+
+    public function discounts() {
+        return $this->hasOne(DiscountProduct::class, 'product_id');
+    }
+
+    public function brand() {
+        return $this->hasOneThrough(Brand::class, CategoryProduct::class);
     }
 
     public function categories()

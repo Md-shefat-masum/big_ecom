@@ -9,11 +9,24 @@ function addToCart(product_id, qty=1) {
             id: product_id,
             qty: qty
         })
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
     }).then(res => {
-        return res.json()
-    }).then(res => {
-        console.log(res);
+        if(res.status === 200) {
+            // error_response(res.data)
+            window.s_alert("success", res.data.message)
+            $("#close_quick_view_modal").click();
+            update_cart_count_html(res.data.cart_count);
+            // Livewire.emit('cartAdded');
+        }
     })
+}
+
+function quick_view_add_to_cart(product_id) {
+    Livewire.emit('viewProduct', product);
 }
 
 function checkout(event) {
@@ -35,8 +48,111 @@ function checkout(event) {
         if(res.status === 422) {
             error_response(res.data)
         }
+        if(res.status === 200) {
+            location.href = "/order-complete";
+        }
     })
 }
+
+function login(params) {
+    fetch("/website_login", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: formData
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
+    }).then(res => {
+        console.log(res);
+        if(res.status === 422) {
+            error_response(res.data)
+        }
+        if(res.status === 401) {
+            $("#login_modal").click();
+        }
+        if(res.status === 200) {
+            window.s_alert("success", "Review created successfully")
+        }
+    })
+}
+
+function register(params) {
+    fetch("/website_login", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: formData
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
+    }).then(res => {
+        console.log(res);
+        if(res.status === 422) {
+            error_response(res.data)
+        }
+        if(res.status === 401) {
+            $("#login_modal").click();
+        }
+        if(res.status === 200) {
+            window.s_alert("success", "Review created successfully")
+        }
+    })
+}
+
+function reviewSubmit(event) {
+    event.preventDefault();
+    let formData = new FormData(event.target);
+
+    fetch("/review_submit", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: formData
+    }).then(async res => {
+        let response = {}
+        response.status = res.status
+        response.data = await res.json();
+        return response;
+    }).then(res => {
+        if(res.status === 422) {
+            error_response(res.data)
+        }
+        if(res.status === 401) {
+            $("#login_modal").click();
+        }
+        if(res.status === 200) {
+            window.s_alert("success", "Review created successfully")
+        }
+    })
+
+    document.getElementById("review_description").value = "";
+}
+
+$("#login_modal").addClass('d-none');
+$('#bkash_btn').change(function () {
+    $('#bkash_section').removeClass('d-none');
+    $('#bank_section').addClass('d-none');
+    $('#bkash_number').attr('required');
+    $('#bkash_trx_id').attr('required');
+});
+$('#bank_transfer_btn').change(function () {
+    $('#bkash_section').addClass('d-none');
+    $('#bank_section').removeClass('d-none');
+    $('#bank_ac_no').attr('required');
+    $('#bank_trx_no').attr('required');
+});
+$('#cod_btn').change(function () {
+    $('#bkash_section').addClass('d-none');
+    $('#bank_section').addClass('d-none');
+});
 
 function error_response(data) {
     // console.log(data);
@@ -104,5 +220,4 @@ function error_response(data) {
 
     window.s_alert('error',data.err_message)
     throw data;
-    
 }

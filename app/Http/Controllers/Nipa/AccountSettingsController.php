@@ -50,7 +50,8 @@ class AccountSettingsController extends Controller
     {
 
         $data = Order::orderBy('id', 'ASC')->with('order_address')->where('order_status', 'pending')->get();
-        // dd($data);
+
+        
         return $data;
         // return view('admin.nipa.account-settings.order-list-pending',compact('data'));
     }

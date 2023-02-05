@@ -1,8 +1,7 @@
-<!--== Start Header Wrapper ==-->
 <header class="header-wrapper">
     <div class="header-middle d-none d-xl-block">
         <div class="container custom-container">
-            <div class="row align-items-center justify-content-between align-items-center">
+            <div class="row align-items-center justify-content-between align-items-center navbar-parent">
                 <div class="col-auto">
                     <div class="header-logo-area">
                         <a href="/">
@@ -11,18 +10,42 @@
                     </div>
                 </div>
                 <div class="col-auto d-flex justify-content-end align-items-center">
-                    <form class="header-search-box d-none d-md-block">
-                        <input class="form-control" type="text" id="search" placeholder="Search Products" />
+
+                    <form class="header-search-box d-none d-md-block" wire:submit.prevent="submitSearchPage">
+                        <input wire:model="searchQuery" wire:keyup="search_product" class="form-control" type="text" id="search" placeholder="Search Products" />
                         <button type="submit" class="btn-src">
                             <i class="icon-magnifier"></i>
                         </button>
                     </form>
-                    <a href="login-register.html" class="header-action-account">Offers</a>
-                    <a href="login-register.html" class="header-action-account">Deals</a>
-                    <a href="login-register.html" class="header-action-account single-nav">Login / SignUp</a>
+                    
+                    <a href="{{ route('offer_products') }}" class="header-action-account">Offers</a>
+                    @if (Auth::check())
+                        <a href="/profile" class="header-action-account single-nav">Dashboard</a>
+                    @else
+                        <a href="/login" class="header-action-account single-nav">Login / SignUp</a>
+                    @endif
                     
                     @livewire('cart-count')
                 </div>
+                @if ($search_products)
+                    <div class="search_result">
+                        <div class="list-group list-group-flush">
+                            @foreach ($search_products as $item)
+                                @php
+                                    $data = [
+                                        "id" => $item->id,
+                                        "product_name" => str_replace(' ', '-', strtolower($item->product_name))
+                                    ];
+                                @endphp
+                                <a href="{{ route('product_details', $data) }}" class="list-group-item list-group-item-action">
+                                    <img src="/{{ $item->related_images[0]['image'] }}" width="80" height="80" alt="Image-Ctgcomputer">
+                                    {{ $item->product_name }}
+                                </a>
+                            @endforeach
+                                <a href="{{ route('search_product', $searchQuery) }}" class="my-5 list-group-item list-group-item-action active text-center">View more</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -31,7 +54,7 @@
             <div class="row align-items-center justify-content-between align-items-center">
                 <div class="col-auto">
                     <div class="header-logo-area">
-                        <a href="index.html">
+                        <a href="/">
                             <img class="logo-main" src="{{ asset('contents/frontend') }}/assets/images/logo.png" width="182" height="31" alt="Logo" />
                         </a>
                     </div>
@@ -41,8 +64,8 @@
                         <button class="btn-search-menu d-xl-none me-lg-4 me-xl-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
                             <i class="search-icon icon-magnifier"></i>
                         </button>
-                        <a href="login-register.html" class="header-action-account d-none d-xl-block">Login / SignUp</a>
-                        <a href="login-register.html" class="header-action-user me-lg-4 me-xl-0 d-xl-none">
+                        <a href="/login" class="header-action-account d-none d-xl-block">Login / SignUp</a>
+                        <a href="/login" class="header-action-user me-lg-4 me-xl-0 d-xl-none">
                             <i class="icon icon-user"></i>
                         </a>
                         
@@ -64,17 +87,22 @@
                         <ul class="main-nav justify-content-center">
                             @foreach ($categories as $category)    
                             <li class="main-nav-item">
-                                <a class="main-nav-link" href="about-us.html">
+                                @php
+                                    $data = [
+                                        "id" => $category->id,
+                                        "category_name" => str_replace(' ', '-', strtolower($category->name))
+                                    ];
+                                @endphp
+                                {{-- <a class="main-nav-link" href="javascript:void(0)" wire:click="category_product({{ $data['id'] }}, {{ $data['name'] }})">
+                                    {{ $category->name }}
+                                </a> --}}
+                                <a class="main-nav-link" href="{{ route('category_product', $data) }}" >
                                     {{ $category->name }}
                                 </a>
                             </li>
                             @endforeach 
-                            {{-- <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
-                            <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
                             
-                            <li class="main-nav-item"><a class="main-nav-link" href="contact.html">Contact</a></li> --}}
                             <li class="main-nav-item"><a class="main-nav-link" href="/contact">Contact</a></li>
-                            <li class="main-nav-item"><a class="main-nav-link" href="/cart">Cart</a></li>
                         </ul>
                     </div>
                 </div>
@@ -82,6 +110,47 @@
             </div>
         </div>
     </div>
+
+    <aside class="aside-side-menu-wrapper off-canvas-area offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions">
+        <div class="sidemenu-top">
+        </div>
+        <div class="offcanvas-header" data-bs-dismiss="offcanvas">
+            <h5>Menu</h5>
+            <button type="button" class="btn-close">×</button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- Start Mobile Menu Wrapper -->
+            <div class="res-mobile-menu">
+                <nav id="offcanvasNav" class="offcanvas-menu">
+
+                    <ul>
+                        <li><h5>All categories</h5></li>
+                        @foreach ($categories as $category)    
+                        <li>
+                            @php
+                                $data = [
+                                    "id" => $category->id,
+                                    "category_name" => str_replace(' ', '-', strtolower($category->name))
+                                ];
+                            @endphp
+                            {{-- <a class="main-nav-link" href="javascript:void(0)" wire:click="category_product({{ $data['id'] }}, {{ $data['name'] }})">
+                                {{ $category->name }}
+                            </a> --}}
+                            <a class="main-nav-link" href="{{ route('category_product', $data) }}" >
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                        @endforeach 
+                        {{-- <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
+                        <li class="main-nav-item"><a class="main-nav-link" href="about-us.html">About</a></li>
+                        
+                        <li class="main-nav-item"><a class="main-nav-link" href="contact.html">Contact</a></li> --}}
+                        <li class="main-nav-item"><a class="main-nav-link" href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Mobile Menu Wrapper -->
+        </div>
+    </aside>
 </header>
-<!--== End Header Wrapper ==-->
 

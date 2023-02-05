@@ -3,13 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Elehaus- Electronics eCommerce Website Template</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('contents/frontend') }}/assets/images/favicon.png">
+    
+    @include('frontend.include.meta',[
+        'meta' => $meta??[]
+    ])
 
     <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
 
@@ -32,7 +34,6 @@
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('contents/frontend') }}/assets/css/custom.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -78,6 +79,7 @@
         // });
     </script>
     @livewireStyles
+    
 </head>
 
 <body>
@@ -95,20 +97,20 @@
                     <div class="row mb-n6">
                         <div class="col-md-6 col-lg-3 mb-6">
                             <div class="widget-item">
-                                <a class="widget-logo" href="index.html">
-                                    <img src="{{ asset('contents/frontend') }}/assets/images/logo-light.png" alt="Logo" width="182" height="31">
+                                <a class="widget-logo" href="/">
+                                    <img src="{{ asset('contents/frontend') }}/assets/images/logo.png" alt="Logo" width="182" height="31">
                                 </a>
                                 <div class="widget-contact widget-contact-two">
-                                    <p class="widget-contact-desc me-n1">If you have any question. please contact us <a href="mailto://demo@example.com">demo@example.com</a></p>
+                                    <p class="widget-contact-desc me-n1">If you have any question. please contact us 
+                                        <a href="mailto://ctgcomputercentre2008@gmail.com">ctgcomputercentre2008@gmail.com</a></p>
                                     <div class="widget-info-item mb-6">
                                         <img src="{{ asset('contents/frontend') }}/assets/images/icons/pin.png" alt="Icon">
-                                        <p>Your address goes here. 123, Address.</p>
+                                        <p>Computer City Centre (Multiplan), Level: 4, Shop: 407-409, 69-71 New Elephant Road</p>
                                     </div>
                                     <div class="widget-info-item">
                                         <img src="{{ asset('contents/frontend') }}/assets/images/icons/mobile.png" alt="Icon">
                                         <div class="info-item-call">
-                                            <a href="tel://+0123456789 "> + 0 123 456 789 </a>
-                                            <a href="tel://+0129456789 "> + 0 129 456 789 </a>
+                                            <a href="tel://+8801733-080350"> 01733-080350 </a>
                                         </div>
                                     </div>
                                 </div>
@@ -120,13 +122,13 @@
                                 <h4 class="widget-title widget-collapsed-title collapsed" data-bs-toggle="collapse" data-bs-target="#widgetTitleId-1">Information</h4>
                                 <div id="widgetTitleId-1" class="collapse widget-collapse-body">
                                     <ul class="widget-nav">
-                                        <li><a href="about-us.html">About us</a></li>
-                                        <li><a href="account.html">Delivery information</a></li>
-                                        <li><a href="contact.html">Privacy Policy</a></li>
-                                        <li><a href="shop.html">Sales</a></li>
-                                        <li><a href="contact.html">Terms & Conditions</a></li>
-                                        <li><a href="contact.html">Shipping Policy</a></li>
-                                        <li><a href="contact.html">EMI Payment</a></li>
+                                        <li><a href="#">About us</a></li>
+                                        <li><a href="#">Delivery information</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Sales</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Shipping Policy</a></li>
+                                        <li><a href="#">EMI Payment</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -137,13 +139,13 @@
                                 <h4 class="widget-title widget-collapsed-title collapsed" data-bs-toggle="collapse" data-bs-target="#widgetTitleId-2">Account</h4>
                                 <div id="widgetTitleId-2" class="collapse widget-collapse-body">
                                     <ul class="widget-nav">
-                                        <li><a href="account.html">My account</a></li>
-                                        <li><a href="account.html">My orders</a></li>
-                                        <li><a href="account.html">Returns</a></li>
-                                        <li><a href="account.html">Shipping</a></li>
-                                        <li><a href="shop-wishlist.html">Wishlist</a></li>
-                                        <li><a href="contact.html">How Does It Work</a></li>
-                                        <li><a href="account.html">Merchant Sign Up</a></li>
+                                        <li><a href="#">My account</a></li>
+                                        <li><a href="#">My orders</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Shipping</a></li>
+                                        <li><a href="#">Wishlist</a></li>
+                                        <li><a href="#">How Does It Work</a></li>
+                                        <li><a href="#">Merchant Sign Up</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -154,13 +156,13 @@
                                 <h4 class="widget-title widget-collapsed-title collapsed" data-bs-toggle="collapse" data-bs-target="#widgetTitleId-3">Store</h4>
                                 <div id="widgetTitleId-3" class="collapse widget-collapse-body">
                                     <ul class="widget-nav">
-                                        <li><a href="shop.html">Affiliate</a></li>
-                                        <li><a href="shop.html">Bestsellers</a></li>
-                                        <li><a href="shop.html">Discount</a></li>
-                                        <li><a href="shop.html">Latest products</a></li>
-                                        <li><a href="shop.html">Sale</a></li>
-                                        <li><a href="shop.html">All Collection</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="#">Affiliate</a></li>
+                                        <li><a href="#">Bestsellers</a></li>
+                                        <li><a href="#">Discount</a></li>
+                                        <li><a href="#">Latest products</a></li>
+                                        <li><a href="#">Sale</a></li>
+                                        <li><a href="#">All Collection</a></li>
+                                        <li><a href="#">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -171,8 +173,8 @@
 
                 <!--== Start Footer Bottom ==-->
                 <div class="footer-bottom">
-                    <p class="copyright">© 2022 Elehaus. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://themeforest.net/user/hastech/portfolio">HasTech</a></p>
-                    <a href="shop.html"><img src="{{ asset('contents/frontend') }}/assets/images/shop/payment.png" alt="Image-HasTech"></a>
+                    <p class="copyright">© {{ now()->year }} Ctgcomputer. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://techparkit.org/">TechPark It</a></p>
+                    <a href="#"><img src="{{ asset('contents/frontend') }}/assets/images/shop/payment.png" alt="Image-techparkIt"></a>
                 </div>
                 <!--== End Footer Bottom ==-->
             </div>
@@ -183,85 +185,7 @@
         <!--== Scroll Top Button ==-->
         <div class="scroll-to-top"><span class="fa fa-angle-double-up"></span></div>
 
-        <!--== Start Product Quick View Modal ==-->
-        <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="product-quick-view-content">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"><span>×</span></button>
-                            <div class="row row-gutter-0">
-                                <div class="col-lg-6">
-                                    <div class="single-product-slider">
-                                        <div class="single-product-thumb">
-                                            <div class="swiper single-product-quick-view-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide">
-                                                        <div class="thumb-item">
-                                                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/m1.jpg" alt="Image" width="640" height="710">
-                                                        </div>
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <div class="thumb-item">
-                                                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/m2.jpg" alt="Image" width="640" height="710">
-                                                        </div>
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <div class="thumb-item">
-                                                            <img src="{{ asset('contents/frontend') }}/assets/images/shop/details/m3.jpg" alt="Image" width="640" height="710">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Add Arrows -->
-                                                <div class="swiper-button-next"></div>
-                                                <div class="swiper-button-prev"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="product-detail-content mt-6 mt-lg-0">
-                                        <h2 class="product-detail-title mt-n1 me-10">Android Television Super Salon New DGT -256</h2>
-                                        <div class="product-detail-price">$160.00 - <span class="price-old">$260.00</span></div>
-                                        <div class="product-detail-review">
-                                            <div class="product-detail-review-icon">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                            </div>
-                                            <p class="product-detail-review-show">( 1 Review )</p>
-                                        </div>
-                                        <p class="product-detail-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimo veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                                        <div class="mb-3">
-                                            <div class="pro-qty mb-2 mb-sm-0">
-                                                <input type="text" title="Quantity" value="01">
-                                            </div>
-                                            <button class="product-detail-cart-btn" type="button" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Add to cart</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="product-detail-compare-btn" data-bs-toggle="modal" data-bs-target="#action-CompareModal">
-                                                <i class="icon icon-shuffle"></i> Compare
-                                            </button>
-                                            <button type="button" class="product-detail-wishlist-btn" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                                <i class="icon icon-heart"></i> Add to wishlist
-                                            </button>
-                                        </div>
-                                        <ul class="product-detail-meta pt-6">
-                                            <li><span>SKU:</span> WX-256HG</li>
-                                            <li><span>Categories:</span> Home, Electronic</li>
-                                            <li><span>Tag</span> Electronic</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <!--== End Product Quick View Modal ==-->
+        
 
         <!--== Start Product Quick Wishlist Modal ==-->
         <aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
@@ -287,6 +211,31 @@
             </div>
         </aside>
         <!--== End Product Quick Wishlist Modal ==-->
+
+        {{-- Login modal --}}
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Authentication</h5>
+                    <button type="button" id="login_modal_close" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 d-felx">
+                            <div class="justify-content-center">
+                                @include('frontend.include.website_login')
+                            </div>  
+                        </div>
+                    </div>      
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
 
         <!--== Start Product Quick Add Cart Modal ==-->
         <aside class="product-action-modal modal fade" id="action-CartAddModal" tabindex="-1" aria-hidden="true">
@@ -525,26 +474,35 @@
         </aside>
     </div>
 
+    <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body" id="quick_view_product_modal">
+                    
+                </div>
+            </div>
+        </div>
+    </aside>
     
     <!--== Wrapper End ==-->
 
     <!-- JS Vendor, Plugins & Activation Script Files -->
+    @livewireScripts
 
     <!-- Vendors JS -->
     <script src="{{ asset('contents/frontend') }}/assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('contents/frontend') }}/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
     <script src="{{ asset('contents/frontend') }}/assets/js/vendor/bootstrap.bundle.min.js"></script>
     <!-- Plugins JS -->
     <script src="{{ asset('contents/frontend') }}/assets/js/plugins/swiper-bundle.min.js"></script>
 
 
     <!-- Custom Main JS -->
-    <script src="{{ asset('contents/frontend') }}/assets/js/main.js"></script>
-    @livewireScripts
-    <script src="/js/frontend.js" defer></script>
-    
+    <script src="{{ asset('contents/frontend') }}/assets/js/main.js" defer></script>
     <script src="{{ asset('contents/frontend') }}/assets/js/livewire_hook.js" defer></script>
     <script src="{{ asset('contents/frontend') }}/assets/js/cart.js" defer></script>
+    <script src="{{ asset('contents/frontend') }}/assets/js/review.js" defer></script>
+    <script src="/js/frontend.js" defer></script>
+
 </body>
 
 </html>

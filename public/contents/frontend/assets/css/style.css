@@ -460,7 +460,7 @@ hr {
 .offcanvas-backdrop,
 .modal-backdrop {
   background-color: rgba(43, 43, 43, 0.92);
-  cursor: url("../images/icons/cancel-white.png"), auto;
+  /* cursor: url("../images/icons/cancel-white.png"), auto; */
 }
 .offcanvas-backdrop.show,
 .modal-backdrop.show {

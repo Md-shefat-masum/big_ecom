@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Http\Controllers\CartController;
 use App\Models\Product;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class HomePageProduct extends Component
@@ -13,7 +14,14 @@ class HomePageProduct extends Component
     public $skip;
     public $total;
     public $total_page;
+    public $view_product;
     public $current_page = 0;
+    public $is_showModal = false;
+
+    protected $listeners = [
+        'viewProduct' => 'quickView',
+        'CloseViewProduct' => 'closeQuickView',
+    ];
 
     public function mount()
     {
@@ -28,17 +36,34 @@ class HomePageProduct extends Component
 
     public function render()
     {
-        
         return view('livewire.home-page-product');        
+    }
+
+    public function quickView($product)
+    {
+        $this->is_showModal = true;
+        $this->view_product = Product::find($product);
+    }
+
+    public function closeQuickView() {
+        $this->is_showModal = false;
     }
 
     public function get_products()
     {
         $this->skip = ($this->current_page-1) * $this->take;
-        $this->products = array_merge($this->products, Product::latest()
-            ->take($this->take)
-            ->skip($this->skip)
-            ->get()->toArray());
+        $this->products = array_merge($this->products, Product::take($this->take)
+        ->with('discounts', function($q) {
+            $q->orderBy('created_at','DESC')->where('discount_last_date', '>', Carbon::now())->select('id', 'product_id' ,'discount_percent', 'discount_amount', 'discount_last_date');
+        })
+        ->skip($this->skip)
+        ->select('id', 'product_name', 'default_price')
+        ->get()->toArray());
+    }
+
+    public function details($id)
+    {
+        return redirect()->to("/product-details/$id");
     }
 
     public function nextPage()

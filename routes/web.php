@@ -4,7 +4,6 @@ use App\Http\Controllers\WebsiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +19,7 @@ use Livewire\Livewire;
 // Route::get('/about', [WebsiteController::class, 'about']);
 
 
-Auth::routes();
+// Auth::routes();s
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -30,13 +29,22 @@ Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
     Route::get('/contact', "Contact");
     Route::get('/cart', "Cart");
     Route::get('/checkout', "Checkout");
+    Route::get('/profile', "Profile");
+    Route::get('/order-complete', "OrderComplete");
+    Route::get('/product/{id}/{product_name}', ProductDetails::class)->name('product_details');
+    Route::get('/category/{id}/{category_name}', CategoryProduct::class)->name('category_product');
+    // Route::get('/product/search/{search}', SearchProduct::class)->name('search_product');
+    Route::any('/search-product/{search}', SearchProduct::class)->name('search_product');
+    Route::get('/offer/prodcuts', OfferProducts::class)->name('offer_products');
+    Route::get('/product/quick_view/{id}', OfferProducts::class)->name('quick_view_product');
+    // Route::get('/category-product/{id}', CategoryProduct::class)->name('category_product');
     // Route::get('/login', "Login");
     // Route::get('/register', "Register");
 });
 
 
 Route::prefix('')->namespace('Controllers')->group(function () {
-    // Route::get('/', 'WebsiteController@index')->name('website_index');
+    Route::get('/product_quickview/{id}', 'WebsiteController@single_product_details')->name('single_product_view');
     Route::post('add_to_cart', 'WebsiteController@add_to_cart');
     Route::get('clear_cart', 'WebsiteController@clear_cart');
     Route::get('cart_all', 'WebsiteController@cart_all');
@@ -47,6 +55,15 @@ Route::prefix('')->namespace('Controllers')->group(function () {
     Route::post('/search-product/json', 'JsonController@search_product')->name('search_product_json');
 
     Route::post('/checkout', 'FrontendController@confirm_order');
+    Route::post('/review_submit', 'FrontendController@reviewSubmit');
+
+    Route::get('/login', 'FrontendController@login')->name('login');
+    Route::post('/login', 'FrontendController@loginSubmit')->name('login');
+    Route::get('/logout', 'FrontendController@logout')->name('logout');
+
+    // Auth::routes();
+    Route::post('/website_login', 'FrontendController@website_login')->name('website_login');
+    Route::post('/website_register', 'FrontendController@website_register')->name('website_register');
 
     Route::get('/get-auth-info',function(){
         return Auth::user();
@@ -62,8 +79,7 @@ Route::prefix('')->namespace('Controllers')->group(function () {
         Route::post('/set-theme', 'AdminController@set_theme')->name('admin_set_theme');
     });
 
-    Route::get('/login', 'Auth\LoginController@login')->name('login');
-    Route::post('/login', 'Auth\LoginController@attemptLogin')->name('login');
+    
 
     // user management
     Route::group([
@@ -221,7 +237,7 @@ Route::prefix('')->namespace('Controllers')->group(function () {
     })->name('route name');
 
 
+    include_once("nipa_web.php");
 });
 
-include_once("nipa_web.php");
 

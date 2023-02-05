@@ -215,7 +215,7 @@
             <div class="container">
                 <div class="text-center">
                     <p>Copyright &copy; 2014-21 <a href="#" target="_blank">Brandszone</a>
-                        Develop By <a href="http://hsblco.com/" target="_blank">HSBLCO</a> Team</p>
+                        Develop By <a href="http://techparkit.org/" target="_blank">TechPark It</a> Team</p>
                 </div>
             </div>
         </footer>

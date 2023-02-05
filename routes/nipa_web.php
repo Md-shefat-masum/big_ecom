@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
-Auth::routes();
+// 
 
 Route::group([
     'prefix' => 'user-role',
@@ -187,7 +187,7 @@ Route::group([
     'namespace' => 'Nipa'
 ], function () {
     Route::get('/product', 'FrontendController@frontend_product')->name('frontend_product');
-    Route::get('/product-details/{id}', 'FrontendController@product_details')->name('product_details');
+    // Route::get('/product-details/{id}', 'FrontendController@product_details')->name('product_details');
     Route::get('/json-product-details/{id}', 'FrontendController@json_product_details')->name('json_product_details');
     Route::get('/get-product', 'FrontendController@frontend_get_product')->name('frontend_get_product');
     Route::get('/get-product-image', 'FrontendController@get_product_image')->name('get_product_image');

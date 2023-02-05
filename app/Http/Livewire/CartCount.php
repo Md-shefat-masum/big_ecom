@@ -7,16 +7,23 @@ use Livewire\Component;
 
 class CartCount extends Component
 {
+    private $cart_handler;
+    public $carts;
+
     protected $listeners = [
         'cartAdded' => 'render',
         'cartRemoved' => 'render',
         'cartUpdated' => 'render'
     ];
+    
+    public function __construct() {
+        $this->cart_handler = new CartController();
+    }
     public function render()
     {
-        $cart = new CartController;
+        $this->carts = $this->cart_handler->get();
         return view('livewire.cart-count', [
-            'cart_count' => $cart->cart_count(),
+            'cart_count' => $this->cart_handler->cart_count(),
         ]);
     }
 }
