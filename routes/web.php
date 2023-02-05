@@ -235,9 +235,6 @@ Route::prefix('')->namespace('Controllers')->group(function () {
 
         dd($request->all());
     })->name('route name');
-
-
-    include_once("nipa_web.php");
 });
 
 
